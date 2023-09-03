@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.8
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -59,12 +59,11 @@ let package = Package(
             name: "FileSystem",
             targets: ["FileSystem"]
         ),
-        .executable(name: "WebIDLToSwift", targets: ["WebIDLToSwift"]),
     ],
     dependencies: [
         .package(
             url: "https://github.com/swiftwasm/JavaScriptKit.git",
-            from: "0.16.0"
+            from: "0.18.0"
         ),
     ],
     targets: [
@@ -121,17 +120,15 @@ let package = Package(
             dependencies: ["DOM", "WebAPIBase", "ECMAScript"]
         ),
         // This support library should be moved to JavaScriptKit
-        .target(name: "ECMAScript", dependencies: [
-            "JavaScriptKit",
-            .product(name: "JavaScriptEventLoop", package: "JavaScriptKit"),
-            .product(name: "JavaScriptBigIntSupport", package: "JavaScriptKit"),
-        ]),
-        .target(name: "WebIDL"),
-        .executableTarget(
-            name: "WebIDLToSwift",
-            dependencies: ["WebIDL"]
+        .target(
+            name: "ECMAScript",
+            dependencies: [
+                "JavaScriptKit",
+                .product(name: "JavaScriptEventLoop", package: "JavaScriptKit"),
+                .product(name: "JavaScriptBigIntSupport", package: "JavaScriptKit"),
+            ]
         ),
-        .testTarget(
+       .testTarget(
             name: "WebAPIKitTests",
             dependencies: ["DOM"]
         ),
