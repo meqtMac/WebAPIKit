@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "WebAPIKit",
-    platforms: [.macOS(.v10_13)],
+    platforms: [.macOS(.v13)],
     products: [
         .executable(
             name: "WebAPIKitDemo",
@@ -69,7 +69,7 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "WebAPIKitDemo",
-            dependencies: ["DOM", "WebGL2"]
+            dependencies: ["DOM", "WebGL2", "WebSockets"]
         ),
         .target(
             name: "WebAPIBase",
@@ -119,7 +119,6 @@ let package = Package(
             name: "FileSystem",
             dependencies: ["DOM", "WebAPIBase", "ECMAScript"]
         ),
-        // This support library should be moved to JavaScriptKit
         .target(
             name: "ECMAScript",
             dependencies: [

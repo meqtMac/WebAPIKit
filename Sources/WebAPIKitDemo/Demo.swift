@@ -866,6 +866,9 @@ struct Demo {
             div06
             div07
             div08
+            Div {
+                WebSocketDemo(title: "WebSocket", parent: buttonDiv.element)
+            }
         }
         _ = document.body?.appendChild(node: rootDiv.element)
     }
