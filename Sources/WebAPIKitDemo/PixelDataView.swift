@@ -24,17 +24,17 @@ struct PixelDataView: HTMLProtocol {
             return
         }
         
-        let color: JSColor = .rgba(r: data[0], g: data[1], b: data[2], a: Double(data[3]) / 255)
+        let color: JSColor = .rgba(data[0], data[1], data[2], Double(data[3]) / 255)
         let context = destinationCanvas.getContext(CanvasRenderingContext2D.self)
-        context?.clearRect(x: 0, y: 0, w: Double(destinationCanvas.width), h: Double(destinationCanvas.height))
+        context?.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(destinationCanvas.width), height: Double(destinationCanvas.height))))
         
         
-        context?.set(fillStyle: JSColor.rgba(r: 0, g: 0, b: 0, a: 0.8))
-        context?.fillRect(x: 0, y: 0, w: Double(destinationCanvas.width), h: Double(destinationCanvas.height))
+        context?.set(fillStyle: JSColor.rgba(0, 0, 0, 0.8))
+        context?.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(destinationCanvas.width), height: Double(destinationCanvas.height))))
         
         context?.set(fillStyle: color)
         let padding: Double = 20
-        context?.fillRect(x: padding, y: padding, w: Double(destinationCanvas.width) - 2 * padding, h: Double(destinationCanvas.height) - 2 * padding)
+        context?.fill(rect: CGRect(origin: CGPoint(x: padding, y: padding), size: CGSize(width: Double(destinationCanvas.width) - 2 * padding, height: Double(destinationCanvas.height) - 2 * padding)))
     }
     
     init(parent: HTMLElement) {
@@ -66,34 +66,38 @@ struct PixelDataView: HTMLProtocol {
 }
 
 func drawCircles(on context: CanvasRenderingContext2D) {
-    let radgrad: CanvasGradient  = context.createRadialGradient(x0: 180, y0: 180, r0: 40, x1: 208, y1: 200, r1: 120)
-    radgrad.addColorStop(offset: 0, color: .rgb(r: 0xa7, g: 0xd3, b: 0xc))
-    radgrad.addColorStop(offset: 0.9, color: .rgb(r: 1, g: 0x9f, b: 0x62))
-    radgrad.addColorStop(offset: 1, color: .rgba(r: 1, g: 159, b: 98, a: 0))
+            let radgrad: CanvasGradient  = context.createRadialGradient(x0: 180, y0: 180, r0: 40, x1: 208, y1: 200, r1: 120) {
+            (offset: 0, color: .rgb(0xa7, 0xd3, 0xc))
+            (offset: 0.9, color: .rgb(1, 0x9f, 0x62))
+            (offset: 1, color: .rgba(1, 159, 98, 0))
+            }
     
-    let radgrad2 = context.createRadialGradient(x0: 420, y0: 420, r0: 80, x1: 448, y1: 480, r1: 200)
-    radgrad2.addColorStop(offset: 0, color: .rgb(r: 0xff, g: 0x5f, b: 0x98))
-    radgrad2.addColorStop(offset: 0.75, color: .rgb(r: 0xff, g: 1, b: 0x88))
-    radgrad2.addColorStop(offset: 1, color: .rgba(r: 255, g: 1, b: 136, a: 0))
+            let radgrad2 = context.createRadialGradient(x0: 420, y0: 420, r0: 80, x1: 448, y1: 480, r1: 200) {
+            (offset: 0, color: .rgb(0xff, 0x5f, 0x98))
+            (offset: 0.75, color: .rgb(0xff, 1, 0x88))
+            (offset: 1, color: .rgba(255, 1, 136, 0))
+            }
     
-    let radgrad3 = context.createRadialGradient(x0: 380, y0: 60, r0: 60, x1: 408, y1: 80, r1: 160)
-    radgrad3.addColorStop(offset: 0, color: .rgb(r: 0, g: 0xc9, b: 0xff))
-    radgrad3.addColorStop(offset: 0.8, color: .rgb(r: 0, g: 0xb5, b: 0xe2))
-    radgrad3.addColorStop(offset: 1, color: .rgba(r: 0, g: 201, b: 255, a: 0))
+            let radgrad3 = context.createRadialGradient(x0: 380, y0: 60, r0: 60, x1: 408, y1: 80, r1: 160) {
+                (offset: 0, color: .rgb(0, 0xc9, 0xff))
+                (offset: 0.8, color: .rgb(0, 0xb5, 0xe2))
+                (offset: 1, color: .rgba(0, 201, 255, 0))
+            }
     
-    let radgrad4 = context.createRadialGradient(x0: 0, y0: 600, r0: 200, x1: 0, y1: 560, r1: 360)
-    radgrad4.addColorStop(offset: 0, color: .rgb(r: 0xf4, g: 0xf2, b: 1))
-    radgrad4.addColorStop(offset: 0.8, color: .rgb(r: 0xe4, g: 0xc7, b: 0))
-    radgrad4.addColorStop(offset: 1, color: .rgba(r: 228, g: 199, b: 0, a: 0))
+            let radgrad4 = context.createRadialGradient(x0: 0, y0: 600, r0: 200, x1: 0, y1: 560, r1: 360) {
+                (offset: 0, color: .rgb(0xf4, 0xf2, 1))
+                (offset: 0.8, color: .rgb(0xe4, 0xc7, 0))
+                (offset: 1, color: .rgba(228, 199, 0, 0))
+            }
     
     context.set(fillStyle: radgrad4)
-    context.fillRect(x: 0, y: 0, w: 600, h: 600)
+    context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
     context.set(fillStyle: radgrad3)
-    context.fillRect(x: 0, y: 0, w: 600, h: 600)
+    context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
     context.set(fillStyle: radgrad2)
-    context.fillRect(x: 0, y: 0, w: 600, h: 600)
+    context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
     context.set(fillStyle: radgrad)
-    context.fillRect(x: 0, y: 0, w: 600, h: 600)
+    context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
 }
 
 struct GrayScaleView: HTMLProtocol {

@@ -49,13 +49,13 @@ struct BouncingView: HTMLProtocol {
             var running = false
             
             func clear(on context: CanvasRenderingContext2D) {
-                context.set(fillStyle: JSColor.rgba(r: 255, g: 255, b: 255, a: 0.3))
-                context.fillRect(x: 0, y: 0, w: Double(canvas.element.width), h: Double(canvas.element.height))
+                context.set(fillStyle: JSColor.rgba(255, 255, 255, 0.3))
+                context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(canvas.element.width), height: Double(canvas.element.height))))
             }
             
             func draw(ball: Ball, on context: CanvasRenderingContext2D) {
-                context.set(fillStyle: JSColor.rgba(r: 255, g: 255, b: 255, a: 0.3))
-                context.fillRect(x: 0, y: 0, w: Double(canvas.element.width), h: Double(canvas.element.height))
+                context.set(fillStyle: JSColor.rgba(255, 255, 255, 0.3))
+                context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(canvas.element.width), height: Double(canvas.element.height))))
                 
                 ball.draw(on: context)
                 ball.x += ball.vx

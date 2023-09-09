@@ -12,15 +12,23 @@ import WebAPIBase
 public protocol CanvasFillStrokeStyles {
     func set( strokeStyle: FillStyle)
     func set( fillStyle: FillStyle)
-    func createLinearGradient(x0: Double, y0: Double, x1: Double, y1: Double) -> CanvasGradient
-    func createRadialGradient(x0: Double, y0: Double, r0: Double, x1: Double, y1: Double, r1: Double) -> CanvasGradient
-    func createConicGradient(startAngle: Double, x: Double, y: Double) -> CanvasGradient
+    func createLinearGradient(x0: Double, y0: Double,
+                              x1: Double, y1: Double,
+                              @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
+    ) -> CanvasGradient
+    func createRadialGradient(x0: Double, y0: Double, r0: Double, 
+                              x1: Double, y1: Double, r1: Double,
+                              @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
+    ) -> CanvasGradient
+    func createConicGradient(startAngle: Double, x: Double, y: Double,
+                             @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
+    ) -> CanvasGradient
     func createPattern(image: CanvasImageSource, repetition: String) -> CanvasPattern?
 }
 
 public enum JSColor {
-    case rgb(r: UInt8, g: UInt8, b: UInt8)
-    case rgba(r: UInt8, g: UInt8, b: UInt8, a: Double)
+    case rgb(UInt8,UInt8,UInt8)
+    case rgba(UInt8,UInt8,UInt8,Double)
     case white
     case black
     case blue
@@ -51,28 +59,72 @@ extension JSColor: ConvertibleToJSValue {
         }
     }
 }
-public class CanvasGradient: JSBridgedClass {
+
+public struct CanvasGradient: JSBridgedClass {
     @inlinable
     public static var constructor: JSFunction? { JSObject.global[Strings.CanvasGradient].function }
     
     public let jsObject: JSObject
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
+    public init(unsafelyWrapping jsObject: JSObject) {
         self.jsObject = jsObject
     }
     
-    @inlinable public func addColorStop(offset: Double, color: JSColor) {
+    @usableFromInline
+    mutating func add(colorStop: ColorStop) {
         let this = jsObject
-        _ = this[Strings.addColorStop].function!(this: this, arguments: [_toJSValue(offset), color.jsValue])
+        _ = this[Strings.addColorStop].function!(this: this, arguments: [colorStop.0.jsValue, colorStop.1.jsValue])
     }
     
+    public typealias ColorStop = (offset: Double, JSColor)
+    
+    @resultBuilder
+    public enum ColorStopBuilder {
+        public typealias Element = ColorStop
+        public typealias Component = [Element]
+        
+        public static func buildBlock(_ components: Element...) -> Component {
+            return components
+        }
+        
+        public static func buildBlock(_ components: Component...) -> Component {
+            return components.flatMap { $0 }
+        }
+        
+        public static func buildExpression(_ expression: Element) -> Component {
+            return [expression]
+        }
+        
+        public static func buildEither(first component: Component) -> Component {
+            return component
+        }
+        
+        public static func buildEither(second component: Component) -> Component {
+            return component
+        }
+        
+        public static func buildArray(_ components: [Component]) -> Component {
+            return components.flatMap { $0 }
+        }
+        
+        public static func buildOptional(_ component: Component?) -> Component {
+            if let component {
+                return component
+            } else {
+                return []
+            }
+        }
+    }
+    
+    
 }
-public class CanvasPattern: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.CanvasPattern].function }
+
+public struct CanvasPattern: JSBridgedClass {
+    @inlinable public static var constructor: JSFunction? { JSObject.global[Strings.CanvasPattern].function }
     
     public let jsObject: JSObject
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
+    public init(unsafelyWrapping jsObject: JSObject) {
         self.jsObject = jsObject
     }
     
@@ -88,7 +140,7 @@ extension CanvasPattern: FillStyle {}
 extension CanvasGradient: FillStyle {}
 
 public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
-   @inlinable
+    @inlinable
     func set( strokeStyle: FillStyle) {
         jsObject[Strings.strokeStyle] = _toJSValue(strokeStyle)
     }
@@ -97,33 +149,58 @@ public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
     func set( fillStyle: FillStyle ) {
         jsObject[Strings.fillStyle] = _toJSValue(fillStyle)
     }
- 
     
     @inlinable
-    func createLinearGradient(x0: Double, y0: Double, x1: Double, y1: Double) -> CanvasGradient {
-        return jsObject[Strings.createLinearGradient]
+    func createLinearGradient(x0: Double, y0: Double,
+                              x1: Double, y1: Double,
+                              @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
+    ) -> CanvasGradient {
+        var gradient: CanvasGradient =  jsObject[Strings.createLinearGradient]
             .function!(
                 this: jsObject,
                 arguments: [_toJSValue(x0), _toJSValue(y0), _toJSValue(x1), _toJSValue(y1)]
             ).fromJSValue()!
+        
+        for colorStop in colorStops() {
+            gradient.add(colorStop: colorStop)
+        }
+        
+        return gradient
     }
     
     @inlinable
-    func createRadialGradient(x0: Double, y0: Double, r0: Double, x1: Double, y1: Double, r1: Double) -> CanvasGradient {
-        return jsObject[Strings.createRadialGradient]
+    func createRadialGradient(x0: Double, y0: Double, r0: Double, 
+                              x1: Double, y1: Double, r1: Double,
+                              @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
+    ) -> CanvasGradient {
+        var gradient: CanvasGradient =  jsObject[Strings.createRadialGradient]
             .function!(
                 this: jsObject,
                 arguments: [_toJSValue(x0), _toJSValue(y0), _toJSValue(r0), _toJSValue(x1), _toJSValue(y1), _toJSValue(r1)]
             ).fromJSValue()!
+        
+        for colorStop in colorStops() {
+            gradient.add(colorStop: colorStop)
+        }
+        
+        return gradient
     }
     
     @inlinable
-    func createConicGradient(startAngle: Double, x: Double, y: Double) -> CanvasGradient {
-        return jsObject[Strings.createConicGradient]
+    func createConicGradient(startAngle: Double, x: Double, y: Double,
+                             @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
+    ) -> CanvasGradient {
+        var gradient: CanvasGradient =  jsObject[Strings.createConicGradient]
             .function!(
                 this: jsObject,
                 arguments: [_toJSValue(startAngle), _toJSValue(x), _toJSValue(y)]
             ).fromJSValue()!
+        
+        for colorStop in colorStops() {
+            gradient.add(colorStop: colorStop)
+        }
+        
+        return gradient
     }
     
     @inlinable
@@ -134,5 +211,4 @@ public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
                 arguments: [_toJSValue(image), _toJSValue(repetition)]
             ).fromJSValue()
     }
-    
 }

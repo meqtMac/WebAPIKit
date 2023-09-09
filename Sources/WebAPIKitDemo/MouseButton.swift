@@ -30,9 +30,9 @@ struct MouseButton: HTMLProtocol {
             }
             
             func generateColor() -> JSColor {
-                return .rgb(r: UInt8.random(in: 0...255),
-                            g: UInt8.random(in: 0...255),
-                            b: UInt8.random(in: 0...255))
+                return .rgb(UInt8.random(in: 0...255),
+                            UInt8.random(in: 0...255),
+                            UInt8.random(in: 0...255))
             }
             
             struct Particle {
@@ -62,9 +62,10 @@ struct MouseButton: HTMLProtocol {
                 let _ = globalThis.requestAnimationFrame { _ in
                     anim()
                 }
-                context.set(fillStyle: JSColor.rgba(r: 0, g: 0, b: 0, a: 0.05))
+                context.set(fillStyle: JSColor.rgba(0, 0, 0, 0.05))
                 
-                context.fillRect(x: 0, y: 0, w: Double(canvas.element.width), h: Double(canvas.element.height))
+//                context.fillRect(x: 0, y: 0, w: Double(canvas.element.width), h: Double(canvas.element.height))
+                context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(canvas.element.width), height: Double(canvas.element.height))))
                 for i in 0..<particles.count {
                     particles[i].rotate(on: context, with: cursor)
                 }

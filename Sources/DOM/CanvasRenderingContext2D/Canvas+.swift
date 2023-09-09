@@ -7,6 +7,7 @@
 
 import JavaScriptKit
 import WebAPIBase
+import Foundation
 
 public protocol CanvasCompositing {
     var globalAlpha: Double { get set }
@@ -307,21 +308,45 @@ public extension CanvasPath {
     }
 }
 
+extension CGFloat: JSValueCompatible {
+    public var jsValue: JavaScriptKit.JSValue {
+        .number(self)
+    }
+}
+
 public protocol CanvasRect: JSBridgedClass {}
 public extension CanvasRect {
-    @inlinable func clearRect(x: Double, y: Double, w: Double, h: Double) {
-        let this = jsObject
-        _ = this[Strings.clearRect].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y), _toJSValue(w), _toJSValue(h)])
+    @inlinable
+    func clear(rect: CGRect) {
+        jsObject[Strings.clearRect].function!(this: jsObject,
+                                              arguments: [rect.origin.x.jsValue,
+                                                          rect.origin.y.jsValue,
+                                                          rect.size.width.jsValue,
+                                                          rect.size.height.jsValue])
     }
 
-    @inlinable func fillRect(x: Double, y: Double, w: Double, h: Double) {
-        let this = jsObject
-        _ = this[Strings.fillRect].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y), _toJSValue(w), _toJSValue(h)])
+    @inlinable 
+    func fill(rect: CGRect) {
+        _ = jsObject[Strings.fillRect]
+            .function!(
+                this: jsObject,
+                arguments: [rect.origin.x.jsValue,
+                            rect.origin.y.jsValue,
+                            rect.size.width.jsValue,
+                            rect.size.height.jsValue]
+            )
     }
 
-    @inlinable func strokeRect(x: Double, y: Double, w: Double, h: Double) {
-        let this = jsObject
-        _ = this[Strings.strokeRect].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y), _toJSValue(w), _toJSValue(h)])
+    @inlinable 
+    func stroke(rect: CGRect) {
+        _ = jsObject[Strings.strokeRect]
+            .function!(
+                this: jsObject,
+                arguments: [rect.origin.x.jsValue,
+                            rect.origin.y.jsValue,
+                            rect.size.width.jsValue,
+                            rect.size.height.jsValue]
+            )
     }
 }
 public protocol CanvasShadowStyles: JSBridgedClass {}
@@ -354,17 +379,17 @@ public extension CanvasShadowStyles {
 
 public protocol CanvasText: JSBridgedClass {}
 public extension CanvasText {
-    @inlinable func fillText(text: String, x: Double, y: Double, maxWidth: Double? = nil) {
+    @inlinable func fill(_ text: String, x: Double, y: Double, maxWidth: Double? = nil) {
         let this = jsObject
         _ = this[Strings.fillText].function!(this: this, arguments: [_toJSValue(text), _toJSValue(x), _toJSValue(y), _toJSValue(maxWidth)])
     }
 
-    @inlinable func strokeText(text: String, x: Double, y: Double, maxWidth: Double? = nil) {
+    @inlinable func stroke(_ text: String, x: Double, y: Double, maxWidth: Double? = nil) {
         let this = jsObject
         _ = this[Strings.strokeText].function!(this: this, arguments: [_toJSValue(text), _toJSValue(x), _toJSValue(y), _toJSValue(maxWidth)])
     }
 
-    @inlinable func measureText(text: String) -> TextMetrics {
+    @inlinable func measure(_ text: String) -> TextMetrics {
         let this = jsObject
         return this[Strings.measureText].function!(this: this, arguments: [_toJSValue(text)]).fromJSValue()!
     }
@@ -509,3 +534,4 @@ public extension CanvasUserInterface {
         _ = this[Strings.scrollPathIntoView].function!(this: this, arguments: [_toJSValue(path)])
     }
 }
+
