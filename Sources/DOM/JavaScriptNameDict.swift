@@ -8,7 +8,7 @@
 import Foundation
 import JavaScriptKit
 
-@usableFromInline enum Strings {
+extension JSString {
     @usableFromInline static let _self: JSString = "self"
     @usableFromInline static let AbortController: JSString = "AbortController"
     @usableFromInline static let AbortSignal: JSString = "AbortSignal"

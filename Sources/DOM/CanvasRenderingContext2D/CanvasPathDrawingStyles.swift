@@ -31,38 +31,38 @@ public enum LineJoin: JSString, CaseIterable {
 
 public extension CanvasPathDrawingStyles where Self: JSBridgedClass {
     @inlinable var lineWidth: Double {
-        get { jsObject[Strings.lineWidth].fromJSValue()! }
-        nonmutating set { jsObject[Strings.lineWidth] = _toJSValue(newValue) }
+        get { jsObject[.lineWidth].fromJSValue()! }
+        nonmutating set { jsObject[.lineWidth] = _toJSValue(newValue) }
     }
 
     @inlinable var lineCap: LineCap {
-        get { jsObject[Strings.lineCap].fromJSValue()! }
-        nonmutating set { jsObject[Strings.lineCap] = _toJSValue(newValue) }
+        get { jsObject[.lineCap].fromJSValue()! }
+        nonmutating set { jsObject[.lineCap] = _toJSValue(newValue) }
     }
 
     @inlinable var lineJoin: LineJoin {
-        get { jsObject[Strings.lineJoin].fromJSValue()! }
-        nonmutating set { jsObject[Strings.lineJoin] = _toJSValue(newValue) }
+        get { jsObject[.lineJoin].fromJSValue()! }
+        nonmutating set { jsObject[.lineJoin] = _toJSValue(newValue) }
     }
 
     @inlinable var miterLimit: Double {
-        get { jsObject[Strings.miterLimit].fromJSValue()! }
-        nonmutating set { jsObject[Strings.miterLimit] = _toJSValue(newValue) }
+        get { jsObject[.miterLimit].fromJSValue()! }
+        nonmutating set { jsObject[.miterLimit] = _toJSValue(newValue) }
     }
 
     @inlinable func setLineDash(segments: [Double]) {
         let this = jsObject
-        _ = this[Strings.setLineDash].function!(this: this, arguments: [_toJSValue(segments)])
+        _ = this[.setLineDash].function!(this: this, arguments: [_toJSValue(segments)])
     }
 
     @inlinable func getLineDash() -> [Double] {
         let this = jsObject
-        return this[Strings.getLineDash].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getLineDash].function!(this: this, arguments: []).fromJSValue()!
     }
 
     @inlinable var lineDashOffset: Double {
-        get { jsObject[Strings.lineDashOffset].fromJSValue()! }
-        nonmutating set { jsObject[Strings.lineDashOffset] = _toJSValue(newValue) }
+        get { jsObject[.lineDashOffset].fromJSValue()! }
+        nonmutating set { jsObject[.lineDashOffset] = _toJSValue(newValue) }
     }
 }
 

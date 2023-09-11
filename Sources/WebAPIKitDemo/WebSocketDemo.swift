@@ -16,7 +16,7 @@ struct WebSocketDemo: HTMLProtocol {
     let socket: WebSocket
     init(title: String, parent: HTMLElement ) {
         let socket = WebSocket(url: "ws://localhost:8080/echo")
-        self.element = Button(title: title) {
+        let element = Button(title: title) {
             parent.jsObject.innerHTML = ""
             guard let inputLine = HTMLInputElement(from: document.createElement(localName: "input")) else {
                 console.error(data: "can't create input".jsValue)
@@ -61,6 +61,8 @@ struct WebSocketDemo: HTMLProtocol {
                 console.error(data: event.jsValue)
             }
         }.element
+        
+        self.element = element
         self.socket = socket
     }
 

@@ -22,41 +22,41 @@ public protocol CanvasTransform {
 public extension CanvasTransform where Self: JSBridgedClass {
     @inlinable func scale(x: Double, y: Double) {
         let this = jsObject
-        _ = this[Strings.scale].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y)])
+        _ = this[.scale].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y)])
     }
 
     @inlinable func rotate(angle: Double) {
         let this = jsObject
-        _ = this[Strings.rotate].function!(this: this, arguments: [_toJSValue(angle)])
+        _ = this[.rotate].function!(this: this, arguments: [_toJSValue(angle)])
     }
 
     @inlinable func translate(x: Double, y: Double) {
         let this = jsObject
-        _ = this[Strings.translate].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y)])
+        _ = this[.translate].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y)])
     }
 
     @inlinable func transform(a: Double, b: Double, c: Double, d: Double, e: Double, f: Double) {
         let this = jsObject
-        _ = this[Strings.transform].function!(this: this, arguments: [_toJSValue(a), _toJSValue(b), _toJSValue(c), _toJSValue(d), _toJSValue(e), _toJSValue(f)])
+        _ = this[.transform].function!(this: this, arguments: [_toJSValue(a), _toJSValue(b), _toJSValue(c), _toJSValue(d), _toJSValue(e), _toJSValue(f)])
     }
 
     @inlinable func getTransform() -> DOMMatrix {
         let this = jsObject
-        return this[Strings.getTransform].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getTransform].function!(this: this, arguments: []).fromJSValue()!
     }
 
     @inlinable func setTransform(a: Double, b: Double, c: Double, d: Double, e: Double, f: Double) {
         let this = jsObject
-        _ = this[Strings.setTransform].function!(this: this, arguments: [_toJSValue(a), _toJSValue(b), _toJSValue(c), _toJSValue(d), _toJSValue(e), _toJSValue(f)])
+        _ = this[.setTransform].function!(this: this, arguments: [_toJSValue(a), _toJSValue(b), _toJSValue(c), _toJSValue(d), _toJSValue(e), _toJSValue(f)])
     }
 
     @inlinable func setTransform(transform: DOMMatrix2DInit? = nil) {
         let this = jsObject
-        _ = this[Strings.setTransform].function!(this: this, arguments: [_toJSValue(transform)])
+        _ = this[.setTransform].function!(this: this, arguments: [_toJSValue(transform)])
     }
 
     @inlinable func resetTransform() {
         let this = jsObject
-        _ = this[Strings.resetTransform].function!(this: this, arguments: [])
+        _ = this[.resetTransform].function!(this: this, arguments: [])
     }
 }

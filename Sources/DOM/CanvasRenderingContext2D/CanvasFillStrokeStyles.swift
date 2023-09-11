@@ -62,7 +62,7 @@ extension JSColor: ConvertibleToJSValue {
 
 public struct CanvasGradient: JSBridgedClass {
     @inlinable
-    public static var constructor: JSFunction? { JSObject.global[Strings.CanvasGradient].function }
+    public static var constructor: JSFunction? { JSObject.global[.CanvasGradient].function }
     
     public let jsObject: JSObject
     
@@ -73,7 +73,7 @@ public struct CanvasGradient: JSBridgedClass {
     @usableFromInline
     mutating func add(colorStop: ColorStop) {
         let this = jsObject
-        _ = this[Strings.addColorStop].function!(this: this, arguments: [colorStop.0.jsValue, colorStop.1.jsValue])
+        _ = this[.addColorStop].function!(this: this, arguments: [colorStop.0.jsValue, colorStop.1.jsValue])
     }
     
     public typealias ColorStop = (offset: Double, JSColor)
@@ -120,7 +120,7 @@ public struct CanvasGradient: JSBridgedClass {
 }
 
 public struct CanvasPattern: JSBridgedClass {
-    @inlinable public static var constructor: JSFunction? { JSObject.global[Strings.CanvasPattern].function }
+    @inlinable public static var constructor: JSFunction? { JSObject.global[.CanvasPattern].function }
     
     public let jsObject: JSObject
     
@@ -130,7 +130,7 @@ public struct CanvasPattern: JSBridgedClass {
     
     @inlinable public func setTransform(transform: DOMMatrix2DInit? = nil) {
         let this = jsObject
-        _ = this[Strings.setTransform].function!(this: this, arguments: [_toJSValue(transform)])
+        _ = this[.setTransform].function!(this: this, arguments: [_toJSValue(transform)])
     }
 }
 
@@ -142,12 +142,12 @@ extension CanvasGradient: FillStyle {}
 public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
     @inlinable
     func set( strokeStyle: FillStyle) {
-        jsObject[Strings.strokeStyle] = _toJSValue(strokeStyle)
+        jsObject[.strokeStyle] = _toJSValue(strokeStyle)
     }
     
     @inlinable
     func set( fillStyle: FillStyle ) {
-        jsObject[Strings.fillStyle] = _toJSValue(fillStyle)
+        jsObject[.fillStyle] = _toJSValue(fillStyle)
     }
     
     @inlinable
@@ -155,7 +155,7 @@ public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
                               x1: Double, y1: Double,
                               @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
     ) -> CanvasGradient {
-        var gradient: CanvasGradient =  jsObject[Strings.createLinearGradient]
+        var gradient: CanvasGradient =  jsObject[.createLinearGradient]
             .function!(
                 this: jsObject,
                 arguments: [_toJSValue(x0), _toJSValue(y0), _toJSValue(x1), _toJSValue(y1)]
@@ -173,7 +173,7 @@ public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
                               x1: Double, y1: Double, r1: Double,
                               @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
     ) -> CanvasGradient {
-        var gradient: CanvasGradient =  jsObject[Strings.createRadialGradient]
+        var gradient: CanvasGradient =  jsObject[.createRadialGradient]
             .function!(
                 this: jsObject,
                 arguments: [_toJSValue(x0), _toJSValue(y0), _toJSValue(r0), _toJSValue(x1), _toJSValue(y1), _toJSValue(r1)]
@@ -190,7 +190,7 @@ public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
     func createConicGradient(startAngle: Double, x: Double, y: Double,
                              @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
     ) -> CanvasGradient {
-        var gradient: CanvasGradient =  jsObject[Strings.createConicGradient]
+        var gradient: CanvasGradient =  jsObject[.createConicGradient]
             .function!(
                 this: jsObject,
                 arguments: [_toJSValue(startAngle), _toJSValue(x), _toJSValue(y)]
@@ -205,7 +205,7 @@ public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
     
     @inlinable
     func createPattern(image: CanvasImageSource, repetition: String) -> CanvasPattern? {
-        return jsObject[Strings.createPattern]
+        return jsObject[.createPattern]
             .function!(
                 this: jsObject,
                 arguments: [_toJSValue(image), _toJSValue(repetition)]

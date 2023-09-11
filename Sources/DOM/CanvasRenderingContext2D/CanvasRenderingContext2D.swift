@@ -10,12 +10,12 @@ import JavaScriptKit
 import WebAPIBase
 
 public class CanvasRenderingContext2D: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.CanvasRenderingContext2D].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.CanvasRenderingContext2D].function }
     
     public let jsObject: JSObject
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _canvas = ReadonlyAttribute(jsObject: jsObject, name: Strings.canvas)
+        _canvas = ReadonlyAttribute(jsObject: jsObject, name: .canvas)
         self.jsObject = jsObject
     }
     
@@ -24,7 +24,7 @@ public class CanvasRenderingContext2D: JSBridgedClass {
     
     @inlinable public func getContextAttributes() -> CanvasRenderingContext2DSettings {
         let this = jsObject
-        return this[Strings.getContextAttributes].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getContextAttributes].function!(this: this, arguments: []).fromJSValue()!
     }
 }
 
@@ -63,18 +63,18 @@ public class OffscreenCanvasRenderingContext2D:  JSBridgedClass,
                                                  CanvasTextDrawingStyles,
                                                  CanvasPath {
     
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.OffscreenCanvasRenderingContext2D].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.OffscreenCanvasRenderingContext2D].function }
     
     public let jsObject: JSObject
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _canvas = ReadonlyAttribute(jsObject: jsObject, name: Strings.canvas)
+        _canvas = ReadonlyAttribute(jsObject: jsObject, name: .canvas)
         self.jsObject = jsObject
     }
     
     @inlinable public func commit() {
         let this = jsObject
-        _ = this[Strings.commit].function!(this: this, arguments: [])
+        _ = this[.commit].function!(this: this, arguments: [])
     }
     
     @ReadonlyAttribute

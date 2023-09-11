@@ -18,21 +18,21 @@ public protocol CanvasState {
 public extension CanvasState where Self: JSBridgedClass {
     @inlinable func save() {
         let this = jsObject
-        _ = this[Strings.save].function!(this: this, arguments: [])
+        _ = this[.save].function!(this: this, arguments: [])
     }
 
     @inlinable func restore() {
         let this = jsObject
-        _ = this[Strings.restore].function!(this: this, arguments: [])
+        _ = this[.restore].function!(this: this, arguments: [])
     }
 
     @inlinable func reset() {
         let this = jsObject
-        _ = this[Strings.reset].function!(this: this, arguments: [])
+        _ = this[.reset].function!(this: this, arguments: [])
     }
 
     @inlinable func isContextLost() -> Bool {
         let this = jsObject
-        return this[Strings.isContextLost].function!(this: this, arguments: []).fromJSValue()!
+        return this[.isContextLost].function!(this: this, arguments: []).fromJSValue()!
     }
 }

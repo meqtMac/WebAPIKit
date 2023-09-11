@@ -10,26 +10,25 @@ import WebAPIBase
 public class BoxQuadOptions: BridgedDictionary {
     public convenience init(box: CSSBoxType, relativeTo: GeometryNode) {
         let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.box] = _toJSValue(box)
-        object[Strings.relativeTo] = _toJSValue(relativeTo)
         self.init(unsafelyWrapping: object)
+        self.box = box
+        self.relativeTo = relativeTo
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _box = ReadWriteAttribute(jsObject: object, name: Strings.box)
-        _relativeTo = ReadWriteAttribute(jsObject: object, name: Strings.relativeTo)
-        super.init(unsafelyWrapping: object)
+    public var box: CSSBoxType {
+        get { jsObject[Strings.box].fromJSValue()! }
+        set { jsObject[Strings.box] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var box: CSSBoxType
-
-    @ReadWriteAttribute
-    public var relativeTo: GeometryNode
+    public var relativeTo: GeometryNode {
+        get { jsObject[Strings.relativeTo].fromJSValue()! }
+        set { jsObject[Strings.relativeTo] = newValue.jsValue }
+ 
+    }
 }
 
 public enum CSS {
-    @inlinable public static var jsObject: JSObject {
+    @inlinable static var jsObject: JSObject {
         JSObject.global[Strings.CSS].object!
     }
 

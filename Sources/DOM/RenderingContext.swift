@@ -23,7 +23,7 @@ extension OffscreenCanvasRenderingContext2D: OffscreenRenderingContext {
     public static var contextID: JSString { "2d" }
 }
 
-extension Strings {
+extension JSString {
     @usableFromInline static let getContext: JSString = "getContext"
 }
 
@@ -33,7 +33,7 @@ public extension HTMLCanvasElement {
         options: JSValue? = nil
     ) -> Context? {
         let this = jsObject
-        return this[Strings.getContext].function!(
+        return this[.getContext].function!(
             this: this,
             arguments: [contextType.contextID.jsValue, options?.jsValue ?? .undefined]
         ).fromJSValue()!
@@ -46,7 +46,7 @@ public extension OffscreenCanvas {
         options: JSValue? = nil
     ) -> Context? {
         let this = jsObject
-        return this[Strings.getContext].function!(
+        return this[.getContext].function!(
             this: this,
             arguments: [contextType.contextID.jsValue, options?.jsValue ?? .undefined]
         ).fromJSValue()!

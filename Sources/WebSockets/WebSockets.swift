@@ -66,8 +66,6 @@ public class WebSocket: EventTarget {
         case CLOSED = 3
     }
     
-   
-
     public var readyState: ReadyState {
         .init(rawValue: jsObject[Strings.readyState].fromJSValue()!)!
     }
@@ -104,7 +102,6 @@ public class WebSocket: EventTarget {
         }.jsValue
     }
     
-
     public var extensions: String {
         jsObject[Strings.extensions].fromJSValue()!
     }
