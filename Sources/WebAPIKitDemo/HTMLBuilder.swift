@@ -86,13 +86,20 @@ struct Div: HTMLProtocol {
 
 struct Canvas: HTMLProtocol {
     internal let element: HTMLCanvasElement
-    let context: CanvasRenderingContext2D
+    var context: CanvasRenderingContext2D {
+        element.getContext(CanvasRenderingContext2D.self)!
+    }
+    
+//    var webglContext: WebGLRenderingContext {
+//
+//    }
+    
     
     init(width: UInt32, height: UInt32) {
         element = HTMLCanvasElement(from: document.createElement(localName: "canvas"))!
         element.width = width
         element.height = height
-        context = element.getContext(CanvasRenderingContext2D.self)!
+//        context = element.getContext(CanvasRenderingContext2D.self)!
     }
 }
 

@@ -5,7 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "WebAPIKit",
-    platforms: [.macOS(.v13)],
+    platforms: [
+        .macOS(.v10_15),
+        .iOS(.v13),
+        .watchOS(.v6),
+        .tvOS(.v13)
+],
     products: [
         .executable(
             name: "WebAPIKitDemo",
@@ -23,10 +28,10 @@ let package = Package(
             name: "WebSockets",
             targets: ["WebSockets"]
         ),
-        .library(
-            name: "WebAudio",
-            targets: ["WebAudio"]
-        ),
+//        .library(
+//            name: "WebAudio",
+//            targets: ["WebAudio"]
+//        ),
         .library(
             name: "WebAnimations",
             targets: ["WebAnimations"]
@@ -83,25 +88,25 @@ let package = Package(
             name: "WebSockets",
             dependencies: ["DOM", "WebAPIBase", "ECMAScript"]
         ),
+//        .target(
+//            name: "WebAudio",
+//            dependencies: ["DOM", "WebAPIBase", "ECMAScript"]
+//        ),
         .target(
-            name: "WebAudio",
+            name: "WebAnimations",
             dependencies: ["DOM", "WebAPIBase", "ECMAScript"]
         ),
         .target(
-            name: "WebAnimations",
-            dependencies: ["DOM", "WebAPIBase", "WebAudio", "ECMAScript"]
-        ),
-        .target(
             name: "WebGL1",
-            dependencies: ["DOM", "WebAPIBase", "WebAudio", "WebAnimations", "ECMAScript"]
+            dependencies: ["DOM", "WebAPIBase", "WebAnimations", "ECMAScript"]
         ),
         .target(
             name: "WebGL2",
-            dependencies: ["DOM", "WebAPIBase", "WebAudio", "WebAnimations", "WebGL1", "ECMAScript"]
+            dependencies: ["DOM", "WebAPIBase", "WebAnimations", "WebGL1", "ECMAScript"]
         ),
         .target(
             name: "WebGPU",
-            dependencies: ["DOM", "WebAPIBase", "WebAudio", "WebAnimations", "WebGL1", "ECMAScript"]
+            dependencies: ["DOM", "WebAPIBase", "WebAnimations", "WebGL1", "ECMAScript"]
         ),
         .target(
             name: "Gamepad",

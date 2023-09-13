@@ -39,14 +39,14 @@ struct ZoomingView: HTMLProtocol {
             (offset: 1, color: .rgba(228, 199, 0, 0))
         }
        
-        context.set(fillStyle: radgrad4)
+        context.setFillStyle( radgrad4)
         context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
-        context.set(fillStyle: radgrad3)
+        context.setFillStyle( radgrad3)
         
-        context.set(fillStyle: radgrad2)
+        context.setFillStyle( radgrad2)
         context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
 
-        context.set(fillStyle: radgrad)
+        context.setFillStyle( radgrad)
         context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
 
     }
@@ -72,7 +72,7 @@ struct ZoomingView: HTMLProtocol {
             pixelatedZoomCanvas.context.imageSmoothingEnabled = false
             
             func zoom(on context: CanvasRenderingContext2D, source: HTMLCanvasElement, x: Double, y: Double) {
-                context.drawImage(image: .htmlCanvasElement(source),
+                context.drawImage(image: source,
                                   sx: min(max(0, x - 5), Double(width) - 10),
                                   sy: min(max(0, y - 5), Double(height) - 10),
                                   sw: 10,

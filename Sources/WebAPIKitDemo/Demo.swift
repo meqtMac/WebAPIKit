@@ -122,7 +122,7 @@ struct Demo {
         context.lineTo(x: 83, y: 116)
         context.fill()
         
-        context.set(fillStyle: JSColor.white)
+        context.setFillStyle( JSColor.white)
         context.beginPath()
         context.moveTo(x: 91, y: 96)
         context.bezierCurveTo(cp1x: 88, cp1y: 96, cp2x: 87, cp2y: 99, x: 87, y: 101)
@@ -136,7 +136,7 @@ struct Demo {
         context.bezierCurveTo(cp1x: 107, cp1y: 99, cp2x: 106, cp2y: 96, x: 103, y: 96)
         context.fill();
         
-        context.set(fillStyle: JSColor.black)
+        context.setFillStyle( JSColor.black)
         context.beginPath()
         context.arc(x: 101, y: 102, radius: 2, startAngle: 0, endAngle: .pi * 2, counterclockwise: true)
         context.fill()
@@ -244,7 +244,7 @@ struct Demo {
                 context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 600)))
                 for i in 0..<6 {
                     for j in 0..<6 {
-                        context.set(fillStyle: JSColor .rgb(UInt8(255 - 42.5 * Double(i)), UInt8(255 - 42.5 * Double(j)), 0) )
+                        context.setFillStyle( JSColor .rgb(UInt8(255 - 42.5 * Double(i)), UInt8(255 - 42.5 * Double(j)), 0) )
                         context.fill(rect: CGRect(origin: CGPoint(x: Double(j*100), y: Double(i*100)), size: CGSize(width: 100, height: 100)))
                     }
                 }
@@ -261,7 +261,7 @@ struct Demo {
                     for j in 0..<6 {
                         let i = Double(i)
                         let j = Double(j)
-                        context.set(strokeStyle: JSColor.rgb(0, .init(255 - 42.5 * Double(i)), .init(255 - 42.5 * Double(j))) )
+                        context.setStrokeStyle( JSColor.rgb(0, .init(255 - 42.5 * Double(i)), .init(255 - 42.5 * Double(j))) )
                         context.beginPath();
                         context.arc(x: 50 + j * 100, y: 50 + i * 100, radius: 40, startAngle: 0, endAngle: .pi * 2, counterclockwise: true)
                         context.stroke();
@@ -279,15 +279,15 @@ struct Demo {
                 
                 // draw background
                 context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 600)))
-                context.set(fillStyle: JSColor.rgb(0xff, 0xdd, 0))
+                context.setFillStyle( JSColor.rgb(0xff, 0xdd, 0))
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 300)))
-                context.set(fillStyle: JSColor.rgb(0x66, 0xcc, 0) )
+                context.setFillStyle( JSColor.rgb(0x66, 0xcc, 0) )
                 context.fill(rect: CGRect(origin: CGPoint(x: 300, y: 0), size: CGSize(width: 300, height: 300)))
-                context.set(fillStyle: JSColor.rgb(0, 0x99, 0xff) )
+                context.setFillStyle( JSColor.rgb(0, 0x99, 0xff) )
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 300), size: CGSize(width: 300, height: 300)))
-                context.set(fillStyle: JSColor.rgb(0xff, 0x33, 0) )
+                context.setFillStyle( JSColor.rgb(0xff, 0x33, 0) )
                 context.fill(rect: CGRect(origin: CGPoint(x: 300, y: 300), size: CGSize(width: 300, height: 300)))
-                context.set(fillStyle: JSColor.rgb(0xff, 0xff, 0xff) )
+                context.setFillStyle( JSColor.rgb(0xff, 0xff, 0xff) )
                 
                 // set transparency value
                 context.globalAlpha = 0.2
@@ -308,19 +308,19 @@ struct Demo {
                 
                 // Draw background
                 context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 600)))
-                context.set(fillStyle: JSColor.rgb(255, 221, 0) )
+                context.setFillStyle( JSColor.rgb(255, 221, 0) )
                 
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 150)));
-                context.set(fillStyle: JSColor.rgb(102, 204, 0) )
+                context.setFillStyle( JSColor.rgb(102, 204, 0) )
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 150), size: CGSize(width: 600, height: 150)))
-                context.set(fillStyle: JSColor.rgb(0, 153, 255) )
+                context.setFillStyle( JSColor.rgb(0, 153, 255) )
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 300), size: CGSize(width: 600, height: 150)));
-                context.set(fillStyle: JSColor.rgb(255, 51, 0) )
+                context.setFillStyle( JSColor.rgb(255, 51, 0) )
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 450), size: CGSize(width: 600, height: 150)));
                 
                 // Draw semi transparent rectangles
                 for i in 0..<10 {
-                    context.set(fillStyle: JSColor.rgba(255, 255, 255, Double(i+1) / 10 ) )
+                    context.setFillStyle( JSColor.rgba(255, 255, 255, Double(i+1) / 10 ) )
                     for j in 0..<4 {
                         context.fill(rect: CGRect(origin: CGPoint(x: 20 + Double(i) * 56, y: 20 + Double(j) * 150), size: CGSize(width: 56, height: 110)))
                     }
@@ -349,7 +349,7 @@ struct Demo {
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
                 context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 600)))
                 // Draw guides
-                context.set(strokeStyle: JSColor.rgb(0x00, 0x99, 0xff) )
+                context.setStrokeStyle( JSColor.rgb(0x00, 0x99, 0xff) )
                 context.beginPath();
                 context.moveTo(x: 40, y: 40)
                 context.lineTo(x: 560, y: 40)
@@ -358,7 +358,7 @@ struct Demo {
                 context.stroke();
                 
                 // Draw lines
-                context.set(strokeStyle: JSColor.rgb(0x00, 0x00, 0x00) )
+                context.setStrokeStyle( JSColor.rgb(0x00, 0x00, 0x00) )
                 for (i, cap) in LineCap.allCases.enumerated() {
                     context.lineWidth = 15;
                     context.lineCap = cap;
@@ -399,12 +399,12 @@ struct Demo {
                 
                 context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 600)))
                 // Draw guides
-                context.set(strokeStyle: JSColor.rgb(0x00, 0x99, 0xff) )
+                context.setStrokeStyle( JSColor.rgb(0x00, 0x99, 0xff) )
                 context.lineWidth = 2;
                 context.stroke(rect: CGRect(origin: CGPoint(x: -5, y: 50), size: CGSize(width: 160, height: 50)))
                 
                 // Set line styles
-                context.set(strokeStyle: JSColor.rgb(0, 0, 0) )
+                context.setStrokeStyle( JSColor.rgb(0, 0, 0) )
                 context.lineWidth = 10
                 
                 // Draw lines
@@ -449,8 +449,8 @@ struct Demo {
                     (offset: 1, .rgba(0, 0, 0, 0))
                 }
                 
-                context.set(fillStyle: linear)
-                context.set(strokeStyle: linear2)
+                context.setFillStyle( linear)
+                context.setStrokeStyle( linear2)
                 
                 context.fill(rect: CGRect(origin: CGPoint(x: 40, y: 40), size: CGSize(width: 520, height: 520)))
                 context.stroke(rect: CGRect(origin: CGPoint(x: 200, y: 200), size: CGSize(width: 200, height: 200)))
@@ -488,13 +488,13 @@ struct Demo {
                     (offset: 1, color: .rgba(228, 199, 0, 0))
                 }
                 
-                context.set(fillStyle: radgrad4)
+                context.setFillStyle( radgrad4)
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
-                context.set(fillStyle: radgrad3)
+                context.setFillStyle( radgrad3)
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
-                context.set(fillStyle: radgrad2)
+                context.setFillStyle( radgrad2)
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
-                context.set(fillStyle: radgrad)
+                context.setFillStyle( radgrad)
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
             }
             Button(title: "Conic") {
@@ -518,10 +518,10 @@ struct Demo {
                     (offset: 1, .white)
                 }
                 
-                context.set(fillStyle: conic1)
+                context.setFillStyle( conic1)
                 context.fill(rect: CGRect(origin: CGPoint(x: 48, y: 100), size: CGSize(width: 400, height: 400)))
                 
-                context.set(fillStyle: conic2)
+                context.setFillStyle( conic2)
                 context.fill(rect: CGRect(origin: CGPoint(x: 548, y: 100), size: CGSize(width: 400, height: 400)))
             }
         }
@@ -535,14 +535,15 @@ struct Demo {
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
                 
-                contextBase.set(fillStyle: JSColor.black)
+                contextBase.setFillStyle( JSColor.black)
                 contextBase.beginPath()
                 contextBase.moveTo(x: 0, y: 0)
                 contextBase.lineTo(x: 100, y: 0)
                 contextBase.lineTo(x: 0, y: 100)
                 contextBase.fill()
-                let pattern = context.createPattern(image: .htmlCanvasElement(canvasbase.element), repetition: "repeat")
-                contextBase.set(fillStyle: pattern!)
+//                let pattern = context.createPattern(image: .htmlCanvasElement(canvasbase.element), repetition: "repeat")
+                let pattern = context.createPattern(image: canvasbase.element, repetition: "repeat")
+                contextBase.setFillStyle( pattern!)
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 800)))
             }
             Button(title: "Shadow") {
@@ -557,7 +558,7 @@ struct Demo {
                 context.shadowColor = .rgba(0, 0, 0, 0.5)
                 
                 context.font =  "20px Times New Roman";
-                context.set(fillStyle: JSColor.black)
+                context.setFillStyle( JSColor.black)
                 context.fill("Sample String", x: 5, y: 30)
             }
             Button(title: "Fill") {
@@ -619,11 +620,11 @@ struct Demo {
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 150, height: 150)))
                 context.save()
                 
-                context.set(fillStyle: JSColor.rgb(0, 0x99, 0xff))
+                context.setFillStyle( JSColor.rgb(0, 0x99, 0xff))
                 context.fill(rect: CGRect(origin: CGPoint(x: 15, y: 15), size: CGSize(width: 120, height: 120)))
                 context.save()
                 
-                context.set(fillStyle: JSColor.white)
+                context.setFillStyle( JSColor.white)
                 context.globalAlpha = 0.5
                 context.fill(rect: CGRect(origin: CGPoint(x: 30, y: 30), size: CGSize(width: 90, height: 90)))
                 
@@ -643,7 +644,7 @@ struct Demo {
                 for i in 0..<3 {
                     for j in 0..<3 {
                         context.save()
-                        context.set(fillStyle: JSColor.rgb(UInt8(51 * i), UInt8(255 - i * 51), 255))
+                        context.setFillStyle( JSColor.rgb(UInt8(51 * i), UInt8(255 - i * 51), 255))
                         context.translate(x: Double(40 + j * 200), y: Double(40 + i * 200))
                         context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 100)))
                         context.restore()
@@ -658,21 +659,21 @@ struct Demo {
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
                 
                 context.save();
-                context.set(fillStyle: JSColor.rgb(0, 0x95, 0xdd))
+                context.setFillStyle( JSColor.rgb(0, 0x95, 0xdd))
                 context.fill(rect: CGRect(origin: CGPoint(x: 30, y: 30), size: CGSize(width: 100, height: 100)))
                 context.rotate(angle: .pi / 180 * 25)
-                context.set(fillStyle: JSColor.rgb(0x4d, 0x4e, 0x53))
+                context.setFillStyle( JSColor.rgb(0x4d, 0x4e, 0x53))
                 context.fill(rect: CGRect(origin: CGPoint(x: 30, y: 30), size: CGSize(width: 100, height: 100)))
                 context.restore();
                 
-                context.set(fillStyle: JSColor.rgb(0, 0x95, 0xdd))
+                context.setFillStyle( JSColor.rgb(0, 0x95, 0xdd))
                 context.fill(rect: CGRect(origin: CGPoint(x: 150, y: 30), size: CGSize(width: 100, height: 100)))
                 
                 context.translate(x: 200, y: 80)
                 context.rotate(angle: .pi / 180 * 25)
                 context.translate(x: -200, y: -80)
                 
-                context.set(fillStyle: JSColor.rgb(0x4d, 0x4e, 0x53))
+                context.setFillStyle( JSColor.rgb(0x4d, 0x4e, 0x53))
                 context.fill(rect: CGRect(origin: CGPoint(x: 150, y: 30), size: CGSize(width: 100, height: 100)))
             }
             
@@ -705,14 +706,14 @@ struct Demo {
                 context.translate(x: 100, y: 100)
                 for i in 0..<12 {
                     let c = UInt8( 255 / 12 * Double(i) )
-                    context.set(fillStyle: JSColor.rgb(c, c, c))
+                    context.setFillStyle( JSColor.rgb(c, c, c))
                     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 10)))
                     context.transform(a: cosa, b: sina, c: -sina, d: cosa, e: 0, f: 0)
                 }
                 
                 context.setTransform(a: -1, b: 0, c: 0,
                                      d: 1, e: 100, f: 100)
-                context.set(fillStyle: JSColor.rgba(255, 128, 255, 0.5))
+                context.setFillStyle( JSColor.rgba(255, 128, 255, 0.5))
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 50), size: CGSize(width: 100, height: 100)))
             }
         }
@@ -734,7 +735,7 @@ struct Demo {
                     (offset: 1, .rgb(0x14, 0x37, 0x78))
                 }
                 
-                context.set(fillStyle: linearGradient)
+                context.setFillStyle( linearGradient)
                 context.fill(rect: CGRect(origin: CGPoint(x: -75, y: -75), size: CGSize(width: 150, height: 150)))
                 
                 func drawStar(on context: CanvasRenderingContext2D, radius: Double) {
@@ -756,7 +757,7 @@ struct Demo {
                 
                 for _ in 1..<50 {
                     context.save()
-                    context.set(fillStyle: JSColor.white)
+                    context.setFillStyle( JSColor.white)
                     context.translate(x: 75 - Double.random(in: 0...10) * 150 , y: 75 - .random(in: 0...10) * 150)
                     drawStar(on: context, radius: .random(in: 0...10) * 4 + 2)
                     context.restore()
@@ -770,7 +771,7 @@ struct Demo {
                 func draw(arrs: [Double], on context: CanvasRenderingContext2D) {
                     context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 612)))
                     func draw(rect: (x: Double, y: Double, width: Double, height: Double), on context: CanvasRenderingContext2D) {
-                        context.set(fillStyle: JSColor.rgba(0, 0, 0, 0.5))
+                        context.setFillStyle( JSColor.rgba(0, 0, 0, 0.5))
                         context.fill(rect: CGRect(origin: CGPoint(x: rect.x, y: 600 - rect.height), size: CGSize(width: rect.width, height: rect.height)))
                     }
                     for (i, arr) in arrs.enumerated() {
@@ -796,8 +797,8 @@ struct Demo {
                 func draw() {
                     context.globalCompositeOperation = "destination-over";
                     context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 300)))
-                    context.set(fillStyle: JSColor.rgba(0, 0, 0, 0.4))
-                    context.set(strokeStyle: JSColor.rgba(0, 153, 255, 0.4))
+                    context.setFillStyle( JSColor.rgba(0, 0, 0, 0.4))
+                    context.setStrokeStyle( JSColor.rgba(0, 153, 255, 0.4))
                     context.save()
                     context.translate(x: 150, y: 150)
                     
@@ -806,24 +807,25 @@ struct Demo {
                     context.rotate(angle: 2 * .pi / 60 * time)
                     context.translate(x: 105, y: 0)
                     
-                    context.set(fillStyle: JSColor.rgb(0, 0, 0xff))
+                    context.setFillStyle( JSColor.rgb(0, 0, 0xff))
                     context.beginPath()
                     context.arc(x: 0, y: 0, radius: 12, startAngle: 0, endAngle: 2 * .pi)
                     context.closePath()
                     context.fill()
-                    context.set(fillStyle: JSColor.rgba(0, 0, 0, 0.4))
+                    context.setFillStyle( JSColor.rgba(0, 0, 0, 0.4))
                     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: -12), size: CGSize(width: 40, height: 24)))
                     
                     // Moon
                     context.save()
                     context.rotate(angle: 2 * .pi / 6 * time)
                     context.translate(x: 0, y: 28.5)
-                    context.set(fillStyle: JSColor.rgb(0xff, 0xff, 0xff))
+                    context.setFillStyle( JSColor.rgb(0xff, 0xff, 0xff))
+                    
                     context.beginPath()
                     context.arc(x: 0, y: 0, radius: 3.5, startAngle: 0, endAngle: 2 * .pi)
                     context.closePath()
                     context.fill()
-                    context.set(fillStyle: JSColor.rgba(0, 0, 0, 0.4))
+                    context.setFillStyle( JSColor.rgba(0, 0, 0, 0.4))
                     context.restore()
                     
                     context.restore()
@@ -832,11 +834,11 @@ struct Demo {
                     context.arc(x: 150, y: 150, radius: 105, startAngle: 0, endAngle: .pi * 2, counterclockwise: false)
                     context.stroke()
                     
-                    context.set(fillStyle: JSColor.rgb(0, 0xff, 127))
+                    context.setFillStyle( JSColor.rgb(0, 0xff, 127))
                     context.beginPath()
                     context.arc(x: 150, y: 150, radius: 40, startAngle: 0, endAngle: 2 * .pi)
                     context.fill()
-                    context.set(fillStyle: JSColor.rgb(0, 0, 0))
+                    context.setFillStyle( JSColor.rgb(0, 0, 0))
                     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 300, height: 300)))
                     
                     
@@ -872,6 +874,9 @@ struct Demo {
             div08
             Div {
                 WebSocketDemo(title: "WebSocket", parent: buttonDiv.element)
+            }
+            Div {
+                WebGLElement(parent: buttonDiv.element)
             }
         }
         _ = document.body?.appendChild(node: rootDiv.element)

@@ -24,7 +24,7 @@ struct BouncingView: HTMLProtocol {
             context.beginPath()
             context.arc(x: x, y: y, radius: radius, startAngle: 0, endAngle: .pi * 2, counterclockwise: true)
             context.closePath()
-            context.set(fillStyle: color)
+            context.setFillStyle( color)
             context.fill()
         }
         init(x: Double, y: Double, vx: Double, vy: Double, radius: Double, color: JSColor) {
@@ -49,12 +49,12 @@ struct BouncingView: HTMLProtocol {
             var running = false
             
             func clear(on context: CanvasRenderingContext2D) {
-                context.set(fillStyle: JSColor.rgba(255, 255, 255, 0.3))
+                context.setFillStyle( JSColor.rgba(255, 255, 255, 0.3))
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(canvas.element.width), height: Double(canvas.element.height))))
             }
             
             func draw(ball: Ball, on context: CanvasRenderingContext2D) {
-                context.set(fillStyle: JSColor.rgba(255, 255, 255, 0.3))
+                context.setFillStyle( JSColor.rgba(255, 255, 255, 0.3))
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(canvas.element.width), height: Double(canvas.element.height))))
                 
                 ball.draw(on: context)

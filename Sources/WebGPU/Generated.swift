@@ -3383,6 +3383,8 @@ public class GPUUncapturedErrorEventInit: BridgedDictionary {
     public var error: GPUError
 }
 
+
+
 public class GPUValidationError: GPUError {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.GPUValidationError].function }
 

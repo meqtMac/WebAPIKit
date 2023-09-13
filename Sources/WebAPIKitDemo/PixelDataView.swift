@@ -29,10 +29,10 @@ struct PixelDataView: HTMLProtocol {
         context?.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(destinationCanvas.width), height: Double(destinationCanvas.height))))
         
         
-        context?.set(fillStyle: JSColor.rgba(0, 0, 0, 0.8))
+        context?.setFillStyle( JSColor.rgba(0, 0, 0, 0.8))
         context?.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(destinationCanvas.width), height: Double(destinationCanvas.height))))
         
-        context?.set(fillStyle: color)
+        context?.setFillStyle( color)
         let padding: Double = 20
         context?.fill(rect: CGRect(origin: CGPoint(x: padding, y: padding), size: CGSize(width: Double(destinationCanvas.width) - 2 * padding, height: Double(destinationCanvas.height) - 2 * padding)))
     }
@@ -90,13 +90,13 @@ func drawCircles(on context: CanvasRenderingContext2D) {
                 (offset: 1, color: .rgba(228, 199, 0, 0))
             }
     
-    context.set(fillStyle: radgrad4)
+    context.setFillStyle( radgrad4)
     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
-    context.set(fillStyle: radgrad3)
+    context.setFillStyle( radgrad3)
     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
-    context.set(fillStyle: radgrad2)
+    context.setFillStyle( radgrad2)
     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
-    context.set(fillStyle: radgrad)
+    context.setFillStyle( radgrad)
     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
 }
 

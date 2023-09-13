@@ -149,6 +149,8 @@ public class GamepadEventInit: BridgedDictionary {
     public var gamepad: Gamepad
 }
 
+
+
 public enum GamepadHand: JSString, JSValueCompatible {
     case _empty = ""
     case left = "left"

@@ -10,20 +10,32 @@ import WebAPIBase
 
 /// CanvasFillStrokeStyles
 public protocol CanvasFillStrokeStyles {
-    func set( strokeStyle: FillStyle)
-    func set( fillStyle: FillStyle)
+    func setStrokeStyle(_ color: JSColor)
+    func setStrokeStyle(_ pattern: CanvasPattern)
+    func setStrokeStyle(_ gradient: CanvasGradient)
+    func setFillStyle(_ color: JSColor)
+    func setFillStyle(_ pattern: CanvasPattern)
+    func setFillStyle(_ gradient: CanvasGradient)
     func createLinearGradient(x0: Double, y0: Double,
                               x1: Double, y1: Double,
                               @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
     ) -> CanvasGradient
-    func createRadialGradient(x0: Double, y0: Double, r0: Double, 
+    
+    func createRadialGradient(x0: Double, y0: Double, r0: Double,
                               x1: Double, y1: Double, r1: Double,
                               @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
     ) -> CanvasGradient
+    
     func createConicGradient(startAngle: Double, x: Double, y: Double,
                              @CanvasGradient.ColorStopBuilder colorStops:  () -> [CanvasGradient.ColorStop]
     ) -> CanvasGradient
-    func createPattern(image: CanvasImageSource, repetition: String) -> CanvasPattern?
+    
+    func createPattern(image: HTMLCanvasElement, repetition: String) -> CanvasPattern?
+    func createPattern(image: HTMLOrSVGImageElement, repetition: String) -> CanvasPattern?
+    func createPattern(image: HTMLVideoElement, repetition: String) -> CanvasPattern?
+    func createPattern(image: ImageBitmap, repetition: String) -> CanvasPattern?
+    func createPattern(image: OffscreenCanvas, repetition: String) -> CanvasPattern?
+    func createPattern(image: VideoFrame, repetition: String) -> CanvasPattern?
 }
 
 public enum JSColor {
@@ -134,22 +146,38 @@ public struct CanvasPattern: JSBridgedClass {
     }
 }
 
-public protocol FillStyle: ConvertibleToJSValue {}
-extension JSColor: FillStyle {}
-extension CanvasPattern: FillStyle {}
-extension CanvasGradient: FillStyle {}
-
 public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
     @inlinable
-    func set( strokeStyle: FillStyle) {
-        jsObject[.strokeStyle] = _toJSValue(strokeStyle)
+    func setStrokeStyle(_ color: JSColor) {
+        jsObject[.strokeStyle] = _toJSValue(color)
     }
     
     @inlinable
-    func set( fillStyle: FillStyle ) {
-        jsObject[.fillStyle] = _toJSValue(fillStyle)
+    func setStrokeStyle(_ pattern: CanvasPattern) {
+        jsObject[.strokeStyle] = _toJSValue(pattern)
     }
     
+     @inlinable
+    func setStrokeStyle(_ gradient: CanvasGradient) {
+        jsObject[.strokeStyle] = _toJSValue(gradient)
+    }
+    
+     @inlinable
+    func setFillStyle(_ color: JSColor) {
+        jsObject[.fillStyle] = _toJSValue(color)
+    }
+    
+    @inlinable
+    func setFillStyle(_ pattern: CanvasPattern) {
+        jsObject[.fillStyle] = _toJSValue(pattern)
+    }
+    
+     @inlinable
+    func setFillStyle(_ gradient: CanvasGradient) {
+        jsObject[.fillStyle] = _toJSValue(gradient)
+    }
+    
+   
     @inlinable
     func createLinearGradient(x0: Double, y0: Double,
                               x1: Double, y1: Double,
@@ -204,7 +232,52 @@ public extension CanvasFillStrokeStyles where Self: JSBridgedClass {
     }
     
     @inlinable
-    func createPattern(image: CanvasImageSource, repetition: String) -> CanvasPattern? {
+    func createPattern(image: HTMLCanvasElement, repetition: String) -> CanvasPattern? {
+        return jsObject[.createPattern]
+            .function!(
+                this: jsObject,
+                arguments: [_toJSValue(image), _toJSValue(repetition)]
+            ).fromJSValue()
+    }
+    
+    @inlinable
+    func createPattern(image: HTMLOrSVGImageElement, repetition: String) -> CanvasPattern? {
+        return jsObject[.createPattern]
+            .function!(
+                this: jsObject,
+                arguments: [_toJSValue(image), _toJSValue(repetition)]
+            ).fromJSValue()
+    }
+    
+    @inlinable
+    func createPattern(image: HTMLVideoElement, repetition: String) -> CanvasPattern? {
+        return jsObject[.createPattern]
+            .function!(
+                this: jsObject,
+                arguments: [_toJSValue(image), _toJSValue(repetition)]
+            ).fromJSValue()
+    }
+    
+    @inlinable
+    func createPattern(image: ImageBitmap, repetition: String) -> CanvasPattern? {
+        return jsObject[.createPattern]
+            .function!(
+                this: jsObject,
+                arguments: [_toJSValue(image), _toJSValue(repetition)]
+            ).fromJSValue()
+    }
+    
+    @inlinable
+    func createPattern(image: OffscreenCanvas, repetition: String) -> CanvasPattern? {
+        return jsObject[.createPattern]
+            .function!(
+                this: jsObject,
+                arguments: [_toJSValue(image), _toJSValue(repetition)]
+            ).fromJSValue()
+    }
+    
+    @inlinable
+    func createPattern(image: VideoFrame, repetition: String) -> CanvasPattern? {
         return jsObject[.createPattern]
             .function!(
                 this: jsObject,

@@ -47,20 +47,85 @@ public enum CanvasDirection: JSString, JSValueCompatible {
 
 public protocol CanvasDrawImage: JSBridgedClass {}
 public extension CanvasDrawImage {
-    @inlinable func drawImage(image: CanvasImageSource, dx: Double, dy: Double) {
+   
+    @inlinable func drawImage(image: HTMLCanvasElement, dx: Double, dy: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy)])
+    }
+    @inlinable func drawImage(image: HTMLOrSVGImageElement, dx: Double, dy: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy)])
+    }
+    @inlinable func drawImage(image: HTMLVideoElement, dx: Double, dy: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy)])
+    }
+    @inlinable func drawImage(image: ImageBitmap, dx: Double, dy: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy)])
+    }
+    @inlinable func drawImage(image: OffscreenCanvas, dx: Double, dy: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy)])
+    }
+    @inlinable func drawImage(image: VideoFrame, dx: Double, dy: Double) {
         let this = jsObject
         _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy)])
     }
 
-    @inlinable func drawImage(image: CanvasImageSource, dx: Double, dy: Double, dw: Double, dh: Double) {
+    @inlinable func drawImage(image: HTMLCanvasElement, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    @inlinable func drawImage(image: HTMLOrSVGImageElement, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    @inlinable func drawImage(image: HTMLVideoElement, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    @inlinable func drawImage(image: ImageBitmap, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    @inlinable func drawImage(image: OffscreenCanvas, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    @inlinable func drawImage(image: VideoFrame, dx: Double, dy: Double, dw: Double, dh: Double) {
         let this = jsObject
         _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
     }
 
-    @inlinable func drawImage(image: CanvasImageSource, sx: Double, sy: Double, sw: Double, sh: Double, dx: Double, dy: Double, dw: Double, dh: Double) {
+   @inlinable func drawImage(image: HTMLCanvasElement, sx: Double, sy: Double, sw: Double, sh: Double, dx: Double, dy: Double, dw: Double, dh: Double) {
         let this = jsObject
         _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
     }
+    
+    @inlinable func drawImage(image: HTMLOrSVGImageElement, sx: Double, sy: Double, sw: Double, sh: Double, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+     @inlinable func drawImage(image: HTMLVideoElement, sx: Double, sy: Double, sw: Double, sh: Double, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    
+    @inlinable func drawImage(image: ImageBitmap, sx: Double, sy: Double, sw: Double, sh: Double, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+     @inlinable func drawImage(image: OffscreenCanvas, sx: Double, sy: Double, sw: Double, sh: Double, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    
+    @inlinable func drawImage(image: VideoFrame, sx: Double, sy: Double, sw: Double, sh: Double, dx: Double, dy: Double, dw: Double, dh: Double) {
+        let this = jsObject
+        _ = this[.drawImage].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(dx), _toJSValue(dy), _toJSValue(dw), _toJSValue(dh)])
+    }
+    
 }
 
 public protocol CanvasDrawPath: JSBridgedClass {}

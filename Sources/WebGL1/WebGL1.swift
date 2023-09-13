@@ -7,7 +7,7 @@ import JavaScriptEventLoop
 import JavaScriptKit
 import WebAnimations
 import WebAPIBase
-import WebAudio
+//import WebAudio
 
 public typealias GLenum = UInt32
 public typealias GLboolean = Bool
@@ -1374,22 +1374,22 @@ public extension WebGLRenderingContextBase {
         _ = this[Strings.vertexAttrib4f].function!(this: this, arguments: [_toJSValue(index), _toJSValue(x), _toJSValue(y), _toJSValue(z), _toJSValue(w)])
     }
 
-    @inlinable func vertexAttrib1fv(index: GLuint, values: Float32List) {
+    @inlinable func vertexAttrib1fv(index: GLuint, values: [GLfloat]) {
         let this = jsObject
         _ = this[Strings.vertexAttrib1fv].function!(this: this, arguments: [_toJSValue(index), _toJSValue(values)])
     }
 
-    @inlinable func vertexAttrib2fv(index: GLuint, values: Float32List) {
+    @inlinable func vertexAttrib2fv(index: GLuint, values: [GLfloat]) {
         let this = jsObject
         _ = this[Strings.vertexAttrib2fv].function!(this: this, arguments: [_toJSValue(index), _toJSValue(values)])
     }
 
-    @inlinable func vertexAttrib3fv(index: GLuint, values: Float32List) {
+    @inlinable func vertexAttrib3fv(index: GLuint, values: [GLfloat]) {
         let this = jsObject
         _ = this[Strings.vertexAttrib3fv].function!(this: this, arguments: [_toJSValue(index), _toJSValue(values)])
     }
 
-    @inlinable func vertexAttrib4fv(index: GLuint, values: Float32List) {
+    @inlinable func vertexAttrib4fv(index: GLuint, values: [GLfloat]) {
         let this = jsObject
         _ = this[Strings.vertexAttrib4fv].function!(this: this, arguments: [_toJSValue(index), _toJSValue(values)])
     }
@@ -1477,22 +1477,22 @@ public extension WebGLRenderingContextOverloads {
         _ = this[Strings.uniform4fv].function!(this: this, arguments: [_toJSValue(location), _toJSValue(v)])
     }
 
-    @inlinable func uniform1iv(location: WebGLUniformLocation?, v: Int32List) {
+    @inlinable func uniform1iv(location: WebGLUniformLocation?, v: [GLint]) {
         let this = jsObject
         _ = this[Strings.uniform1iv].function!(this: this, arguments: [_toJSValue(location), _toJSValue(v)])
     }
 
-    @inlinable func uniform2iv(location: WebGLUniformLocation?, v: Int32List) {
+    @inlinable func uniform2iv(location: WebGLUniformLocation?, v: [GLint]) {
         let this = jsObject
         _ = this[Strings.uniform2iv].function!(this: this, arguments: [_toJSValue(location), _toJSValue(v)])
     }
 
-    @inlinable func uniform3iv(location: WebGLUniformLocation?, v: Int32List) {
+    @inlinable func uniform3iv(location: WebGLUniformLocation?, v: [GLint]) {
         let this = jsObject
         _ = this[Strings.uniform3iv].function!(this: this, arguments: [_toJSValue(location), _toJSValue(v)])
     }
 
-    @inlinable func uniform4iv(location: WebGLUniformLocation?, v: Int32List) {
+    @inlinable func uniform4iv(location: WebGLUniformLocation?, v: [GLint]) {
         let this = jsObject
         _ = this[Strings.uniform4iv].function!(this: this, arguments: [_toJSValue(location), _toJSValue(v)])
     }
@@ -1736,63 +1736,12 @@ public class WebGLUniformLocation: JSBridgedClass {
     @usableFromInline static let viewport: JSString = "viewport"
 }
 
-public protocol Any_Float32List: ConvertibleToJSValue {}
-extension Float32Array: Any_Float32List {}
-extension Array: Any_Float32List where Element == GLfloat {}
 
-public enum Float32List: JSValueCompatible, Any_Float32List {
-    case float32Array(Float32Array)
-    case seq_of_GLfloat([GLfloat])
+public protocol WebGLCanvasProtocol: ConvertibleToJSValue {}
+extension HTMLCanvasElement: WebGLCanvasProtocol {}
+extension OffscreenCanvas: WebGLCanvasProtocol {}
 
-    init(_ float32Array: Float32Array) {
-        let val: Float32List = .float32Array(float32Array)
-        self = val
-    }
-
-    init(_ seq_of_GLfloat: [GLfloat]) {
-        let val: Float32List = .seq_of_GLfloat(seq_of_GLfloat)
-        self = val
-    }
-
-    public var float32Array: Float32Array? {
-        switch self {
-        case let .float32Array(float32Array): return float32Array
-        default: return nil
-        }
-    }
-
-    public var seq_of_GLfloat: [GLfloat]? {
-        switch self {
-        case let .seq_of_GLfloat(seq_of_GLfloat): return seq_of_GLfloat
-        default: return nil
-        }
-    }
-
-    public static func construct(from value: JSValue) -> Self? {
-        if let float32Array: Float32Array = value.fromJSValue() {
-            return .float32Array(float32Array)
-        }
-        if let seq_of_GLfloat: [GLfloat] = value.fromJSValue() {
-            return .seq_of_GLfloat(seq_of_GLfloat)
-        }
-        return nil
-    }
-
-    public var jsValue: JSValue {
-        switch self {
-        case let .float32Array(float32Array):
-            return float32Array.jsValue
-        case let .seq_of_GLfloat(seq_of_GLfloat):
-            return seq_of_GLfloat.jsValue
-        }
-    }
-}
-
-public protocol Any_HTMLCanvasElement_or_OffscreenCanvas: ConvertibleToJSValue {}
-extension HTMLCanvasElement: Any_HTMLCanvasElement_or_OffscreenCanvas {}
-extension OffscreenCanvas: Any_HTMLCanvasElement_or_OffscreenCanvas {}
-
-public enum HTMLCanvasElement_or_OffscreenCanvas: JSValueCompatible, Any_HTMLCanvasElement_or_OffscreenCanvas {
+public enum HTMLCanvasElement_or_OffscreenCanvas: JSValueCompatible, WebGLCanvasProtocol {
     case htmlCanvasElement(HTMLCanvasElement)
     case offscreenCanvas(OffscreenCanvas)
 
@@ -1839,202 +1788,52 @@ public enum HTMLCanvasElement_or_OffscreenCanvas: JSValueCompatible, Any_HTMLCan
         }
     }
 }
-
-public protocol Any_Int32List: ConvertibleToJSValue {}
-extension Int32Array: Any_Int32List {}
-extension Array: Any_Int32List where Element == GLint {}
-
-public enum Int32List: JSValueCompatible, Any_Int32List {
-    case int32Array(Int32Array)
-    case seq_of_GLint([GLint])
-
-    init(_ int32Array: Int32Array) {
-        let val: Int32List = .int32Array(int32Array)
-        self = val
+public struct Int32List: ConvertibleToJSValue {
+    let a: GLint
+     let b: GLint
+     let c: GLint
+     let d: GLint
+     let e: GLint
+     let f: GLint
+    init(_ a: GLint, _ b: GLint, _ c: GLint, _ d: GLint, _ e: GLint, _ f: GLint) {
+        self.a = a
+        self.b = b
+        self.c = c
+        self.d = d
+        self.e = e
+        self.f = f
     }
-
-    init(_ seq_of_GLint: [GLint]) {
-        let val: Int32List = .seq_of_GLint(seq_of_GLint)
-        self = val
-    }
-
-    public var int32Array: Int32Array? {
-        switch self {
-        case let .int32Array(int32Array): return int32Array
-        default: return nil
-        }
-    }
-
-    public var seq_of_GLint: [GLint]? {
-        switch self {
-        case let .seq_of_GLint(seq_of_GLint): return seq_of_GLint
-        default: return nil
-        }
-    }
-
-    public static func construct(from value: JSValue) -> Self? {
-        if let int32Array: Int32Array = value.fromJSValue() {
-            return .int32Array(int32Array)
-        }
-        if let seq_of_GLint: [GLint] = value.fromJSValue() {
-            return .seq_of_GLint(seq_of_GLint)
-        }
-        return nil
-    }
-
     public var jsValue: JSValue {
-        switch self {
-        case let .int32Array(int32Array):
-            return int32Array.jsValue
-        case let .seq_of_GLint(seq_of_GLint):
-            return seq_of_GLint.jsValue
-        }
+        [a, b, c, e, d, f].jsValue
     }
 }
 
-public protocol Any_TexImageSource: ConvertibleToJSValue {}
-extension HTMLCanvasElement: Any_TexImageSource {}
-extension HTMLImageElement: Any_TexImageSource {}
-extension HTMLVideoElement: Any_TexImageSource {}
-extension ImageBitmap: Any_TexImageSource {}
-extension ImageData: Any_TexImageSource {}
-extension OffscreenCanvas: Any_TexImageSource {}
-extension VideoFrame: Any_TexImageSource {}
-
-public enum TexImageSource: JSValueCompatible, Any_TexImageSource {
-    case htmlCanvasElement(HTMLCanvasElement)
-    case htmlImageElement(HTMLImageElement)
-    case htmlVideoElement(HTMLVideoElement)
-    case imageBitmap(ImageBitmap)
-    case imageData(ImageData)
-    case offscreenCanvas(OffscreenCanvas)
-    case videoFrame(VideoFrame)
-
-    init(_ htmlCanvasElement: HTMLCanvasElement) {
-        let val: TexImageSource = .htmlCanvasElement(htmlCanvasElement)
-        self = val
+public struct Float32List: ConvertibleToJSValue {
+    let a: GLfloat
+     let b: GLfloat
+     let c: GLfloat
+     let d: GLfloat
+     let e: GLfloat
+     let f: GLfloat
+    init(_ a: GLfloat, _ b: GLfloat, _ c: GLfloat, _ d: GLfloat, _ e: GLfloat, _ f: GLfloat) {
+        self.a = a
+        self.b = b
+        self.c = c
+        self.d = d
+        self.e = e
+        self.f = f
     }
-
-    init(_ htmlImageElement: HTMLImageElement) {
-        let val: TexImageSource = .htmlImageElement(htmlImageElement)
-        self = val
-    }
-
-    init(_ htmlVideoElement: HTMLVideoElement) {
-        let val: TexImageSource = .htmlVideoElement(htmlVideoElement)
-        self = val
-    }
-
-    init(_ imageBitmap: ImageBitmap) {
-        let val: TexImageSource = .imageBitmap(imageBitmap)
-        self = val
-    }
-
-    init(_ imageData: ImageData) {
-        let val: TexImageSource = .imageData(imageData)
-        self = val
-    }
-
-    init(_ offscreenCanvas: OffscreenCanvas) {
-        let val: TexImageSource = .offscreenCanvas(offscreenCanvas)
-        self = val
-    }
-
-    init(_ videoFrame: VideoFrame) {
-        let val: TexImageSource = .videoFrame(videoFrame)
-        self = val
-    }
-
-    public var htmlCanvasElement: HTMLCanvasElement? {
-        switch self {
-        case let .htmlCanvasElement(htmlCanvasElement): return htmlCanvasElement
-        default: return nil
-        }
-    }
-
-    public var htmlImageElement: HTMLImageElement? {
-        switch self {
-        case let .htmlImageElement(htmlImageElement): return htmlImageElement
-        default: return nil
-        }
-    }
-
-    public var htmlVideoElement: HTMLVideoElement? {
-        switch self {
-        case let .htmlVideoElement(htmlVideoElement): return htmlVideoElement
-        default: return nil
-        }
-    }
-
-    public var imageBitmap: ImageBitmap? {
-        switch self {
-        case let .imageBitmap(imageBitmap): return imageBitmap
-        default: return nil
-        }
-    }
-
-    public var imageData: ImageData? {
-        switch self {
-        case let .imageData(imageData): return imageData
-        default: return nil
-        }
-    }
-
-    public var offscreenCanvas: OffscreenCanvas? {
-        switch self {
-        case let .offscreenCanvas(offscreenCanvas): return offscreenCanvas
-        default: return nil
-        }
-    }
-
-    public var videoFrame: VideoFrame? {
-        switch self {
-        case let .videoFrame(videoFrame): return videoFrame
-        default: return nil
-        }
-    }
-
-    public static func construct(from value: JSValue) -> Self? {
-        if let htmlCanvasElement: HTMLCanvasElement = value.fromJSValue() {
-            return .htmlCanvasElement(htmlCanvasElement)
-        }
-        if let htmlImageElement: HTMLImageElement = value.fromJSValue() {
-            return .htmlImageElement(htmlImageElement)
-        }
-        if let htmlVideoElement: HTMLVideoElement = value.fromJSValue() {
-            return .htmlVideoElement(htmlVideoElement)
-        }
-        if let imageBitmap: ImageBitmap = value.fromJSValue() {
-            return .imageBitmap(imageBitmap)
-        }
-        if let imageData: ImageData = value.fromJSValue() {
-            return .imageData(imageData)
-        }
-        if let offscreenCanvas: OffscreenCanvas = value.fromJSValue() {
-            return .offscreenCanvas(offscreenCanvas)
-        }
-        if let videoFrame: VideoFrame = value.fromJSValue() {
-            return .videoFrame(videoFrame)
-        }
-        return nil
-    }
-
     public var jsValue: JSValue {
-        switch self {
-        case let .htmlCanvasElement(htmlCanvasElement):
-            return htmlCanvasElement.jsValue
-        case let .htmlImageElement(htmlImageElement):
-            return htmlImageElement.jsValue
-        case let .htmlVideoElement(htmlVideoElement):
-            return htmlVideoElement.jsValue
-        case let .imageBitmap(imageBitmap):
-            return imageBitmap.jsValue
-        case let .imageData(imageData):
-            return imageData.jsValue
-        case let .offscreenCanvas(offscreenCanvas):
-            return offscreenCanvas.jsValue
-        case let .videoFrame(videoFrame):
-            return videoFrame.jsValue
-        }
+        [a, b, c, e, d, f].jsValue
     }
+
 }
+
+public protocol TexImageSource: ConvertibleToJSValue {}
+extension HTMLCanvasElement: TexImageSource {}
+extension HTMLImageElement: TexImageSource {}
+extension HTMLVideoElement: TexImageSource {}
+extension ImageBitmap: TexImageSource {}
+extension ImageData: TexImageSource {}
+extension OffscreenCanvas: TexImageSource {}
+extension VideoFrame: TexImageSource {}

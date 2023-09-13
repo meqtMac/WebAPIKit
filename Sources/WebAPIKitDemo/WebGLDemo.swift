@@ -148,11 +148,7 @@ func runWebGLDemo() {
     context.bufferData(
         target: WebGL2RenderingContext.ARRAY_BUFFER,
         srcData: .arrayBuffer(
-            Float32Array([
-                0.0, 0.0,
-                0.0, 0.5,
-                0.7, 0.0,
-            ]).arrayBuffer
+            Float32Array( [0.0, 0.0, 0.0, 0.5, 0.7, 0.0,] ).arrayBuffer
         ),
         usage: WebGL2RenderingContext.STATIC_DRAW
     )

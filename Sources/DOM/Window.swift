@@ -436,7 +436,8 @@ public extension WindowOrWorkerGlobalScope {
         return this[.atob].function!(this: this, arguments: [_toJSValue(data)]).fromJSValue()!
     }
 
-    @inlinable func setTimeout(handler: TimerHandler, timeout: Int32? = nil, arguments: JSValue...) -> Int32 {
+//public typealias TimerHandler = JSFunction
+    @inlinable func setTimeout(handler: JSFunction, timeout: Int32? = nil, arguments: JSValue...) -> Int32 {
         let this = jsObject
         return this[.setTimeout].function!(this: this, arguments: [_toJSValue(handler), _toJSValue(timeout)] + arguments.map(_toJSValue)).fromJSValue()!
     }
@@ -447,7 +448,7 @@ public extension WindowOrWorkerGlobalScope {
     }
 
     @inlinable 
-    func setInterval(handler: TimerHandler, timeout: Int32? = nil, arguments: JSValue...) -> Int32 {
+    func setInterval(handler: JSFunction, timeout: Int32? = nil, arguments: JSValue...) -> Int32 {
         let this = jsObject
         return this[.setInterval].function!(this: this, arguments: [_toJSValue(handler), _toJSValue(timeout)] + arguments.map(_toJSValue)).fromJSValue()!
     }
@@ -462,30 +463,160 @@ public extension WindowOrWorkerGlobalScope {
         let this = jsObject
         _ = this[.queueMicrotask].function!(this: this, arguments: [_toJSValue(callback)])
     }
+    
+//    extension Blob: Any_ImageBitmapSource {}
+//    extension ImageData: Any_ImageBitmapSource {}
+//    extension HTMLCanvasElement: Any_ImageBitmapSource {}
+//    extension HTMLOrSVGImageElement: Any_ImageBitmapSource {}
+//    extension HTMLVideoElement: Any_ImageBitmapSource {}
+//    extension ImageBitmap: Any_ImageBitmapSource {}
+//    extension OffscreenCanvas: Any_ImageBitmapSource {}
+//    extension VideoFrame: Any_ImageBitmapSource {}
 
-    @inlinable func createImageBitmap(image: ImageBitmapSource, options: ImageBitmapOptions? = nil) -> JSPromise {
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: Blob, options: ImageBitmapOptions? = nil) -> JSPromise {
         let this = jsObject
         return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
     }
 
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-    @inlinable func createImageBitmap(image: ImageBitmapSource, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+    @inlinable func createImageBitmap(image: ImageData, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
         let this = jsObject
         let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLCanvasElement, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLOrSVGImageElement, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLVideoElement, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: ImageBitmap, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: OffscreenCanvas, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+      @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: VideoFrame, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+    
 
-    @inlinable func createImageBitmap(image: ImageBitmapSource, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: Blob, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
         let this = jsObject
         return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
     }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: ImageData, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+        let this = jsObject
+        return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLCanvasElement, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+        let this = jsObject
+        return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLOrSVGImageElement, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+        let this = jsObject
+        return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLVideoElement, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+        let this = jsObject
+        return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: ImageBitmap, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+        let this = jsObject
+        return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: OffscreenCanvas, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+        let this = jsObject
+        return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+    }
+      @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: VideoFrame, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) -> JSPromise {
+        let this = jsObject
+        return this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+    }
+    
 
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-    @inlinable func createImageBitmap(image: ImageBitmapSource, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+    @inlinable func createImageBitmap(image: Blob, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
         let this = jsObject
         let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
+    
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: ImageData, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+    
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLCanvasElement, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLOrSVGImageElement, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: HTMLVideoElement, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: ImageBitmap, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: OffscreenCanvas, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+    
+      @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+    @inlinable func createImageBitmap(image: VideoFrame, sx: Int32, sy: Int32, sw: Int32, sh: Int32, options: ImageBitmapOptions? = nil) async throws -> ImageBitmap {
+        let this = jsObject
+        let _promise: JSPromise = this[.createImageBitmap].function!(this: this, arguments: [_toJSValue(image), _toJSValue(sx), _toJSValue(sy), _toJSValue(sw), _toJSValue(sh), _toJSValue(options)]).fromJSValue()!
+        return try await _promise.value.fromJSValue()!
+    }
+    
 
     @inlinable func structuredClone(value: JSValue, options: StructuredSerializeOptions? = nil) -> JSValue {
         let this = jsObject

@@ -51,7 +51,7 @@ struct MouseButton: HTMLProtocol {
                     y = cursor.y + sin(theta) * t
                     context.beginPath()
                     context.lineWidth = trailWidth
-                    context.set(strokeStyle: color)
+                    context.setStrokeStyle( color)
                     context.moveTo(x: position.x, y: position.y)
                     context.lineTo(x: x, y: y)
                     context.stroke()
@@ -62,7 +62,7 @@ struct MouseButton: HTMLProtocol {
                 let _ = globalThis.requestAnimationFrame { _ in
                     anim()
                 }
-                context.set(fillStyle: JSColor.rgba(0, 0, 0, 0.05))
+                context.setFillStyle(.rgba(0, 0, 0, 0.05))
                 
 //                context.fillRect(x: 0, y: 0, w: Double(canvas.element.width), h: Double(canvas.element.height))
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(canvas.element.width), height: Double(canvas.element.height))))
