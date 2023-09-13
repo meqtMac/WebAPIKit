@@ -42,9 +42,19 @@ public class DOMMatrix: DOMMatrixReadOnly {
         super.init(unsafelyWrapping: jsObject)
     }
 
-    @inlinable public convenience init(init: String_or_seq_of_Double? = nil) {
+//    @inlinable public convenience init(init: String_or_seq_of_Double? = nil) {
+//        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
+//    }
+    
+    @inlinable public convenience init(init: String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
+    
+    @inlinable public convenience init(init: [Double]? = nil) {
+        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
+    }
+
+
 
     @inlinable override public class func fromMatrix(other: DOMMatrixInit? = nil) -> Self {
         let this = constructor!
@@ -424,9 +434,14 @@ public class DOMMatrixReadOnly: JSBridgedClass {
         self.jsObject = jsObject
     }
 
-    @inlinable public convenience init(init: String_or_seq_of_Double? = nil) {
+    @inlinable public convenience init(init: String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
+    
+    @inlinable public convenience init(init: [Double]? = nil) {
+        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
+    }
+
 
     @inlinable public class func fromMatrix(other: DOMMatrixInit? = nil) -> Self {
         let this = constructor!
