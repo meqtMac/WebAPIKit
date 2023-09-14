@@ -82,10 +82,31 @@ public class XMLHttpRequest: XMLHttpRequestEventTarget {
     @ReadonlyAttribute
     public var upload: XMLHttpRequestUpload
 
-    @inlinable public func send(body: Document_or_XMLHttpRequestBodyInit? = nil) {
+   @inlinable public func send(body: Document? = nil) {
         let this = jsObject
         _ = this[.send].function!(this: this, arguments: [_toJSValue(body)])
     }
+    
+    @inlinable public func send(body: Blob? = nil) {
+        _ = jsObject[.send].function!(this: jsObject, arguments: [_toJSValue(body)])
+    }
+    @inlinable public func send(body: BufferSource? = nil) {
+        _ = jsObject[.send].function!(this: jsObject, arguments: [_toJSValue(body)])
+    }
+    @inlinable public func send(body: FormData? = nil) {
+        _ = jsObject[.send].function!(this: jsObject, arguments: [_toJSValue(body)])
+    }
+    @inlinable public func send(body: String? = nil) {
+        _ = jsObject[.send].function!(this: jsObject, arguments: [_toJSValue(body)])
+    }
+    @inlinable public func send(body: URLSearchParams? = nil) {
+        _ = jsObject[.send].function!(this: jsObject, arguments: [_toJSValue(body)])
+    }
+
+
+
+
+
 
     @inlinable public func abort() {
         let this = jsObject
@@ -301,3 +322,46 @@ public class XPathResult: JSBridgedClass {
     }
 }
 
+
+public enum XMLHttpRequestBodyInit: JSValueCompatible {
+    case blob(Blob)
+    case bufferSource(BufferSource)
+    case formData(FormData)
+    case string(String)
+    case urlSearchParams(URLSearchParams)
+    public static func construct(from value: JSValue) -> Self? {
+        if let blob: Blob = value.fromJSValue() {
+            return .blob(blob)
+        }
+        if let bufferSource: BufferSource = value.fromJSValue() {
+            return .bufferSource(bufferSource)
+        }
+        if let formData: FormData = value.fromJSValue() {
+            return .formData(formData)
+        }
+       if let string: String = value.fromJSValue() {
+            return .string(string)
+        }
+        if let urlSearchParams: URLSearchParams = value.fromJSValue() {
+            return .urlSearchParams(urlSearchParams)
+        }
+        return nil
+    }
+
+    public var jsValue: JSValue {
+        switch self {
+        case let .blob(blob):
+            return blob.jsValue
+        case let .bufferSource(bufferSource):
+            return bufferSource.jsValue
+        case let .formData(formData):
+            return formData.jsValue
+        case let .string(string):
+            return string.jsValue
+        case let .urlSearchParams(urlSearchParams):
+            return urlSearchParams.jsValue
+        }
+    }
+
+
+}

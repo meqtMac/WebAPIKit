@@ -192,3 +192,33 @@ public class HTMLMediaElement: HTMLElement {
         
     }
 }
+
+public enum MediaProvider: JSValueCompatible {
+    case blob(Blob)
+    case mediaSource(MediaSource)
+    case mediaStream(MediaStream)
+
+    public static func construct(from value: JSValue) -> Self? {
+        if let blob: Blob = value.fromJSValue() {
+            return .blob(blob)
+        }
+        if let mediaSource: MediaSource = value.fromJSValue() {
+            return .mediaSource(mediaSource)
+        }
+        if let mediaStream: MediaStream = value.fromJSValue() {
+            return .mediaStream(mediaStream)
+        }
+        return nil
+    }
+
+    public var jsValue: JSValue {
+        switch self {
+        case let .blob(blob):
+            return blob.jsValue
+        case let .mediaSource(mediaSource):
+            return mediaSource.jsValue
+        case let .mediaStream(mediaStream):
+            return mediaStream.jsValue
+        }
+    }
+}

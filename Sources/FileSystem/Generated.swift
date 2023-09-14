@@ -907,37 +907,9 @@ public enum StartInDirectory: JSValueCompatible, Any_StartInDirectory {
     }
 }
 
-public protocol Any_String_or_seq_of_String: ConvertibleToJSValue {}
-extension String: Any_String_or_seq_of_String {}
-extension Array: Any_String_or_seq_of_String where Element == String {}
-
-public enum String_or_seq_of_String: JSValueCompatible, Any_String_or_seq_of_String {
+public enum String_or_seq_of_String: JSValueCompatible {
     case string(String)
     case seq_of_String([String])
-
-    init(_ string: String) {
-        let val: String_or_seq_of_String = .string(string)
-        self = val
-    }
-
-    init(_ seq_of_String: [String]) {
-        let val: String_or_seq_of_String = .seq_of_String(seq_of_String)
-        self = val
-    }
-
-    public var string: String? {
-        switch self {
-        case let .string(string): return string
-        default: return nil
-        }
-    }
-
-    public var seq_of_String: [String]? {
-        switch self {
-        case let .seq_of_String(seq_of_String): return seq_of_String
-        default: return nil
-        }
-    }
 
     public static func construct(from value: JSValue) -> Self? {
         if let string: String = value.fromJSValue() {

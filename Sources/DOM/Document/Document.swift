@@ -484,3 +484,44 @@ public class DOMImplementation: JSBridgedClass {
         return this[.hasFeature].function!(this: this, arguments: []).fromJSValue()!
     }
 }
+
+extension Document {
+    public enum ElementCreationOptions_or_String: JSValueCompatible {
+        public class ElementCreationOptions: BridgedDictionary {
+            public convenience init(is: String) {
+                let object = JSObject.global[.Object].function!.new()
+                object[.is] = _toJSValue(`is`)
+                self.init(unsafelyWrapping: object)
+            }
+            
+            public required init(unsafelyWrapping object: JSObject) {
+                _is = ReadWriteAttribute(jsObject: object, name: .is)
+                super.init(unsafelyWrapping: object)
+            }
+            
+            @ReadWriteAttribute
+            public var `is`: String
+        }
+        case elementCreationOptions(ElementCreationOptions)
+        case string(String)
+        
+        public static func construct(from value: JSValue) -> Self? {
+            if let elementCreationOptions: ElementCreationOptions = value.fromJSValue() {
+                return .elementCreationOptions(elementCreationOptions)
+            }
+            if let string: String = value.fromJSValue() {
+                return .string(string)
+            }
+            return nil
+        }
+        
+        public var jsValue: JSValue {
+            switch self {
+            case let .elementCreationOptions(elementCreationOptions):
+                return elementCreationOptions.jsValue
+            case let .string(string):
+                return string.jsValue
+            }
+        }
+    }
+}

@@ -133,7 +133,20 @@ public enum RequestDuplex: JSString, JSValueCompatible {
 
 public class RequestInit: BridgedDictionary {
     
-    public convenience init(method: String, headers: [[String]], body: BodyInit?, referrer: String, referrerPolicy: ReferrerPolicy, mode: RequestMode, credentials: RequestCredentials, cache: RequestCache, redirect: RequestRedirect, integrity: String, keepalive: Bool, signal: AbortSignal?, duplex: RequestDuplex, priority: RequestPriority, window: JSValue) {
+    public convenience init(method: String, headers: [[String]], 
+                            body: XMLHttpRequestBodyInit?,
+                            referrer: String,
+                            referrerPolicy: ReferrerPolicy,
+                            mode: RequestMode, 
+                            credentials: RequestCredentials,
+                            cache: RequestCache,
+                            redirect: RequestRedirect,
+                            integrity: String,
+                            keepalive: Bool,
+                            signal: AbortSignal?,
+                            duplex: RequestDuplex,
+                            priority: RequestPriority,
+                            window: JSValue) {
         let object = JSObject.global[.Object].function!.new()
         object[.method] = _toJSValue(method)
         object[.headers] = _toJSValue(headers)
@@ -152,7 +165,21 @@ public class RequestInit: BridgedDictionary {
         object[.window] = _toJSValue(window)
         self.init(unsafelyWrapping: object)
     }
-    public convenience init(method: String, headers: [String: String], body: BodyInit?, referrer: String, referrerPolicy: ReferrerPolicy, mode: RequestMode, credentials: RequestCredentials, cache: RequestCache, redirect: RequestRedirect, integrity: String, keepalive: Bool, signal: AbortSignal?, duplex: RequestDuplex, priority: RequestPriority, window: JSValue) {
+    public convenience init(method: String, 
+                            headers: [String: String],
+                            body: XMLHttpRequestBodyInit?,
+                            referrer: String,
+                            referrerPolicy: ReferrerPolicy,
+                            mode: RequestMode,
+                            credentials: RequestCredentials,
+                            cache: RequestCache,
+                            redirect: RequestRedirect,
+                            integrity: String,
+                            keepalive: Bool,
+                            signal: AbortSignal?,
+                            duplex: RequestDuplex,
+                            priority: RequestPriority,
+                            window: JSValue) {
         let object = JSObject.global[.Object].function!.new()
         object[.method] = _toJSValue(method)
         object[.headers] = _toJSValue(headers)
@@ -199,7 +226,7 @@ public class RequestInit: BridgedDictionary {
     public var headers: HeadersInit
     
     @ReadWriteAttribute
-    public var body: BodyInit?
+    public var body: XMLHttpRequestBodyInit?
     
     @ReadWriteAttribute
     public var referrer: String
@@ -312,7 +339,7 @@ public class Response: JSBridgedClass, Body {
         self.jsObject = jsObject
     }
     
-    @inlinable public convenience init(body: BodyInit? = nil, init: ResponseInit? = nil) {
+    @inlinable public convenience init(body: XMLHttpRequestBodyInit? = nil, init: ResponseInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(body), _toJSValue(`init`)]))
     }
     
@@ -415,3 +442,85 @@ public enum ResponseType: JSString, JSValueCompatible {
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
+public class Request: JSBridgedClass, Body {
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.Request].function }
+
+    public let jsObject: JSObject
+
+    public required init(unsafelyWrapping jsObject: JSObject) {
+        _method = ReadonlyAttribute(jsObject: jsObject, name: .method)
+        _url = ReadonlyAttribute(jsObject: jsObject, name: .url)
+        _headers = ReadonlyAttribute(jsObject: jsObject, name: .headers)
+        _destination = ReadonlyAttribute(jsObject: jsObject, name: .destination)
+        _referrer = ReadonlyAttribute(jsObject: jsObject, name: .referrer)
+        _referrerPolicy = ReadonlyAttribute(jsObject: jsObject, name: .referrerPolicy)
+        _mode = ReadonlyAttribute(jsObject: jsObject, name: .mode)
+        _credentials = ReadonlyAttribute(jsObject: jsObject, name: .credentials)
+        _cache = ReadonlyAttribute(jsObject: jsObject, name: .cache)
+        _redirect = ReadonlyAttribute(jsObject: jsObject, name: .redirect)
+        _integrity = ReadonlyAttribute(jsObject: jsObject, name: .integrity)
+        _keepalive = ReadonlyAttribute(jsObject: jsObject, name: .keepalive)
+        _isReloadNavigation = ReadonlyAttribute(jsObject: jsObject, name: .isReloadNavigation)
+        _isHistoryNavigation = ReadonlyAttribute(jsObject: jsObject, name: .isHistoryNavigation)
+        _signal = ReadonlyAttribute(jsObject: jsObject, name: .signal)
+        _duplex = ReadonlyAttribute(jsObject: jsObject, name: .duplex)
+        self.jsObject = jsObject
+    }
+
+    @inlinable public convenience init(input: RequestInfo, init: RequestInit? = nil) {
+        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(input), _toJSValue(`init`)]))
+    }
+
+    @ReadonlyAttribute
+    public var method: String
+
+    @ReadonlyAttribute
+    public var url: String
+
+    @ReadonlyAttribute
+    public var headers: Headers
+
+    @ReadonlyAttribute
+    public var destination: RequestDestination
+
+    @ReadonlyAttribute
+    public var referrer: String
+
+    @ReadonlyAttribute
+    public var referrerPolicy: ReferrerPolicy
+
+    @ReadonlyAttribute
+    public var mode: RequestMode
+
+    @ReadonlyAttribute
+    public var credentials: RequestCredentials
+
+    @ReadonlyAttribute
+    public var cache: RequestCache
+
+    @ReadonlyAttribute
+    public var redirect: RequestRedirect
+
+    @ReadonlyAttribute
+    public var integrity: String
+
+    @ReadonlyAttribute
+    public var keepalive: Bool
+
+    @ReadonlyAttribute
+    public var isReloadNavigation: Bool
+
+    @ReadonlyAttribute
+    public var isHistoryNavigation: Bool
+
+    @ReadonlyAttribute
+    public var signal: AbortSignal
+
+    @ReadonlyAttribute
+    public var duplex: RequestDuplex
+
+    @inlinable public func clone() -> Self {
+        let this = jsObject
+        return this[.clone].function!(this: this, arguments: []).fromJSValue()!
+    }
+}

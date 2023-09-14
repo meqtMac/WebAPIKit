@@ -44,3 +44,59 @@ public class HTMLCollection: JSBridgedClass {
         return this[.namedItem].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
     }
 }
+
+public class HTMLAllCollection: JSBridgedClass {
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.HTMLAllCollection].function }
+
+    public let jsObject: JSObject
+
+    public required init(unsafelyWrapping jsObject: JSObject) {
+        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
+        self.jsObject = jsObject
+    }
+
+    @ReadonlyAttribute
+    public var length: UInt32
+
+    @inlinable public subscript(key: Int) -> Element {
+        jsObject[key].fromJSValue()!
+    }
+    
+    public enum Element_or_HTMLCollection: JSValueCompatible {
+        case element(Element)
+        case htmlCollection(HTMLCollection)
+        
+        public static func construct(from value: JSValue) -> Self? {
+            if let element: Element = value.fromJSValue() {
+                return .element(element)
+            }
+            if let htmlCollection: HTMLCollection = value.fromJSValue() {
+                return .htmlCollection(htmlCollection)
+            }
+            return nil
+        }
+        
+        public var jsValue: JSValue {
+            switch self {
+            case let .element(element):
+                return element.jsValue
+            case let .htmlCollection(htmlCollection):
+                return htmlCollection.jsValue
+            }
+        }
+    }
+    
+    @inlinable public subscript(key: String) -> Element_or_HTMLCollection? {
+        jsObject[key].fromJSValue()
+    }
+
+    @inlinable public func namedItem(name: String) -> Element_or_HTMLCollection? {
+        let this = jsObject
+        return this[.namedItem].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
+    }
+
+    @inlinable public func item(nameOrIndex: String? = nil) -> Element_or_HTMLCollection? {
+        let this = jsObject
+        return this[.item].function!(this: this, arguments: [_toJSValue(nameOrIndex)]).fromJSValue()
+    }
+}

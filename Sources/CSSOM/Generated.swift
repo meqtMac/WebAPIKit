@@ -2760,65 +2760,11 @@ public enum Element_or_ProcessingInstruction: JSValueCompatible, Any_Element_or_
     }
 }
 
-public protocol Any_GeometryNode: ConvertibleToJSValue {}
-extension CSSPseudoElement: Any_GeometryNode {}
-extension Document: Any_GeometryNode {}
-extension Element: Any_GeometryNode {}
-extension Text: Any_GeometryNode {}
-
-public enum GeometryNode: JSValueCompatible, Any_GeometryNode {
+public enum GeometryNode: JSValueCompatible {
     case cssPseudoElement(CSSPseudoElement)
     case document(Document)
     case element(Element)
     case text(Text)
-
-    init(_ cssPseudoElement: CSSPseudoElement) {
-        let val: GeometryNode = .cssPseudoElement(cssPseudoElement)
-        self = val
-    }
-
-    init(_ document: Document) {
-        let val: GeometryNode = .document(document)
-        self = val
-    }
-
-    init(_ element: Element) {
-        let val: GeometryNode = .element(element)
-        self = val
-    }
-
-    init(_ text: Text) {
-        let val: GeometryNode = .text(text)
-        self = val
-    }
-
-    public var cssPseudoElement: CSSPseudoElement? {
-        switch self {
-        case let .cssPseudoElement(cssPseudoElement): return cssPseudoElement
-        default: return nil
-        }
-    }
-
-    public var document: Document? {
-        switch self {
-        case let .document(document): return document
-        default: return nil
-        }
-    }
-
-    public var element: Element? {
-        switch self {
-        case let .element(element): return element
-        default: return nil
-        }
-    }
-
-    public var text: Text? {
-        switch self {
-        case let .text(text): return text
-        default: return nil
-        }
-    }
 
     public static func construct(from value: JSValue) -> Self? {
         if let cssPseudoElement: CSSPseudoElement = value.fromJSValue() {

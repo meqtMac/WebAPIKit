@@ -284,3 +284,61 @@ open class Element: Node,
     @ReadonlyAttribute
     public var clientHeight: Int32
 }
+
+public class NamedNodeMap: JSBridgedClass {
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.NamedNodeMap].function }
+
+    public let jsObject: JSObject
+
+    public required init(unsafelyWrapping jsObject: JSObject) {
+        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
+        self.jsObject = jsObject
+    }
+
+    @ReadonlyAttribute
+    public var length: UInt32
+
+    @inlinable public subscript(key: Int) -> Attr? {
+        jsObject[key].fromJSValue()
+    }
+
+    @inlinable public func item(index: UInt32) -> Attr? {
+        let this = jsObject
+        return this[.item].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
+    }
+
+    @inlinable public subscript(key: String) -> Attr? {
+        jsObject[key].fromJSValue()
+    }
+
+    @inlinable public func getNamedItem(qualifiedName: String) -> Attr? {
+        let this = jsObject
+        return this[.getNamedItem].function!(this: this, arguments: [_toJSValue(qualifiedName)]).fromJSValue()
+    }
+
+    @inlinable public func getNamedItemNS(namespace: String?, localName: String) -> Attr? {
+        let this = jsObject
+        return this[.getNamedItemNS].function!(this: this, arguments: [_toJSValue(namespace), _toJSValue(localName)]).fromJSValue()
+    }
+
+    @inlinable public func setNamedItem(attr: Attr) -> Attr? {
+        let this = jsObject
+        return this[.setNamedItem].function!(this: this, arguments: [_toJSValue(attr)]).fromJSValue()
+    }
+
+    @inlinable public func setNamedItemNS(attr: Attr) -> Attr? {
+        let this = jsObject
+        return this[.setNamedItemNS].function!(this: this, arguments: [_toJSValue(attr)]).fromJSValue()
+    }
+
+    @inlinable public func removeNamedItem(qualifiedName: String) -> Attr {
+        let this = jsObject
+        return this[.removeNamedItem].function!(this: this, arguments: [_toJSValue(qualifiedName)]).fromJSValue()!
+    }
+
+    @inlinable public func removeNamedItemNS(namespace: String?, localName: String) -> Attr {
+        let this = jsObject
+        return this[.removeNamedItemNS].function!(this: this, arguments: [_toJSValue(namespace), _toJSValue(localName)]).fromJSValue()!
+    }
+}
+

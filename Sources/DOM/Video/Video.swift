@@ -169,7 +169,15 @@ public class VideoDecoder: EventTarget {
 }
 
 public class VideoDecoderConfig: BridgedDictionary {
-    public convenience init(codec: String, description: AllowSharedBufferSource, codedWidth: UInt32, codedHeight: UInt32, displayAspectWidth: UInt32, displayAspectHeight: UInt32, colorSpace: VideoColorSpaceInit, hardwareAcceleration: HardwareAcceleration, optimizeForLatency: Bool) {
+    public convenience init(codec: String, 
+                            description: AllowSharedBufferSource,
+                            codedWidth: UInt32,
+                            codedHeight: UInt32,
+                            displayAspectWidth: UInt32,
+                            displayAspectHeight: UInt32,
+                            colorSpace: VideoColorSpaceInit,
+                            hardwareAcceleration: HardwareAcceleration, 
+                            optimizeForLatency: Bool) {
         let object = JSObject.global[.Object].function!.new()
         object[.codec] = _toJSValue(codec)
         object[.description] = _toJSValue(description)
@@ -222,6 +230,25 @@ public class VideoDecoderConfig: BridgedDictionary {
 
     @ReadWriteAttribute
     public var optimizeForLatency: Bool
+}
+
+public enum HardwareAcceleration: JSString, JSValueCompatible {
+    case noPreference = "no-preference"
+    case preferHardware = "prefer-hardware"
+    case preferSoftware = "prefer-software"
+
+    @inlinable public static func construct(from jsValue: JSValue) -> Self? {
+        if let string = jsValue.jsString {
+            return Self(rawValue: string)
+        }
+        return nil
+    }
+
+    @inlinable public init?(string: String) {
+        self.init(rawValue: JSString(string))
+    }
+
+    @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class VideoDecoderInit: BridgedDictionary {
@@ -439,6 +466,8 @@ public class VideoEncoderEncodeOptions: BridgedDictionary {
     @ReadWriteAttribute
     public var keyFrame: Bool
 }
+
+public typealias EncodedVideoChunkOutputCallback = (EncodedVideoChunk, EncodedVideoChunkMetadata) -> Void
 
 public class VideoEncoderInit: BridgedDictionary {
     public convenience init(output: @escaping EncodedVideoChunkOutputCallback, error: @escaping WebCodecsErrorCallback) {
@@ -914,3 +943,112 @@ public enum VideoTransferCharacteristics: JSString, JSValueCompatible {
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
+public class EncodedVideoChunk: JSBridgedClass {
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.EncodedVideoChunk].function }
+
+    public let jsObject: JSObject
+
+    public required init(unsafelyWrapping jsObject: JSObject) {
+        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
+        _timestamp = ReadonlyAttribute(jsObject: jsObject, name: .timestamp)
+        _duration = ReadonlyAttribute(jsObject: jsObject, name: .duration)
+        _byteLength = ReadonlyAttribute(jsObject: jsObject, name: .byteLength)
+        self.jsObject = jsObject
+    }
+
+    @inlinable public convenience init(init: EncodedVideoChunkInit) {
+        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
+    }
+
+    @ReadonlyAttribute
+    public var type: EncodedVideoChunkType
+
+    @ReadonlyAttribute
+    public var timestamp: Int64
+
+    @ReadonlyAttribute
+    public var duration: UInt64?
+
+    @ReadonlyAttribute
+    public var byteLength: UInt32
+
+    @inlinable public func copyTo(destination: AllowSharedBufferSource) {
+        let this = jsObject
+        _ = this[.copyTo].function!(this: this, arguments: [_toJSValue(destination)])
+    }
+}
+
+public class EncodedVideoChunkInit: BridgedDictionary {
+    public convenience init(type: EncodedVideoChunkType, timestamp: Int64, duration: UInt64, data: AllowSharedBufferSource) {
+        let object = JSObject.global[.Object].function!.new()
+        object[.type] = _toJSValue(type)
+        object[.timestamp] = _toJSValue(timestamp)
+        object[.duration] = _toJSValue(duration)
+        object[.data] = _toJSValue(data)
+        self.init(unsafelyWrapping: object)
+    }
+
+    public required init(unsafelyWrapping object: JSObject) {
+        _type = ReadWriteAttribute(jsObject: object, name: .type)
+        _timestamp = ReadWriteAttribute(jsObject: object, name: .timestamp)
+        _duration = ReadWriteAttribute(jsObject: object, name: .duration)
+        _data = ReadWriteAttribute(jsObject: object, name: .data)
+        super.init(unsafelyWrapping: object)
+    }
+
+    @ReadWriteAttribute
+    public var type: EncodedVideoChunkType
+
+    @ReadWriteAttribute
+    public var timestamp: Int64
+
+    @ReadWriteAttribute
+    public var duration: UInt64
+
+    @ReadWriteAttribute
+    public var data: AllowSharedBufferSource
+}
+
+public class EncodedVideoChunkMetadata: BridgedDictionary {
+    public convenience init(decoderConfig: VideoDecoderConfig, svc: SvcOutputMetadata, alphaSideData: BufferSource) {
+        let object = JSObject.global[.Object].function!.new()
+        object[.decoderConfig] = _toJSValue(decoderConfig)
+        object[.svc] = _toJSValue(svc)
+        object[.alphaSideData] = _toJSValue(alphaSideData)
+        self.init(unsafelyWrapping: object)
+    }
+
+    public required init(unsafelyWrapping object: JSObject) {
+        _decoderConfig = ReadWriteAttribute(jsObject: object, name: .decoderConfig)
+        _svc = ReadWriteAttribute(jsObject: object, name: .svc)
+        _alphaSideData = ReadWriteAttribute(jsObject: object, name: .alphaSideData)
+        super.init(unsafelyWrapping: object)
+    }
+
+    @ReadWriteAttribute
+    public var decoderConfig: VideoDecoderConfig
+
+    @ReadWriteAttribute
+    public var svc: SvcOutputMetadata
+
+    @ReadWriteAttribute
+    public var alphaSideData: BufferSource
+}
+
+public enum EncodedVideoChunkType: JSString, JSValueCompatible {
+    case key = "key"
+    case delta = "delta"
+
+    @inlinable public static func construct(from jsValue: JSValue) -> Self? {
+        if let string = jsValue.jsString {
+            return Self(rawValue: string)
+        }
+        return nil
+    }
+
+    @inlinable public init?(string: String) {
+        self.init(rawValue: JSString(string))
+    }
+
+    @inlinable public var jsValue: JSValue { rawValue.jsValue }
+}

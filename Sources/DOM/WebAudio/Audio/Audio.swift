@@ -392,6 +392,8 @@ public class AudioEncoderConfig: BridgedDictionary {
     public var bitrateMode: BitrateMode
 }
 
+public typealias EncodedAudioChunkOutputCallback = (EncodedAudioChunk, EncodedAudioChunkMetadata) -> Void
+
 public class AudioEncoderInit: BridgedDictionary {
     public convenience init(output: @escaping EncodedAudioChunkOutputCallback, error: @escaping WebCodecsErrorCallback) {
         let object = JSObject.global[.Object].function!.new()
@@ -523,5 +525,105 @@ public class AudioTrackList: EventTarget {
 
     @ClosureAttribute1Optional
     public var onremovetrack: EventHandler
+}
+
+public class EncodedAudioChunk: JSBridgedClass {
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.EncodedAudioChunk].function }
+
+    public let jsObject: JSObject
+
+    public required init(unsafelyWrapping jsObject: JSObject) {
+        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
+        _timestamp = ReadonlyAttribute(jsObject: jsObject, name: .timestamp)
+        _duration = ReadonlyAttribute(jsObject: jsObject, name: .duration)
+        _byteLength = ReadonlyAttribute(jsObject: jsObject, name: .byteLength)
+        self.jsObject = jsObject
+    }
+
+    @inlinable public convenience init(init: EncodedAudioChunkInit) {
+        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
+    }
+
+    @ReadonlyAttribute
+    public var type: EncodedAudioChunkType
+
+    @ReadonlyAttribute
+    public var timestamp: Int64
+
+    @ReadonlyAttribute
+    public var duration: UInt64?
+
+    @ReadonlyAttribute
+    public var byteLength: UInt32
+
+    @inlinable public func copyTo(destination: AllowSharedBufferSource) {
+        let this = jsObject
+        _ = this[.copyTo].function!(this: this, arguments: [_toJSValue(destination)])
+    }
+}
+
+public class EncodedAudioChunkInit: BridgedDictionary {
+    public convenience init(type: EncodedAudioChunkType, timestamp: Int64, duration: UInt64, data: BufferSource) {
+        let object = JSObject.global[.Object].function!.new()
+        object[.type] = _toJSValue(type)
+        object[.timestamp] = _toJSValue(timestamp)
+        object[.duration] = _toJSValue(duration)
+        object[.data] = _toJSValue(data)
+        self.init(unsafelyWrapping: object)
+    }
+
+    public required init(unsafelyWrapping object: JSObject) {
+        _type = ReadWriteAttribute(jsObject: object, name: .type)
+        _timestamp = ReadWriteAttribute(jsObject: object, name: .timestamp)
+        _duration = ReadWriteAttribute(jsObject: object, name: .duration)
+        _data = ReadWriteAttribute(jsObject: object, name: .data)
+        super.init(unsafelyWrapping: object)
+    }
+
+    @ReadWriteAttribute
+    public var type: EncodedAudioChunkType
+
+    @ReadWriteAttribute
+    public var timestamp: Int64
+
+    @ReadWriteAttribute
+    public var duration: UInt64
+
+    @ReadWriteAttribute
+    public var data: BufferSource
+}
+
+public class EncodedAudioChunkMetadata: BridgedDictionary {
+    public convenience init(decoderConfig: AudioDecoderConfig) {
+        let object = JSObject.global[.Object].function!.new()
+        object[.decoderConfig] = _toJSValue(decoderConfig)
+        self.init(unsafelyWrapping: object)
+    }
+
+    public required init(unsafelyWrapping object: JSObject) {
+        _decoderConfig = ReadWriteAttribute(jsObject: object, name: .decoderConfig)
+        super.init(unsafelyWrapping: object)
+    }
+
+    @ReadWriteAttribute
+    public var decoderConfig: AudioDecoderConfig
+}
+
+public enum EncodedAudioChunkType: JSString, JSValueCompatible {
+    case key = "key"
+    case delta = "delta"
+
+    @inlinable public static func construct(from jsValue: JSValue) -> Self? {
+        if let string = jsValue.jsString {
+            return Self(rawValue: string)
+        }
+        return nil
+    }
+
+    @inlinable public init?(string: String) {
+        self.init(rawValue: JSString(string))
+    }
+
+    @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 

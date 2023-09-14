@@ -108,3 +108,27 @@ public class HTMLFormElement: HTMLElement {
         return this[.reportValidity].function!(this: this, arguments: []).fromJSValue()!
     }
 }
+
+public enum Element_or_RadioNodeList: JSValueCompatible {
+    case element(Element)
+    case radioNodeList(RadioNodeList)
+
+    public static func construct(from value: JSValue) -> Self? {
+        if let element: Element = value.fromJSValue() {
+            return .element(element)
+        }
+        if let radioNodeList: RadioNodeList = value.fromJSValue() {
+            return .radioNodeList(radioNodeList)
+        }
+        return nil
+    }
+
+    public var jsValue: JSValue {
+        switch self {
+        case let .element(element):
+            return element.jsValue
+        case let .radioNodeList(radioNodeList):
+            return radioNodeList.jsValue
+        }
+    }
+}

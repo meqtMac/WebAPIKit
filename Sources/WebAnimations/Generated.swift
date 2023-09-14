@@ -5,7 +5,6 @@ import ECMAScript
 import JavaScriptEventLoop
 import JavaScriptKit
 import WebAPIBase
-import WebAudio
 
 public protocol Animatable: JSBridgedClass {}
 public extension Animatable {

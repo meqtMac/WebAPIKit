@@ -114,3 +114,30 @@ public class EventSourceInit: BridgedDictionary {
     @ReadWriteAttribute
     public var withCredentials: Bool
 }
+
+public class AddEventListenerOptions: BridgedDictionary {
+    public convenience init(passive: Bool, once: Bool, signal: AbortSignal) {
+        let object = JSObject.global[.Object].function!.new()
+        object[.passive] = _toJSValue(passive)
+        object[.once] = _toJSValue(once)
+        object[.signal] = _toJSValue(signal)
+        self.init(unsafelyWrapping: object)
+    }
+
+    public required init(unsafelyWrapping object: JSObject) {
+        _passive = ReadWriteAttribute(jsObject: object, name: .passive)
+        _once = ReadWriteAttribute(jsObject: object, name: .once)
+        _signal = ReadWriteAttribute(jsObject: object, name: .signal)
+        super.init(unsafelyWrapping: object)
+    }
+
+    @ReadWriteAttribute
+    public var passive: Bool
+
+    @ReadWriteAttribute
+    public var once: Bool
+
+    @ReadWriteAttribute
+    public var signal: AbortSignal
+}
+

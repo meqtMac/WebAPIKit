@@ -5,7 +5,6 @@
 //  Created by 蒋艺 on 2023/9/13.
 //
 
-import Foundation
 import ECMAScript
 import JavaScriptBigIntSupport
 import JavaScriptEventLoop

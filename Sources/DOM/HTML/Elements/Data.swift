@@ -6,6 +6,13 @@
 //
 
 import Foundation
+import ECMAScript
+import JavaScriptBigIntSupport
+import JavaScriptEventLoop
+import JavaScriptKit
+import WebAPIBase
+
+
 public class HTMLDataElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLDataElement].function }
 

@@ -7,7 +7,6 @@ import JavaScriptEventLoop
 import JavaScriptKit
 import WebAnimations
 import WebAPIBase
-import WebAudio
 import WebGL1
 
 public typealias GLint64 = Int64
