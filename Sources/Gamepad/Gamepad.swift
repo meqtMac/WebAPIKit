@@ -2,8 +2,8 @@
 
 import DOM
 import ECMAScript
-import JavaScriptEventLoop
 import JavaScriptKit
+import JavaScriptEventLoop
 import WebAPIBase
 
 public class Gamepad: JSBridgedClass {
@@ -149,8 +149,6 @@ public class GamepadEventInit: BridgedDictionary {
     public var gamepad: Gamepad
 }
 
-
-
 public enum GamepadHand: JSString, JSValueCompatible {
     case _empty = ""
     case left = "left"
@@ -188,36 +186,18 @@ public class GamepadHapticActuator: JSBridgedClass {
         return this[Strings.canPlayEffectType].function!(this: this, arguments: [_toJSValue(type)]).fromJSValue()!
     }
 
-    @inlinable public func playEffect(type: GamepadHapticEffectType, params: GamepadEffectParameters? = nil) -> JSPromise {
-        let this = jsObject
-        return this[Strings.playEffect].function!(this: this, arguments: [_toJSValue(type), _toJSValue(params)]).fromJSValue()!
-    }
-
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func playEffect(type: GamepadHapticEffectType, params: GamepadEffectParameters? = nil) async throws -> GamepadHapticsResult {
         let this = jsObject
         let _promise: JSPromise = this[Strings.playEffect].function!(this: this, arguments: [_toJSValue(type), _toJSValue(params)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
 
-    @inlinable public func pulse(value: Double, duration: Double) -> JSPromise {
-        let this = jsObject
-        return this[Strings.pulse].function!(this: this, arguments: [_toJSValue(value), _toJSValue(duration)]).fromJSValue()!
-    }
-
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func pulse(value: Double, duration: Double) async throws -> Bool {
         let this = jsObject
         let _promise: JSPromise = this[Strings.pulse].function!(this: this, arguments: [_toJSValue(value), _toJSValue(duration)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
 
-    @inlinable public func reset() -> JSPromise {
-        let this = jsObject
-        return this[Strings.reset].function!(this: this, arguments: []).fromJSValue()!
-    }
-
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func reset() async throws -> GamepadHapticsResult {
         let this = jsObject
         let _promise: JSPromise = this[Strings.reset].function!(this: this, arguments: []).fromJSValue()!

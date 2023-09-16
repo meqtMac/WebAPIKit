@@ -33,38 +33,130 @@ import WebGL1
 import WebGL2
 
 let vertexShaderSource =
-  """
-  #version 300 es
+"""
+#version 300 es
   
-  // an attribute is an input (in) to a vertex shader.
-  // It will receive data from a buffer
-  in vec4 a_position;
+// an attribute is an input (in) to a vertex shader.
+// It will receive data from a buffer
+in vec4 a_position;
   
-  // all shaders have a main function
-  void main() {
-  
+// all shaders have a main function
+void main() {
     // gl_Position is a special variable a vertex shader
     // is responsible for setting
     gl_Position = a_position;
-  }
-  """
+}
+"""
 
 let fragmentShaderSource =
-  """
-  #version 300 es
+"""
+#version 300 es
   
-  // fragment shaders don't have a default precision so we need
-  // to pick one. highp is a good default. It means "high precision"
-  precision highp float;
+// fragment shaders don't have a default precision so we need
+// to pick one. highp is a good default. It means "high precision"
+precision highp float;
   
-  // we need to declare an output for the fragment shader
-  out vec4 outColor;
+// we need to declare an output for the fragment shader
+out vec4 outColor;
   
-  void main() {
+void main() {
     // Just set the output to a constant redish-purple
-    outColor = vec4(1, 0, 0.5, 1);
-  }
-  """
+    outColor = vec4(1, 0, 0, 1);
+}
+"""
+
+struct WebGLDemo: HTMLProtocol {
+    let element: HTMLElement
+    
+    init(parent: HTMLElement) {
+        let button = Button(title: "WebGL") {
+            parent.jsObject.innerHTML = ""
+            let canvas = Canvas(width: 800, height: 800)
+            _ = parent.jsValue.appendChild(canvas.element.jsValue)
+            
+            guard let gl = canvas.element.getContext(WebGL2RenderingContext.self) else {
+                console.error(data: "Failed to create WebGL2 rendering context")
+                return
+            }
+            
+            guard let vShader = gl.createShader(type: .VERTEX_SHADER, source: vertexShaderSource),
+                  let fShader = gl.createShader(type: .FRAGMENT_SHADER, source: fragmentShaderSource),
+                  let program = gl.createProgram(vShader: vShader, fShader: fShader)
+            else {
+                console.error(data: "Failed to create or link shaders")
+                return
+            }
+            
+            // look up where the vertex data needs to go.
+            let positionAttributeLocation = GLuint(gl.getAttribLocation(program: program, name: "a_position"))
+            
+            // Create a buffer and put three 2d clip space points in it
+            let positionBuffer = gl.createBuffer()
+            
+            // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
+            let sourceData: [GLfloat] = 
+            [0.0, 0.0,
+             0.0, 0.5,
+             0.5, 0.0,
+             0.0, 0.5,
+             0.5, 0.0,
+             0.5, 0.5]
+            gl.bindBuffer(target: .ARRAY_BUFFER, buffer: positionBuffer)
+            gl.bufferData(
+                target: .ARRAY_BUFFER,
+                srcData: sourceData,
+                usage: .STATIC_DRAW
+            )
+            
+            // Create a vertex array object (attribute state)
+            guard let vao = gl.createVertexArray() else {
+                console.error(data: "Failed to create VAO")
+                return
+            }
+            
+            // and make it the one we're currently working with
+            gl.bindVertexArray(array: vao)
+            
+            // Turn on the attribute
+            gl.enableVertexAttribArray(index: positionAttributeLocation)
+            
+            gl.vertexAttribPointer(
+                index: positionAttributeLocation,
+                size: 2, // 2 components per iteration
+                type: .FLOAT, // the data is 32bit floats
+                normalized: false, // don't normalize the data
+                stride: 0, // 0 = move forward size * sizeof(type) each iteration to get the next position
+                offset: 0 // start at the beginning of the buffer
+            )
+            
+            // Tell WebGL how to convert from clip space to pixels
+            gl.viewport(x: 0, 
+                        y: 0,
+                        width: GLsizei(canvas.element.width),
+                        height: GLsizei(canvas.element.height)
+            )
+            
+            // Clear the canvas
+            gl.clearColor(red: 0, 
+                          green: 1,
+                          blue: 0,
+                          alpha: 1)
+            gl.clear(mask: .COLOR_BUFFER_BIT)
+            
+            // Tell it to use our program (pair of shaders)
+            gl.useProgram(program: program)
+            
+            // Bind the attribute/buffer set we want.
+            gl.bindVertexArray(array: vao)
+            
+            // draw
+            gl.drawArrays(mode: .TRIANGLES, first: 0, count: 6)
+        }
+        
+        self.element = button.element
+    }
+    
+}
 
 extension WebGL2RenderingContext {
     func createShader(type: GLenum, source: String) -> WebGLShader? {
@@ -73,7 +165,7 @@ extension WebGL2RenderingContext {
         shaderSource(shader: shader, source: source)
         compileShader(shader: shader)
         
-        switch getShaderParameter(shader: shader, pname: Self.COMPILE_STATUS) {
+        switch getShaderParameter(shader: shader, pname: .COMPILE_STATUS) {
         case .undefined, .boolean(false):
             if let log = getShaderInfoLog(shader: shader) {
                 console.log(data: log.jsValue)
@@ -93,7 +185,7 @@ extension WebGL2RenderingContext {
         attachShader(program: program, shader: fShader)
         linkProgram(program: program)
         
-        switch getProgramParameter(program: program, pname: Self.LINK_STATUS) {
+        switch getProgramParameter(program: program, pname: .LINK_STATUS) {
         case .undefined, .boolean(false):
             if let log = getProgramInfoLog(program: program) {
                 console.log(data: log.jsValue)
@@ -109,86 +201,13 @@ extension WebGL2RenderingContext {
 
 extension HTMLCanvasElement {
     func resizeToDisplaySize() {
-        if width != UInt32(clientWidth) || height != UInt32(clientHeight) {
+        if (width != UInt32(clientWidth)) {
             width = UInt32(clientWidth)
+        }
+        
+        if (height != UInt32(clientHeight)) {
             height = UInt32(clientHeight)
         }
-    }
-}
-
-func runWebGLDemo() {
-    // Get A WebGL context
-    let canvas = HTMLCanvasElement(from: document.createElement(localName: "canvas"))!
-    _ = document.body?.appendChild(node: canvas)
-    guard let context = canvas.getContext(WebGL2RenderingContext.self) else {
-        console.error(data: "Failed to create WebGL2 rendering context")
-        return
-    }
-    
-    // create GLSL shaders, upload the GLSL source, compile the shaders
-    guard
-        let vShader = context.createShader(type: WebGL2RenderingContext.VERTEX_SHADER, source: vertexShaderSource),
-        let fShader = context.createShader(type: WebGL2RenderingContext.FRAGMENT_SHADER, source: fragmentShaderSource),
         
-            // Link the two shaders into a program
-        let program = context.createProgram(vShader: vShader, fShader: fShader)
-    else {
-        console.error(data: "Failed to create or link shaders")
-        return
     }
-    
-    // look up where the vertex data needs to go.
-    let positionAttributeLocation = GLuint(context.getAttribLocation(program: program, name: "a_position"))
-    
-    // Create a buffer and put three 2d clip space points in it
-    let positionBuffer = context.createBuffer()
-    
-    // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
-    context.bindBuffer(target: WebGL2RenderingContext.ARRAY_BUFFER, buffer: positionBuffer)
-    context.bufferData(
-        target: WebGL2RenderingContext.ARRAY_BUFFER,
-        srcData: .arrayBuffer(
-            Float32Array( [0.0, 0.0, 0.0, 0.5, 0.7, 0.0,] ).arrayBuffer
-        ),
-        usage: WebGL2RenderingContext.STATIC_DRAW
-    )
-    
-    // Create a vertex array object (attribute state)
-    guard let vao = context.createVertexArray() else {
-        console.error(data: "Failed to create VAO")
-        return
-    }
-    
-    // and make it the one we're currently working with
-    context.bindVertexArray(array: vao)
-    
-    // Turn on the attribute
-    context.enableVertexAttribArray(index: positionAttributeLocation)
-    
-    context.vertexAttribPointer(
-        index: positionAttributeLocation,
-        size: 2, // 2 components per iteration
-        type: WebGL2RenderingContext.FLOAT, // the data is 32bit floats
-        normalized: false, // don't normalize the data
-        stride: 0, // 0 = move forward size * sizeof(type) each iteration to get the next position
-        offset: 0 // start at the beginning of the buffer
-    )
-    
-    canvas.resizeToDisplaySize()
-    
-    // Tell WebGL how to convert from clip space to pixels
-    context.viewport(x: 0, y: 0, width: GLsizei(canvas.width), height: GLsizei(canvas.height))
-    
-    // Clear the canvas
-    context.clearColor(red: 0, green: 0, blue: 0, alpha: 0)
-    context.clear(mask: WebGL2RenderingContext.COLOR_BUFFER_BIT)
-    
-    // Tell it to use our program (pair of shaders)
-    context.useProgram(program: program)
-    
-    // Bind the attribute/buffer set we want.
-    context.bindVertexArray(array: vao)
-    
-    // draw
-    context.drawArrays(mode: WebGL2RenderingContext.TRIANGLES, first: 0, count: 3)
 }

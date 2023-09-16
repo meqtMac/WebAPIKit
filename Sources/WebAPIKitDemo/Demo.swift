@@ -876,7 +876,28 @@ struct Demo {
                 WebSocketDemo(title: "WebSocket", parent: buttonDiv.element)
             }
             Div {
-                WebGLElement(parent: buttonDiv.element)
+                WebGL1Element(parent: buttonDiv.element)
+                WebGLDemo(parent: buttonDiv.element)
+            }
+            Div {
+                Button(title: "iFrame") {
+                    buttonDiv.element.jsObject.innerHTML = """
+                    <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/1jpuNAYcS2o?si=bWZ3UFg60z6GOupZ"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer;
+                    autoplay;
+                    clipboard-write
+                     encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share"
+                    ></iframe>
+                    """
+                }
             }
         }
         _ = document.body?.appendChild(node: rootDiv.element)

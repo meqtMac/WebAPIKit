@@ -397,17 +397,24 @@ public class FileSystemWritableFileStream: WritableStream {
         super.init(unsafelyWrapping: jsObject)
     }
 
-    @inlinable public func write(data: FileSystemWriteChunkType) -> JSPromise {
-        let this = jsObject
-        return this[Strings.write].function!(this: this, arguments: [_toJSValue(data)]).fromJSValue()!
-    }
-
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-    @inlinable public func write(data: FileSystemWriteChunkType) async throws {
-        let this = jsObject
-        let _promise: JSPromise = this[Strings.write].function!(this: this, arguments: [_toJSValue(data)]).fromJSValue()!
+    @inlinable public func write(data blob: Blob) async throws {
+        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(blob)]).fromJSValue()!
         _ = try await _promise.value
     }
+    @inlinable public func write(data bufferSource: BufferSource) async throws {
+        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(bufferSource)]).fromJSValue()!
+        _ = try await _promise.value
+    }
+     @inlinable public func write(data string: String) async throws {
+        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(string)]).fromJSValue()!
+        _ = try await _promise.value
+    }
+     @inlinable public func write(data writeParams: WriteParams) async throws {
+        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(writeParams)]).fromJSValue()!
+        _ = try await _promise.value
+    }
+ 
+
 
     @inlinable public func seek(position: UInt64) -> JSPromise {
         let this = jsObject
@@ -755,105 +762,6 @@ public enum Blob_or_BufferSource_or_String: JSValueCompatible, Any_Blob_or_Buffe
     }
 }
 
-public protocol Any_FileSystemWriteChunkType: ConvertibleToJSValue {}
-extension Blob: Any_FileSystemWriteChunkType {}
-extension BufferSource: Any_FileSystemWriteChunkType {}
-extension String: Any_FileSystemWriteChunkType {}
-extension WriteParams: Any_FileSystemWriteChunkType {}
-
-public enum FileSystemWriteChunkType: JSValueCompatible, Any_FileSystemWriteChunkType {
-    case blob(Blob)
-    case bufferSource(BufferSource)
-    case string(String)
-    case writeParams(WriteParams)
-
-    init(_ blob: Blob) {
-        let val: FileSystemWriteChunkType = .blob(blob)
-        self = val
-    }
-
-    init(_ bufferSource: BufferSource) {
-        let val: FileSystemWriteChunkType = .bufferSource(bufferSource)
-        self = val
-    }
-
-    init(_ arrayBuffer: ArrayBuffer) {
-        let val: BufferSource = .arrayBuffer(arrayBuffer)
-        self = .init(val)
-    }
-
-    init(_ arrayBufferView: ArrayBufferView) {
-        let val: BufferSource = .arrayBufferView(arrayBufferView)
-        self = .init(val)
-    }
-
-    init(_ string: String) {
-        let val: FileSystemWriteChunkType = .string(string)
-        self = val
-    }
-
-    init(_ writeParams: WriteParams) {
-        let val: FileSystemWriteChunkType = .writeParams(writeParams)
-        self = val
-    }
-
-    public var blob: Blob? {
-        switch self {
-        case let .blob(blob): return blob
-        default: return nil
-        }
-    }
-
-    public var bufferSource: BufferSource? {
-        switch self {
-        case let .bufferSource(bufferSource): return bufferSource
-        default: return nil
-        }
-    }
-
-    public var string: String? {
-        switch self {
-        case let .string(string): return string
-        default: return nil
-        }
-    }
-
-    public var writeParams: WriteParams? {
-        switch self {
-        case let .writeParams(writeParams): return writeParams
-        default: return nil
-        }
-    }
-
-    public static func construct(from value: JSValue) -> Self? {
-        if let blob: Blob = value.fromJSValue() {
-            return .blob(blob)
-        }
-        if let bufferSource: BufferSource = value.fromJSValue() {
-            return .bufferSource(bufferSource)
-        }
-        if let string: String = value.fromJSValue() {
-            return .string(string)
-        }
-        if let writeParams: WriteParams = value.fromJSValue() {
-            return .writeParams(writeParams)
-        }
-        return nil
-    }
-
-    public var jsValue: JSValue {
-        switch self {
-        case let .blob(blob):
-            return blob.jsValue
-        case let .bufferSource(bufferSource):
-            return bufferSource.jsValue
-        case let .string(string):
-            return string.jsValue
-        case let .writeParams(writeParams):
-            return writeParams.jsValue
-        }
-    }
-}
 
 public protocol Any_StartInDirectory: ConvertibleToJSValue {}
 extension FileSystemHandle: Any_StartInDirectory {}
@@ -862,30 +770,6 @@ extension WellKnownDirectory: Any_StartInDirectory {}
 public enum StartInDirectory: JSValueCompatible, Any_StartInDirectory {
     case fileSystemHandle(FileSystemHandle)
     case wellKnownDirectory(WellKnownDirectory)
-
-    init(_ fileSystemHandle: FileSystemHandle) {
-        let val: StartInDirectory = .fileSystemHandle(fileSystemHandle)
-        self = val
-    }
-
-    init(_ wellKnownDirectory: WellKnownDirectory) {
-        let val: StartInDirectory = .wellKnownDirectory(wellKnownDirectory)
-        self = val
-    }
-
-    public var fileSystemHandle: FileSystemHandle? {
-        switch self {
-        case let .fileSystemHandle(fileSystemHandle): return fileSystemHandle
-        default: return nil
-        }
-    }
-
-    public var wellKnownDirectory: WellKnownDirectory? {
-        switch self {
-        case let .wellKnownDirectory(wellKnownDirectory): return wellKnownDirectory
-        default: return nil
-        }
-    }
 
     public static func construct(from value: JSValue) -> Self? {
         if let fileSystemHandle: FileSystemHandle = value.fromJSValue() {

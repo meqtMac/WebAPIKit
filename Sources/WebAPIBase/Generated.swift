@@ -5,14 +5,14 @@ import JavaScriptEventLoop
 import JavaScriptKit
 
 open class DOMException: JSBridgedClass {
-    @inlinable open class var constructor: JSFunction? { JSObject.global[Strings.DOMException].function }
+    @inlinable open class var constructor: JSFunction? { JSObject.global[.DOMException].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadonlyAttribute(jsObject: jsObject, name: Strings.name)
-        _message = ReadonlyAttribute(jsObject: jsObject, name: Strings.message)
-        _code = ReadonlyAttribute(jsObject: jsObject, name: Strings.code)
+        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
+        _message = ReadonlyAttribute(jsObject: jsObject, name: .message)
+        _code = ReadonlyAttribute(jsObject: jsObject, name: .code)
         self.jsObject = jsObject
     }
 
@@ -82,23 +82,23 @@ open class DOMException: JSBridgedClass {
 
 public typealias VoidFunction = () -> Void
 public class URL: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.URL].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.URL].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _href = ReadWriteAttribute(jsObject: jsObject, name: Strings.href)
-        _origin = ReadonlyAttribute(jsObject: jsObject, name: Strings.origin)
-        _protocol = ReadWriteAttribute(jsObject: jsObject, name: Strings.protocol)
-        _username = ReadWriteAttribute(jsObject: jsObject, name: Strings.username)
-        _password = ReadWriteAttribute(jsObject: jsObject, name: Strings.password)
-        _host = ReadWriteAttribute(jsObject: jsObject, name: Strings.host)
-        _hostname = ReadWriteAttribute(jsObject: jsObject, name: Strings.hostname)
-        _port = ReadWriteAttribute(jsObject: jsObject, name: Strings.port)
-        _pathname = ReadWriteAttribute(jsObject: jsObject, name: Strings.pathname)
-        _search = ReadWriteAttribute(jsObject: jsObject, name: Strings.search)
-        _searchParams = ReadonlyAttribute(jsObject: jsObject, name: Strings.searchParams)
-        _hash = ReadWriteAttribute(jsObject: jsObject, name: Strings.hash)
+        _href = ReadWriteAttribute(jsObject: jsObject, name: .href)
+        _origin = ReadonlyAttribute(jsObject: jsObject, name: .origin)
+        _protocol = ReadWriteAttribute(jsObject: jsObject, name: .protocol)
+        _username = ReadWriteAttribute(jsObject: jsObject, name: .username)
+        _password = ReadWriteAttribute(jsObject: jsObject, name: .password)
+        _host = ReadWriteAttribute(jsObject: jsObject, name: .host)
+        _hostname = ReadWriteAttribute(jsObject: jsObject, name: .hostname)
+        _port = ReadWriteAttribute(jsObject: jsObject, name: .port)
+        _pathname = ReadWriteAttribute(jsObject: jsObject, name: .pathname)
+        _search = ReadWriteAttribute(jsObject: jsObject, name: .search)
+        _searchParams = ReadonlyAttribute(jsObject: jsObject, name: .searchParams)
+        _hash = ReadWriteAttribute(jsObject: jsObject, name: .hash)
         self.jsObject = jsObject
     }
 
@@ -108,7 +108,7 @@ public class URL: JSBridgedClass {
 
     @inlinable public class func canParse(url: String, base: String? = nil) -> Bool {
         let this = constructor!
-        return this[Strings.canParse].function!(this: this, arguments: [_toJSValue(url), _toJSValue(base)]).fromJSValue()!
+        return this[.canParse].function!(this: this, arguments: [_toJSValue(url), _toJSValue(base)]).fromJSValue()!
     }
 
     @ReadWriteAttribute
@@ -149,17 +149,17 @@ public class URL: JSBridgedClass {
 
     @inlinable public func toJSON() -> String {
         let this = jsObject
-        return this[Strings.toJSON].function!(this: this, arguments: []).fromJSValue()!
+        return this[.toJSON].function!(this: this, arguments: []).fromJSValue()!
     }
 }
 
 public class URLSearchParams: JSBridgedClass, Sequence {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.URLSearchParams].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.URLSearchParams].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _size = ReadonlyAttribute(jsObject: jsObject, name: Strings.size)
+        _size = ReadonlyAttribute(jsObject: jsObject, name: .size)
         self.jsObject = jsObject
     }
 
@@ -172,37 +172,37 @@ public class URLSearchParams: JSBridgedClass, Sequence {
 
     @inlinable public func append(name: String, value: String) {
         let this = jsObject
-        _ = this[Strings.append].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
+        _ = this[.append].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
     }
 
     @inlinable public func delete(name: String, value: String? = nil) {
         let this = jsObject
-        _ = this[Strings.delete].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
+        _ = this[.delete].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
     }
 
     @inlinable public func get(name: String) -> String? {
         let this = jsObject
-        return this[Strings.get].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
+        return this[.get].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
     }
 
     @inlinable public func getAll(name: String) -> [String] {
         let this = jsObject
-        return this[Strings.getAll].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()!
+        return this[.getAll].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()!
     }
 
     @inlinable public func has(name: String, value: String? = nil) -> Bool {
         let this = jsObject
-        return this[Strings.has].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)]).fromJSValue()!
+        return this[.has].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)]).fromJSValue()!
     }
 
     @inlinable public func set(name: String, value: String) {
         let this = jsObject
-        _ = this[Strings.set].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
+        _ = this[.set].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
     }
 
     @inlinable public func sort() {
         let this = jsObject
-        _ = this[Strings.sort].function!(this: this, arguments: [])
+        _ = this[.sort].function!(this: this, arguments: [])
     }
 
     public typealias Element = String
@@ -211,112 +211,113 @@ public class URLSearchParams: JSBridgedClass, Sequence {
     }
 
     @inlinable public var description: String {
-        jsObject[Strings.toString]!().fromJSValue()!
+        jsObject[.toString]!().fromJSValue()!
     }
 }
 
 public enum console {
     @inlinable public static var jsObject: JSObject {
-        JSObject.global[Strings.console].object!
+        JSObject.global[.console].object!
     }
 
     @inlinable public static func assert(condition: Bool? = nil, data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.assert].function!(this: this, arguments: [_toJSValue(condition)] + data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.assert].function!(this: this, arguments: [_toJSValue(condition)] + data.map(_toJSValue))
     }
 
     @inlinable public static func clear() {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.clear].function!(this: this, arguments: [])
+        let this = JSObject.global[.console].object!
+        _ = this[.clear].function!(this: this, arguments: [])
     }
 
     @inlinable public static func debug(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.debug].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.debug].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func error(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.error].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.error].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func info(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.info].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.info].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func log(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.log].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.log].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func table(tabularData: JSValue? = nil, properties: [String]? = nil) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.table].function!(this: this, arguments: [_toJSValue(tabularData), _toJSValue(properties)])
+        let this = JSObject.global[.console].object!
+        _ = this[.table].function!(this: this, arguments: [_toJSValue(tabularData), _toJSValue(properties)])
     }
 
     @inlinable public static func trace(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.trace].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.trace].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func warn(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.warn].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.warn].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func dir(item: JSValue? = nil, options: JSObject? = nil) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.dir].function!(this: this, arguments: [_toJSValue(item), _toJSValue(options)])
+        let this = JSObject.global[.console].object!
+        _ = this[.dir].function!(this: this, arguments: [_toJSValue(item), _toJSValue(options)])
     }
 
     @inlinable public static func dirxml(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.dirxml].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.dirxml].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func count(label: String? = nil) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.count].function!(this: this, arguments: [_toJSValue(label)])
+        let this = JSObject.global[.console].object!
+        _ = this[.count].function!(this: this, arguments: [_toJSValue(label)])
     }
 
     @inlinable public static func countReset(label: String? = nil) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.countReset].function!(this: this, arguments: [_toJSValue(label)])
+        let this = JSObject.global[.console].object!
+        _ = this[.countReset].function!(this: this, arguments: [_toJSValue(label)])
     }
 
     @inlinable public static func group(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.group].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.group].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func groupCollapsed(data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.groupCollapsed].function!(this: this, arguments: data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.groupCollapsed].function!(this: this, arguments: data.map(_toJSValue))
     }
 
     @inlinable public static func groupEnd() {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.groupEnd].function!(this: this, arguments: [])
+        let this = JSObject.global[.console].object!
+        _ = this[.groupEnd].function!(this: this, arguments: [])
     }
 
     @inlinable public static func time(label: String? = nil) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.time].function!(this: this, arguments: [_toJSValue(label)])
+        let this = JSObject.global[.console].object!
+        _ = this[.time].function!(this: this, arguments: [_toJSValue(label)])
     }
 
     @inlinable public static func timeLog(label: String? = nil, data: JSValue...) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.timeLog].function!(this: this, arguments: [_toJSValue(label)] + data.map(_toJSValue))
+        let this = JSObject.global[.console].object!
+        _ = this[.timeLog].function!(this: this, arguments: [_toJSValue(label)] + data.map(_toJSValue))
     }
 
     @inlinable public static func timeEnd(label: String? = nil) {
-        let this = JSObject.global[Strings.console].object!
-        _ = this[Strings.timeEnd].function!(this: this, arguments: [_toJSValue(label)])
+        let this = JSObject.global[.console].object!
+        _ = this[.timeEnd].function!(this: this, arguments: [_toJSValue(label)])
     }
 }
 
-@usableFromInline enum Strings {
+extension JSString {
+//@usableFromInline enum Strings {
     @usableFromInline static let _self: JSString = "self"
     @usableFromInline static let DOMException: JSString = "DOMException"
     @usableFromInline static let URL: JSString = "URL"
@@ -369,51 +370,10 @@ public enum console {
     @usableFromInline static let warn: JSString = "warn"
 }
 
-public protocol Any_AllowSharedBufferSource: ConvertibleToJSValue {}
-extension ArrayBuffer: Any_AllowSharedBufferSource {}
-extension ArrayBufferView: Any_AllowSharedBufferSource {}
-extension SharedArrayBuffer: Any_AllowSharedBufferSource {}
-
-public enum AllowSharedBufferSource: JSValueCompatible, Any_AllowSharedBufferSource {
+public enum AllowSharedBufferSource: JSValueCompatible {
     case arrayBuffer(ArrayBuffer)
     case arrayBufferView(ArrayBufferView)
     case sharedArrayBuffer(SharedArrayBuffer)
-
-    init(_ arrayBuffer: ArrayBuffer) {
-        let val: AllowSharedBufferSource = .arrayBuffer(arrayBuffer)
-        self = val
-    }
-
-    init(_ arrayBufferView: ArrayBufferView) {
-        let val: AllowSharedBufferSource = .arrayBufferView(arrayBufferView)
-        self = val
-    }
-
-    init(_ sharedArrayBuffer: SharedArrayBuffer) {
-        let val: AllowSharedBufferSource = .sharedArrayBuffer(sharedArrayBuffer)
-        self = val
-    }
-
-    public var arrayBuffer: ArrayBuffer? {
-        switch self {
-        case let .arrayBuffer(arrayBuffer): return arrayBuffer
-        default: return nil
-        }
-    }
-
-    public var arrayBufferView: ArrayBufferView? {
-        switch self {
-        case let .arrayBufferView(arrayBufferView): return arrayBufferView
-        default: return nil
-        }
-    }
-
-    public var sharedArrayBuffer: SharedArrayBuffer? {
-        switch self {
-        case let .sharedArrayBuffer(sharedArrayBuffer): return sharedArrayBuffer
-        default: return nil
-        }
-    }
 
     public static func construct(from value: JSValue) -> Self? {
         if let arrayBuffer: ArrayBuffer = value.fromJSValue() {
@@ -440,37 +400,9 @@ public enum AllowSharedBufferSource: JSValueCompatible, Any_AllowSharedBufferSou
     }
 }
 
-public protocol Any_BufferSource: ConvertibleToJSValue {}
-extension ArrayBuffer: Any_BufferSource {}
-extension ArrayBufferView: Any_BufferSource {}
-
-public enum BufferSource: JSValueCompatible, Any_BufferSource {
+public enum BufferSource: JSValueCompatible {
     case arrayBuffer(ArrayBuffer)
     case arrayBufferView(ArrayBufferView)
-
-    init(_ arrayBuffer: ArrayBuffer) {
-        let val: BufferSource = .arrayBuffer(arrayBuffer)
-        self = val
-    }
-
-    init(_ arrayBufferView: ArrayBufferView) {
-        let val: BufferSource = .arrayBufferView(arrayBufferView)
-        self = val
-    }
-
-    public var arrayBuffer: ArrayBuffer? {
-        switch self {
-        case let .arrayBuffer(arrayBuffer): return arrayBuffer
-        default: return nil
-        }
-    }
-
-    public var arrayBufferView: ArrayBufferView? {
-        switch self {
-        case let .arrayBufferView(arrayBufferView): return arrayBufferView
-        default: return nil
-        }
-    }
 
     public static func construct(from value: JSValue) -> Self? {
         if let arrayBuffer: ArrayBuffer = value.fromJSValue() {
@@ -492,51 +424,11 @@ public enum BufferSource: JSValueCompatible, Any_BufferSource {
     }
 }
 
-public protocol Any_String_or_record_String_to_String_or_seq_of_seq_of_String: ConvertibleToJSValue {}
-extension String: Any_String_or_record_String_to_String_or_seq_of_seq_of_String {}
-extension Dictionary: Any_String_or_record_String_to_String_or_seq_of_seq_of_String where Key == String, Value == String {}
-extension Array: Any_String_or_record_String_to_String_or_seq_of_seq_of_String where Element == [String] {}
 
-public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCompatible, Any_String_or_record_String_to_String_or_seq_of_seq_of_String {
+public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCompatible  {
     case string(String)
     case record_String_to_String([String: String])
     case seq_of_seq_of_String([[String]])
-
-    init(_ string: String) {
-        let val: String_or_record_String_to_String_or_seq_of_seq_of_String = .string(string)
-        self = val
-    }
-
-    init(_ record_String_to_String: [String: String]) {
-        let val: String_or_record_String_to_String_or_seq_of_seq_of_String = .record_String_to_String(record_String_to_String)
-        self = val
-    }
-
-    init(_ seq_of_seq_of_String: [[String]]) {
-        let val: String_or_record_String_to_String_or_seq_of_seq_of_String = .seq_of_seq_of_String(seq_of_seq_of_String)
-        self = val
-    }
-
-    public var string: String? {
-        switch self {
-        case let .string(string): return string
-        default: return nil
-        }
-    }
-
-    public var record_String_to_String: [String: String]? {
-        switch self {
-        case let .record_String_to_String(record_String_to_String): return record_String_to_String
-        default: return nil
-        }
-    }
-
-    public var seq_of_seq_of_String: [[String]]? {
-        switch self {
-        case let .seq_of_seq_of_String(seq_of_seq_of_String): return seq_of_seq_of_String
-        default: return nil
-        }
-    }
 
     public static func construct(from value: JSValue) -> Self? {
         if let string: String = value.fromJSValue() {

@@ -10,13 +10,9 @@ import DOM
 import JavaScriptKit
 import WebAPIBase
 import WebGL1
-import WebGL2
-//import WebGPU
 
-struct WebGLElement: HTMLProtocol {
+struct WebGL1Element: HTMLProtocol {
     let element: HTMLButtonElement
-    
-//    private static func
     
     static let vertextShaderSource = """
     attribute vec4 aVertexPosition;
@@ -34,7 +30,7 @@ struct WebGLElement: HTMLProtocol {
     """
     
     init(parent: HTMLElement) {
-        let button = Button(title: "WebGL") {
+        let button = Button(title: "WebGL1") {
             parent.jsObject.innerHTML = ""
             let width: UInt32 = 640
             let height: UInt32 = 480
@@ -50,41 +46,60 @@ struct WebGLElement: HTMLProtocol {
             let modelViewMatrix = gl.getUniformLocation(program: program, name: "uModelViewMatrix")
                     gl.clearColor(red: 0, green: 0, blue: 0, alpha: 0)
             gl.clearDepth(depth: 1)
-            gl.enable(cap: WebGLRenderingContext.DEPTH_TEST)
-            gl.depthFunc(func: WebGLRenderingContext.LEQUAL)
+            gl.enable(cap: .DEPTH_TEST)
+            gl.depthFunc(func: .LEQUAL)
             
-            gl.clear(mask: WebGLRenderingContext.COLOR_BUFFER_BIT | WebGLRenderingContext.DEPTH_BUFFER_BIT)
+            gl.clear(mask: .COLOR_BUFFER_BIT | .DEPTH_BUFFER_BIT)
             
-            let fov = (45.0 * .pi) / 180
+            let fov: GLfloat = (45.0 * .pi) / 180
+            let aspect: GLfloat = GLfloat(canvas.element.clientWidth) / GLfloat(canvas.element.clientHeight)
+            let zNear: GLfloat = 0.1
+            let zFar: GLfloat = 0.1
             
-            let aspect = Double(canvas.element.clientWidth) / Double(canvas.element.clientHeight)
-            let zNear = 0.1
-            let zFar = 0.1
-        
+            let n = zNear
+            let f = zFar
+            let w = tan(fov/2) * zNear
+            let h = w/aspect
+            let projectionMatrix4: [GLfloat] =
+            [ 2*n/w,    0,  0,  0,
+              0,    2*n/h,  0,  0,
+              0,    0,  -(f+n)/(f-n),   -2*f*n/(f-n),
+              0,    0,  -1, 0
+            ]
+            
+            let modelViewMatrix4: [GLfloat] =
+            [1, 0, 0, 0,
+             0, 1, 0, 0,
+             0, 0, 1, 0,
+             0, 0, -6, 1
+            ]
+
             // set position attribute
             let positionbuffer = try! gl.initPostionBuffer()
-            gl.bindBuffer(target: WebGLRenderingContext.ARRAY_BUFFER, buffer: positionbuffer)
-            gl.vertexAttribPointer(index: positionAttributeLocation, 
+            gl.bindBuffer(target: .ARRAY_BUFFER, buffer: positionbuffer)
+            gl.vertexAttribPointer(index: positionAttributeLocation,
                                    size: 2,
-                                   type: WebGLRenderingContext.FLOAT,
+                                   type: .FLOAT,
                                    normalized: false,
                                    stride: 0,
                                    offset: 0)
             gl.enableVertexAttribArray(index: positionAttributeLocation)
+            // Clear the canvas
+            gl.clearColor(red: 0,
+                          green: 1,
+                          blue: 0,
+                          alpha: 1)
+            gl.clear(mask: .COLOR_BUFFER_BIT)
             
-//            gl.useProgram(program: program)
-//            gl.uniformMatrix4fv(location: projectionMatrix, transpose: false, value: <#T##Float32List#>)
-//            gl.uniformMatrix4fv(location: modelViewMatrix, transpose: false, value: <#T##Float32List#>)
-//            gl.uniformMatrix4fv(location: <#T##WebGLUniformLocation?#>, transpose: <#T##GLboolean#>, value: <#T##Float32List#>)
-//            
-//            gl.drawArrays(mode: WebGLRenderingContext.TRIANGLE_STRIP, first: 0, count: 4)
-            
+            gl.useProgram(program: program)
+            gl.uniformMatrix4fv(location: projectionMatrix, transpose: false, value: projectionMatrix4)
+            gl.uniformMatrix4fv(location: modelViewMatrix, transpose: false, value: modelViewMatrix4)
+            gl.drawArrays(mode: .TRIANGLE_STRIP, first: 0, count: 4)
        }
         self.element = button.element
     }
     
 }
-
 
 extension Canvas {
     var webGLContext: WebGLRenderingContext {
@@ -99,7 +114,6 @@ extension WebGLRenderingContext {
     }
 }
 
-
 extension WebGLRenderingContext {
     func createShader(type: GLenum, source: String) throws -> WebGLShader  {
         guard let shader = createShader(type: type) else {
@@ -108,7 +122,7 @@ extension WebGLRenderingContext {
         shaderSource(shader: shader, source: source)
         compileShader(shader: shader)
         
-        switch getShaderParameter(shader: shader, pname: Self.COMPILE_STATUS) {
+        switch getShaderParameter(shader: shader, pname: .COMPILE_STATUS) {
         case .undefined, .boolean(false):
             if let log = getShaderInfoLog(shader: shader) {
                 console.log(data: log.jsValue)
@@ -129,7 +143,7 @@ extension WebGLRenderingContext {
         attachShader(program: program, shader: fShader)
         linkProgram(program: program)
         
-        switch getProgramParameter(program: program, pname: Self.LINK_STATUS) {
+        switch getProgramParameter(program: program, pname: .LINK_STATUS) {
         case .undefined, .boolean(false):
             if let log = getProgramInfoLog(program: program) {
                 console.log(data: log.jsValue)
@@ -142,8 +156,8 @@ extension WebGLRenderingContext {
     }
     
     func setupShaderProgram(vSource: String, fSource: String) throws -> WebGLProgram {
-        let vertexShader = try self.createShader(type: WebGLRenderingContext.VERTEX_SHADER, source: vSource)
-        let fragmentShader = try self.createShader(type: WebGLRenderingContext.FRAGMENT_SHADER, source: fSource)
+        let vertexShader = try self.createShader(type: .VERTEX_SHADER, source: vSource)
+        let fragmentShader = try self.createShader(type: .FRAGMENT_SHADER, source: fSource)
         
         return try self.createProgram(vShader: vertexShader, fShader: fragmentShader)
     }
@@ -151,13 +165,17 @@ extension WebGLRenderingContext {
     func initPostionBuffer() throws -> WebGLBuffer {
         let positionBuffer = self.createBuffer()
         
-        self.bindBuffer(target: Self.ARRAY_BUFFER, buffer: positionBuffer)
+        self.bindBuffer(target: .ARRAY_BUFFER, buffer: positionBuffer)
         
-        let positions: [Float32] = [1.0, 1.0, -1.0,
-                         1.0, 1.0, -1.0,
-                         -1.0, -1.0]
+        let positions: [GLfloat] =
+        [1.0,   1.0,
+         -1.0,  1.0,
+         1.0,   -1.0,
+         -1.0,  -1.0]
         
-        self.bufferData(target: Self.ARRAY_BUFFER, data: .arrayBuffer(Float32Array(positions).arrayBuffer), usage: Self.STATIC_DRAW)
+        self.bufferData(target: .ARRAY_BUFFER, 
+                        data: positions,
+                        usage: .STATIC_DRAW)
         
         return positionBuffer!
     }
