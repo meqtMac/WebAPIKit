@@ -86,7 +86,7 @@ public class ImageBitmapRenderingContext: JSBridgedClass {
     }
 
     @ReadonlyAttribute
-    public var canvas: HTMLCanvasElement_or_OffscreenCanvas
+    public var canvas: RenderingCanvas
 
     @inlinable public func transferFromImageBitmap(bitmap: ImageBitmap?) {
         let this = jsObject

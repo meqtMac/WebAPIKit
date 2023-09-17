@@ -171,9 +171,9 @@ open class Node: EventTarget {
         return this[.insertBefore].function!(this: this, arguments: [_toJSValue(node), _toJSValue(child)]).fromJSValue()!
     }
 
-    @inlinable public func appendChild(node: Node) -> Self {
+    @inlinable public func appendChild(node: Node) {
         let this = jsObject
-        return this[.appendChild].function!(this: this, arguments: [_toJSValue(node)]).fromJSValue()!
+       _ =  this[.appendChild].function!(this: this, arguments: [_toJSValue(node)])
     }
 
     @inlinable public func replaceChild(node: Node, child: Node) -> Self {

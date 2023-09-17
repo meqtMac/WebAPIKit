@@ -53,7 +53,7 @@ public extension OffscreenCanvas {
     }
 }
 
-public enum HTMLCanvasElement_or_OffscreenCanvas: JSValueCompatible {
+public enum RenderingCanvas: JSValueCompatible {
     case htmlCanvasElement(HTMLCanvasElement)
     case offscreenCanvas(OffscreenCanvas)
 

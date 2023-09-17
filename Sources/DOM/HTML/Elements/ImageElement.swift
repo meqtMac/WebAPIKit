@@ -100,13 +100,7 @@ public class HTMLImageElement: HTMLElement {
     @ReadWriteAttribute
     public var fetchPriority: String
 
-    @inlinable public func decode() -> JSPromise {
-        let this = jsObject
-        return this[.decode].function!(this: this, arguments: []).fromJSValue()!
-    }
-
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-    @inlinable public func decode() async throws {
+   @inlinable public func decode() async throws {
         let this = jsObject
         let _promise: JSPromise = this[.decode].function!(this: this, arguments: []).fromJSValue()!
         _ = try await _promise.value

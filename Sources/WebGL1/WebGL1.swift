@@ -201,7 +201,7 @@ public class WebGLRenderingContext: JSBridgedClass,
 public protocol WebGLRenderingContextBase: JSBridgedClass {}
 public extension WebGLRenderingContextBase {
    
-    @inlinable var canvas: HTMLCanvasElement_or_OffscreenCanvas { jsObject[.canvas].fromJSValue()! }
+    @inlinable var canvas: RenderingCanvas { jsObject[.canvas].fromJSValue()! }
     
     @inlinable var drawingBufferWidth: GLsizei { jsObject[.drawingBufferWidth].fromJSValue()! }
     
@@ -1011,33 +1011,5 @@ public class WebGLUniformLocation: JSBridgedClass {
     
     public required init(unsafelyWrapping jsObject: JSObject) {
         self.jsObject = jsObject
-    }
-}
-
-public protocol WebGLCanvasProtocol: ConvertibleToJSValue {}
-extension HTMLCanvasElement: WebGLCanvasProtocol {}
-extension OffscreenCanvas: WebGLCanvasProtocol {}
-
-public enum HTMLCanvasElement_or_OffscreenCanvas: JSValueCompatible, WebGLCanvasProtocol {
-    case htmlCanvasElement(HTMLCanvasElement)
-    case offscreenCanvas(OffscreenCanvas)
-    
-    public static func construct(from value: JSValue) -> Self? {
-        if let htmlCanvasElement: HTMLCanvasElement = value.fromJSValue() {
-            return .htmlCanvasElement(htmlCanvasElement)
-        }
-        if let offscreenCanvas: OffscreenCanvas = value.fromJSValue() {
-            return .offscreenCanvas(offscreenCanvas)
-        }
-        return nil
-    }
-    
-    public var jsValue: JSValue {
-        switch self {
-        case let .htmlCanvasElement(htmlCanvasElement):
-            return htmlCanvasElement.jsValue
-        case let .offscreenCanvas(offscreenCanvas):
-            return offscreenCanvas.jsValue
-        }
     }
 }

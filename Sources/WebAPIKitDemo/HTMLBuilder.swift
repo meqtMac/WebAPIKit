@@ -7,6 +7,7 @@
 
 import Foundation
 import DOM
+import WebAPIBase
 
 let document = globalThis.document
 
@@ -79,7 +80,7 @@ struct Div: HTMLProtocol {
     init(@HTMLBuilder content: @escaping () -> [any HTMLProtocol] ) {
         element = HTMLDivElement(from: document.createElement(localName: "div"))!
         for child in content() {
-            _ = element.jsValue.appendChild(child.element.jsValue)
+            element.appendChild(node: child.element)
         }
     }
 }
