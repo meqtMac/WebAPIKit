@@ -10,10 +10,7 @@ public class DataView: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _buffer = ReadonlyAttribute(jsObject: jsObject, name: "buffer")
-        _byteOffset = ReadonlyAttribute(jsObject: jsObject, name: "byteOffset")
-        _byteLength = ReadonlyAttribute(jsObject: jsObject, name: "byteLength")
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
     public convenience init(buffer: ArrayBuffer) {
@@ -28,14 +25,17 @@ public class DataView: JSBridgedClass {
         self.init(unsafelyWrapping: DataView.constructor!.new(buffer.jsValue, byteOffset.jsValue, byteLength.jsValue))
     }
 
-    @ReadonlyAttribute
-    public var buffer: ArrayBuffer
-
-    @ReadonlyAttribute
-    public var byteOffset: UInt32
-
-    @ReadonlyAttribute
-    public var byteLength: UInt32
+    public var buffer: ArrayBuffer {
+        jsObject["buffer"].fromJSValue()!
+    }
+    
+    public var byteOffset: UInt32 {
+        jsObject["byteOffset"].fromJSValue()!
+    }
+    
+    public var byteLength: UInt32 {
+        jsObject["byteLength"].fromJSValue()!
+    }
 
     public func getFloat32(byteOffset: UInt32) -> Float {
         jsObject.getFloat32!(byteOffset.jsValue).fromJSValue()!

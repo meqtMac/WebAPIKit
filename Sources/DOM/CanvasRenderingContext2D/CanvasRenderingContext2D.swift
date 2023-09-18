@@ -15,12 +15,12 @@ public class CanvasRenderingContext2D: JSBridgedClass {
     public let jsObject: JSObject
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _canvas = ReadonlyAttribute(jsObject: jsObject, name: .canvas)
         self.jsObject = jsObject
     }
     
-    @ReadonlyAttribute
-    public var canvas: HTMLCanvasElement
+public var canvas: HTMLCanvasElement {
+jsObject[.canvas].fromJSValue()!
+    }
     
     @inlinable public func getContextAttributes() -> CanvasRenderingContext2DSettings {
         let this = jsObject
@@ -67,8 +67,8 @@ public class OffscreenCanvasRenderingContext2D:  JSBridgedClass,
     
     public let jsObject: JSObject
     
+
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _canvas = ReadonlyAttribute(jsObject: jsObject, name: .canvas)
         self.jsObject = jsObject
     }
     
@@ -77,6 +77,7 @@ public class OffscreenCanvasRenderingContext2D:  JSBridgedClass,
         _ = this[.commit].function!(this: this, arguments: [])
     }
     
-    @ReadonlyAttribute
-    public var canvas: OffscreenCanvas
+public var canvas: OffscreenCanvas {
+jsObject[.canvas].fromJSValue()!
+    }
 }

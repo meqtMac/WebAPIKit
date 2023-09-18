@@ -18,7 +18,6 @@ public class AbortController: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _signal = ReadonlyAttribute(jsObject: jsObject, name: .signal)
         self.jsObject = jsObject
     }
 
@@ -26,8 +25,9 @@ public class AbortController: JSBridgedClass {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
     }
 
-    @ReadonlyAttribute
-    public var signal: AbortSignal
+public var signal: AbortSignal {
+jsObject[.signal].fromJSValue()!
+    }
 
     @inlinable public func abort(reason: JSValue? = nil) {
         let this = jsObject
@@ -39,8 +39,6 @@ public class AbortSignal: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.AbortSignal].function }
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _aborted = ReadonlyAttribute(jsObject: jsObject, name: .aborted)
-        _reason = ReadonlyAttribute(jsObject: jsObject, name: .reason)
         _onabort = ClosureAttribute1Optional(jsObject: jsObject, name: .onabort)
         super.init(unsafelyWrapping: jsObject)
     }
@@ -60,11 +58,13 @@ public class AbortSignal: EventTarget {
         return this[.any].function!(this: this, arguments: [_toJSValue(signals)]).fromJSValue()!
     }
 
-    @ReadonlyAttribute
-    public var aborted: Bool
+public var aborted: Bool {
+jsObject[.aborted].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var reason: JSValue
+public var reason: JSValue {
+jsObject[.reason].fromJSValue()!
+    }
 
     @inlinable public func throwIfAborted() {
         let this = jsObject

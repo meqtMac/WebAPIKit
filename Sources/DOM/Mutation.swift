@@ -15,35 +15,31 @@ import WebAPIBase
 public class MutationEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.MutationEvent].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _relatedNode = ReadonlyAttribute(jsObject: jsObject, name: .relatedNode)
-        _prevValue = ReadonlyAttribute(jsObject: jsObject, name: .prevValue)
-        _newValue = ReadonlyAttribute(jsObject: jsObject, name: .newValue)
-        _attrName = ReadonlyAttribute(jsObject: jsObject, name: .attrName)
-        _attrChange = ReadonlyAttribute(jsObject: jsObject, name: .attrChange)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     public static let MODIFICATION: UInt16 = 1
 
     public static let ADDITION: UInt16 = 2
 
     public static let REMOVAL: UInt16 = 3
 
-    @ReadonlyAttribute
-    public var relatedNode: Node?
+public var relatedNode: Node? {
+jsObject[.relatedNode].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var prevValue: String
+public var prevValue: String {
+jsObject[.prevValue].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var newValue: String
+public var newValue: String {
+jsObject[.newValue].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var attrName: String
+public var attrName: String {
+jsObject[.attrName].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var attrChange: UInt16
+public var attrChange: UInt16 {
+jsObject[.attrChange].fromJSValue()!
+    }
 
     @inlinable public func initMutationEvent(typeArg: String, bubblesArg: Bool? = nil, cancelableArg: Bool? = nil, relatedNodeArg: Node? = nil, prevValueArg: String? = nil, newValueArg: String? = nil, attrNameArg: String? = nil, attrChangeArg: UInt16? = nil) {
         let this = jsObject
@@ -93,37 +89,40 @@ public class MutationObserverInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _childList = ReadWriteAttribute(jsObject: object, name: .childList)
-        _attributes = ReadWriteAttribute(jsObject: object, name: .attributes)
-        _characterData = ReadWriteAttribute(jsObject: object, name: .characterData)
-        _subtree = ReadWriteAttribute(jsObject: object, name: .subtree)
-        _attributeOldValue = ReadWriteAttribute(jsObject: object, name: .attributeOldValue)
-        _characterDataOldValue = ReadWriteAttribute(jsObject: object, name: .characterDataOldValue)
-        _attributeFilter = ReadWriteAttribute(jsObject: object, name: .attributeFilter)
-        super.init(unsafelyWrapping: object)
+    public var childList: Bool {
+        get { jsObject[.childList].fromJSValue()!}
+        set { jsObject[.childList] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var childList: Bool
+    public var attributes: Bool {
+        get { jsObject[.attributes].fromJSValue()!}
+        set { jsObject[.attributes] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var attributes: Bool
+    public var characterData: Bool {
+        get { jsObject[.characterData].fromJSValue()!}
+        set { jsObject[.characterData] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var characterData: Bool
+    public var subtree: Bool {
+        get { jsObject[.subtree].fromJSValue()!}
+        set { jsObject[.subtree] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var subtree: Bool
+    public var attributeOldValue: Bool {
+        get { jsObject[.attributeOldValue].fromJSValue()!}
+        set { jsObject[.attributeOldValue] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var attributeOldValue: Bool
+    public var characterDataOldValue: Bool {
+        get { jsObject[.characterDataOldValue].fromJSValue()!}
+        set { jsObject[.characterDataOldValue] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var characterDataOldValue: Bool
-
-    @ReadWriteAttribute
-    public var attributeFilter: [String]
+    public var attributeFilter: [String] {
+        get { jsObject[.attributeFilter].fromJSValue()!}
+        set { jsObject[.attributeFilter] = newValue.jsValue }
+    }
 }
 
 public class MutationRecord: JSBridgedClass {
@@ -132,44 +131,44 @@ public class MutationRecord: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _target = ReadonlyAttribute(jsObject: jsObject, name: .target)
-        _addedNodes = ReadonlyAttribute(jsObject: jsObject, name: .addedNodes)
-        _removedNodes = ReadonlyAttribute(jsObject: jsObject, name: .removedNodes)
-        _previousSibling = ReadonlyAttribute(jsObject: jsObject, name: .previousSibling)
-        _nextSibling = ReadonlyAttribute(jsObject: jsObject, name: .nextSibling)
-        _attributeName = ReadonlyAttribute(jsObject: jsObject, name: .attributeName)
-        _attributeNamespace = ReadonlyAttribute(jsObject: jsObject, name: .attributeNamespace)
-        _oldValue = ReadonlyAttribute(jsObject: jsObject, name: .oldValue)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var type: String
+public var type: String {
+jsObject[.type].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var target: Node
+public var target: Node {
+jsObject[.target].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var addedNodes: NodeList
+public var addedNodes: NodeList {
+jsObject[.addedNodes].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var removedNodes: NodeList
+public var removedNodes: NodeList {
+jsObject[.removedNodes].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var previousSibling: Node?
+public var previousSibling: Node? {
+jsObject[.previousSibling].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var nextSibling: Node?
+public var nextSibling: Node? {
+jsObject[.nextSibling].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var attributeName: String?
+public var attributeName: String? {
+jsObject[.attributeName].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var attributeNamespace: String?
+public var attributeNamespace: String? {
+jsObject[.attributeNamespace].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var oldValue: String?
+public var oldValue: String? {
+jsObject[.oldValue].fromJSValue()
+    }
 }
 
 

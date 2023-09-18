@@ -16,67 +16,74 @@ import WebAPIBase
 public class HTMLAnchorElement: HTMLElement, HTMLHyperlinkElementUtils {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLAnchorElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _target = ReadWriteAttribute(jsObject: jsObject, name: .target)
-        _download = ReadWriteAttribute(jsObject: jsObject, name: .download)
-        _ping = ReadWriteAttribute(jsObject: jsObject, name: .ping)
-        _rel = ReadWriteAttribute(jsObject: jsObject, name: .rel)
-        _relList = ReadonlyAttribute(jsObject: jsObject, name: .relList)
-        _hreflang = ReadWriteAttribute(jsObject: jsObject, name: .hreflang)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _text = ReadWriteAttribute(jsObject: jsObject, name: .text)
-        _referrerPolicy = ReadWriteAttribute(jsObject: jsObject, name: .referrerPolicy)
-        _coords = ReadWriteAttribute(jsObject: jsObject, name: .coords)
-        _charset = ReadWriteAttribute(jsObject: jsObject, name: .charset)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _rev = ReadWriteAttribute(jsObject: jsObject, name: .rev)
-        _shape = ReadWriteAttribute(jsObject: jsObject, name: .shape)
-        super.init(unsafelyWrapping: jsObject)
+    public var target: String {
+        get { jsObject[.target].fromJSValue()!}
+        set { jsObject[.target] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var download: String {
+        get { jsObject[.download].fromJSValue()!}
+        set { jsObject[.download] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var target: String
+    public var ping: String {
+        get { jsObject[.ping].fromJSValue()!}
+        set { jsObject[.ping] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var download: String
+    public var rel: String {
+        get { jsObject[.rel].fromJSValue()!}
+        set { jsObject[.rel] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var ping: String
+    public var relList: DOMTokenList {
+        jsObject[.relList].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var rel: String
+    public var hreflang: String {
+        get { jsObject[.hreflang].fromJSValue()!}
+        set { jsObject[.hreflang] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var relList: DOMTokenList
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var hreflang: String
+    public var text: String {
+        get { jsObject[.text].fromJSValue()!}
+        set { jsObject[.text] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var type: String
+    public var referrerPolicy: String {
+        get { jsObject[.referrerPolicy].fromJSValue()!}
+        set { jsObject[.slot] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var text: String
+    public var coords: String {
+        get { jsObject[.coords].fromJSValue()!}
+        set { jsObject[.coords] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var referrerPolicy: String
+    public var charset: String {
+        get { jsObject[.charset].fromJSValue()!}
+        set { jsObject[.charset] = newValue.jsValue }
+ 
+    }
 
-    @ReadWriteAttribute
-    public var coords: String
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var charset: String
+    public var rev: String {
+        get { jsObject[.rev].fromJSValue()!}
+        set { jsObject[.rev] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var name: String
-
-    @ReadWriteAttribute
-    public var rev: String
-
-    @ReadWriteAttribute
-    public var shape: String
+    public var shape: String {
+        get { jsObject[.shape].fromJSValue()!}
+        set { jsObject[.shape] = newValue.jsValue }
+ 
+    }
 }

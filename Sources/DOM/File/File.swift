@@ -14,21 +14,17 @@ import JavaScriptEventLoop
 public class File: Blob {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.File].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
-        _lastModified = ReadonlyAttribute(jsObject: jsObject, name: .lastModified)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init(fileBits: [BlobPart], fileName: String, options: FilePropertyBag? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(fileBits), _toJSValue(fileName), _toJSValue(options)]))
     }
 
-    @ReadonlyAttribute
-    public var name: String
+public var name: String {
+jsObject[.name].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var lastModified: Int64
+public var lastModified: Int64 {
+jsObject[.lastModified].fromJSValue()!
+    }
 }
 
 public class FileList: JSBridgedClass {
@@ -37,7 +33,6 @@ public class FileList: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
 
@@ -50,8 +45,9 @@ public class FileList: JSBridgedClass {
         return this[.item].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
     }
 
-    @ReadonlyAttribute
-    public var length: UInt32
+public var length: UInt32 {
+jsObject[.length].fromJSValue()!
+    }
 }
 
 public class FilePropertyBag: BridgedDictionary {
@@ -61,23 +57,17 @@ public class FilePropertyBag: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _lastModified = ReadWriteAttribute(jsObject: object, name: .lastModified)
-        super.init(unsafelyWrapping: object)
+    public var lastModified: Int64 {
+        get { jsObject[.lastModified].fromJSValue()!}
+        set { jsObject[.lastModified] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var lastModified: Int64
 }
 
 public class FileReader: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.FileReader].function }
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _readyState = ReadonlyAttribute(jsObject: jsObject, name: .readyState)
-        _result = ReadonlyAttribute(jsObject: jsObject, name: .result)
-        _error = ReadonlyAttribute(jsObject: jsObject, name: .error)
-        _onloadstart = ClosureAttribute1Optional(jsObject: jsObject, name: .onloadstart)
+       _onloadstart = ClosureAttribute1Optional(jsObject: jsObject, name: .onloadstart)
         _onprogress = ClosureAttribute1Optional(jsObject: jsObject, name: .onprogress)
         _onload = ClosureAttribute1Optional(jsObject: jsObject, name: .onload)
         _onabort = ClosureAttribute1Optional(jsObject: jsObject, name: .onabort)
@@ -121,14 +111,17 @@ public class FileReader: EventTarget {
 
     public static let DONE: UInt16 = 2
 
-    @ReadonlyAttribute
-    public var readyState: UInt16
+public var readyState: UInt16 {
+jsObject[.readyState].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var result: ArrayBuffer_or_String?
+public var result: ArrayBuffer_or_String? {
+jsObject[.result].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var error: DOMException?
+public var error: DOMException? {
+jsObject[.error].fromJSValue()
+    }
 
     @ClosureAttribute1Optional
     public var onloadstart: EventHandler

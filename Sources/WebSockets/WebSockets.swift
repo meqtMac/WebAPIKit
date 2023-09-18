@@ -6,44 +6,43 @@ import WebAPIBase
 public enum BinaryType: JSString, JSValueCompatible {
     case blob = "blob"
     case arraybuffer = "arraybuffer"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class CloseEvent: Event {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.CloseEvent].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.CloseEvent].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        self.wasClean =  jsObject[Strings.wasClean].fromJSValue()!
-        self.code = jsObject[Strings.code].fromJSValue()!
-        self.reason = jsObject[Strings.reason].fromJSValue()!
+        self.wasClean =  jsObject[.wasClean].fromJSValue()!
+        self.code = jsObject[.code].fromJSValue()!
+        self.reason = jsObject[.reason].fromJSValue()!
         super.init(unsafelyWrapping: jsObject)
     }
-   
+    
     public let wasClean: Bool
-
+    
     public let code: UInt16
-
+    
     public let reason: String
 }
 
 public class WebSocket: EventTarget {
     
-    @inlinable public static override var constructor: JSFunction? { JSObject.global[Strings.WebSocket].function }
-
+    @inlinable public static override var constructor: JSFunction? { JSObject.global[.WebSocket].function }
+    
     required public init(unsafelyWrapping jsObject: JSObject) {
-        _binaryType = ReadWriteAttribute(jsObject: jsObject, name: Strings.binaryType)
         super.init(unsafelyWrapping: jsObject)
     }
     
@@ -54,9 +53,9 @@ public class WebSocket: EventTarget {
     @inlinable public convenience init(url: String, protocols: [String]) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(url), _toJSValue(protocols)]))
     }
-
+    
     public var url: String {
-        jsObject[Strings.url].fromJSValue()!
+        jsObject[.url].fromJSValue()!
     }
     
     public enum ReadyState: UInt16 {
@@ -67,65 +66,67 @@ public class WebSocket: EventTarget {
     }
     
     public var readyState: ReadyState {
-        .init(rawValue: jsObject[Strings.readyState].fromJSValue()!)!
+        .init(rawValue: jsObject[.readyState].fromJSValue()!)!
     }
-
+    
     public var bufferedAmount: UInt64 {
-        jsObject[Strings.bufferedAmount].fromJSValue()!
+        jsObject[.bufferedAmount].fromJSValue()!
     }
-
+    
     public func onClose(_ handler: @escaping (CloseEvent) -> Void) {
-       jsObject[Strings.onclose] = JSClosure {
+        jsObject[.onclose] = JSClosure {
             handler($0[0].fromJSValue()!)
             return .undefined
         }.jsValue
     }
     
     public func onOpen(_ handler: @escaping (Event) -> Void ) {
-        jsObject[Strings.onopen] = JSClosure {
+        jsObject[.onopen] = JSClosure {
             handler($0[0].fromJSValue()!)
             return .undefined
         }.jsValue
     }
     
     public func onMessage(_ handler: @escaping (MessageEvent) -> Void) {
-        jsObject[Strings.onmessage] = JSClosure {
+        jsObject[.onmessage] = JSClosure {
             handler($0[0].fromJSValue()!)
             return .undefined
         }.jsValue
     }
     
     public func onError(_ handler: @escaping (Event) -> Void) {
-        jsObject[Strings.onerror] = JSClosure {
+        jsObject[.onerror] = JSClosure {
             handler($0[0].fromJSValue()!)
             return .undefined
         }.jsValue
     }
     
     public var extensions: String {
-        jsObject[Strings.extensions].fromJSValue()!
+        jsObject[.extensions].fromJSValue()!
     }
-
+    
     public var `protocol`: String {
-        jsObject[Strings.protocol].fromJSValue()!
+        jsObject[.protocol].fromJSValue()!
     }
-
+    
     @inlinable public func close(code: UInt16? = nil, reason: String? = nil) {
         let this = jsObject
-        _ = this[Strings.close].function!(this: this, arguments: [_toJSValue(code), _toJSValue(reason)])
+        _ = this[.close].function!(this: this, arguments: [_toJSValue(code), _toJSValue(reason)])
     }
-
-    @ReadWriteAttribute
-    public var binaryType: BinaryType
+    
+    public var binaryType: BinaryType {
+        get { jsObject[.binaryType].fromJSValue()!}
+        set { jsObject[.binaryType] = newValue.jsValue }
+    }
     
     // TODO: Throw if WebSocket.readyState is CONNECTING.
     @inlinable public func send(data: WebSocketSendAble) {
         let this = jsObject
-        _ = this[Strings.send].function!(this: this, arguments: [_toJSValue(data)])
+        _ = this[.send].function!(this: this, arguments: [_toJSValue(data)])
     }
 }
 
-@usableFromInline enum Strings {
+extension JSString {
     @usableFromInline static let _self: JSString = "self"
     @usableFromInline static let CloseEvent: JSString = "CloseEvent"
     @usableFromInline static let Object: JSString = "Object"

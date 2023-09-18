@@ -12,79 +12,82 @@ import JavaScriptEventLoop
 import JavaScriptKit
 import WebAPIBase
 
-public class HTMLElement: Element, GlobalEventHandlers, ElementContentEditable, HTMLOrSVGElement {
+public class HTMLElement: Element,
+                          GlobalEventHandlers,
+                          ElementContentEditable,
+                          HTMLOrSVGElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLElement].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _title = ReadWriteAttribute(jsObject: jsObject, name: .title)
-        _lang = ReadWriteAttribute(jsObject: jsObject, name: .lang)
-        _translate = ReadWriteAttribute(jsObject: jsObject, name: .translate)
-        _dir = ReadWriteAttribute(jsObject: jsObject, name: .dir)
-        _hidden = ReadWriteAttribute(jsObject: jsObject, name: .hidden)
-        _inert = ReadWriteAttribute(jsObject: jsObject, name: .inert)
-        _accessKey = ReadWriteAttribute(jsObject: jsObject, name: .accessKey)
-        _accessKeyLabel = ReadonlyAttribute(jsObject: jsObject, name: .accessKeyLabel)
-        _draggable = ReadWriteAttribute(jsObject: jsObject, name: .draggable)
-        _spellcheck = ReadWriteAttribute(jsObject: jsObject, name: .spellcheck)
-        _autocapitalize = ReadWriteAttribute(jsObject: jsObject, name: .autocapitalize)
-        _innerText = ReadWriteAttribute(jsObject: jsObject, name: .innerText)
-        _outerText = ReadWriteAttribute(jsObject: jsObject, name: .outerText)
-        _popover = ReadWriteAttribute(jsObject: jsObject, name: .popover)
-        _offsetParent = ReadonlyAttribute(jsObject: jsObject, name: .offsetParent)
-        _offsetTop = ReadonlyAttribute(jsObject: jsObject, name: .offsetTop)
-        _offsetLeft = ReadonlyAttribute(jsObject: jsObject, name: .offsetLeft)
-        _offsetWidth = ReadonlyAttribute(jsObject: jsObject, name: .offsetWidth)
-        _offsetHeight = ReadonlyAttribute(jsObject: jsObject, name: .offsetHeight)
-        super.init(unsafelyWrapping: jsObject)
+    public var title: String {
+        get { jsObject[.title].fromJSValue()! }
+        set { jsObject[.title] = newValue.jsValue }
     }
     
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var lang: String {
+        get { jsObject[.lang].fromJSValue()! }
+        set { jsObject[.lang] = newValue.jsValue }
     }
     
-    @ReadWriteAttribute
-    public var title: String
+    public var translate: Bool {
+        get { jsObject[.translate].fromJSValue()! }
+        set { jsObject[.translate] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var lang: String
+    public var dir: String {
+        get { jsObject[.dir].fromJSValue()! }
+        set { jsObject[.dir] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var translate: Bool
+    public var hidden: HiddenState? {
+        get { jsObject[.hidden].fromJSValue() }
+        set { jsObject[.hidden] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var dir: String
-    
-    @ReadWriteAttribute
-    public var hidden: HiddenState?
-    
-    @ReadWriteAttribute
-    public var inert: Bool
+    public var inert: Bool {
+        get { jsObject[.inert].fromJSValue()! }
+        set { jsObject[.inert] = newValue.jsValue }
+    }
     
     @inlinable public func click() {
         let this = jsObject
         _ = this[.click].function!(this: this, arguments: [])
     }
     
-    @ReadWriteAttribute
-    public var accessKey: String
+    public var accessKey: String {
+        get { jsObject[.accessKey].fromJSValue()! }
+        set { jsObject[.accessKey] = newValue.jsValue }
+        
+    }
     
-    @ReadonlyAttribute
-    public var accessKeyLabel: String
+    public var accessKeyLabel: String {
+        get { jsObject[.accessKeyLabel].fromJSValue()! }
+        set { jsObject[.accessKeyLabel] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var draggable: Bool
+    public var draggable: Bool {
+        get { jsObject[.draggable].fromJSValue()! }
+        set { jsObject[.draggable] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var spellcheck: Bool
+    public var spellcheck: Bool {
+        get { jsObject[.spellcheck].fromJSValue()! }
+        set { jsObject[.spellcheck] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var autocapitalize: String
+    public var autocapitalize: String {
+        get { jsObject[.autocapitalize].fromJSValue()! }
+        set { jsObject[.autocapitalize] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var innerText: String
+    public var innerText: String {
+        get { jsObject[.innerText].fromJSValue()! }
+        set { jsObject[.innerText] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var outerText: String
+    public var outerText: String {
+        get { jsObject[.outerText].fromJSValue()! }
+        set { jsObject[.outerText] = newValue.jsValue }
+    }
     
     @inlinable public func attachInternals() -> ElementInternals {
         let this = jsObject
@@ -106,23 +109,30 @@ public class HTMLElement: Element, GlobalEventHandlers, ElementContentEditable, 
         return this[.togglePopover].function!(this: this, arguments: [_toJSValue(force)]).fromJSValue()!
     }
     
-    @ReadWriteAttribute
-    public var popover: String?
+    public var popover: String? {
+        get { jsObject[.popover].fromJSValue() }
+        set { jsObject[.popover] = newValue.jsValue }
+    }
     
-    @ReadonlyAttribute
-    public var offsetParent: Element?
+    public var offsetParent: Element? {
+        jsObject[.offsetParent].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var offsetTop: Int32
+    public var offsetTop: Int32 {
+        jsObject[.offsetTop].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var offsetLeft: Int32
+    public var offsetLeft: Int32 {
+        jsObject[.offsetLeft].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var offsetWidth: Int32
+    public var offsetWidth: Int32 {
+        jsObject[.offsetWidth].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var offsetHeight: Int32
+    public var offsetHeight: Int32 {
+        jsObject[.offsetHeight].fromJSValue()!
+    }
 }
 
 public class ElementInternals: JSBridgedClass, ARIAMixin {
@@ -131,39 +141,38 @@ public class ElementInternals: JSBridgedClass, ARIAMixin {
     public let jsObject: JSObject
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _shadowRoot = ReadonlyAttribute(jsObject: jsObject, name: .shadowRoot)
-        _form = ReadonlyAttribute(jsObject: jsObject, name: .form)
-        _willValidate = ReadonlyAttribute(jsObject: jsObject, name: .willValidate)
-        _validity = ReadonlyAttribute(jsObject: jsObject, name: .validity)
-        _validationMessage = ReadonlyAttribute(jsObject: jsObject, name: .validationMessage)
-        _labels = ReadonlyAttribute(jsObject: jsObject, name: .labels)
         self.jsObject = jsObject
     }
     
-    @ReadonlyAttribute
-    public var shadowRoot: ShadowRoot?
+    public var shadowRoot: ShadowRoot? {
+        jsObject[.shadowRoot].fromJSValue()
+    }
     
     @inlinable public func setFormValue(value: File_or_FormData_or_String?, state: File_or_FormData_or_String? = nil) {
         let this = jsObject
         _ = this[.setFormValue].function!(this: this, arguments: [_toJSValue(value), _toJSValue(state)])
     }
     
-    @ReadonlyAttribute
-    public var form: HTMLFormElement?
+    public var form: HTMLFormElement? {
+        jsObject[.form].fromJSValue()
+    }
     
     @inlinable public func setValidity(flags: ValidityStateFlags? = nil, message: String? = nil, anchor: HTMLElement? = nil) {
         let this = jsObject
         _ = this[.setValidity].function!(this: this, arguments: [_toJSValue(flags), _toJSValue(message), _toJSValue(anchor)])
     }
     
-    @ReadonlyAttribute
-    public var willValidate: Bool
+    public var willValidate: Bool {
+        jsObject[.willValidate].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var validity: ValidityState
+    public var validity: ValidityState {
+        jsObject[.validity].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var validationMessage: String
+    public var validationMessage: String {
+        jsObject[.validationMessage].fromJSValue()!
+    }
     
     @inlinable public func checkValidity() -> Bool {
         let this = jsObject
@@ -175,8 +184,9 @@ public class ElementInternals: JSBridgedClass, ARIAMixin {
         return this[.reportValidity].function!(this: this, arguments: []).fromJSValue()!
     }
     
-    @ReadonlyAttribute
-    public var labels: NodeList
+    public var labels: NodeList {
+        jsObject[.labels].fromJSValue()!
+    }
 }
 
 extension ElementInternals {
@@ -215,19 +225,19 @@ public protocol ElementContentEditable: JSBridgedClass {}
 public extension ElementContentEditable {
     @inlinable var contentEditable: String {
         get { jsObject[.contentEditable].fromJSValue()! }
-        nonmutating set { jsObject[.contentEditable] = _toJSValue(newValue) }
+        set { jsObject[.contentEditable] = _toJSValue(newValue) }
     }
-
+    
     @inlinable var enterKeyHint: String {
         get { jsObject[.enterKeyHint].fromJSValue()! }
-        nonmutating set { jsObject[.enterKeyHint] = _toJSValue(newValue) }
+        set { jsObject[.enterKeyHint] = _toJSValue(newValue) }
     }
-
+    
     @inlinable var isContentEditable: Bool { jsObject[.isContentEditable].fromJSValue()! }
-
+    
     @inlinable var inputMode: String {
         get { jsObject[.inputMode].fromJSValue()! }
-        nonmutating set { jsObject[.inputMode] = _toJSValue(newValue) }
+        set { jsObject[.inputMode] = _toJSValue(newValue) }
     }
 }
 
@@ -241,8 +251,8 @@ extension HTMLElement {
             if let bool: Bool = value.fromJSValue() {
                 return bool ? .true : .false
             }
-           if let string: String = value.fromJSValue(), string == "until-found" {
-               return .untilFound
+            if let string: String = value.fromJSValue(), string == "until-found" {
+                return .untilFound
             }
             return nil
         }
@@ -257,6 +267,6 @@ extension HTMLElement {
                 return "until-found".jsValue
             }
         }
-
+        
     }
 }

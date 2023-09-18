@@ -15,20 +15,15 @@ import WebAPIBase
 
 public class HTMLBaseElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLBaseElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _href = ReadWriteAttribute(jsObject: jsObject, name: .href)
-        _target = ReadWriteAttribute(jsObject: jsObject, name: .target)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var href: String {
+        get { jsObject[.href].fromJSValue()!}
+        set { jsObject[.href] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    
+    public var target: String {
+        get { jsObject[.target].fromJSValue()!}
+        set { jsObject[.target] = newValue.jsValue }
+        
     }
-
-    @ReadWriteAttribute
-    public var href: String
-
-    @ReadWriteAttribute
-    public var target: String
 }

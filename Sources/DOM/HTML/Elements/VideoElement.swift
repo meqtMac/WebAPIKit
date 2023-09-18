@@ -13,36 +13,32 @@ import WebAPIBase
 
 public class HTMLVideoElement: HTMLMediaElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLVideoElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        _videoWidth = ReadonlyAttribute(jsObject: jsObject, name: .videoWidth)
-        _videoHeight = ReadonlyAttribute(jsObject: jsObject, name: .videoHeight)
-        _poster = ReadWriteAttribute(jsObject: jsObject, name: .poster)
-        _playsInline = ReadWriteAttribute(jsObject: jsObject, name: .playsInline)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var width: UInt32 {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    
+    public var height: UInt32 {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var width: UInt32
-
-    @ReadWriteAttribute
-    public var height: UInt32
-
-    @ReadonlyAttribute
-    public var videoWidth: UInt32
-
-    @ReadonlyAttribute
-    public var videoHeight: UInt32
-
-    @ReadWriteAttribute
-    public var poster: String
-
-    @ReadWriteAttribute
-    public var playsInline: Bool
+    
+    public var videoWidth: UInt32 {
+        jsObject[.videoWidth].fromJSValue()!
+    }
+    
+    public var videoHeight: UInt32 {
+        jsObject[.videoHeight].fromJSValue()!
+    }
+    
+    public var poster: String {
+        get { jsObject[.poster].fromJSValue()!}
+        set { jsObject[.poster] = newValue.jsValue }
+    }
+    
+    public var playsInline: Bool {
+        get { jsObject[.playsInline].fromJSValue()!}
+        set { jsObject[.playsInline] = newValue.jsValue }
+    }
 }

@@ -9,18 +9,18 @@ import WebAPIBase
 public enum AlphaOption: JSString, JSValueCompatible {
     case keep = "keep"
     case discard = "discard"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -30,7 +30,7 @@ public extension AnimationFrameProvider {
         let this = jsObject
         return this[.requestAnimationFrame].function!(this: this, arguments: [_toJSValue(callback)]).fromJSValue()!
     }
-
+    
     @inlinable func cancelAnimationFrame(handle: UInt32) {
         let this = jsObject
         _ = this[.cancelAnimationFrame].function!(this: this, arguments: [_toJSValue(handle)])
@@ -40,18 +40,18 @@ public extension AnimationFrameProvider {
 public enum AppendMode: JSString, JSValueCompatible {
     case segments = "segments"
     case sequence = "sequence"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -61,83 +61,78 @@ public class AssignedNodesOptions: BridgedDictionary {
         object[.flatten] = _toJSValue(flatten)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _flatten = ReadWriteAttribute(jsObject: object, name: .flatten)
-        super.init(unsafelyWrapping: object)
+    
+    public var flatten: Bool {
+        get { jsObject[.flatten].fromJSValue()!}
+        set { jsObject[.flatten] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var flatten: Bool
 }
 
 public class Attr: Node {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.Attr].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _namespaceURI = ReadonlyAttribute(jsObject: jsObject, name: .namespaceURI)
-        _prefix = ReadonlyAttribute(jsObject: jsObject, name: .prefix)
-        _localName = ReadonlyAttribute(jsObject: jsObject, name: .localName)
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
-        _value = ReadWriteAttribute(jsObject: jsObject, name: .value)
-        _ownerElement = ReadonlyAttribute(jsObject: jsObject, name: .ownerElement)
-        _specified = ReadonlyAttribute(jsObject: jsObject, name: .specified)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var namespaceURI: String? {
+        jsObject[.namespaceURI].fromJSValue()
     }
-
-    @ReadonlyAttribute
-    public var namespaceURI: String?
-
-    @ReadonlyAttribute
-    public var prefix: String?
-
-    @ReadonlyAttribute
-    public var localName: String
-
-    @ReadonlyAttribute
-    public var name: String
-
-    @ReadWriteAttribute
-    public var value: String
-
-    @ReadonlyAttribute
-    public var ownerElement: Element?
-
-    @ReadonlyAttribute
-    public var specified: Bool
+    
+    public var prefix: String? {
+        jsObject[.prefix].fromJSValue()
+    }
+    
+    public var localName: String {
+        jsObject[.localName].fromJSValue()!
+    }
+    
+    public var name: String {
+        jsObject[.name].fromJSValue()!
+    }
+    
+    public var value: String {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
+    }
+    
+    public var ownerElement: Element? {
+        jsObject[.ownerElement].fromJSValue()
+    }
+    
+    public var specified: Bool {
+        jsObject[.specified].fromJSValue()!
+    }
 }
 
 public class BarProp: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.BarProp].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _visible = ReadonlyAttribute(jsObject: jsObject, name: .visible)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var visible: Bool
+    
+    public var visible: Bool {
+        jsObject[.visible].fromJSValue()!
+    }
 }
 
 public enum BitrateMode: JSString, JSValueCompatible {
     case constant = "constant"
     case variable = "variable"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
+
 public class BoxQuadOptions: BridgedDictionary {
     public convenience init(box: CSSBoxType, relativeTo: GeometryNode) {
         let object = JSObject.global[.Object].function!.new()
@@ -145,79 +140,77 @@ public class BoxQuadOptions: BridgedDictionary {
         object[.relativeTo] = _toJSValue(relativeTo)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _box = ReadWriteAttribute(jsObject: object, name: .box)
-        _relativeTo = ReadWriteAttribute(jsObject: object, name: .relativeTo)
-        super.init(unsafelyWrapping: object)
+    
+    public var box: CSSBoxType {
+        get { jsObject[.box].fromJSValue()!}
+        set { jsObject[.box] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var box: CSSBoxType
-
-    @ReadWriteAttribute
-    public var relativeTo: GeometryNode
+    
+    public var relativeTo: GeometryNode {
+        get { jsObject[.relativeTo].fromJSValue()!}
+        set { jsObject[.relativeTo] = newValue.jsValue }
+    }
 }
 
 public class BroadcastChannel: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.BroadcastChannel].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
         _onmessage = ClosureAttribute1Optional(jsObject: jsObject, name: .onmessage)
         _onmessageerror = ClosureAttribute1Optional(jsObject: jsObject, name: .onmessageerror)
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public convenience init(name: String) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(name)]))
     }
-
-    @ReadonlyAttribute
-    public var name: String
-
+    
+    public var name: String {
+        jsObject[.name].fromJSValue()!
+    }
+    
     @inlinable public func postMessage(message: JSValue) {
         let this = jsObject
         _ = this[.postMessage].function!(this: this, arguments: [_toJSValue(message)])
     }
-
+    
     @inlinable public func close() {
         let this = jsObject
         _ = this[.close].function!(this: this, arguments: [])
     }
-
+    
     @ClosureAttribute1Optional
     public var onmessage: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onmessageerror: EventHandler
 }
 
 public class ByteLengthQueuingStrategy: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ByteLengthQueuingStrategy].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _highWaterMark = ReadonlyAttribute(jsObject: jsObject, name: .highWaterMark)
-        _size = ReadonlyAttribute(jsObject: jsObject, name: .size)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(init: QueuingStrategyInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var highWaterMark: Double
-
-    @ReadonlyAttribute
-    public var size: JSFunction
+    
+    public var highWaterMark: Double {
+        jsObject[.highWaterMark].fromJSValue()!
+    }
+    
+    public var size: JSFunction {
+        jsObject[.size].fromJSValue()!
+    }
 }
 
 public class CDATASection: Text {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.CDATASection].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
@@ -228,40 +221,36 @@ public enum CSSBoxType: JSString, JSValueCompatible {
     case border = "border"
     case padding = "padding"
     case content = "content"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class CSSPseudoElement: EventTarget, GeometryUtils {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.CSSPseudoElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _element = ReadonlyAttribute(jsObject: jsObject, name: .element)
-        _parent = ReadonlyAttribute(jsObject: jsObject, name: .parent)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var type: String {
+        jsObject[.type].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var type: String
-
-    @ReadonlyAttribute
-    public var element: Element
-
-    @ReadonlyAttribute
-    public var parent: CSSPseudoElement_or_Element
-
+    
+    public var element: Element {
+        jsObject[.element].fromJSValue()!
+    }
+    
+    public var parent: CSSPseudoElement_or_Element {
+        jsObject[.parent].fromJSValue()!
+    }
+    
     @inlinable public func pseudo(type: String) -> CSSPseudoElement? {
         let this = jsObject
         return this[.pseudo].function!(this: this, arguments: [_toJSValue(type)]).fromJSValue()
@@ -300,32 +289,29 @@ public class CameraDevicePermissionDescriptor: BridgedDictionary {
         object[.panTiltZoom] = _toJSValue(panTiltZoom)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _panTiltZoom = ReadWriteAttribute(jsObject: object, name: .panTiltZoom)
-        super.init(unsafelyWrapping: object)
+    
+    public var panTiltZoom: Bool {
+        get { jsObject[.panTiltZoom].fromJSValue()!}
+        set { jsObject[.panTiltZoom] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var panTiltZoom: Bool
 }
 
 public enum CanPlayTypeResult: JSString, JSValueCompatible {
     case _empty = ""
     case maybe = "maybe"
     case probably = "probably"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -338,45 +324,45 @@ public class CanvasRenderingContext2DSettings: BridgedDictionary {
         object[.willReadFrequently] = _toJSValue(willReadFrequently)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _alpha = ReadWriteAttribute(jsObject: object, name: .alpha)
-        _desynchronized = ReadWriteAttribute(jsObject: object, name: .desynchronized)
-        _colorSpace = ReadWriteAttribute(jsObject: object, name: .colorSpace)
-        _willReadFrequently = ReadWriteAttribute(jsObject: object, name: .willReadFrequently)
-        super.init(unsafelyWrapping: object)
+    
+    public var alpha: Bool {
+        get { jsObject[.alpha].fromJSValue()!}
+        set { jsObject[.alpha] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var alpha: Bool
-
-    @ReadWriteAttribute
-    public var desynchronized: Bool
-
-    @ReadWriteAttribute
-    public var colorSpace: PredefinedColorSpace
-
-    @ReadWriteAttribute
-    public var willReadFrequently: Bool
+    
+    public var desynchronized: Bool {
+        get { jsObject[.desynchronized].fromJSValue()!}
+        set { jsObject[.desynchronized] = newValue.jsValue }
+    }
+    
+    public var colorSpace: PredefinedColorSpace {
+        get { jsObject[.colorSpace].fromJSValue()!}
+        set { jsObject[.colorSpace] = newValue.jsValue }
+    }
+    
+    public var willReadFrequently: Bool {
+        get { jsObject[.willReadFrequently].fromJSValue()!}
+        set { jsObject[.willReadFrequently] = newValue.jsValue }
+    }
 }
 
 public class CaretPosition: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.CaretPosition].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _offsetNode = ReadonlyAttribute(jsObject: jsObject, name: .offsetNode)
-        _offset = ReadonlyAttribute(jsObject: jsObject, name: .offset)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var offsetNode: Node
-
-    @ReadonlyAttribute
-    public var offset: UInt32
-
+    
+    public var offsetNode: Node {
+        jsObject[.offsetNode].fromJSValue()!
+    }
+    
+    public var offset: UInt32 {
+        jsObject[.offset].fromJSValue()!
+    }
+    
     @inlinable public func getClientRect() -> DOMRect? {
         let this = jsObject
         return this[.getClientRect].function!(this: this, arguments: []).fromJSValue()
@@ -385,39 +371,36 @@ public class CaretPosition: JSBridgedClass {
 
 public class CharacterData: Node, NonDocumentTypeChildNode, ChildNode {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.CharacterData].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _data = ReadWriteAttribute(jsObject: jsObject, name: .data)
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var data: String {
+        get { jsObject[.data].fromJSValue()!}
+        set { jsObject[.data] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var data: String
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @inlinable public func substringData(offset: UInt32, count: UInt32) -> String {
         let this = jsObject
         return this[.substringData].function!(this: this, arguments: [_toJSValue(offset), _toJSValue(count)]).fromJSValue()!
     }
-
+    
     @inlinable public func appendData(data: String) {
         let this = jsObject
         _ = this[.appendData].function!(this: this, arguments: [_toJSValue(data)])
     }
-
+    
     @inlinable public func insertData(offset: UInt32, data: String) {
         let this = jsObject
         _ = this[.insertData].function!(this: this, arguments: [_toJSValue(offset), _toJSValue(data)])
     }
-
+    
     @inlinable public func deleteData(offset: UInt32, count: UInt32) {
         let this = jsObject
         _ = this[.deleteData].function!(this: this, arguments: [_toJSValue(offset), _toJSValue(count)])
     }
-
+    
     @inlinable public func replaceData(offset: UInt32, count: UInt32, data: String) {
         let this = jsObject
         _ = this[.replaceData].function!(this: this, arguments: [_toJSValue(offset), _toJSValue(count), _toJSValue(data)])
@@ -431,18 +414,16 @@ public class CheckVisibilityOptions: BridgedDictionary {
         object[.checkVisibilityCSS] = _toJSValue(checkVisibilityCSS)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _checkOpacity = ReadWriteAttribute(jsObject: object, name: .checkOpacity)
-        _checkVisibilityCSS = ReadWriteAttribute(jsObject: object, name: .checkVisibilityCSS)
-        super.init(unsafelyWrapping: object)
+    
+    public var checkOpacity: Bool {
+        get { jsObject[.checkOpacity].fromJSValue()!}
+        set { jsObject[.checkOpacity] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var checkOpacity: Bool
-
-    @ReadWriteAttribute
-    public var checkVisibilityCSS: Bool
+    
+    public var checkVisibilityCSS: Bool {
+        get { jsObject[.checkVisibilityCSS].fromJSValue()!}
+        set { jsObject[.checkVisibilityCSS] = newValue.jsValue }
+    }
 }
 
 public class ClientQueryOptions: BridgedDictionary {
@@ -452,18 +433,16 @@ public class ClientQueryOptions: BridgedDictionary {
         object[.type] = _toJSValue(type)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _includeUncontrolled = ReadWriteAttribute(jsObject: object, name: .includeUncontrolled)
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        super.init(unsafelyWrapping: object)
+    
+    public var includeUncontrolled: Bool {
+        get { jsObject[.includeUncontrolled].fromJSValue()!}
+        set { jsObject[.includeUncontrolled] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var includeUncontrolled: Bool
-
-    @ReadWriteAttribute
-    public var type: ClientType
+    
+    public var type: ClientType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
 }
 
 public enum ClientType: JSString, JSValueCompatible {
@@ -471,18 +450,18 @@ public enum ClientType: JSString, JSValueCompatible {
     case worker = "worker"
     case sharedworker = "sharedworker"
     case all = "all"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -490,46 +469,46 @@ public enum CodecState: JSString, JSValueCompatible {
     case unconfigured = "unconfigured"
     case configured = "configured"
     case closed = "closed"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public enum ColorSpaceConversion: JSString, JSValueCompatible {
     case none = "none"
     case `default` = "default"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class Comment: CharacterData {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.Comment].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public convenience init(data: String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(data)]))
     }
@@ -542,40 +521,38 @@ public class ConvertCoordinateOptions: BridgedDictionary {
         object[.toBox] = _toJSValue(toBox)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _fromBox = ReadWriteAttribute(jsObject: object, name: .fromBox)
-        _toBox = ReadWriteAttribute(jsObject: object, name: .toBox)
-        super.init(unsafelyWrapping: object)
+    
+    public var fromBox: CSSBoxType {
+        get { jsObject[.fromBox].fromJSValue()!}
+        set { jsObject[.fromBox] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var fromBox: CSSBoxType
-
-    @ReadWriteAttribute
-    public var toBox: CSSBoxType
+    
+    public var toBox: CSSBoxType {
+        get { jsObject[.toBox].fromJSValue()!}
+        set { jsObject[.toBox] = newValue.jsValue }
+    }
 }
 
 public class CountQueuingStrategy: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.CountQueuingStrategy].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _highWaterMark = ReadonlyAttribute(jsObject: jsObject, name: .highWaterMark)
-        _size = ReadonlyAttribute(jsObject: jsObject, name: .size)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(init: QueuingStrategyInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var highWaterMark: Double
-
-    @ReadonlyAttribute
-    public var size: JSFunction
+    
+    public var highWaterMark: Double {
+        jsObject[.highWaterMark].fromJSValue()!
+    }
+    
+    public var size: JSFunction {
+        jsObject[.size].fromJSValue()!
+    }
 }
 
 public class DevicePermissionDescriptor: BridgedDictionary {
@@ -584,66 +561,63 @@ public class DevicePermissionDescriptor: BridgedDictionary {
         object[.deviceId] = _toJSValue(deviceId)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _deviceId = ReadWriteAttribute(jsObject: object, name: .deviceId)
-        super.init(unsafelyWrapping: object)
+    
+    public var deviceId: String {
+        get { jsObject[.deviceId].fromJSValue()!}
+        set { jsObject[.deviceId] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var deviceId: String
 }
 
 public enum EndOfStreamError: JSString, JSValueCompatible {
     case network = "network"
     case decode = "decode"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public enum EndingType: JSString, JSValueCompatible {
     case transparent = "transparent"
     case native = "native"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class External: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.External].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         self.jsObject = jsObject
     }
-
+    
     @inlinable public func AddSearchProvider() {
         let this = jsObject
         _ = this[.AddSearchProvider].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func IsSearchProviderInstalled() {
         let this = jsObject
         _ = this[.IsSearchProviderInstalled].function!(this: this, arguments: [])
@@ -657,18 +631,16 @@ public class FocusOptions: BridgedDictionary {
         object[.focusVisible] = _toJSValue(focusVisible)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _preventScroll = ReadWriteAttribute(jsObject: object, name: .preventScroll)
-        _focusVisible = ReadWriteAttribute(jsObject: object, name: .focusVisible)
-        super.init(unsafelyWrapping: object)
+    
+    public var preventScroll: Bool {
+        get { jsObject[.preventScroll].fromJSValue()!}
+        set { jsObject[.preventScroll] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var preventScroll: Bool
-
-    @ReadWriteAttribute
-    public var focusVisible: Bool
+    
+    public var focusVisible: Bool {
+        get { jsObject[.focusVisible].fromJSValue()!}
+        set { jsObject[.focusVisible] = newValue.jsValue }
+    }
 }
 
 public enum FrameType: JSString, JSValueCompatible {
@@ -676,25 +648,25 @@ public enum FrameType: JSString, JSValueCompatible {
     case topLevel = "top-level"
     case nested = "nested"
     case none = "none"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public protocol GenericTransformStream: JSBridgedClass {}
 public extension GenericTransformStream {
     @inlinable var readable: ReadableStream { jsObject[.readable].fromJSValue()! }
-
+    
     @inlinable var writable: WritableStream { jsObject[.writable].fromJSValue()! }
 }
 
@@ -704,17 +676,17 @@ public extension GeometryUtils {
         let this = jsObject
         return this[.getBoxQuads].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
     }
-
+    
     @inlinable func convertQuadFromNode(quad: DOMQuadInit, from: GeometryNode, options: ConvertCoordinateOptions? = nil) -> DOMQuad {
         let this = jsObject
         return this[.convertQuadFromNode].function!(this: this, arguments: [_toJSValue(quad), _toJSValue(from), _toJSValue(options)]).fromJSValue()!
     }
-
+    
     @inlinable func convertRectFromNode(rect: DOMRectReadOnly, from: GeometryNode, options: ConvertCoordinateOptions? = nil) -> DOMQuad {
         let this = jsObject
         return this[.convertRectFromNode].function!(this: this, arguments: [_toJSValue(rect), _toJSValue(from), _toJSValue(options)]).fromJSValue()!
     }
-
+    
     @inlinable func convertPointFromNode(point: DOMPointInit, from: GeometryNode, options: ConvertCoordinateOptions? = nil) -> DOMPoint {
         let this = jsObject
         return this[.convertPointFromNode].function!(this: this, arguments: [_toJSValue(point), _toJSValue(from), _toJSValue(options)]).fromJSValue()!
@@ -727,151 +699,156 @@ public class GetRootNodeOptions: BridgedDictionary {
         object[.composed] = _toJSValue(composed)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _composed = ReadWriteAttribute(jsObject: object, name: .composed)
-        super.init(unsafelyWrapping: object)
+    
+    public var composed: Bool {
+        get { jsObject[.composed].fromJSValue()!}
+        set { jsObject[.composed] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var composed: Bool
 }
 
 public enum LatencyMode: JSString, JSValueCompatible {
     case quality = "quality"
     case realtime = "realtime"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class Location: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.Location].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _href = ReadWriteAttribute(jsObject: jsObject, name: .href)
-        _origin = ReadonlyAttribute(jsObject: jsObject, name: .origin)
-        _protocol = ReadWriteAttribute(jsObject: jsObject, name: .protocol)
-        _host = ReadWriteAttribute(jsObject: jsObject, name: .host)
-        _hostname = ReadWriteAttribute(jsObject: jsObject, name: .hostname)
-        _port = ReadWriteAttribute(jsObject: jsObject, name: .port)
-        _pathname = ReadWriteAttribute(jsObject: jsObject, name: .pathname)
-        _search = ReadWriteAttribute(jsObject: jsObject, name: .search)
-        _hash = ReadWriteAttribute(jsObject: jsObject, name: .hash)
-        _ancestorOrigins = ReadonlyAttribute(jsObject: jsObject, name: .ancestorOrigins)
         self.jsObject = jsObject
     }
-
-    @ReadWriteAttribute
-    public var href: String
-
-    @ReadonlyAttribute
-    public var origin: String
-
-    @ReadWriteAttribute
-    public var `protocol`: String
-
-    @ReadWriteAttribute
-    public var host: String
-
-    @ReadWriteAttribute
-    public var hostname: String
-
-    @ReadWriteAttribute
-    public var port: String
-
-    @ReadWriteAttribute
-    public var pathname: String
-
-    @ReadWriteAttribute
-    public var search: String
-
-    @ReadWriteAttribute
-    public var hash: String
-
+    
+    public var href: String {
+        get { jsObject[.href].fromJSValue()!}
+        set { jsObject[.href] = newValue.jsValue }
+    }
+    
+    public var origin: String {
+        jsObject[.origin].fromJSValue()!
+    }
+    
+    public var `protocol`: String {
+        get { jsObject[.`protocol`].fromJSValue()!}
+        set { jsObject[.`protocol`] = newValue.jsValue }
+    }
+    
+    public var host: String {
+        get { jsObject[.host].fromJSValue()!}
+        set { jsObject[.host] = newValue.jsValue }
+    }
+    
+    public var hostname: String {
+        get { jsObject[.hostname].fromJSValue()!}
+        set { jsObject[.hostname] = newValue.jsValue }
+    }
+    
+    public var port: String {
+        get { jsObject[.port].fromJSValue()!}
+        set { jsObject[.port] = newValue.jsValue }
+    }
+    
+    public var pathname: String {
+        get { jsObject[.pathname].fromJSValue()!}
+        set { jsObject[.pathname] = newValue.jsValue }
+    }
+    
+    public var search: String {
+        get { jsObject[.search].fromJSValue()!}
+        set { jsObject[.search] = newValue.jsValue }
+    }
+    
+    public var hash: String {
+        get { jsObject[.hash].fromJSValue()!}
+        set { jsObject[.hash] = newValue.jsValue }
+    }
+    
     @inlinable public func assign(url: String) {
         let this = jsObject
         _ = this[.assign].function!(this: this, arguments: [_toJSValue(url)])
     }
-
+    
     @inlinable public func replace(url: String) {
         let this = jsObject
         _ = this[.replace].function!(this: this, arguments: [_toJSValue(url)])
     }
-
+    
     @inlinable public func reload() {
         let this = jsObject
         _ = this[.reload].function!(this: this, arguments: [])
     }
-
-    @ReadonlyAttribute
-    public var ancestorOrigins: DOMStringList
+    
+    public var ancestorOrigins: DOMStringList {
+        jsObject[.ancestorOrigins].fromJSValue()!
+    }
 }
 
 public class MimeType: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.MimeType].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _description = ReadonlyAttribute(jsObject: jsObject, name: .description)
-        _suffixes = ReadonlyAttribute(jsObject: jsObject, name: .suffixes)
-        _enabledPlugin = ReadonlyAttribute(jsObject: jsObject, name: .enabledPlugin)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var type: String
-
-    @ReadonlyAttribute
-    public var description: String
-
-    @ReadonlyAttribute
-    public var suffixes: String
-
-    @ReadonlyAttribute
-    public var enabledPlugin: Plugin
+    
+    public var type: String {
+        jsObject[.type].fromJSValue()!
+    }
+    
+    public var description: String {
+        jsObject[.description].fromJSValue()!
+    }
+    
+    public var suffixes: String {
+        jsObject[.suffixes].fromJSValue()!
+    }
+    
+    public var enabledPlugin: Plugin {
+        jsObject[.enabledPlugin].fromJSValue()!
+    }
 }
 
 public class MimeTypeArray: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.MimeTypeArray].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @inlinable public subscript(key: Int) -> MimeType? {
         jsObject[key].fromJSValue()
     }
-
+    
     @inlinable public func item(index: UInt32) -> MimeType? {
         let this = jsObject
         return this[.item].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
     }
-
+    
     @inlinable public subscript(key: String) -> MimeType? {
         jsObject[key].fromJSValue()
     }
-
+    
     @inlinable public func namedItem(name: String) -> MimeType? {
         let this = jsObject
         return this[.namedItem].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
@@ -884,30 +861,23 @@ public class MultiCacheQueryOptions: BridgedDictionary {
         object[.cacheName] = _toJSValue(cacheName)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _cacheName = ReadWriteAttribute(jsObject: object, name: .cacheName)
-        super.init(unsafelyWrapping: object)
+    
+    public var cacheName: String {
+        get { jsObject[.cacheName].fromJSValue()!}
+        set { jsObject[.cacheName] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var cacheName: String
 }
 
 public class OverconstrainedError: DOMException {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.OverconstrainedError].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _constraint = ReadonlyAttribute(jsObject: jsObject, name: .constraint)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
+    
     @inlinable public convenience init(constraint: String, message: String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(constraint), _toJSValue(message)]))
     }
-
-    @ReadonlyAttribute
-    public var constraint: String
+    
+    public var constraint: String {
+        jsObject[.constraint].fromJSValue()!
+    }
 }
 
 public class PlaneLayout: BridgedDictionary {
@@ -917,58 +887,56 @@ public class PlaneLayout: BridgedDictionary {
         object[.stride] = _toJSValue(stride)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _offset = ReadWriteAttribute(jsObject: object, name: .offset)
-        _stride = ReadWriteAttribute(jsObject: object, name: .stride)
-        super.init(unsafelyWrapping: object)
+    
+    public var offset: UInt32 {
+        get { jsObject[.offset].fromJSValue()!}
+        set { jsObject[.offset] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var offset: UInt32
-
-    @ReadWriteAttribute
-    public var stride: UInt32
+    
+    public var stride: UInt32 {
+        get { jsObject[.stride].fromJSValue()!}
+        set { jsObject[.stride] = newValue.jsValue }
+    }
 }
 
 public class Plugin: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.Plugin].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
-        _description = ReadonlyAttribute(jsObject: jsObject, name: .description)
-        _filename = ReadonlyAttribute(jsObject: jsObject, name: .filename)
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var name: String
-
-    @ReadonlyAttribute
-    public var description: String
-
-    @ReadonlyAttribute
-    public var filename: String
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var name: String {
+        jsObject[.name].fromJSValue()!
+    }
+    
+    public var description: String {
+        jsObject[.description].fromJSValue()!
+    }
+    
+    public var filename: String {
+        jsObject[.filename].fromJSValue()!
+    }
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @inlinable public subscript(key: Int) -> MimeType? {
         jsObject[key].fromJSValue()
     }
-
+    
     @inlinable public func item(index: UInt32) -> MimeType? {
         let this = jsObject
         return this[.item].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
     }
-
+    
     @inlinable public subscript(key: String) -> MimeType? {
         jsObject[key].fromJSValue()
     }
-
+    
     @inlinable public func namedItem(name: String) -> MimeType? {
         let this = jsObject
         return this[.namedItem].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
@@ -977,35 +945,35 @@ public class Plugin: JSBridgedClass {
 
 public class PluginArray: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.PluginArray].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public func refresh() {
         let this = jsObject
         _ = this[.refresh].function!(this: this, arguments: [])
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @inlinable public subscript(key: Int) -> Plugin? {
         jsObject[key].fromJSValue()
     }
-
+    
     @inlinable public func item(index: UInt32) -> Plugin? {
         let this = jsObject
         return this[.item].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
     }
-
+    
     @inlinable public subscript(key: String) -> Plugin? {
         jsObject[key].fromJSValue()
     }
-
+    
     @inlinable public func namedItem(name: String) -> Plugin? {
         let this = jsObject
         return this[.namedItem].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
@@ -1018,7 +986,7 @@ public extension PopoverInvokerElement {
         get { jsObject[.popoverTargetElement].fromJSValue() }
         nonmutating set { jsObject[.popoverTargetElement] = _toJSValue(newValue) }
     }
-
+    
     @inlinable var popoverTargetAction: String {
         get { jsObject[.popoverTargetAction].fromJSValue()! }
         nonmutating set { jsObject[.popoverTargetAction] = _toJSValue(newValue) }
@@ -1028,18 +996,18 @@ public extension PopoverInvokerElement {
 public enum PredefinedColorSpace: JSString, JSValueCompatible {
     case srgb = "srgb"
     case displayP3 = "display-p3"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -1047,31 +1015,27 @@ public enum PremultiplyAlpha: JSString, JSValueCompatible {
     case none = "none"
     case premultiply = "premultiply"
     case `default` = "default"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class ProcessingInstruction: CharacterData {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.ProcessingInstruction].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _target = ReadonlyAttribute(jsObject: jsObject, name: .target)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var target: String {
+        jsObject[.target].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var target: String
 }
 
 public class QueuingStrategy: BridgedDictionary {
@@ -1081,16 +1045,17 @@ public class QueuingStrategy: BridgedDictionary {
         ClosureAttribute1[.size, in: object] = size
         self.init(unsafelyWrapping: object)
     }
-
+    
     public required init(unsafelyWrapping object: JSObject) {
-        _highWaterMark = ReadWriteAttribute(jsObject: object, name: .highWaterMark)
         _size = ClosureAttribute1(jsObject: object, name: .size)
         super.init(unsafelyWrapping: object)
     }
-
-    @ReadWriteAttribute
-    public var highWaterMark: Double
-
+    
+    public var highWaterMark: Double {
+        get { jsObject[.highWaterMark].fromJSValue()!}
+        set { jsObject[.highWaterMark] = newValue.jsValue }
+    }
+    
     @ClosureAttribute1
     public var size: QueuingStrategySize
 }
@@ -1101,44 +1066,38 @@ public class QueuingStrategyInit: BridgedDictionary {
         object[.highWaterMark] = _toJSValue(highWaterMark)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _highWaterMark = ReadWriteAttribute(jsObject: object, name: .highWaterMark)
-        super.init(unsafelyWrapping: object)
+    
+    public var highWaterMark: Double {
+        get { jsObject[.highWaterMark].fromJSValue()!}
+        set { jsObject[.highWaterMark] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var highWaterMark: Double
 }
 
 public class RadioNodeList: NodeList {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.RadioNodeList].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _value = ReadWriteAttribute(jsObject: jsObject, name: .value)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var value: String {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var value: String
 }
 
 public enum ReadyState: JSString, JSValueCompatible {
     case closed = "closed"
     case open = "open"
     case ended = "ended"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -1146,18 +1105,18 @@ public enum RecordingState: JSString, JSValueCompatible {
     case inactive = "inactive"
     case recording = "recording"
     case paused = "paused"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -1171,18 +1130,18 @@ public enum ReferrerPolicy: JSString, JSValueCompatible {
     case originWhenCrossOrigin = "origin-when-cross-origin"
     case strictOriginWhenCrossOrigin = "strict-origin-when-cross-origin"
     case unsafeUrl = "unsafe-url"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -1194,22 +1153,21 @@ public class RegistrationOptions: BridgedDictionary {
         object[.updateViaCache] = _toJSValue(updateViaCache)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _scope = ReadWriteAttribute(jsObject: object, name: .scope)
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _updateViaCache = ReadWriteAttribute(jsObject: object, name: .updateViaCache)
-        super.init(unsafelyWrapping: object)
+    
+    public var scope: String {
+        get { jsObject[.scope].fromJSValue()!}
+        set { jsObject[.scope] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var scope: String
-
-    @ReadWriteAttribute
-    public var type: WorkerType
-
-    @ReadWriteAttribute
-    public var updateViaCache: ServiceWorkerUpdateViaCache
+    
+    public var type: WorkerType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
+    
+    public var updateViaCache: ServiceWorkerUpdateViaCache {
+        get { jsObject[.updateViaCache].fromJSValue()!}
+        set { jsObject[.updateViaCache] = newValue.jsValue }
+    }
 }
 
 public enum ResizeQuality: JSString, JSValueCompatible {
@@ -1217,53 +1175,53 @@ public enum ResizeQuality: JSString, JSValueCompatible {
     case low = "low"
     case medium = "medium"
     case high = "high"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class Screen: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.Screen].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _availWidth = ReadonlyAttribute(jsObject: jsObject, name: .availWidth)
-        _availHeight = ReadonlyAttribute(jsObject: jsObject, name: .availHeight)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: .width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: .height)
-        _colorDepth = ReadonlyAttribute(jsObject: jsObject, name: .colorDepth)
-        _pixelDepth = ReadonlyAttribute(jsObject: jsObject, name: .pixelDepth)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var availWidth: Int32
-
-    @ReadonlyAttribute
-    public var availHeight: Int32
-
-    @ReadonlyAttribute
-    public var width: Int32
-
-    @ReadonlyAttribute
-    public var height: Int32
-
-    @ReadonlyAttribute
-    public var colorDepth: UInt32
-
-    @ReadonlyAttribute
-    public var pixelDepth: UInt32
+    
+    public var availWidth: Int32 {
+        jsObject[.availWidth].fromJSValue()!
+    }
+    
+    public var availHeight: Int32 {
+        jsObject[.availHeight].fromJSValue()!
+    }
+    
+    public var width: Int32 {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: Int32 {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var colorDepth: UInt32 {
+        jsObject[.colorDepth].fromJSValue()!
+    }
+    
+    public var pixelDepth: UInt32 {
+        jsObject[.pixelDepth].fromJSValue()!
+    }
 }
 
 public enum SelectionMode: JSString, JSValueCompatible {
@@ -1271,45 +1229,45 @@ public enum SelectionMode: JSString, JSValueCompatible {
     case start = "start"
     case end = "end"
     case preserve = "preserve"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 open class ShadowRoot: DocumentFragment, DocumentOrShadowRoot {
     @inlinable override open class var constructor: JSFunction? { JSObject.global[.ShadowRoot].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _mode = ReadonlyAttribute(jsObject: jsObject, name: .mode)
-        _delegatesFocus = ReadonlyAttribute(jsObject: jsObject, name: .delegatesFocus)
-        _slotAssignment = ReadonlyAttribute(jsObject: jsObject, name: .slotAssignment)
-        _host = ReadonlyAttribute(jsObject: jsObject, name: .host)
         _onslotchange = ClosureAttribute1Optional(jsObject: jsObject, name: .onslotchange)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var mode: ShadowRootMode
-
-    @ReadonlyAttribute
-    public var delegatesFocus: Bool
-
-    @ReadonlyAttribute
-    public var slotAssignment: SlotAssignmentMode
-
-    @ReadonlyAttribute
-    public var host: Element
-
+    
+    public var mode: ShadowRootMode {
+        jsObject[.mode].fromJSValue()!
+    }
+    
+    public var delegatesFocus: Bool {
+        jsObject[.delegatesFocus].fromJSValue()!
+    }
+    
+    public var slotAssignment: SlotAssignmentMode {
+        jsObject[.slotAssignment].fromJSValue()!
+    }
+    
+    public var host: Element {
+        jsObject[.host].fromJSValue()!
+    }
+    
     @ClosureAttribute1Optional
     public var onslotchange: EventHandler
 }
@@ -1322,57 +1280,56 @@ public class ShadowRootInit: BridgedDictionary {
         object[.slotAssignment] = _toJSValue(slotAssignment)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _mode = ReadWriteAttribute(jsObject: object, name: .mode)
-        _delegatesFocus = ReadWriteAttribute(jsObject: object, name: .delegatesFocus)
-        _slotAssignment = ReadWriteAttribute(jsObject: object, name: .slotAssignment)
-        super.init(unsafelyWrapping: object)
+    
+    public var mode: ShadowRootMode {
+        get { jsObject[.mode].fromJSValue()!}
+        set { jsObject[.mode] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var mode: ShadowRootMode
-
-    @ReadWriteAttribute
-    public var delegatesFocus: Bool
-
-    @ReadWriteAttribute
-    public var slotAssignment: SlotAssignmentMode
+    
+    public var delegatesFocus: Bool {
+        get { jsObject[.delegatesFocus].fromJSValue()!}
+        set { jsObject[.delegatesFocus] = newValue.jsValue }
+    }
+    
+    public var slotAssignment: SlotAssignmentMode {
+        get { jsObject[.slotAssignment].fromJSValue()!}
+        set { jsObject[.slotAssignment] = newValue.jsValue }
+    }
 }
 
 public enum ShadowRootMode: JSString, JSValueCompatible {
     case open = "open"
     case closed = "closed"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public enum SlotAssignmentMode: JSString, JSValueCompatible {
     case manual = "manual"
     case named = "named"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -1383,17 +1340,8 @@ public extension Slottable {
 
 public class SourceBuffer: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.SourceBuffer].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _mode = ReadWriteAttribute(jsObject: jsObject, name: .mode)
-        _updating = ReadonlyAttribute(jsObject: jsObject, name: .updating)
-        _buffered = ReadonlyAttribute(jsObject: jsObject, name: .buffered)
-        _timestampOffset = ReadWriteAttribute(jsObject: jsObject, name: .timestampOffset)
-        _audioTracks = ReadonlyAttribute(jsObject: jsObject, name: .audioTracks)
-        _videoTracks = ReadonlyAttribute(jsObject: jsObject, name: .videoTracks)
-        _textTracks = ReadonlyAttribute(jsObject: jsObject, name: .textTracks)
-        _appendWindowStart = ReadWriteAttribute(jsObject: jsObject, name: .appendWindowStart)
-        _appendWindowEnd = ReadWriteAttribute(jsObject: jsObject, name: .appendWindowEnd)
         _onupdatestart = ClosureAttribute1Optional(jsObject: jsObject, name: .onupdatestart)
         _onupdate = ClosureAttribute1Optional(jsObject: jsObject, name: .onupdate)
         _onupdateend = ClosureAttribute1Optional(jsObject: jsObject, name: .onupdateend)
@@ -1401,64 +1349,77 @@ public class SourceBuffer: EventTarget {
         _onabort = ClosureAttribute1Optional(jsObject: jsObject, name: .onabort)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadWriteAttribute
-    public var mode: AppendMode
-
-    @ReadonlyAttribute
-    public var updating: Bool
-
-    @ReadonlyAttribute
-    public var buffered: TimeRanges
-
-    @ReadWriteAttribute
-    public var timestampOffset: Double
-
-    @ReadonlyAttribute
-    public var audioTracks: AudioTrackList
-
-    @ReadonlyAttribute
-    public var videoTracks: VideoTrackList
-
-    @ReadonlyAttribute
-    public var textTracks: TextTrackList
-
-    @ReadWriteAttribute
-    public var appendWindowStart: Double
-
-    @ReadWriteAttribute
-    public var appendWindowEnd: Double
-
+    
+    public var mode: AppendMode {
+        get { jsObject[.mode].fromJSValue()!}
+        set { jsObject[.mode] = newValue.jsValue }
+    }
+    
+    public var updating: Bool {
+        jsObject[.updating].fromJSValue()!
+    }
+    
+    public var buffered: TimeRanges {
+        jsObject[.buffered].fromJSValue()!
+    }
+    
+    public var timestampOffset: Double {
+        get { jsObject[.timestampOffset].fromJSValue()!}
+        set { jsObject[.timestampOffset] = newValue.jsValue }
+    }
+    
+    public var audioTracks: AudioTrackList {
+        jsObject[.audioTracks].fromJSValue()!
+    }
+    
+    public var videoTracks: VideoTrackList {
+        jsObject[.videoTracks].fromJSValue()!
+    }
+    
+    public var textTracks: TextTrackList {
+        jsObject[.textTracks].fromJSValue()!
+    }
+    
+    public var appendWindowStart: Double {
+        get { jsObject[.appendWindowStart].fromJSValue()!}
+        set { jsObject[.appendWindowStart] = newValue.jsValue }
+    }
+    
+    public var appendWindowEnd: Double {
+        get { jsObject[.appendWindowEnd].fromJSValue()!}
+        set { jsObject[.appendWindowEnd] = newValue.jsValue }
+    }
+    
     @ClosureAttribute1Optional
     public var onupdatestart: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onupdate: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onupdateend: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onerror: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onabort: EventHandler
-
+    
     @inlinable public func appendBuffer(data: BufferSource) {
         let this = jsObject
         _ = this[.appendBuffer].function!(this: this, arguments: [_toJSValue(data)])
     }
-
+    
     @inlinable public func abort() {
         let this = jsObject
         _ = this[.abort].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func changeType(type: String) {
         let this = jsObject
         _ = this[.changeType].function!(this: this, arguments: [_toJSValue(type)])
     }
-
+    
     @inlinable public func remove(start: Double, end: Double) {
         let this = jsObject
         _ = this[.remove].function!(this: this, arguments: [_toJSValue(start), _toJSValue(end)])
@@ -1467,23 +1428,23 @@ public class SourceBuffer: EventTarget {
 
 public class SourceBufferList: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.SourceBufferList].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         _onaddsourcebuffer = ClosureAttribute1Optional(jsObject: jsObject, name: .onaddsourcebuffer)
         _onremovesourcebuffer = ClosureAttribute1Optional(jsObject: jsObject, name: .onremovesourcebuffer)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @ClosureAttribute1Optional
     public var onaddsourcebuffer: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onremovesourcebuffer: EventHandler
-
+    
     @inlinable public subscript(key: Int) -> SourceBuffer {
         jsObject[key].fromJSValue()!
     }
@@ -1491,27 +1452,27 @@ public class SourceBufferList: EventTarget {
 
 public class Storage: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.Storage].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @inlinable public func key(index: UInt32) -> String? {
         let this = jsObject
         return this[.key].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
     }
-
+    
     @inlinable public func getItem(key: String) -> String? {
         let this = jsObject
         return this[.getItem].function!(this: this, arguments: [_toJSValue(key)]).fromJSValue()
     }
-
+    
     @inlinable public subscript(key: String) -> String? {
         get {
             jsObject[key].fromJSValue()
@@ -1520,11 +1481,11 @@ public class Storage: JSBridgedClass {
             jsObject[key] = _toJSValue(newValue)
         }
     }
-
+    
     @inlinable public func removeValue(forKey key: String) {
         _ = JSObject.global.Reflect.deleteProperty(jsObject, _toJSValue(key))
     }
-
+    
     @inlinable public func clear() {
         let this = jsObject
         _ = this[.clear].function!(this: this, arguments: [])
@@ -1540,26 +1501,26 @@ public class StreamPipeOptions: BridgedDictionary {
         object[.signal] = _toJSValue(signal)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _preventClose = ReadWriteAttribute(jsObject: object, name: .preventClose)
-        _preventAbort = ReadWriteAttribute(jsObject: object, name: .preventAbort)
-        _preventCancel = ReadWriteAttribute(jsObject: object, name: .preventCancel)
-        _signal = ReadWriteAttribute(jsObject: object, name: .signal)
-        super.init(unsafelyWrapping: object)
+    
+    public var preventClose: Bool {
+        get { jsObject[.preventClose].fromJSValue()!}
+        set { jsObject[.preventClose] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var preventClose: Bool
-
-    @ReadWriteAttribute
-    public var preventAbort: Bool
-
-    @ReadWriteAttribute
-    public var preventCancel: Bool
-
-    @ReadWriteAttribute
-    public var signal: AbortSignal
+    
+    public var preventAbort: Bool {
+        get { jsObject[.preventAbort].fromJSValue()!}
+        set { jsObject[.preventAbort] = newValue.jsValue }
+    }
+    
+    public var preventCancel: Bool {
+        get { jsObject[.preventCancel].fromJSValue()!}
+        set { jsObject[.preventCancel] = newValue.jsValue }
+    }
+    
+    public var signal: AbortSignal {
+        get { jsObject[.signal].fromJSValue()!}
+        set { jsObject[.signal] = newValue.jsValue }
+    }
 }
 
 public class StructuredSerializeOptions: BridgedDictionary {
@@ -1568,14 +1529,11 @@ public class StructuredSerializeOptions: BridgedDictionary {
         object[.transfer] = _toJSValue(transfer)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _transfer = ReadWriteAttribute(jsObject: object, name: .transfer)
-        super.init(unsafelyWrapping: object)
+    
+    public var transfer: [JSObject] {
+        get { jsObject[.transfer].fromJSValue()!}
+        set { jsObject[.transfer] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var transfer: [JSObject]
 }
 
 public class SvcOutputMetadata: BridgedDictionary {
@@ -1584,68 +1542,66 @@ public class SvcOutputMetadata: BridgedDictionary {
         object[.temporalLayerId] = _toJSValue(temporalLayerId)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _temporalLayerId = ReadWriteAttribute(jsObject: object, name: .temporalLayerId)
-        super.init(unsafelyWrapping: object)
+    
+    public var temporalLayerId: UInt32 {
+        get { jsObject[.temporalLayerId].fromJSValue()!}
+        set { jsObject[.temporalLayerId] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var temporalLayerId: UInt32
 }
 public class TreeWalker: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.TreeWalker].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _root = ReadonlyAttribute(jsObject: jsObject, name: .root)
-        _whatToShow = ReadonlyAttribute(jsObject: jsObject, name: .whatToShow)
-        _currentNode = ReadWriteAttribute(jsObject: jsObject, name: .currentNode)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var root: Node
-
-    @ReadonlyAttribute
-    public var whatToShow: UInt32
-
+    
+    public var root: Node {
+        jsObject[.root].fromJSValue()!
+    }
+    
+    public var whatToShow: UInt32 {
+        jsObject[.whatToShow].fromJSValue()!
+    }
+    
     // XXX: member 'filter' is ignored
-
-    @ReadWriteAttribute
-    public var currentNode: Node
-
+    
+    public var currentNode: Node {
+        get { jsObject[.currentNode].fromJSValue()!}
+        set { jsObject[.currentNode] = newValue.jsValue }
+    }
+    
     @inlinable public func parentNode() -> Node? {
         let this = jsObject
         return this[.parentNode].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func firstChild() -> Node? {
         let this = jsObject
         return this[.firstChild].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func lastChild() -> Node? {
         let this = jsObject
         return this[.lastChild].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func previousSibling() -> Node? {
         let this = jsObject
         return this[.previousSibling].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func nextSibling() -> Node? {
         let this = jsObject
         return this[.nextSibling].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func previousNode() -> Node? {
         let this = jsObject
         return this[.previousNode].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func nextNode() -> Node? {
         let this = jsObject
         return this[.nextNode].function!(this: this, arguments: []).fromJSValue()
@@ -1657,7 +1613,7 @@ public extension URL {
         let this = constructor!
         return this[.createObjectURL].function!(this: this, arguments: [_toJSValue(obj)]).fromJSValue()!
     }
-
+    
     @inlinable class func revokeObjectURL(url: String) {
         let this = constructor!
         _ = this[.revokeObjectURL].function!(this: this, arguments: [_toJSValue(url)])
@@ -1674,30 +1630,31 @@ public class UnderlyingSink: BridgedDictionary {
         object[.type] = _toJSValue(type)
         self.init(unsafelyWrapping: object)
     }
-
+    
     public required init(unsafelyWrapping object: JSObject) {
         _start = ClosureAttribute1(jsObject: object, name: .start)
         _write = ClosureAttribute2(jsObject: object, name: .write)
         _close = ClosureAttribute0(jsObject: object, name: .close)
         _abort = ClosureAttribute1(jsObject: object, name: .abort)
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
         super.init(unsafelyWrapping: object)
     }
-
+    
     @ClosureAttribute1
     public var start: UnderlyingSinkStartCallback
-
+    
     @ClosureAttribute2
     public var write: UnderlyingSinkWriteCallback
-
+    
     @ClosureAttribute0
     public var close: UnderlyingSinkCloseCallback
-
+    
     @ClosureAttribute1
     public var abort: UnderlyingSinkAbortCallback
-
-    @ReadWriteAttribute
-    public var type: JSValue
+    
+    public var type: JSValue {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
 }
 
 public class UnderlyingSource: BridgedDictionary {
@@ -1710,102 +1667,104 @@ public class UnderlyingSource: BridgedDictionary {
         object[.autoAllocateChunkSize] = _toJSValue(autoAllocateChunkSize)
         self.init(unsafelyWrapping: object)
     }
-
+    
     public required init(unsafelyWrapping object: JSObject) {
         _start = ClosureAttribute1(jsObject: object, name: .start)
         _pull = ClosureAttribute1(jsObject: object, name: .pull)
         _cancel = ClosureAttribute1(jsObject: object, name: .cancel)
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _autoAllocateChunkSize = ReadWriteAttribute(jsObject: object, name: .autoAllocateChunkSize)
         super.init(unsafelyWrapping: object)
     }
-
+    
     @ClosureAttribute1
     public var start: UnderlyingSourceStartCallback
-
+    
     @ClosureAttribute1
     public var pull: UnderlyingSourcePullCallback
-
+    
     @ClosureAttribute1
     public var cancel: UnderlyingSourceCancelCallback
-
-    @ReadWriteAttribute
-    public var type: ReadableStreamType
-
-    @ReadWriteAttribute
-    public var autoAllocateChunkSize: UInt64
+    
+    public var type: ReadableStreamType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
+    
+    public var autoAllocateChunkSize: UInt64 {
+        get { jsObject[.autoAllocateChunkSize].fromJSValue()!}
+        set { jsObject[.autoAllocateChunkSize] = newValue.jsValue }
+    }
 }
 
 public class UserActivation: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.UserActivation].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _hasBeenActive = ReadonlyAttribute(jsObject: jsObject, name: .hasBeenActive)
-        _isActive = ReadonlyAttribute(jsObject: jsObject, name: .isActive)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var hasBeenActive: Bool
-
-    @ReadonlyAttribute
-    public var isActive: Bool
+    
+    public var hasBeenActive: Bool {
+        jsObject[.hasBeenActive].fromJSValue()!
+    }
+    
+    public var isActive: Bool {
+        jsObject[.isActive].fromJSValue()!
+    }
 }
 
 public class ValidityState: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ValidityState].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _valueMissing = ReadonlyAttribute(jsObject: jsObject, name: .valueMissing)
-        _typeMismatch = ReadonlyAttribute(jsObject: jsObject, name: .typeMismatch)
-        _patternMismatch = ReadonlyAttribute(jsObject: jsObject, name: .patternMismatch)
-        _tooLong = ReadonlyAttribute(jsObject: jsObject, name: .tooLong)
-        _tooShort = ReadonlyAttribute(jsObject: jsObject, name: .tooShort)
-        _rangeUnderflow = ReadonlyAttribute(jsObject: jsObject, name: .rangeUnderflow)
-        _rangeOverflow = ReadonlyAttribute(jsObject: jsObject, name: .rangeOverflow)
-        _stepMismatch = ReadonlyAttribute(jsObject: jsObject, name: .stepMismatch)
-        _badInput = ReadonlyAttribute(jsObject: jsObject, name: .badInput)
-        _customError = ReadonlyAttribute(jsObject: jsObject, name: .customError)
-        _valid = ReadonlyAttribute(jsObject: jsObject, name: .valid)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var valueMissing: Bool
-
-    @ReadonlyAttribute
-    public var typeMismatch: Bool
-
-    @ReadonlyAttribute
-    public var patternMismatch: Bool
-
-    @ReadonlyAttribute
-    public var tooLong: Bool
-
-    @ReadonlyAttribute
-    public var tooShort: Bool
-
-    @ReadonlyAttribute
-    public var rangeUnderflow: Bool
-
-    @ReadonlyAttribute
-    public var rangeOverflow: Bool
-
-    @ReadonlyAttribute
-    public var stepMismatch: Bool
-
-    @ReadonlyAttribute
-    public var badInput: Bool
-
-    @ReadonlyAttribute
-    public var customError: Bool
-
-    @ReadonlyAttribute
-    public var valid: Bool
+    
+    public var valueMissing: Bool {
+        jsObject[.valueMissing].fromJSValue()!
+    }
+    
+    public var typeMismatch: Bool {
+        jsObject[.typeMismatch].fromJSValue()!
+    }
+    
+    public var patternMismatch: Bool {
+        jsObject[.patternMismatch].fromJSValue()!
+    }
+    
+    public var tooLong: Bool {
+        jsObject[.tooLong].fromJSValue()!
+    }
+    
+    public var tooShort: Bool {
+        jsObject[.tooShort].fromJSValue()!
+    }
+    
+    public var rangeUnderflow: Bool {
+        jsObject[.rangeUnderflow].fromJSValue()!
+    }
+    
+    public var rangeOverflow: Bool {
+        jsObject[.rangeOverflow].fromJSValue()!
+    }
+    
+    public var stepMismatch: Bool {
+        jsObject[.stepMismatch].fromJSValue()!
+    }
+    
+    public var badInput: Bool {
+        jsObject[.badInput].fromJSValue()!
+    }
+    
+    public var customError: Bool {
+        jsObject[.customError].fromJSValue()!
+    }
+    
+    public var valid: Bool {
+        jsObject[.valid].fromJSValue()!
+    }
 }
 
 public class ValidityStateFlags: BridgedDictionary {
@@ -1823,71 +1782,77 @@ public class ValidityStateFlags: BridgedDictionary {
         object[.customError] = _toJSValue(customError)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _valueMissing = ReadWriteAttribute(jsObject: object, name: .valueMissing)
-        _typeMismatch = ReadWriteAttribute(jsObject: object, name: .typeMismatch)
-        _patternMismatch = ReadWriteAttribute(jsObject: object, name: .patternMismatch)
-        _tooLong = ReadWriteAttribute(jsObject: object, name: .tooLong)
-        _tooShort = ReadWriteAttribute(jsObject: object, name: .tooShort)
-        _rangeUnderflow = ReadWriteAttribute(jsObject: object, name: .rangeUnderflow)
-        _rangeOverflow = ReadWriteAttribute(jsObject: object, name: .rangeOverflow)
-        _stepMismatch = ReadWriteAttribute(jsObject: object, name: .stepMismatch)
-        _badInput = ReadWriteAttribute(jsObject: object, name: .badInput)
-        _customError = ReadWriteAttribute(jsObject: object, name: .customError)
-        super.init(unsafelyWrapping: object)
+    
+    public var valueMissing: Bool {
+        get { jsObject[.valueMissing].fromJSValue()!}
+        set { jsObject[.valueMissing] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var valueMissing: Bool
-
-    @ReadWriteAttribute
-    public var typeMismatch: Bool
-
-    @ReadWriteAttribute
-    public var patternMismatch: Bool
-
-    @ReadWriteAttribute
-    public var tooLong: Bool
-
-    @ReadWriteAttribute
-    public var tooShort: Bool
-
-    @ReadWriteAttribute
-    public var rangeUnderflow: Bool
-
-    @ReadWriteAttribute
-    public var rangeOverflow: Bool
-
-    @ReadWriteAttribute
-    public var stepMismatch: Bool
-
-    @ReadWriteAttribute
-    public var badInput: Bool
-
-    @ReadWriteAttribute
-    public var customError: Bool
+    
+    public var typeMismatch: Bool {
+        get { jsObject[.typeMismatch].fromJSValue()!}
+        set { jsObject[.typeMismatch] = newValue.jsValue }
+    }
+    
+    public var patternMismatch: Bool {
+        get { jsObject[.patternMismatch].fromJSValue()!}
+        set { jsObject[.patternMismatch] = newValue.jsValue }
+    }
+    
+    public var tooLong: Bool {
+        get { jsObject[.tooLong].fromJSValue()!}
+        set { jsObject[.tooLong] = newValue.jsValue }
+    }
+    
+    public var tooShort: Bool {
+        get { jsObject[.tooShort].fromJSValue()!}
+        set { jsObject[.tooShort] = newValue.jsValue }
+    }
+    
+    public var rangeUnderflow: Bool {
+        get { jsObject[.rangeUnderflow].fromJSValue()!}
+        set { jsObject[.rangeUnderflow] = newValue.jsValue }
+    }
+    
+    public var rangeOverflow: Bool {
+        get { jsObject[.rangeOverflow].fromJSValue()!}
+        set { jsObject[.rangeOverflow] = newValue.jsValue }
+    }
+    
+    public var stepMismatch: Bool {
+        get { jsObject[.stepMismatch].fromJSValue()!}
+        set { jsObject[.stepMismatch] = newValue.jsValue }
+    }
+    
+    public var badInput: Bool {
+        get { jsObject[.badInput].fromJSValue()!}
+        set { jsObject[.badInput] = newValue.jsValue }
+    }
+    
+    public var customError: Bool {
+        get { jsObject[.customError].fromJSValue()!}
+        set { jsObject[.customError] = newValue.jsValue }
+    }
 }
 
 public class VisibilityStateEntry: PerformanceEntry {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.VisibilityStateEntry].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
         _entryType = ReadonlyAttribute(jsObject: jsObject, name: .entryType)
         _startTime = ReadonlyAttribute(jsObject: jsObject, name: .startTime)
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @usableFromInline let _name: ReadonlyAttribute<String>
     @inlinable override public var name: String { _name.wrappedValue }
-
+    
     @usableFromInline let _entryType: ReadonlyAttribute<String>
     @inlinable override public var entryType: String { _entryType.wrappedValue }
-
+    
     @usableFromInline let _startTime: ReadonlyAttribute<DOMHighResTimeStamp>
     @inlinable override public var startTime: DOMHighResTimeStamp { _startTime.wrappedValue }
-
+    
     // XXX: override of property `duration` removed because the type here is UInt32 but the
     // type in the superclass is DOMHighResTimestamp (Double).
 }
@@ -1895,7 +1860,7 @@ public class VisibilityStateEntry: PerformanceEntry {
 public enum ArrayBuffer_or_String: JSValueCompatible {
     case arrayBuffer(ArrayBuffer)
     case string(String)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let arrayBuffer: ArrayBuffer = value.fromJSValue() {
             return .arrayBuffer(arrayBuffer)
@@ -1905,7 +1870,7 @@ public enum ArrayBuffer_or_String: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .arrayBuffer(arrayBuffer):
@@ -1919,7 +1884,7 @@ public enum ArrayBuffer_or_String: JSValueCompatible {
 public enum Event_or_String: JSValueCompatible {
     case event(Event)
     case string(String)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let event: Event = value.fromJSValue() {
             return .event(event)
@@ -1929,7 +1894,7 @@ public enum Event_or_String: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .event(event):
@@ -1945,7 +1910,7 @@ public enum GeometryNode: JSValueCompatible {
     case document(Document)
     case element(Element)
     case text(Text)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let cssPseudoElement: CSSPseudoElement = value.fromJSValue() {
             return .cssPseudoElement(cssPseudoElement)
@@ -1961,7 +1926,7 @@ public enum GeometryNode: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .cssPseudoElement(cssPseudoElement):

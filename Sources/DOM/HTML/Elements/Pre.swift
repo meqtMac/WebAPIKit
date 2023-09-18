@@ -15,15 +15,8 @@ import WebAPIBase
 public class HTMLPreElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLPreElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        super.init(unsafelyWrapping: jsObject)
+    public var width: Int32 {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var width: Int32
 }

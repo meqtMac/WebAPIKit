@@ -15,21 +15,23 @@ import WebAPIBase
 public class HTMLCanvasElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLCanvasElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        super.init(unsafelyWrapping: jsObject)
+    public var width: UInt32 {
+        get {
+            jsObject[.width].fromJSValue()!
+        }
+        set {
+            jsObject[.width] = newValue.jsValue
+        }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var height: UInt32 {
+        get {
+            jsObject[.height].fromJSValue()!
+        }
+        set {
+            jsObject[.height] = newValue.jsValue
+        }
     }
-
-    @ReadWriteAttribute
-    public var width: UInt32
-
-    @ReadWriteAttribute
-    public var height: UInt32
 
     // XXX: member 'getContext' is ignored
 
@@ -53,8 +55,6 @@ public class OffscreenCanvas: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.OffscreenCanvas].function }
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
         _oncontextlost = ClosureAttribute1Optional(jsObject: jsObject, name: .oncontextlost)
         _oncontextrestored = ClosureAttribute1Optional(jsObject: jsObject, name: .oncontextrestored)
         super.init(unsafelyWrapping: jsObject)
@@ -64,11 +64,23 @@ public class OffscreenCanvas: EventTarget {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(width), _toJSValue(height)]))
     }
 
-    @ReadWriteAttribute
-    public var width: UInt64
+    public var width: UInt64 {
+        get {
+            jsObject[.width].fromJSValue()!
+        }
+        set {
+            jsObject[.width] = newValue.jsValue
+        }
+    }
 
-    @ReadWriteAttribute
-    public var height: UInt64
+    public var height: UInt64 {
+        get {
+            jsObject[.height].fromJSValue()!
+        }
+        set {
+            jsObject[.height] = newValue.jsValue
+        }
+    }
 
     // XXX: member 'getContext' is ignored
 

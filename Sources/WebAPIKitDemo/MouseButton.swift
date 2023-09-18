@@ -10,12 +10,13 @@ import JavaScriptKit
 import WebAPIBase
 import DOM
 
-struct MouseButton: HTMLProtocol {
+struct MouseButton: HTML {
     let element: HTMLButtonElement
     init(title: String, parent: HTMLElement ) {
        
         self.element = Button(title: title) {
-            parent.jsObject.innerHTML = ""
+            parent.removeChilds()
+            
             let innerWith = globalThis.innerWidth
             let innerHeight = globalThis.innerHeight
             let canvas = Canvas(width: UInt32(innerWith), height: UInt32(innerHeight) )
@@ -64,7 +65,6 @@ struct MouseButton: HTMLProtocol {
                 }
                 context.setFillStyle(.rgba(0, 0, 0, 0.05))
                 
-//                context.fillRect(x: 0, y: 0, w: Double(canvas.element.width), h: Double(canvas.element.height))
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: Double(canvas.element.width), height: Double(canvas.element.height))))
                 for i in 0..<particles.count {
                     particles[i].rotate(on: context, with: cursor)

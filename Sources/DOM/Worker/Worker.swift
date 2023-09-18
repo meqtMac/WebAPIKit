@@ -82,21 +82,20 @@ public class WorkerOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _credentials = ReadWriteAttribute(jsObject: object, name: .credentials)
-        _name = ReadWriteAttribute(jsObject: object, name: .name)
-        super.init(unsafelyWrapping: object)
+    public var type: WorkerType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var type: WorkerType
+    public var credentials: RequestCredentials {
+        get { jsObject[.credentials].fromJSValue()!}
+        set { jsObject[.credentials] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var credentials: RequestCredentials
-
-    @ReadWriteAttribute
-    public var name: String
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 }
 
 public enum WorkerType: JSString, JSValueCompatible {

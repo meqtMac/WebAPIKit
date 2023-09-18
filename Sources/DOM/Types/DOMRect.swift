@@ -15,7 +15,7 @@ import WebAPIBase
 
 public class DOMPoint: DOMPointReadOnly {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.DOMPoint].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         _x = ReadWriteAttribute(jsObject: jsObject, name: .x)
         _y = ReadWriteAttribute(jsObject: jsObject, name: .y)
@@ -23,34 +23,34 @@ public class DOMPoint: DOMPointReadOnly {
         _w = ReadWriteAttribute(jsObject: jsObject, name: .w)
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public convenience init(x: Double? = nil, y: Double? = nil, z: Double? = nil, w: Double? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(x), _toJSValue(y), _toJSValue(z), _toJSValue(w)]))
     }
-
+    
     @inlinable override public class func fromPoint(other: DOMPointInit? = nil) -> Self {
         let this = constructor!
         return this[.fromPoint].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
-
+    
     @usableFromInline let _x: ReadWriteAttribute<Double>
     @inlinable override public var x: Double {
         get { _x.wrappedValue }
         set { _x.wrappedValue = newValue }
     }
-
+    
     @usableFromInline let _y: ReadWriteAttribute<Double>
     @inlinable override public var y: Double {
         get { _y.wrappedValue }
         set { _y.wrappedValue = newValue }
     }
-
+    
     @usableFromInline let _z: ReadWriteAttribute<Double>
     @inlinable override public var z: Double {
         get { _z.wrappedValue }
         set { _z.wrappedValue = newValue }
     }
-
+    
     @usableFromInline let _w: ReadWriteAttribute<Double>
     @inlinable override public var w: Double {
         get { _w.wrappedValue }
@@ -67,67 +67,67 @@ public class DOMPointInit: BridgedDictionary {
         object[.w] = _toJSValue(w)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _x = ReadWriteAttribute(jsObject: object, name: .x)
-        _y = ReadWriteAttribute(jsObject: object, name: .y)
-        _z = ReadWriteAttribute(jsObject: object, name: .z)
-        _w = ReadWriteAttribute(jsObject: object, name: .w)
-        super.init(unsafelyWrapping: object)
+    
+    public var x: Double {
+        get { jsObject[.x].fromJSValue()!}
+        set { jsObject[.x] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var x: Double
-
-    @ReadWriteAttribute
-    public var y: Double
-
-    @ReadWriteAttribute
-    public var z: Double
-
-    @ReadWriteAttribute
-    public var w: Double
+    
+    public var y: Double {
+        get { jsObject[.y].fromJSValue()!}
+        set { jsObject[.y] = newValue.jsValue }
+    }
+    
+    public var z: Double {
+        get { jsObject[.z].fromJSValue()!}
+        set { jsObject[.z] = newValue.jsValue }
+    }
+    
+    public var w: Double {
+        get { jsObject[.w].fromJSValue()!}
+        set { jsObject[.w] = newValue.jsValue }
+    }
 }
 
 public class DOMPointReadOnly: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.DOMPointReadOnly].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: .x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: .y)
-        _z = ReadonlyAttribute(jsObject: jsObject, name: .z)
-        _w = ReadonlyAttribute(jsObject: jsObject, name: .w)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(x: Double? = nil, y: Double? = nil, z: Double? = nil, w: Double? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(x), _toJSValue(y), _toJSValue(z), _toJSValue(w)]))
     }
-
+    
     @inlinable public class func fromPoint(other: DOMPointInit? = nil) -> Self {
         let this = constructor!
         return this[.fromPoint].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x: Double
-
-    @ReadonlyAttribute
-    public var y: Double
-
-    @ReadonlyAttribute
-    public var z: Double
-
-    @ReadonlyAttribute
-    public var w: Double
-
+    
+    public var x: Double {
+        jsObject[.x].fromJSValue()!
+    }
+    
+    public var y: Double {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var z: Double {
+        jsObject[.z].fromJSValue()!
+    }
+    
+    public var w: Double {
+        jsObject[.w].fromJSValue()!
+    }
+    
     @inlinable public func matrixTransform(matrix: DOMMatrixInit? = nil) -> DOMPoint {
         let this = jsObject
         return this[.matrixTransform].function!(this: this, arguments: [_toJSValue(matrix)]).fromJSValue()!
     }
-
+    
     @inlinable public func toJSON() -> JSObject {
         let this = jsObject
         return this[.toJSON].function!(this: this, arguments: []).fromJSValue()!
@@ -136,48 +136,48 @@ public class DOMPointReadOnly: JSBridgedClass {
 
 public class DOMQuad: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.DOMQuad].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _p1 = ReadonlyAttribute(jsObject: jsObject, name: .p1)
-        _p2 = ReadonlyAttribute(jsObject: jsObject, name: .p2)
-        _p3 = ReadonlyAttribute(jsObject: jsObject, name: .p3)
-        _p4 = ReadonlyAttribute(jsObject: jsObject, name: .p4)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(p1: DOMPointInit? = nil, p2: DOMPointInit? = nil, p3: DOMPointInit? = nil, p4: DOMPointInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(p1), _toJSValue(p2), _toJSValue(p3), _toJSValue(p4)]))
     }
-
+    
     @inlinable public class func fromRect(other: DOMRectInit? = nil) -> Self {
         let this = constructor!
         return this[.fromRect].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
-
+    
     @inlinable public class func fromQuad(other: DOMQuadInit? = nil) -> Self {
         let this = constructor!
         return this[.fromQuad].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var p1: DOMPoint
-
-    @ReadonlyAttribute
-    public var p2: DOMPoint
-
-    @ReadonlyAttribute
-    public var p3: DOMPoint
-
-    @ReadonlyAttribute
-    public var p4: DOMPoint
-
+    
+    public var p1: DOMPoint {
+        jsObject[.p1].fromJSValue()!
+    }
+    
+    public var p2: DOMPoint {
+        jsObject[.p2].fromJSValue()!
+    }
+    
+    public var p3: DOMPoint {
+        jsObject[.p3].fromJSValue()!
+    }
+    
+    public var p4: DOMPoint {
+        jsObject[.p4].fromJSValue()!
+    }
+    
     @inlinable public func getBounds() -> DOMRect {
         let this = jsObject
         return this[.getBounds].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func toJSON() -> JSObject {
         let this = jsObject
         return this[.toJSON].function!(this: this, arguments: []).fromJSValue()!
@@ -193,31 +193,35 @@ public class DOMQuadInit: BridgedDictionary {
         object[.p4] = _toJSValue(p4)
         self.init(unsafelyWrapping: object)
     }
-
+    
     public required init(unsafelyWrapping object: JSObject) {
-        _p1 = ReadWriteAttribute(jsObject: object, name: .p1)
-        _p2 = ReadWriteAttribute(jsObject: object, name: .p2)
-        _p3 = ReadWriteAttribute(jsObject: object, name: .p3)
-        _p4 = ReadWriteAttribute(jsObject: object, name: .p4)
         super.init(unsafelyWrapping: object)
     }
-
-    @ReadWriteAttribute
-    public var p1: DOMPointInit
-
-    @ReadWriteAttribute
-    public var p2: DOMPointInit
-
-    @ReadWriteAttribute
-    public var p3: DOMPointInit
-
-    @ReadWriteAttribute
-    public var p4: DOMPointInit
+    
+    public var p1: DOMPointInit {
+        get { jsObject[.p1].fromJSValue()!}
+        set { jsObject[.p1] = newValue.jsValue }
+    }
+    
+    public var p2: DOMPointInit {
+        get { jsObject[.p2].fromJSValue()!}
+        set { jsObject[.p2] = newValue.jsValue }
+    }
+    
+    public var p3: DOMPointInit {
+        get { jsObject[.p3].fromJSValue()!}
+        set { jsObject[.p3] = newValue.jsValue }
+    }
+    
+    public var p4: DOMPointInit {
+        get { jsObject[.p4].fromJSValue()!}
+        set { jsObject[.p4] = newValue.jsValue }
+    }
 }
 
 public class DOMRect: DOMRectReadOnly {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.DOMRect].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         _x = ReadWriteAttribute(jsObject: jsObject, name: .x)
         _y = ReadWriteAttribute(jsObject: jsObject, name: .y)
@@ -225,34 +229,34 @@ public class DOMRect: DOMRectReadOnly {
         _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public convenience init(x: Double? = nil, y: Double? = nil, width: Double? = nil, height: Double? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(x), _toJSValue(y), _toJSValue(width), _toJSValue(height)]))
     }
-
+    
     @inlinable override public class func fromRect(other: DOMRectInit? = nil) -> Self {
         let this = constructor!
         return this[.fromRect].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
-
+    
     @usableFromInline let _x: ReadWriteAttribute<Double>
     @inlinable override public var x: Double {
         get { _x.wrappedValue }
         set { _x.wrappedValue = newValue }
     }
-
+    
     @usableFromInline let _y: ReadWriteAttribute<Double>
     @inlinable override public var y: Double {
         get { _y.wrappedValue }
         set { _y.wrappedValue = newValue }
     }
-
+    
     @usableFromInline let _width: ReadWriteAttribute<Double>
     @inlinable override public var width: Double {
         get { _width.wrappedValue }
         set { _width.wrappedValue = newValue }
     }
-
+    
     @usableFromInline let _height: ReadWriteAttribute<Double>
     @inlinable override public var height: Double {
         get { _height.wrappedValue }
@@ -269,45 +273,45 @@ public class DOMRectInit: BridgedDictionary {
         object[.height] = _toJSValue(height)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _x = ReadWriteAttribute(jsObject: object, name: .x)
-        _y = ReadWriteAttribute(jsObject: object, name: .y)
-        _width = ReadWriteAttribute(jsObject: object, name: .width)
-        _height = ReadWriteAttribute(jsObject: object, name: .height)
-        super.init(unsafelyWrapping: object)
+    
+    public var x: Double {
+        get { jsObject[.x].fromJSValue()!}
+        set { jsObject[.x] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var x: Double
-
-    @ReadWriteAttribute
-    public var y: Double
-
-    @ReadWriteAttribute
-    public var width: Double
-
-    @ReadWriteAttribute
-    public var height: Double
+    
+    public var y: Double {
+        get { jsObject[.y].fromJSValue()!}
+        set { jsObject[.y] = newValue.jsValue }
+    }
+    
+    public var width: Double {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
+    
+    public var height: Double {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
 }
 
 public class DOMRectList: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.DOMRectList].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @inlinable public subscript(key: Int) -> DOMRect? {
         jsObject[key].fromJSValue()
     }
-
+    
     @inlinable public func item(index: UInt32) -> DOMRect? {
         let this = jsObject
         return this[.item].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
@@ -316,54 +320,54 @@ public class DOMRectList: JSBridgedClass {
 
 public class DOMRectReadOnly: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.DOMRectReadOnly].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: .x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: .y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: .width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: .height)
-        _top = ReadonlyAttribute(jsObject: jsObject, name: .top)
-        _right = ReadonlyAttribute(jsObject: jsObject, name: .right)
-        _bottom = ReadonlyAttribute(jsObject: jsObject, name: .bottom)
-        _left = ReadonlyAttribute(jsObject: jsObject, name: .left)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(x: Double? = nil, y: Double? = nil, width: Double? = nil, height: Double? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(x), _toJSValue(y), _toJSValue(width), _toJSValue(height)]))
     }
-
+    
     @inlinable public class func fromRect(other: DOMRectInit? = nil) -> Self {
         let this = constructor!
         return this[.fromRect].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x: Double
-
-    @ReadonlyAttribute
-    public var y: Double
-
-    @ReadonlyAttribute
-    public var width: Double
-
-    @ReadonlyAttribute
-    public var height: Double
-
-    @ReadonlyAttribute
-    public var top: Double
-
-    @ReadonlyAttribute
-    public var right: Double
-
-    @ReadonlyAttribute
-    public var bottom: Double
-
-    @ReadonlyAttribute
-    public var left: Double
-
+    
+    public var x: Double {
+        jsObject[.x].fromJSValue()!
+    }
+    
+    public var y: Double {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: Double {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: Double {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var top: Double {
+        jsObject[.top].fromJSValue()!
+    }
+    
+    public var right: Double {
+        jsObject[.right].fromJSValue()!
+    }
+    
+    public var bottom: Double {
+        jsObject[.bottom].fromJSValue()!
+    }
+    
+    public var left: Double {
+        jsObject[.left].fromJSValue()!
+    }
+    
     @inlinable public func toJSON() -> JSObject {
         let this = jsObject
         return this[.toJSON].function!(this: this, arguments: []).fromJSValue()!

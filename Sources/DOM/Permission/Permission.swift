@@ -17,14 +17,11 @@ public class PermissionDescriptor: BridgedDictionary {
         object[.name] = _toJSValue(name)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _name = ReadWriteAttribute(jsObject: object, name: .name)
-        super.init(unsafelyWrapping: object)
+    
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var name: String
 }
 
 public class PermissionSetParameters: BridgedDictionary {
@@ -34,73 +31,71 @@ public class PermissionSetParameters: BridgedDictionary {
         object[.state] = _toJSValue(state)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _descriptor = ReadWriteAttribute(jsObject: object, name: .descriptor)
-        _state = ReadWriteAttribute(jsObject: object, name: .state)
-        super.init(unsafelyWrapping: object)
+    
+    public var descriptor: PermissionDescriptor {
+        get { jsObject[.descriptor].fromJSValue()!}
+        set { jsObject[.descriptor] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var descriptor: PermissionDescriptor
-
-    @ReadWriteAttribute
-    public var state: PermissionState
+    
+    public var state: PermissionState {
+        get { jsObject[.state].fromJSValue()!}
+        set { jsObject[.state] = newValue.jsValue }
+    }
 }
 
 public enum PermissionState: JSString, JSValueCompatible {
     case granted = "granted"
     case denied = "denied"
     case prompt = "prompt"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class PermissionStatus: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.PermissionStatus].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _state = ReadonlyAttribute(jsObject: jsObject, name: .state)
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
         _onchange = ClosureAttribute1Optional(jsObject: jsObject, name: .onchange)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var state: PermissionState
-
-    @ReadonlyAttribute
-    public var name: String
-
+    
+    public var state: PermissionState {
+        jsObject[.state].fromJSValue()!
+    }
+    
+    public var name: String {
+        jsObject[.name].fromJSValue()!
+    }
+    
     @ClosureAttribute1Optional
     public var onchange: EventHandler
 }
 
 public class Permissions: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.Permissions].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         self.jsObject = jsObject
     }
-
+    
     @inlinable public func query(permissionDesc: JSObject) -> JSPromise {
         let this = jsObject
         return this[.query].function!(this: this, arguments: [_toJSValue(permissionDesc)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func query(permissionDesc: JSObject) async throws -> PermissionStatus {
         let this = jsObject

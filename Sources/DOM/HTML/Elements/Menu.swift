@@ -16,15 +16,8 @@ import WebAPIBase
 public class HTMLMenuElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLMenuElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _compact = ReadWriteAttribute(jsObject: jsObject, name: .compact)
-        super.init(unsafelyWrapping: jsObject)
+    public var compact: Bool {
+        get { jsObject[.compact].fromJSValue()!}
+        set { jsObject[.compact] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var compact: Bool
 }

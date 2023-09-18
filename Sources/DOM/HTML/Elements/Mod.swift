@@ -15,19 +15,17 @@ import WebAPIBase
 public class HTMLModElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLModElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _cite = ReadWriteAttribute(jsObject: jsObject, name: .cite)
-        _dateTime = ReadWriteAttribute(jsObject: jsObject, name: .dateTime)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init() {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
     }
 
-    @ReadWriteAttribute
-    public var cite: String
+    public var cite: String {
+        get { jsObject[.cite].fromJSValue()!}
+        set { jsObject[.cite] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var dateTime: String
+    public var dateTime: String {
+        get { jsObject[.dateTime].fromJSValue()!}
+        set { jsObject[.dateTime] = newValue.jsValue }
+    }
 }

@@ -15,40 +15,39 @@ import WebAPIBase
 public class HTMLSourceElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLSourceElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _src = ReadWriteAttribute(jsObject: jsObject, name: .src)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _srcset = ReadWriteAttribute(jsObject: jsObject, name: .srcset)
-        _sizes = ReadWriteAttribute(jsObject: jsObject, name: .sizes)
-        _media = ReadWriteAttribute(jsObject: jsObject, name: .media)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        super.init(unsafelyWrapping: jsObject)
+    public var src: String {
+        get { jsObject[.src].fromJSValue()!}
+        set { jsObject[.src] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var src: String
+    public var srcset: String {
+        get { jsObject[.srcset].fromJSValue()!}
+        set { jsObject[.srcset] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var type: String
+    public var sizes: String {
+        get { jsObject[.sizes].fromJSValue()!}
+        set { jsObject[.sizes] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var srcset: String
+    public var media: String {
+        get { jsObject[.media].fromJSValue()!}
+        set { jsObject[.media] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var sizes: String
+    public var width: UInt32 {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var media: String
-
-    @ReadWriteAttribute
-    public var width: UInt32
-
-    @ReadWriteAttribute
-    public var height: UInt32
+    public var height: UInt32 {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
 }
 

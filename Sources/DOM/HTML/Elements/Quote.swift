@@ -16,15 +16,8 @@ import WebAPIBase
 public class HTMLQuoteElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLQuoteElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _cite = ReadWriteAttribute(jsObject: jsObject, name: .cite)
-        super.init(unsafelyWrapping: jsObject)
+    public var cite: String {
+        get { jsObject[.cite].fromJSValue()!}
+        set { jsObject[.cite] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var cite: String
 }

@@ -16,15 +16,13 @@ public class HTMLOptionsCollection: HTMLCollection {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLOptionsCollection].function }
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadWriteAttribute(jsObject: jsObject, name: .length)
-        _selectedIndex = ReadWriteAttribute(jsObject: jsObject, name: .selectedIndex)
         super.init(unsafelyWrapping: jsObject)
     }
 
-    @usableFromInline let _length: ReadWriteAttribute<UInt32>
+//    @usableFromInline let _length: ReadWriteAttribute<UInt32>
     @inlinable override public var length: UInt32 {
-        get { _length.wrappedValue }
-        set { _length.wrappedValue = newValue }
+        get { jsObject[.length].fromJSValue()! }
+        set {  jsObject[.length] = newValue.jsValue }
     }
 
     @inlinable override public subscript(key: Int) -> HTMLOptionElement? {
@@ -62,6 +60,8 @@ public class HTMLOptionsCollection: HTMLCollection {
         _ = this[.remove].function!(this: this, arguments: [_toJSValue(index)])
     }
 
-    @ReadWriteAttribute
-    public var selectedIndex: Int32
+    public var selectedIndex: Int32 {
+        get { jsObject[.selectedIndex].fromJSValue()!}
+        set { jsObject[.selectedIndex] = newValue.jsValue }
+    }
 }

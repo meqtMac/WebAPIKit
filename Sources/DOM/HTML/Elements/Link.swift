@@ -15,87 +15,95 @@ import WebAPIBase
 public class HTMLLinkElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLLinkElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _href = ReadWriteAttribute(jsObject: jsObject, name: .href)
-        _crossOrigin = ReadWriteAttribute(jsObject: jsObject, name: .crossOrigin)
-        _rel = ReadWriteAttribute(jsObject: jsObject, name: .rel)
-        _as = ReadWriteAttribute(jsObject: jsObject, name: .as)
-        _relList = ReadonlyAttribute(jsObject: jsObject, name: .relList)
-        _media = ReadWriteAttribute(jsObject: jsObject, name: .media)
-        _integrity = ReadWriteAttribute(jsObject: jsObject, name: .integrity)
-        _hreflang = ReadWriteAttribute(jsObject: jsObject, name: .hreflang)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _sizes = ReadonlyAttribute(jsObject: jsObject, name: .sizes)
-        _imageSrcset = ReadWriteAttribute(jsObject: jsObject, name: .imageSrcset)
-        _imageSizes = ReadWriteAttribute(jsObject: jsObject, name: .imageSizes)
-        _referrerPolicy = ReadWriteAttribute(jsObject: jsObject, name: .referrerPolicy)
-        _blocking = ReadonlyAttribute(jsObject: jsObject, name: .blocking)
-        _disabled = ReadWriteAttribute(jsObject: jsObject, name: .disabled)
-        _fetchPriority = ReadWriteAttribute(jsObject: jsObject, name: .fetchPriority)
-        _charset = ReadWriteAttribute(jsObject: jsObject, name: .charset)
-        _rev = ReadWriteAttribute(jsObject: jsObject, name: .rev)
-        _target = ReadWriteAttribute(jsObject: jsObject, name: .target)
-        super.init(unsafelyWrapping: jsObject)
+    public var href: String {
+        get { jsObject[.href].fromJSValue()!}
+        set { jsObject[.href] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var crossOrigin: String? {
+        get { jsObject[.crossOrigin].fromJSValue()}
+        set { jsObject[.crossOrigin] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var href: String
+    public var rel: String {
+        get { jsObject[.rel].fromJSValue()!}
+        set { jsObject[.rel] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var crossOrigin: String?
+    public var `as`: String {
+        get { jsObject[.`as`].fromJSValue()!}
+        set { jsObject[.`as`] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var rel: String
+public var relList: DOMTokenList {
+jsObject[.relList].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var `as`: String
+    public var media: String {
+        get { jsObject[.media].fromJSValue()!}
+        set { jsObject[.media] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var relList: DOMTokenList
+    public var integrity: String {
+        get { jsObject[.integrity].fromJSValue()!}
+        set { jsObject[.integrity] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var media: String
+    public var hreflang: String {
+        get { jsObject[.hreflang].fromJSValue()!}
+        set { jsObject[.hreflang] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var integrity: String
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var hreflang: String
+public var sizes: DOMTokenList {
+jsObject[.sizes].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var type: String
+    public var imageSrcset: String {
+        get { jsObject[.imageSrcset].fromJSValue()!}
+        set { jsObject[.imageSrcset] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var sizes: DOMTokenList
+    public var imageSizes: String {
+        get { jsObject[.imageSizes].fromJSValue()!}
+        set { jsObject[.imageSizes] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var imageSrcset: String
+    public var referrerPolicy: String {
+        get { jsObject[.referrerPolicy].fromJSValue()!}
+        set { jsObject[.referrerPolicy] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var imageSizes: String
+public var blocking: DOMTokenList {
+jsObject[.blocking].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var referrerPolicy: String
+    public var disabled: Bool {
+        get { jsObject[.disabled].fromJSValue()!}
+        set { jsObject[.disabled] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var blocking: DOMTokenList
+    public var fetchPriority: String {
+        get { jsObject[.fetchPriority].fromJSValue()!}
+        set { jsObject[.fetchPriority] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var disabled: Bool
+    public var charset: String {
+        get { jsObject[.charset].fromJSValue()!}
+        set { jsObject[.charset] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var fetchPriority: String
+    public var rev: String {
+        get { jsObject[.rev].fromJSValue()!}
+        set { jsObject[.rev] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var charset: String
-
-    @ReadWriteAttribute
-    public var rev: String
-
-    @ReadWriteAttribute
-    public var target: String
+    public var target: String {
+        get { jsObject[.target].fromJSValue()!}
+        set { jsObject[.target] = newValue.jsValue }
+    }
 }

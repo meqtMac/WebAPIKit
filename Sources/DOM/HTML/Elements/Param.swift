@@ -15,27 +15,23 @@ import WebAPIBase
 public class HTMLParamElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLParamElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _value = ReadWriteAttribute(jsObject: jsObject, name: .value)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _valueType = ReadWriteAttribute(jsObject: jsObject, name: .valueType)
-        super.init(unsafelyWrapping: jsObject)
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var value: String {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var value: String
-
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var valueType: String
+    public var valueType: String {
+        get { jsObject[.valueType].fromJSValue()!}
+        set { jsObject[.valueType] = newValue.jsValue }
+    }
 }

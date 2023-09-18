@@ -10,861 +10,849 @@ public protocol GetSVGDocument: JSBridgedClass {}
 public extension GetSVGDocument {
     @inlinable func getSVGDocument() -> Document {
         let this = jsObject
-        return this[Strings.getSVGDocument].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getSVGDocument].function!(this: this, arguments: []).fromJSValue()!
     }
 }
 
 public class SVGAElement: SVGGraphicsElement, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGAElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _target = ReadonlyAttribute(jsObject: jsObject, name: Strings.target)
-        _download = ReadWriteAttribute(jsObject: jsObject, name: Strings.download)
-        _ping = ReadWriteAttribute(jsObject: jsObject, name: Strings.ping)
-        _rel = ReadWriteAttribute(jsObject: jsObject, name: Strings.rel)
-        _relList = ReadonlyAttribute(jsObject: jsObject, name: Strings.relList)
-        _hreflang = ReadWriteAttribute(jsObject: jsObject, name: Strings.hreflang)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: Strings.type)
-        _text = ReadWriteAttribute(jsObject: jsObject, name: Strings.text)
-        _referrerPolicy = ReadWriteAttribute(jsObject: jsObject, name: Strings.referrerPolicy)
-        _origin = ReadonlyAttribute(jsObject: jsObject, name: Strings.origin)
-        _protocol = ReadWriteAttribute(jsObject: jsObject, name: Strings.protocol)
-        _username = ReadWriteAttribute(jsObject: jsObject, name: Strings.username)
-        _password = ReadWriteAttribute(jsObject: jsObject, name: Strings.password)
-        _host = ReadWriteAttribute(jsObject: jsObject, name: Strings.host)
-        _hostname = ReadWriteAttribute(jsObject: jsObject, name: Strings.hostname)
-        _port = ReadWriteAttribute(jsObject: jsObject, name: Strings.port)
-        _pathname = ReadWriteAttribute(jsObject: jsObject, name: Strings.pathname)
-        _search = ReadWriteAttribute(jsObject: jsObject, name: Strings.search)
-        _hash = ReadWriteAttribute(jsObject: jsObject, name: Strings.hash)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGAElement].function }
+    
+    public var target: SVGAnimatedString {
+        jsObject[.target].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var target: SVGAnimatedString
-
-    @ReadWriteAttribute
-    public var download: String
-
-    @ReadWriteAttribute
-    public var ping: String
-
-    @ReadWriteAttribute
-    public var rel: String
-
-    @ReadonlyAttribute
-    public var relList: DOMTokenList
-
-    @ReadWriteAttribute
-    public var hreflang: String
-
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var text: String
-
-    @ReadWriteAttribute
-    public var referrerPolicy: String
-
-    @ReadonlyAttribute
-    public var origin: String
-
-    @ReadWriteAttribute
-    public var `protocol`: String
-
-    @ReadWriteAttribute
-    public var username: String
-
-    @ReadWriteAttribute
-    public var password: String
-
-    @ReadWriteAttribute
-    public var host: String
-
-    @ReadWriteAttribute
-    public var hostname: String
-
-    @ReadWriteAttribute
-    public var port: String
-
-    @ReadWriteAttribute
-    public var pathname: String
-
-    @ReadWriteAttribute
-    public var search: String
-
-    @ReadWriteAttribute
-    public var hash: String
+    
+    public var download: String {
+        get { jsObject[.download].fromJSValue()!}
+        set { jsObject[.download] = newValue.jsValue }
+    }
+    
+    public var ping: String {
+        get { jsObject[.ping].fromJSValue()!}
+        set { jsObject[.ping] = newValue.jsValue }
+    }
+    
+    public var rel: String {
+        get { jsObject[.rel].fromJSValue()!}
+        set { jsObject[.rel] = newValue.jsValue }
+    }
+    
+    public var relList: DOMTokenList {
+        jsObject[.relList].fromJSValue()!
+    }
+    
+    public var hreflang: String {
+        get { jsObject[.hreflang].fromJSValue()!}
+        set { jsObject[.hreflang] = newValue.jsValue }
+    }
+    
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
+    
+    public var text: String {
+        get { jsObject[.text].fromJSValue()!}
+        set { jsObject[.text] = newValue.jsValue }
+    }
+    
+    public var referrerPolicy: String {
+        get { jsObject[.referrerPolicy].fromJSValue()!}
+        set { jsObject[.referrerPolicy] = newValue.jsValue }
+    }
+    
+    public var origin: String {
+        jsObject[.origin].fromJSValue()!
+    }
+    
+    public var `protocol`: String {
+        get { jsObject[.`protocol`].fromJSValue()!}
+        set { jsObject[.`protocol`] = newValue.jsValue }
+    }
+    
+    public var username: String {
+        get { jsObject[.username].fromJSValue()!}
+        set { jsObject[.username] = newValue.jsValue }
+    }
+    
+    public var password: String {
+        get { jsObject[.password].fromJSValue()!}
+        set { jsObject[.password] = newValue.jsValue }
+    }
+    
+    public var host: String {
+        get { jsObject[.host].fromJSValue()!}
+        set { jsObject[.host] = newValue.jsValue }
+    }
+    
+    public var hostname: String {
+        get { jsObject[.hostname].fromJSValue()!}
+        set { jsObject[.hostname] = newValue.jsValue }
+    }
+    
+    public var port: String {
+        get { jsObject[.port].fromJSValue()!}
+        set { jsObject[.port] = newValue.jsValue }
+    }
+    
+    public var pathname: String {
+        get { jsObject[.pathname].fromJSValue()!}
+        set { jsObject[.pathname] = newValue.jsValue }
+    }
+    
+    public var search: String {
+        get { jsObject[.search].fromJSValue()!}
+        set { jsObject[.search] = newValue.jsValue }
+    }
+    
+    public var hash: String {
+        get { jsObject[.hash].fromJSValue()!}
+        set { jsObject[.hash] = newValue.jsValue }
+    }
 }
 
 public class SVGAngle: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAngle].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAngle].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _unitType = ReadonlyAttribute(jsObject: jsObject, name: Strings.unitType)
-        _value = ReadWriteAttribute(jsObject: jsObject, name: Strings.value)
-        _valueInSpecifiedUnits = ReadWriteAttribute(jsObject: jsObject, name: Strings.valueInSpecifiedUnits)
-        _valueAsString = ReadWriteAttribute(jsObject: jsObject, name: Strings.valueAsString)
         self.jsObject = jsObject
     }
-
+    
     public static let SVG_ANGLETYPE_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_ANGLETYPE_UNSPECIFIED: UInt16 = 1
-
+    
     public static let SVG_ANGLETYPE_DEG: UInt16 = 2
-
+    
     public static let SVG_ANGLETYPE_RAD: UInt16 = 3
-
+    
     public static let SVG_ANGLETYPE_GRAD: UInt16 = 4
-
-    @ReadonlyAttribute
-    public var unitType: UInt16
-
-    @ReadWriteAttribute
-    public var value: Float
-
-    @ReadWriteAttribute
-    public var valueInSpecifiedUnits: Float
-
-    @ReadWriteAttribute
-    public var valueAsString: String
-
+    
+    public var unitType: UInt16 {
+        jsObject[.unitType].fromJSValue()!
+    }
+    
+    public var value: Float {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
+    }
+    
+    public var valueInSpecifiedUnits: Float {
+        get { jsObject[.valueInSpecifiedUnits].fromJSValue()!}
+        set { jsObject[.valueInSpecifiedUnits] = newValue.jsValue }
+    }
+    
+    public var valueAsString: String {
+        get { jsObject[.valueAsString].fromJSValue()!}
+        set { jsObject[.valueAsString] = newValue.jsValue }
+    }
+    
     @inlinable public func newValueSpecifiedUnits(unitType: UInt16, valueInSpecifiedUnits: Float) {
         let this = jsObject
-        _ = this[Strings.newValueSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType), _toJSValue(valueInSpecifiedUnits)])
+        _ = this[.newValueSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType), _toJSValue(valueInSpecifiedUnits)])
     }
-
+    
     @inlinable public func convertToSpecifiedUnits(unitType: UInt16) {
         let this = jsObject
-        _ = this[Strings.convertToSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType)])
+        _ = this[.convertToSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType)])
     }
 }
 
 public class SVGAnimateElement: SVGAnimationElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimateElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGAnimateElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGAnimateMotionElement: SVGAnimationElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimateMotionElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGAnimateMotionElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGAnimateTransformElement: SVGAnimationElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimateTransformElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGAnimateTransformElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGAnimatedAngle: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedAngle].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedAngle].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var baseVal: SVGAngle
-
-    @ReadonlyAttribute
-    public var animVal: SVGAngle
+    
+    public var baseVal: SVGAngle {
+        jsObject[.baseVal].fromJSValue()!
+    }
+    
+    public var animVal: SVGAngle {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedBoolean: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedBoolean].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedBoolean].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadWriteAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadWriteAttribute
-    public var baseVal: Bool
-
-    @ReadonlyAttribute
-    public var animVal: Bool
+    
+    public var baseVal: Bool {
+        get { jsObject[.baseVal].fromJSValue()!}
+        set { jsObject[.baseVal] = newValue.jsValue }
+    }
+    
+    public var animVal: Bool {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedEnumeration: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedEnumeration].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedEnumeration].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadWriteAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadWriteAttribute
-    public var baseVal: UInt16
-
-    @ReadonlyAttribute
-    public var animVal: UInt16
+    
+    public var baseVal: UInt16 {
+        get { jsObject[.baseVal].fromJSValue()!}
+        set { jsObject[.baseVal] = newValue.jsValue }
+    }
+    
+    public var animVal: UInt16 {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedInteger: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedInteger].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedInteger].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadWriteAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadWriteAttribute
-    public var baseVal: Int32
-
-    @ReadonlyAttribute
-    public var animVal: Int32
+    
+    public var baseVal: Int32 {
+        get { jsObject[.baseVal].fromJSValue()!}
+        set { jsObject[.baseVal] = newValue.jsValue }
+    }
+    
+    public var animVal: Int32 {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedLength: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedLength].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedLength].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var baseVal: SVGLength
-
-    @ReadonlyAttribute
-    public var animVal: SVGLength
+    
+    public var baseVal: SVGLength {
+        jsObject[.baseVal].fromJSValue()!
+    }
+    
+    public var animVal: SVGLength {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedLengthList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedLengthList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedLengthList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var baseVal: SVGLengthList
-
-    @ReadonlyAttribute
-    public var animVal: SVGLengthList
+    
+    public var baseVal: SVGLengthList {
+        jsObject[.baseVal].fromJSValue()!
+    }
+    
+    public var animVal: SVGLengthList {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedNumber: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedNumber].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedNumber].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadWriteAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadWriteAttribute
-    public var baseVal: Float
-
-    @ReadonlyAttribute
-    public var animVal: Float
+    
+    public var baseVal: Float {
+        get { jsObject[.baseVal].fromJSValue()!}
+        set { jsObject[.baseVal] = newValue.jsValue }
+    }
+    
+    public var animVal: Float {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedNumberList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedNumberList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedNumberList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var baseVal: SVGNumberList
-
-    @ReadonlyAttribute
-    public var animVal: SVGNumberList
+    
+    public var baseVal: SVGNumberList {
+        jsObject[.baseVal].fromJSValue()!
+    }
+    
+    public var animVal: SVGNumberList {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public protocol SVGAnimatedPoints: JSBridgedClass {}
 public extension SVGAnimatedPoints {
-    @inlinable var points: SVGPointList { jsObject[Strings.points].fromJSValue()! }
-
-    @inlinable var animatedPoints: SVGPointList { jsObject[Strings.animatedPoints].fromJSValue()! }
+    @inlinable var points: SVGPointList { jsObject[.points].fromJSValue()! }
+    
+    @inlinable var animatedPoints: SVGPointList { jsObject[.animatedPoints].fromJSValue()! }
 }
 
 public class SVGAnimatedPreserveAspectRatio: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedPreserveAspectRatio].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedPreserveAspectRatio].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var baseVal: SVGPreserveAspectRatio
-
-    @ReadonlyAttribute
-    public var animVal: SVGPreserveAspectRatio
+    
+    public var baseVal: SVGPreserveAspectRatio {
+        jsObject[.baseVal].fromJSValue()!
+    }
+    
+    public var animVal: SVGPreserveAspectRatio {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedRect: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedRect].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedRect].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var baseVal: DOMRect
-
-    @ReadonlyAttribute
-    public var animVal: DOMRectReadOnly
+    
+    public var baseVal: DOMRect {
+        jsObject[.baseVal].fromJSValue()!
+    }
+    
+    public var animVal: DOMRectReadOnly {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedString: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedString].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedString].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadWriteAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadWriteAttribute
-    public var baseVal: String
-
-    @ReadonlyAttribute
-    public var animVal: String
+    
+    public var baseVal: String {
+        get { jsObject[.baseVal].fromJSValue()!}
+        set { jsObject[.baseVal] = newValue.jsValue }
+    }
+    
+    public var animVal: String {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimatedTransformList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimatedTransformList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGAnimatedTransformList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _baseVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.baseVal)
-        _animVal = ReadonlyAttribute(jsObject: jsObject, name: Strings.animVal)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var baseVal: SVGTransformList
-
-    @ReadonlyAttribute
-    public var animVal: SVGTransformList
+    
+    public var baseVal: SVGTransformList {
+        jsObject[.baseVal].fromJSValue()!
+    }
+    
+    public var animVal: SVGTransformList {
+        jsObject[.animVal].fromJSValue()!
+    }
 }
 
 public class SVGAnimationElement: SVGElement, SVGTests {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGAnimationElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGAnimationElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _targetElement = ReadonlyAttribute(jsObject: jsObject, name: Strings.targetElement)
-        _onbegin = ClosureAttribute1Optional(jsObject: jsObject, name: Strings.onbegin)
-        _onend = ClosureAttribute1Optional(jsObject: jsObject, name: Strings.onend)
-        _onrepeat = ClosureAttribute1Optional(jsObject: jsObject, name: Strings.onrepeat)
+        _onbegin = ClosureAttribute1Optional(jsObject: jsObject, name: .onbegin)
+        _onend = ClosureAttribute1Optional(jsObject: jsObject, name: .onend)
+        _onrepeat = ClosureAttribute1Optional(jsObject: jsObject, name: .onrepeat)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var targetElement: SVGElement?
-
+    
+    public var targetElement: SVGElement? {
+        jsObject[.targetElement].fromJSValue()
+    }
+    
     @ClosureAttribute1Optional
     public var onbegin: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onend: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onrepeat: EventHandler
-
+    
     @inlinable public func getStartTime() -> Float {
         let this = jsObject
-        return this[Strings.getStartTime].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getStartTime].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func getCurrentTime() -> Float {
         let this = jsObject
-        return this[Strings.getCurrentTime].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getCurrentTime].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func getSimpleDuration() -> Float {
         let this = jsObject
-        return this[Strings.getSimpleDuration].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getSimpleDuration].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func beginElement() {
         let this = jsObject
-        _ = this[Strings.beginElement].function!(this: this, arguments: [])
+        _ = this[.beginElement].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func beginElementAt(offset: Float) {
         let this = jsObject
-        _ = this[Strings.beginElementAt].function!(this: this, arguments: [_toJSValue(offset)])
+        _ = this[.beginElementAt].function!(this: this, arguments: [_toJSValue(offset)])
     }
-
+    
     @inlinable public func endElement() {
         let this = jsObject
-        _ = this[Strings.endElement].function!(this: this, arguments: [])
+        _ = this[.endElement].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func endElementAt(offset: Float) {
         let this = jsObject
-        _ = this[Strings.endElementAt].function!(this: this, arguments: [_toJSValue(offset)])
+        _ = this[.endElementAt].function!(this: this, arguments: [_toJSValue(offset)])
     }
 }
 
 public class SVGBoundingBoxOptions: BridgedDictionary {
     public convenience init(fill: Bool, stroke: Bool, markers: Bool, clipped: Bool) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.fill] = _toJSValue(fill)
-        object[Strings.stroke] = _toJSValue(stroke)
-        object[Strings.markers] = _toJSValue(markers)
-        object[Strings.clipped] = _toJSValue(clipped)
+        let object = JSObject.global[.Object].function!.new()
+        object[.fill] = _toJSValue(fill)
+        object[.stroke] = _toJSValue(stroke)
+        object[.markers] = _toJSValue(markers)
+        object[.clipped] = _toJSValue(clipped)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _fill = ReadWriteAttribute(jsObject: object, name: Strings.fill)
-        _stroke = ReadWriteAttribute(jsObject: object, name: Strings.stroke)
-        _markers = ReadWriteAttribute(jsObject: object, name: Strings.markers)
-        _clipped = ReadWriteAttribute(jsObject: object, name: Strings.clipped)
-        super.init(unsafelyWrapping: object)
+    
+    public var fill: Bool {
+        get { jsObject[.fill].fromJSValue()!}
+        set { jsObject[.fill] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var fill: Bool
-
-    @ReadWriteAttribute
-    public var stroke: Bool
-
-    @ReadWriteAttribute
-    public var markers: Bool
-
-    @ReadWriteAttribute
-    public var clipped: Bool
+    
+    public var stroke: Bool {
+        get { jsObject[.stroke].fromJSValue()!}
+        set { jsObject[.stroke] = newValue.jsValue }
+    }
+    
+    public var markers: Bool {
+        get { jsObject[.markers].fromJSValue()!}
+        set { jsObject[.markers] = newValue.jsValue }
+    }
+    
+    public var clipped: Bool {
+        get { jsObject[.clipped].fromJSValue()!}
+        set { jsObject[.clipped] = newValue.jsValue }
+    }
 }
 
 public class SVGCircleElement: SVGGeometryElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGCircleElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _cx = ReadonlyAttribute(jsObject: jsObject, name: Strings.cx)
-        _cy = ReadonlyAttribute(jsObject: jsObject, name: Strings.cy)
-        _r = ReadonlyAttribute(jsObject: jsObject, name: Strings.r)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGCircleElement].function }
+    
+    public var cx: SVGAnimatedLength {
+        jsObject[.cx].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var cx: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var cy: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var r: SVGAnimatedLength
+    
+    public var cy: SVGAnimatedLength {
+        jsObject[.cy].fromJSValue()!
+    }
+    
+    public var r: SVGAnimatedLength {
+        jsObject[.r].fromJSValue()!
+    }
 }
 
 public class SVGClipPathElement: SVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGClipPathElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _clipPathUnits = ReadonlyAttribute(jsObject: jsObject, name: Strings.clipPathUnits)
-        _transform = ReadonlyAttribute(jsObject: jsObject, name: Strings.transform)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGClipPathElement].function }
+    
+    public var clipPathUnits: SVGAnimatedEnumeration {
+        jsObject[.clipPathUnits].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var clipPathUnits: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var transform: SVGAnimatedTransformList
+    
+    public var transform: SVGAnimatedTransformList {
+        jsObject[.transform].fromJSValue()!
+    }
 }
 
 public class SVGDefsElement: SVGGraphicsElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGDefsElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGDefsElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGDescElement: SVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGDescElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGDescElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGDiscardElement: SVGAnimationElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGDiscardElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGDiscardElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
-public class SVGElement: Element, 
+public class SVGElement: Element,
                             GlobalEventHandlers,
-                            SVGElementInstance,
-                            HTMLOrSVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _svgClassName = ReadonlyAttribute(jsObject: jsObject, name: Strings.className)
-        _ownerSVGElement = ReadonlyAttribute(jsObject: jsObject, name: Strings.ownerSVGElement)
-        _viewportElement = ReadonlyAttribute(jsObject: jsObject, name: Strings.viewportElement)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
+                         SVGElementInstance,
+                         HTMLOrSVGElement {
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGElement].function }
+    
     // Renamed because superclass has a `className` property of type `String`
     // NOTE! Accessing `className` on an SVGElement will crash your app
-    @ReadonlyAttribute
-    public var svgClassName: SVGAnimatedString
-
-    @ReadonlyAttribute
-    public var ownerSVGElement: SVGSVGElement?
-
-    @ReadonlyAttribute
-    public var viewportElement: SVGElement?
+    public var svgClassName: SVGAnimatedString {
+        jsObject[.className].fromJSValue()!
+    }
+    
+    public var ownerSVGElement: SVGSVGElement? {
+        jsObject[.ownerSVGElement].fromJSValue()
+    }
+    
+    public var viewportElement: SVGElement? {
+        jsObject[.viewportElement].fromJSValue()
+    }
 }
 
 public protocol SVGElementInstance: JSBridgedClass {}
 public extension SVGElementInstance {
-    @inlinable var correspondingElement: SVGElement? { jsObject[Strings.correspondingElement].fromJSValue() }
-
-    @inlinable var correspondingUseElement: SVGUseElement? { jsObject[Strings.correspondingUseElement].fromJSValue() }
+    @inlinable var correspondingElement: SVGElement? { jsObject[.correspondingElement].fromJSValue() }
+    
+    @inlinable var correspondingUseElement: SVGUseElement? { jsObject[.correspondingUseElement].fromJSValue() }
 }
 
 public class SVGEllipseElement: SVGGeometryElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGEllipseElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _cx = ReadonlyAttribute(jsObject: jsObject, name: Strings.cx)
-        _cy = ReadonlyAttribute(jsObject: jsObject, name: Strings.cy)
-        _rx = ReadonlyAttribute(jsObject: jsObject, name: Strings.rx)
-        _ry = ReadonlyAttribute(jsObject: jsObject, name: Strings.ry)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGEllipseElement].function }
+    
+    public var cx: SVGAnimatedLength {
+        jsObject[.cx].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var cx: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var cy: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var rx: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var ry: SVGAnimatedLength
+    
+    public var cy: SVGAnimatedLength {
+        jsObject[.cy].fromJSValue()!
+    }
+    
+    public var rx: SVGAnimatedLength {
+        jsObject[.rx].fromJSValue()!
+    }
+    
+    public var ry: SVGAnimatedLength {
+        jsObject[.ry].fromJSValue()!
+    }
 }
 
 public protocol SVGFitToViewBox: JSBridgedClass {}
 public extension SVGFitToViewBox {
-    @inlinable var viewBox: SVGAnimatedRect { jsObject[Strings.viewBox].fromJSValue()! }
-
-    @inlinable var preserveAspectRatio: SVGAnimatedPreserveAspectRatio { jsObject[Strings.preserveAspectRatio].fromJSValue()! }
+    @inlinable var viewBox: SVGAnimatedRect { jsObject[.viewBox].fromJSValue()! }
+    
+    @inlinable var preserveAspectRatio: SVGAnimatedPreserveAspectRatio { jsObject[.preserveAspectRatio].fromJSValue()! }
 }
 
 public class SVGForeignObjectElement: SVGGraphicsElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGForeignObjectElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: Strings.width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: Strings.height)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGForeignObjectElement].function }
+    
+    public var x: SVGAnimatedLength {
+        jsObject[.x].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var width: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var height: SVGAnimatedLength
+    
+    public var y: SVGAnimatedLength {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: SVGAnimatedLength {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: SVGAnimatedLength {
+        jsObject[.height].fromJSValue()!
+    }
 }
 
 public class SVGGElement: SVGGraphicsElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGGElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGGElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGGeometryElement: SVGGraphicsElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGGeometryElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _pathLength = ReadonlyAttribute(jsObject: jsObject, name: Strings.pathLength)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGGeometryElement].function }
+    
+    public var pathLength: SVGAnimatedNumber {
+        jsObject[.pathLength].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var pathLength: SVGAnimatedNumber
-
+    
     @inlinable public func isPointInFill(point: DOMPointInit? = nil) -> Bool {
         let this = jsObject
-        return this[Strings.isPointInFill].function!(this: this, arguments: [_toJSValue(point)]).fromJSValue()!
+        return this[.isPointInFill].function!(this: this, arguments: [_toJSValue(point)]).fromJSValue()!
     }
-
+    
     @inlinable public func isPointInStroke(point: DOMPointInit? = nil) -> Bool {
         let this = jsObject
-        return this[Strings.isPointInStroke].function!(this: this, arguments: [_toJSValue(point)]).fromJSValue()!
+        return this[.isPointInStroke].function!(this: this, arguments: [_toJSValue(point)]).fromJSValue()!
     }
-
+    
     @inlinable public func getTotalLength() -> Float {
         let this = jsObject
-        return this[Strings.getTotalLength].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getTotalLength].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func getPointAtLength(distance: Float) -> DOMPoint {
         let this = jsObject
-        return this[Strings.getPointAtLength].function!(this: this, arguments: [_toJSValue(distance)]).fromJSValue()!
+        return this[.getPointAtLength].function!(this: this, arguments: [_toJSValue(distance)]).fromJSValue()!
     }
 }
 
 public class SVGGradientElement: SVGElement, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGGradientElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _gradientUnits = ReadonlyAttribute(jsObject: jsObject, name: Strings.gradientUnits)
-        _gradientTransform = ReadonlyAttribute(jsObject: jsObject, name: Strings.gradientTransform)
-        _spreadMethod = ReadonlyAttribute(jsObject: jsObject, name: Strings.spreadMethod)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGGradientElement].function }
+    
     public static let SVG_SPREADMETHOD_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_SPREADMETHOD_PAD: UInt16 = 1
-
+    
     public static let SVG_SPREADMETHOD_REFLECT: UInt16 = 2
-
+    
     public static let SVG_SPREADMETHOD_REPEAT: UInt16 = 3
-
-    @ReadonlyAttribute
-    public var gradientUnits: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var gradientTransform: SVGAnimatedTransformList
-
-    @ReadonlyAttribute
-    public var spreadMethod: SVGAnimatedEnumeration
+    
+    public var gradientUnits: SVGAnimatedEnumeration {
+        jsObject[.gradientUnits].fromJSValue()!
+    }
+    
+    public var gradientTransform: SVGAnimatedTransformList {
+        jsObject[.gradientTransform].fromJSValue()!
+    }
+    
+    public var spreadMethod: SVGAnimatedEnumeration {
+        jsObject[.spreadMethod].fromJSValue()!
+    }
 }
 
 public class SVGGraphicsElement: SVGElement, SVGTests {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGGraphicsElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _transform = ReadonlyAttribute(jsObject: jsObject, name: Strings.transform)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGGraphicsElement].function }
+    
+    public var transform: SVGAnimatedTransformList {
+        jsObject[.transform].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var transform: SVGAnimatedTransformList
-
+    
     @inlinable public func getBBox(options: SVGBoundingBoxOptions? = nil) -> DOMRect {
         let this = jsObject
-        return this[Strings.getBBox].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
+        return this[.getBBox].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
     }
-
+    
     @inlinable public func getCTM() -> DOMMatrix? {
         let this = jsObject
-        return this[Strings.getCTM].function!(this: this, arguments: []).fromJSValue()
+        return this[.getCTM].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func getScreenCTM() -> DOMMatrix? {
         let this = jsObject
-        return this[Strings.getScreenCTM].function!(this: this, arguments: []).fromJSValue()
+        return this[.getScreenCTM].function!(this: this, arguments: []).fromJSValue()
     }
 }
 
 public class SVGImageElement: SVGGraphicsElement, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGImageElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: Strings.width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: Strings.height)
-        _preserveAspectRatio = ReadonlyAttribute(jsObject: jsObject, name: Strings.preserveAspectRatio)
-        _crossOrigin = ReadWriteAttribute(jsObject: jsObject, name: Strings.crossOrigin)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGImageElement].function }
+    
+    public var x: SVGAnimatedLength {
+        jsObject[.x].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var width: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var height: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var preserveAspectRatio: SVGAnimatedPreserveAspectRatio
-
-    @ReadWriteAttribute
-    public var crossOrigin: String?
+    
+    public var y: SVGAnimatedLength {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: SVGAnimatedLength {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: SVGAnimatedLength {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var preserveAspectRatio: SVGAnimatedPreserveAspectRatio {
+        jsObject[.preserveAspectRatio].fromJSValue()!
+    }
+    
+    public var crossOrigin: String? {
+        get { jsObject[.crossOrigin].fromJSValue()}
+        set { jsObject[.crossOrigin] = newValue.jsValue }
+    }
 }
 
 public class SVGLength: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGLength].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGLength].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _unitType = ReadonlyAttribute(jsObject: jsObject, name: Strings.unitType)
-        _value = ReadWriteAttribute(jsObject: jsObject, name: Strings.value)
-        _valueInSpecifiedUnits = ReadWriteAttribute(jsObject: jsObject, name: Strings.valueInSpecifiedUnits)
-        _valueAsString = ReadWriteAttribute(jsObject: jsObject, name: Strings.valueAsString)
         self.jsObject = jsObject
     }
-
+    
     public static let SVG_LENGTHTYPE_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_LENGTHTYPE_NUMBER: UInt16 = 1
-
+    
     public static let SVG_LENGTHTYPE_PERCENTAGE: UInt16 = 2
-
+    
     public static let SVG_LENGTHTYPE_EMS: UInt16 = 3
-
+    
     public static let SVG_LENGTHTYPE_EXS: UInt16 = 4
-
+    
     public static let SVG_LENGTHTYPE_PX: UInt16 = 5
-
+    
     public static let SVG_LENGTHTYPE_CM: UInt16 = 6
-
+    
     public static let SVG_LENGTHTYPE_MM: UInt16 = 7
-
+    
     public static let SVG_LENGTHTYPE_IN: UInt16 = 8
-
+    
     public static let SVG_LENGTHTYPE_PT: UInt16 = 9
-
+    
     public static let SVG_LENGTHTYPE_PC: UInt16 = 10
-
-    @ReadonlyAttribute
-    public var unitType: UInt16
-
-    @ReadWriteAttribute
-    public var value: Float
-
-    @ReadWriteAttribute
-    public var valueInSpecifiedUnits: Float
-
-    @ReadWriteAttribute
-    public var valueAsString: String
-
+    
+    public var unitType: UInt16 {
+        jsObject[.unitType].fromJSValue()!
+    }
+    
+    public var value: Float {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
+    }
+    
+    public var valueInSpecifiedUnits: Float {
+        get { jsObject[.valueInSpecifiedUnits].fromJSValue()!}
+        set { jsObject[.valueInSpecifiedUnits] = newValue.jsValue }
+    }
+    
+    public var valueAsString: String {
+        get { jsObject[.valueAsString].fromJSValue()!}
+        set { jsObject[.valueAsString] = newValue.jsValue }
+    }
+    
     @inlinable public func newValueSpecifiedUnits(unitType: UInt16, valueInSpecifiedUnits: Float) {
         let this = jsObject
-        _ = this[Strings.newValueSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType), _toJSValue(valueInSpecifiedUnits)])
+        _ = this[.newValueSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType), _toJSValue(valueInSpecifiedUnits)])
     }
-
+    
     @inlinable public func convertToSpecifiedUnits(unitType: UInt16) {
         let this = jsObject
-        _ = this[Strings.convertToSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType)])
+        _ = this[.convertToSpecifiedUnits].function!(this: this, arguments: [_toJSValue(unitType)])
     }
 }
 
 public class SVGLengthList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGLengthList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGLengthList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: Strings.length)
-        _numberOfItems = ReadonlyAttribute(jsObject: jsObject, name: Strings.numberOfItems)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
-    @ReadonlyAttribute
-    public var numberOfItems: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
+    public var numberOfItems: UInt32 {
+        jsObject[.numberOfItems].fromJSValue()!
+    }
+    
     @inlinable public func clear() {
         let this = jsObject
-        _ = this[Strings.clear].function!(this: this, arguments: [])
+        _ = this[.clear].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func initialize(newItem: SVGLength) -> SVGLength {
         let this = jsObject
-        return this[Strings.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public func getItem(index: UInt32) -> SVGLength {
         let this = jsObject
-        return this[Strings.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func insertItemBefore(newItem: SVGLength, index: UInt32) -> SVGLength {
         let this = jsObject
-        return this[Strings.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func replaceItem(newItem: SVGLength, index: UInt32) -> SVGLength {
         let this = jsObject
-        return this[Strings.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func removeItem(index: UInt32) -> SVGLength {
         let this = jsObject
-        return this[Strings.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func appendItem(newItem: SVGLength) -> SVGLength {
         let this = jsObject
-        return this[Strings.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public subscript(key: Int) -> SVGLength {
         get {
             jsObject[key].fromJSValue()!
@@ -876,229 +864,215 @@ public class SVGLengthList: JSBridgedClass {
 }
 
 public class SVGLineElement: SVGGeometryElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGLineElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _x1 = ReadonlyAttribute(jsObject: jsObject, name: Strings.x1)
-        _y1 = ReadonlyAttribute(jsObject: jsObject, name: Strings.y1)
-        _x2 = ReadonlyAttribute(jsObject: jsObject, name: Strings.x2)
-        _y2 = ReadonlyAttribute(jsObject: jsObject, name: Strings.y2)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGLineElement].function }
+    
+    public var x1: SVGAnimatedLength {
+        jsObject[.x1].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x1: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y1: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var x2: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y2: SVGAnimatedLength
+    
+    public var y1: SVGAnimatedLength {
+        jsObject[.y1].fromJSValue()!
+    }
+    
+    public var x2: SVGAnimatedLength {
+        jsObject[.x2].fromJSValue()!
+    }
+    
+    public var y2: SVGAnimatedLength {
+        jsObject[.y2].fromJSValue()!
+    }
 }
 
 public class SVGLinearGradientElement: SVGGradientElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGLinearGradientElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _x1 = ReadonlyAttribute(jsObject: jsObject, name: Strings.x1)
-        _y1 = ReadonlyAttribute(jsObject: jsObject, name: Strings.y1)
-        _x2 = ReadonlyAttribute(jsObject: jsObject, name: Strings.x2)
-        _y2 = ReadonlyAttribute(jsObject: jsObject, name: Strings.y2)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGLinearGradientElement].function }
+    
+    public var x1: SVGAnimatedLength {
+        jsObject[.x1].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x1: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y1: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var x2: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y2: SVGAnimatedLength
+    
+    public var y1: SVGAnimatedLength {
+        jsObject[.y1].fromJSValue()!
+    }
+    
+    public var x2: SVGAnimatedLength {
+        jsObject[.x2].fromJSValue()!
+    }
+    
+    public var y2: SVGAnimatedLength {
+        jsObject[.y2].fromJSValue()!
+    }
 }
 
 public class SVGMPathElement: SVGElement, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGMPathElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGMPathElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGMarkerElement: SVGElement, SVGFitToViewBox {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGMarkerElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _refX = ReadonlyAttribute(jsObject: jsObject, name: Strings.refX)
-        _refY = ReadonlyAttribute(jsObject: jsObject, name: Strings.refY)
-        _markerUnits = ReadonlyAttribute(jsObject: jsObject, name: Strings.markerUnits)
-        _markerWidth = ReadonlyAttribute(jsObject: jsObject, name: Strings.markerWidth)
-        _markerHeight = ReadonlyAttribute(jsObject: jsObject, name: Strings.markerHeight)
-        _orientType = ReadonlyAttribute(jsObject: jsObject, name: Strings.orientType)
-        _orientAngle = ReadonlyAttribute(jsObject: jsObject, name: Strings.orientAngle)
-        _orient = ReadWriteAttribute(jsObject: jsObject, name: Strings.orient)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGMarkerElement].function }
+    
     public static let SVG_MARKERUNITS_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_MARKERUNITS_USERSPACEONUSE: UInt16 = 1
-
+    
     public static let SVG_MARKERUNITS_STROKEWIDTH: UInt16 = 2
-
+    
     public static let SVG_MARKER_ORIENT_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_MARKER_ORIENT_AUTO: UInt16 = 1
-
+    
     public static let SVG_MARKER_ORIENT_ANGLE: UInt16 = 2
-
-    @ReadonlyAttribute
-    public var refX: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var refY: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var markerUnits: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var markerWidth: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var markerHeight: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var orientType: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var orientAngle: SVGAnimatedAngle
-
-    @ReadWriteAttribute
-    public var orient: String
-
+    
+    public var refX: SVGAnimatedLength {
+        jsObject[.refX].fromJSValue()!
+    }
+    
+    public var refY: SVGAnimatedLength {
+        jsObject[.refY].fromJSValue()!
+    }
+    
+    public var markerUnits: SVGAnimatedEnumeration {
+        jsObject[.markerUnits].fromJSValue()!
+    }
+    
+    public var markerWidth: SVGAnimatedLength {
+        jsObject[.markerWidth].fromJSValue()!
+    }
+    
+    public var markerHeight: SVGAnimatedLength {
+        jsObject[.markerHeight].fromJSValue()!
+    }
+    
+    public var orientType: SVGAnimatedEnumeration {
+        jsObject[.orientType].fromJSValue()!
+    }
+    
+    public var orientAngle: SVGAnimatedAngle {
+        jsObject[.orientAngle].fromJSValue()!
+    }
+    
+    public var orient: String {
+        get { jsObject[.orient].fromJSValue()!}
+        set { jsObject[.orient] = newValue.jsValue }
+    }
+    
     @inlinable public func setOrientToAuto() {
         let this = jsObject
-        _ = this[Strings.setOrientToAuto].function!(this: this, arguments: [])
+        _ = this[.setOrientToAuto].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func setOrientToAngle(angle: SVGAngle) {
         let this = jsObject
-        _ = this[Strings.setOrientToAngle].function!(this: this, arguments: [_toJSValue(angle)])
+        _ = this[.setOrientToAngle].function!(this: this, arguments: [_toJSValue(angle)])
     }
 }
 
 public class SVGMaskElement: SVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGMaskElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _maskUnits = ReadonlyAttribute(jsObject: jsObject, name: Strings.maskUnits)
-        _maskContentUnits = ReadonlyAttribute(jsObject: jsObject, name: Strings.maskContentUnits)
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: Strings.width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: Strings.height)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGMaskElement].function }
+    
+    public var maskUnits: SVGAnimatedEnumeration {
+        jsObject[.maskUnits].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var maskUnits: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var maskContentUnits: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var width: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var height: SVGAnimatedLength
+    
+    public var maskContentUnits: SVGAnimatedEnumeration {
+        jsObject[.maskContentUnits].fromJSValue()!
+    }
+    
+    public var x: SVGAnimatedLength {
+        jsObject[.x].fromJSValue()!
+    }
+    
+    public var y: SVGAnimatedLength {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: SVGAnimatedLength {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: SVGAnimatedLength {
+        jsObject[.height].fromJSValue()!
+    }
 }
 
 public class SVGMetadataElement: SVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGMetadataElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGMetadataElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGNumber: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGNumber].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGNumber].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _value = ReadWriteAttribute(jsObject: jsObject, name: Strings.value)
         self.jsObject = jsObject
     }
-
-    @ReadWriteAttribute
-    public var value: Float
+    
+    public var value: Float {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
+    }
 }
 
 public class SVGNumberList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGNumberList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGNumberList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: Strings.length)
-        _numberOfItems = ReadonlyAttribute(jsObject: jsObject, name: Strings.numberOfItems)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
-    @ReadonlyAttribute
-    public var numberOfItems: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
+    public var numberOfItems: UInt32 {
+        jsObject[.numberOfItems].fromJSValue()!
+    }
+    
     @inlinable public func clear() {
         let this = jsObject
-        _ = this[Strings.clear].function!(this: this, arguments: [])
+        _ = this[.clear].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func initialize(newItem: SVGNumber) -> SVGNumber {
         let this = jsObject
-        return this[Strings.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public func getItem(index: UInt32) -> SVGNumber {
         let this = jsObject
-        return this[Strings.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func insertItemBefore(newItem: SVGNumber, index: UInt32) -> SVGNumber {
         let this = jsObject
-        return this[Strings.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func replaceItem(newItem: SVGNumber, index: UInt32) -> SVGNumber {
         let this = jsObject
-        return this[Strings.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func removeItem(index: UInt32) -> SVGNumber {
         let this = jsObject
-        return this[Strings.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func appendItem(newItem: SVGNumber) -> SVGNumber {
         let this = jsObject
-        return this[Strings.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public subscript(key: Int) -> SVGNumber {
         get {
             jsObject[key].fromJSValue()!
@@ -1110,101 +1084,97 @@ public class SVGNumberList: JSBridgedClass {
 }
 
 public class SVGPathElement: SVGGeometryElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGPathElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGPathElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGPatternElement: SVGElement, SVGFitToViewBox, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGPatternElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _patternUnits = ReadonlyAttribute(jsObject: jsObject, name: Strings.patternUnits)
-        _patternContentUnits = ReadonlyAttribute(jsObject: jsObject, name: Strings.patternContentUnits)
-        _patternTransform = ReadonlyAttribute(jsObject: jsObject, name: Strings.patternTransform)
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: Strings.width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: Strings.height)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGPatternElement].function }
+    
+    public var patternUnits: SVGAnimatedEnumeration {
+        jsObject[.patternUnits].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var patternUnits: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var patternContentUnits: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var patternTransform: SVGAnimatedTransformList
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var width: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var height: SVGAnimatedLength
+    
+    public var patternContentUnits: SVGAnimatedEnumeration {
+        jsObject[.patternContentUnits].fromJSValue()!
+    }
+    
+    public var patternTransform: SVGAnimatedTransformList {
+        jsObject[.patternTransform].fromJSValue()!
+    }
+    
+    public var x: SVGAnimatedLength {
+        jsObject[.x].fromJSValue()!
+    }
+    
+    public var y: SVGAnimatedLength {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: SVGAnimatedLength {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: SVGAnimatedLength {
+        jsObject[.height].fromJSValue()!
+    }
 }
 
 public class SVGPointList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGPointList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGPointList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: Strings.length)
-        _numberOfItems = ReadonlyAttribute(jsObject: jsObject, name: Strings.numberOfItems)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
-    @ReadonlyAttribute
-    public var numberOfItems: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
+    public var numberOfItems: UInt32 {
+        jsObject[.numberOfItems].fromJSValue()!
+    }
+    
     @inlinable public func clear() {
         let this = jsObject
-        _ = this[Strings.clear].function!(this: this, arguments: [])
+        _ = this[.clear].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func initialize(newItem: DOMPoint) -> DOMPoint {
         let this = jsObject
-        return this[Strings.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public func getItem(index: UInt32) -> DOMPoint {
         let this = jsObject
-        return this[Strings.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func insertItemBefore(newItem: DOMPoint, index: UInt32) -> DOMPoint {
         let this = jsObject
-        return this[Strings.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func replaceItem(newItem: DOMPoint, index: UInt32) -> DOMPoint {
         let this = jsObject
-        return this[Strings.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func removeItem(index: UInt32) -> DOMPoint {
         let this = jsObject
-        return this[Strings.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func appendItem(newItem: DOMPoint) -> DOMPoint {
         let this = jsObject
-        return this[Strings.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public subscript(key: Int) -> DOMPoint {
         get {
             jsObject[key].fromJSValue()!
@@ -1216,366 +1186,355 @@ public class SVGPointList: JSBridgedClass {
 }
 
 public class SVGPolygonElement: SVGGeometryElement, SVGAnimatedPoints {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGPolygonElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGPolygonElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGPolylineElement: SVGGeometryElement, SVGAnimatedPoints {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGPolylineElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGPolylineElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGPreserveAspectRatio: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGPreserveAspectRatio].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGPreserveAspectRatio].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _align = ReadWriteAttribute(jsObject: jsObject, name: Strings.align)
-        _meetOrSlice = ReadWriteAttribute(jsObject: jsObject, name: Strings.meetOrSlice)
         self.jsObject = jsObject
     }
-
+    
     public static let SVG_PRESERVEASPECTRATIO_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_PRESERVEASPECTRATIO_NONE: UInt16 = 1
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMINYMIN: UInt16 = 2
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMIDYMIN: UInt16 = 3
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMAXYMIN: UInt16 = 4
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMINYMID: UInt16 = 5
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMIDYMID: UInt16 = 6
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMAXYMID: UInt16 = 7
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMINYMAX: UInt16 = 8
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMIDYMAX: UInt16 = 9
-
+    
     public static let SVG_PRESERVEASPECTRATIO_XMAXYMAX: UInt16 = 10
-
+    
     public static let SVG_MEETORSLICE_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_MEETORSLICE_MEET: UInt16 = 1
-
+    
     public static let SVG_MEETORSLICE_SLICE: UInt16 = 2
-
-    @ReadWriteAttribute
-    public var align: UInt16
-
-    @ReadWriteAttribute
-    public var meetOrSlice: UInt16
+    
+    public var align: UInt16 {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
+    
+    public var meetOrSlice: UInt16 {
+        get { jsObject[.meetOrSlice].fromJSValue()!}
+        set { jsObject[.meetOrSlice] = newValue.jsValue }
+    }
 }
 
 public class SVGRadialGradientElement: SVGGradientElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGRadialGradientElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGRadialGradientElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _cx = ReadonlyAttribute(jsObject: jsObject, name: Strings.cx)
-        _cy = ReadonlyAttribute(jsObject: jsObject, name: Strings.cy)
-        _r = ReadonlyAttribute(jsObject: jsObject, name: Strings.r)
-        _fx = ReadonlyAttribute(jsObject: jsObject, name: Strings.fx)
-        _fy = ReadonlyAttribute(jsObject: jsObject, name: Strings.fy)
-        _fr = ReadonlyAttribute(jsObject: jsObject, name: Strings.fr)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var cx: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var cy: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var r: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var fx: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var fy: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var fr: SVGAnimatedLength
+    
+    public var cx: SVGAnimatedLength {
+        jsObject[.cx].fromJSValue()!
+    }
+    
+    public var cy: SVGAnimatedLength {
+        jsObject[.cy].fromJSValue()!
+    }
+    
+    public var r: SVGAnimatedLength {
+        jsObject[.r].fromJSValue()!
+    }
+    
+    public var fx: SVGAnimatedLength {
+        jsObject[.fx].fromJSValue()!
+    }
+    
+    public var fy: SVGAnimatedLength {
+        jsObject[.fy].fromJSValue()!
+    }
+    
+    public var fr: SVGAnimatedLength {
+        jsObject[.fr].fromJSValue()!
+    }
 }
 
 public class SVGRectElement: SVGGeometryElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGRectElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: Strings.width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: Strings.height)
-        _rx = ReadonlyAttribute(jsObject: jsObject, name: Strings.rx)
-        _ry = ReadonlyAttribute(jsObject: jsObject, name: Strings.ry)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGRectElement].function }
+    
+    public var x: SVGAnimatedLength {
+        jsObject[.x].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var width: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var height: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var rx: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var ry: SVGAnimatedLength
+    
+    public var y: SVGAnimatedLength {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: SVGAnimatedLength {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: SVGAnimatedLength {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var rx: SVGAnimatedLength {
+        jsObject[.rx].fromJSValue()!
+    }
+    
+    public var ry: SVGAnimatedLength {
+        jsObject[.ry].fromJSValue()!
+    }
 }
 
 public class SVGSVGElement: SVGGraphicsElement, SVGFitToViewBox, WindowEventHandlers {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGSVGElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: Strings.width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: Strings.height)
-        _currentScale = ReadWriteAttribute(jsObject: jsObject, name: Strings.currentScale)
-        _currentTranslate = ReadonlyAttribute(jsObject: jsObject, name: Strings.currentTranslate)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGSVGElement].function }
+    
+    public var x: SVGAnimatedLength {
+        jsObject[.x].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var width: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var height: SVGAnimatedLength
-
-    @ReadWriteAttribute
-    public var currentScale: Float
-
-    @ReadonlyAttribute
-    public var currentTranslate: DOMPointReadOnly
-
+    
+    public var y: SVGAnimatedLength {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: SVGAnimatedLength {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: SVGAnimatedLength {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var currentScale: Float {
+        get { jsObject[.currentScale].fromJSValue()!}
+        set { jsObject[.currentScale] = newValue.jsValue }
+    }
+    
+    public var currentTranslate: DOMPointReadOnly {
+        jsObject[.currentTranslate].fromJSValue()!
+    }
+    
     @inlinable public func getIntersectionList(rect: DOMRectReadOnly, referenceElement: SVGElement?) -> NodeList {
         let this = jsObject
-        return this[Strings.getIntersectionList].function!(this: this, arguments: [_toJSValue(rect), _toJSValue(referenceElement)]).fromJSValue()!
+        return this[.getIntersectionList].function!(this: this, arguments: [_toJSValue(rect), _toJSValue(referenceElement)]).fromJSValue()!
     }
-
+    
     @inlinable public func getEnclosureList(rect: DOMRectReadOnly, referenceElement: SVGElement?) -> NodeList {
         let this = jsObject
-        return this[Strings.getEnclosureList].function!(this: this, arguments: [_toJSValue(rect), _toJSValue(referenceElement)]).fromJSValue()!
+        return this[.getEnclosureList].function!(this: this, arguments: [_toJSValue(rect), _toJSValue(referenceElement)]).fromJSValue()!
     }
-
+    
     @inlinable public func checkIntersection(element: SVGElement, rect: DOMRectReadOnly) -> Bool {
         let this = jsObject
-        return this[Strings.checkIntersection].function!(this: this, arguments: [_toJSValue(element), _toJSValue(rect)]).fromJSValue()!
+        return this[.checkIntersection].function!(this: this, arguments: [_toJSValue(element), _toJSValue(rect)]).fromJSValue()!
     }
-
+    
     @inlinable public func checkEnclosure(element: SVGElement, rect: DOMRectReadOnly) -> Bool {
         let this = jsObject
-        return this[Strings.checkEnclosure].function!(this: this, arguments: [_toJSValue(element), _toJSValue(rect)]).fromJSValue()!
+        return this[.checkEnclosure].function!(this: this, arguments: [_toJSValue(element), _toJSValue(rect)]).fromJSValue()!
     }
-
+    
     @inlinable public func deselectAll() {
         let this = jsObject
-        _ = this[Strings.deselectAll].function!(this: this, arguments: [])
+        _ = this[.deselectAll].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func createSVGNumber() -> SVGNumber {
         let this = jsObject
-        return this[Strings.createSVGNumber].function!(this: this, arguments: []).fromJSValue()!
+        return this[.createSVGNumber].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func createSVGLength() -> SVGLength {
         let this = jsObject
-        return this[Strings.createSVGLength].function!(this: this, arguments: []).fromJSValue()!
+        return this[.createSVGLength].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func createSVGAngle() -> SVGAngle {
         let this = jsObject
-        return this[Strings.createSVGAngle].function!(this: this, arguments: []).fromJSValue()!
+        return this[.createSVGAngle].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func createSVGPoint() -> DOMPoint {
         let this = jsObject
-        return this[Strings.createSVGPoint].function!(this: this, arguments: []).fromJSValue()!
+        return this[.createSVGPoint].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func createSVGMatrix() -> DOMMatrix {
         let this = jsObject
-        return this[Strings.createSVGMatrix].function!(this: this, arguments: []).fromJSValue()!
+        return this[.createSVGMatrix].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func createSVGRect() -> DOMRect {
         let this = jsObject
-        return this[Strings.createSVGRect].function!(this: this, arguments: []).fromJSValue()!
+        return this[.createSVGRect].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func createSVGTransform() -> SVGTransform {
         let this = jsObject
-        return this[Strings.createSVGTransform].function!(this: this, arguments: []).fromJSValue()!
+        return this[.createSVGTransform].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func createSVGTransformFromMatrix(matrix: DOMMatrix2DInit? = nil) -> SVGTransform {
         let this = jsObject
-        return this[Strings.createSVGTransformFromMatrix].function!(this: this, arguments: [_toJSValue(matrix)]).fromJSValue()!
+        return this[.createSVGTransformFromMatrix].function!(this: this, arguments: [_toJSValue(matrix)]).fromJSValue()!
     }
-
+    
     @inlinable public func getElementById(elementId: String) -> Element {
         let this = jsObject
-        return this[Strings.getElementById].function!(this: this, arguments: [_toJSValue(elementId)]).fromJSValue()!
+        return this[.getElementById].function!(this: this, arguments: [_toJSValue(elementId)]).fromJSValue()!
     }
-
+    
     @inlinable public func suspendRedraw(maxWaitMilliseconds: UInt32) -> UInt32 {
         let this = jsObject
-        return this[Strings.suspendRedraw].function!(this: this, arguments: [_toJSValue(maxWaitMilliseconds)]).fromJSValue()!
+        return this[.suspendRedraw].function!(this: this, arguments: [_toJSValue(maxWaitMilliseconds)]).fromJSValue()!
     }
-
+    
     @inlinable public func unsuspendRedraw(suspendHandleID: UInt32) {
         let this = jsObject
-        _ = this[Strings.unsuspendRedraw].function!(this: this, arguments: [_toJSValue(suspendHandleID)])
+        _ = this[.unsuspendRedraw].function!(this: this, arguments: [_toJSValue(suspendHandleID)])
     }
-
+    
     @inlinable public func unsuspendRedrawAll() {
         let this = jsObject
-        _ = this[Strings.unsuspendRedrawAll].function!(this: this, arguments: [])
+        _ = this[.unsuspendRedrawAll].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func forceRedraw() {
         let this = jsObject
-        _ = this[Strings.forceRedraw].function!(this: this, arguments: [])
+        _ = this[.forceRedraw].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func pauseAnimations() {
         let this = jsObject
-        _ = this[Strings.pauseAnimations].function!(this: this, arguments: [])
+        _ = this[.pauseAnimations].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func unpauseAnimations() {
         let this = jsObject
-        _ = this[Strings.unpauseAnimations].function!(this: this, arguments: [])
+        _ = this[.unpauseAnimations].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func animationsPaused() -> Bool {
         let this = jsObject
-        return this[Strings.animationsPaused].function!(this: this, arguments: []).fromJSValue()!
+        return this[.animationsPaused].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func getCurrentTime() -> Float {
         let this = jsObject
-        return this[Strings.getCurrentTime].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getCurrentTime].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func setCurrentTime(seconds: Float) {
         let this = jsObject
-        _ = this[Strings.setCurrentTime].function!(this: this, arguments: [_toJSValue(seconds)])
+        _ = this[.setCurrentTime].function!(this: this, arguments: [_toJSValue(seconds)])
     }
 }
 
 public class SVGScriptElement: SVGElement, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGScriptElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadWriteAttribute(jsObject: jsObject, name: Strings.type)
-        _crossOrigin = ReadWriteAttribute(jsObject: jsObject, name: Strings.crossOrigin)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGScriptElement].function }
+    
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var crossOrigin: String?
+    
+    public var crossOrigin: String? {
+        get { jsObject[.crossOrigin].fromJSValue()}
+        set { jsObject[.crossOrigin] = newValue.jsValue }
+    }
 }
 
 public class SVGSetElement: SVGAnimationElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGSetElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGSetElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGStopElement: SVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGStopElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _offset = ReadonlyAttribute(jsObject: jsObject, name: Strings.offset)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGStopElement].function }
+    
+    public var offset: SVGAnimatedNumber {
+        jsObject[.offset].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var offset: SVGAnimatedNumber
 }
 
 public class SVGStringList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGStringList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGStringList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: Strings.length)
-        _numberOfItems = ReadonlyAttribute(jsObject: jsObject, name: Strings.numberOfItems)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
-    @ReadonlyAttribute
-    public var numberOfItems: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
+    public var numberOfItems: UInt32 {
+        jsObject[.numberOfItems].fromJSValue()!
+    }
+    
     @inlinable public func clear() {
         let this = jsObject
-        _ = this[Strings.clear].function!(this: this, arguments: [])
+        _ = this[.clear].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func initialize(newItem: String) -> String {
         let this = jsObject
-        return this[Strings.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public func getItem(index: UInt32) -> String {
         let this = jsObject
-        return this[Strings.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func insertItemBefore(newItem: String, index: UInt32) -> String {
         let this = jsObject
-        return this[Strings.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func replaceItem(newItem: String, index: UInt32) -> String {
         let this = jsObject
-        return this[Strings.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func removeItem(index: UInt32) -> String {
         let this = jsObject
-        return this[Strings.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func appendItem(newItem: String) -> String {
         let this = jsObject
-        return this[Strings.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public subscript(key: Int) -> String {
         get {
             jsObject[key].fromJSValue()!
@@ -1587,44 +1546,43 @@ public class SVGStringList: JSBridgedClass {
 }
 
 public class SVGStyleElement: SVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGStyleElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadWriteAttribute(jsObject: jsObject, name: Strings.type)
-        _media = ReadWriteAttribute(jsObject: jsObject, name: Strings.media)
-        _title = ReadWriteAttribute(jsObject: jsObject, name: Strings.title)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGStyleElement].function }
+    
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var media: String
-
-    @ReadWriteAttribute
-    public var title: String
+    
+    public var media: String {
+        get { jsObject[.media].fromJSValue()!}
+        set { jsObject[.media] = newValue.jsValue }
+    }
+    
+    public var title: String {
+        get { jsObject[.title].fromJSValue()!}
+        set { jsObject[.title] = newValue.jsValue }
+    }
 }
 
 public class SVGSwitchElement: SVGGraphicsElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGSwitchElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGSwitchElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGSymbolElement: SVGGraphicsElement, SVGFitToViewBox {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGSymbolElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGSymbolElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGTSpanElement: SVGTextPositioningElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGTSpanElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGTSpanElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
@@ -1632,272 +1590,260 @@ public class SVGTSpanElement: SVGTextPositioningElement {
 
 public protocol SVGTests: JSBridgedClass {}
 public extension SVGTests {
-    @inlinable var requiredExtensions: SVGStringList { jsObject[Strings.requiredExtensions].fromJSValue()! }
-
-    @inlinable var systemLanguage: SVGStringList { jsObject[Strings.systemLanguage].fromJSValue()! }
+    @inlinable var requiredExtensions: SVGStringList { jsObject[.requiredExtensions].fromJSValue()! }
+    
+    @inlinable var systemLanguage: SVGStringList { jsObject[.systemLanguage].fromJSValue()! }
 }
 
 public class SVGTextContentElement: SVGGraphicsElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGTextContentElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _textLength = ReadonlyAttribute(jsObject: jsObject, name: Strings.textLength)
-        _lengthAdjust = ReadonlyAttribute(jsObject: jsObject, name: Strings.lengthAdjust)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGTextContentElement].function }
+    
     public static let LENGTHADJUST_UNKNOWN: UInt16 = 0
-
+    
     public static let LENGTHADJUST_SPACING: UInt16 = 1
-
+    
     public static let LENGTHADJUST_SPACINGANDGLYPHS: UInt16 = 2
-
-    @ReadonlyAttribute
-    public var textLength: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var lengthAdjust: SVGAnimatedEnumeration
-
+    
+    public var textLength: SVGAnimatedLength {
+        jsObject[.textLength].fromJSValue()!
+    }
+    
+    public var lengthAdjust: SVGAnimatedEnumeration {
+        jsObject[.lengthAdjust].fromJSValue()!
+    }
+    
     @inlinable public func getNumberOfChars() -> Int32 {
         let this = jsObject
-        return this[Strings.getNumberOfChars].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getNumberOfChars].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func getComputedTextLength() -> Float {
         let this = jsObject
-        return this[Strings.getComputedTextLength].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getComputedTextLength].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func getSubStringLength(charnum: UInt32, nchars: UInt32) -> Float {
         let this = jsObject
-        return this[Strings.getSubStringLength].function!(this: this, arguments: [_toJSValue(charnum), _toJSValue(nchars)]).fromJSValue()!
+        return this[.getSubStringLength].function!(this: this, arguments: [_toJSValue(charnum), _toJSValue(nchars)]).fromJSValue()!
     }
-
+    
     @inlinable public func getStartPositionOfChar(charnum: UInt32) -> DOMPoint {
         let this = jsObject
-        return this[Strings.getStartPositionOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
+        return this[.getStartPositionOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
     }
-
+    
     @inlinable public func getEndPositionOfChar(charnum: UInt32) -> DOMPoint {
         let this = jsObject
-        return this[Strings.getEndPositionOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
+        return this[.getEndPositionOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
     }
-
+    
     @inlinable public func getExtentOfChar(charnum: UInt32) -> DOMRect {
         let this = jsObject
-        return this[Strings.getExtentOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
+        return this[.getExtentOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
     }
-
+    
     @inlinable public func getRotationOfChar(charnum: UInt32) -> Float {
         let this = jsObject
-        return this[Strings.getRotationOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
+        return this[.getRotationOfChar].function!(this: this, arguments: [_toJSValue(charnum)]).fromJSValue()!
     }
-
+    
     @inlinable public func getCharNumAtPosition(point: DOMPointInit? = nil) -> Int32 {
         let this = jsObject
-        return this[Strings.getCharNumAtPosition].function!(this: this, arguments: [_toJSValue(point)]).fromJSValue()!
+        return this[.getCharNumAtPosition].function!(this: this, arguments: [_toJSValue(point)]).fromJSValue()!
     }
-
+    
     @inlinable public func selectSubString(charnum: UInt32, nchars: UInt32) {
         let this = jsObject
-        _ = this[Strings.selectSubString].function!(this: this, arguments: [_toJSValue(charnum), _toJSValue(nchars)])
+        _ = this[.selectSubString].function!(this: this, arguments: [_toJSValue(charnum), _toJSValue(nchars)])
     }
 }
 
 public class SVGTextElement: SVGTextPositioningElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGTextElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGTextElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGTextPathElement: SVGTextContentElement, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGTextPathElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _startOffset = ReadonlyAttribute(jsObject: jsObject, name: Strings.startOffset)
-        _method = ReadonlyAttribute(jsObject: jsObject, name: Strings.method)
-        _spacing = ReadonlyAttribute(jsObject: jsObject, name: Strings.spacing)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGTextPathElement].function }
+    
     public static let TEXTPATH_METHODTYPE_UNKNOWN: UInt16 = 0
-
+    
     public static let TEXTPATH_METHODTYPE_ALIGN: UInt16 = 1
-
+    
     public static let TEXTPATH_METHODTYPE_STRETCH: UInt16 = 2
-
+    
     public static let TEXTPATH_SPACINGTYPE_UNKNOWN: UInt16 = 0
-
+    
     public static let TEXTPATH_SPACINGTYPE_AUTO: UInt16 = 1
-
+    
     public static let TEXTPATH_SPACINGTYPE_EXACT: UInt16 = 2
-
-    @ReadonlyAttribute
-    public var startOffset: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var method: SVGAnimatedEnumeration
-
-    @ReadonlyAttribute
-    public var spacing: SVGAnimatedEnumeration
+    
+    public var startOffset: SVGAnimatedLength {
+        jsObject[.startOffset].fromJSValue()!
+    }
+    
+    public var method: SVGAnimatedEnumeration {
+        jsObject[.method].fromJSValue()!
+    }
+    
+    public var spacing: SVGAnimatedEnumeration {
+        jsObject[.spacing].fromJSValue()!
+    }
 }
 
 public class SVGTextPositioningElement: SVGTextContentElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGTextPositioningElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _dx = ReadonlyAttribute(jsObject: jsObject, name: Strings.dx)
-        _dy = ReadonlyAttribute(jsObject: jsObject, name: Strings.dy)
-        _rotate = ReadonlyAttribute(jsObject: jsObject, name: Strings.rotate)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGTextPositioningElement].function }
+    
+    public var x: SVGAnimatedLengthList {
+        jsObject[.x].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLengthList
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLengthList
-
-    @ReadonlyAttribute
-    public var dx: SVGAnimatedLengthList
-
-    @ReadonlyAttribute
-    public var dy: SVGAnimatedLengthList
-
-    @ReadonlyAttribute
-    public var rotate: SVGAnimatedNumberList
+    
+    public var y: SVGAnimatedLengthList {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var dx: SVGAnimatedLengthList {
+        jsObject[.dx].fromJSValue()!
+    }
+    
+    public var dy: SVGAnimatedLengthList {
+        jsObject[.dy].fromJSValue()!
+    }
+    
+    public var rotate: SVGAnimatedNumberList {
+        jsObject[.rotate].fromJSValue()!
+    }
 }
 
 public class SVGTitleElement: SVGElement {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGTitleElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGTitleElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGTransform: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGTransform].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGTransform].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: Strings.type)
-        _matrix = ReadonlyAttribute(jsObject: jsObject, name: Strings.matrix)
-        _angle = ReadonlyAttribute(jsObject: jsObject, name: Strings.angle)
         self.jsObject = jsObject
     }
-
+    
     public static let SVG_TRANSFORM_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_TRANSFORM_MATRIX: UInt16 = 1
-
+    
     public static let SVG_TRANSFORM_TRANSLATE: UInt16 = 2
-
+    
     public static let SVG_TRANSFORM_SCALE: UInt16 = 3
-
+    
     public static let SVG_TRANSFORM_ROTATE: UInt16 = 4
-
+    
     public static let SVG_TRANSFORM_SKEWX: UInt16 = 5
-
+    
     public static let SVG_TRANSFORM_SKEWY: UInt16 = 6
-
-    @ReadonlyAttribute
-    public var type: UInt16
-
-    @ReadonlyAttribute
-    public var matrix: DOMMatrix
-
-    @ReadonlyAttribute
-    public var angle: Float
-
+    
+    public var type: UInt16 {
+        jsObject[.type].fromJSValue()!
+    }
+    
+    public var matrix: DOMMatrix {
+        jsObject[.matrix].fromJSValue()!
+    }
+    
+    public var angle: Float {
+        jsObject[.angle].fromJSValue()!
+    }
+    
     @inlinable public func setMatrix(matrix: DOMMatrix2DInit? = nil) {
         let this = jsObject
-        _ = this[Strings.setMatrix].function!(this: this, arguments: [_toJSValue(matrix)])
+        _ = this[.setMatrix].function!(this: this, arguments: [_toJSValue(matrix)])
     }
-
+    
     @inlinable public func setTranslate(tx: Float, ty: Float) {
         let this = jsObject
-        _ = this[Strings.setTranslate].function!(this: this, arguments: [_toJSValue(tx), _toJSValue(ty)])
+        _ = this[.setTranslate].function!(this: this, arguments: [_toJSValue(tx), _toJSValue(ty)])
     }
-
+    
     @inlinable public func setScale(sx: Float, sy: Float) {
         let this = jsObject
-        _ = this[Strings.setScale].function!(this: this, arguments: [_toJSValue(sx), _toJSValue(sy)])
+        _ = this[.setScale].function!(this: this, arguments: [_toJSValue(sx), _toJSValue(sy)])
     }
-
+    
     @inlinable public func setRotate(angle: Float, cx: Float, cy: Float) {
         let this = jsObject
-        _ = this[Strings.setRotate].function!(this: this, arguments: [_toJSValue(angle), _toJSValue(cx), _toJSValue(cy)])
+        _ = this[.setRotate].function!(this: this, arguments: [_toJSValue(angle), _toJSValue(cx), _toJSValue(cy)])
     }
-
+    
     @inlinable public func setSkewX(angle: Float) {
         let this = jsObject
-        _ = this[Strings.setSkewX].function!(this: this, arguments: [_toJSValue(angle)])
+        _ = this[.setSkewX].function!(this: this, arguments: [_toJSValue(angle)])
     }
-
+    
     @inlinable public func setSkewY(angle: Float) {
         let this = jsObject
-        _ = this[Strings.setSkewY].function!(this: this, arguments: [_toJSValue(angle)])
+        _ = this[.setSkewY].function!(this: this, arguments: [_toJSValue(angle)])
     }
 }
 
 public class SVGTransformList: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGTransformList].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGTransformList].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: Strings.length)
-        _numberOfItems = ReadonlyAttribute(jsObject: jsObject, name: Strings.numberOfItems)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
-    @ReadonlyAttribute
-    public var numberOfItems: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
+    public var numberOfItems: UInt32 {
+        jsObject[.numberOfItems].fromJSValue()!
+    }
+    
     @inlinable public func clear() {
         let this = jsObject
-        _ = this[Strings.clear].function!(this: this, arguments: [])
+        _ = this[.clear].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func initialize(newItem: SVGTransform) -> SVGTransform {
         let this = jsObject
-        return this[Strings.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.initialize].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public func getItem(index: UInt32) -> SVGTransform {
         let this = jsObject
-        return this[Strings.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.getItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func insertItemBefore(newItem: SVGTransform, index: UInt32) -> SVGTransform {
         let this = jsObject
-        return this[Strings.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.insertItemBefore].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func replaceItem(newItem: SVGTransform, index: UInt32) -> SVGTransform {
         let this = jsObject
-        return this[Strings.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
+        return this[.replaceItem].function!(this: this, arguments: [_toJSValue(newItem), _toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func removeItem(index: UInt32) -> SVGTransform {
         let this = jsObject
-        return this[Strings.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+        return this[.removeItem].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func appendItem(newItem: SVGTransform) -> SVGTransform {
         let this = jsObject
-        return this[Strings.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
+        return this[.appendItem].function!(this: this, arguments: [_toJSValue(newItem)]).fromJSValue()!
     }
-
+    
     @inlinable public subscript(key: Int) -> SVGTransform {
         get {
             jsObject[key].fromJSValue()!
@@ -1906,349 +1852,100 @@ public class SVGTransformList: JSBridgedClass {
             jsObject[key] = _toJSValue(newValue)
         }
     }
-
+    
     @inlinable public func createSVGTransformFromMatrix(matrix: DOMMatrix2DInit? = nil) -> SVGTransform {
         let this = jsObject
-        return this[Strings.createSVGTransformFromMatrix].function!(this: this, arguments: [_toJSValue(matrix)]).fromJSValue()!
+        return this[.createSVGTransformFromMatrix].function!(this: this, arguments: [_toJSValue(matrix)]).fromJSValue()!
     }
-
+    
     @inlinable public func consolidate() -> SVGTransform? {
         let this = jsObject
-        return this[Strings.consolidate].function!(this: this, arguments: []).fromJSValue()
+        return this[.consolidate].function!(this: this, arguments: []).fromJSValue()
     }
 }
 
 public protocol SVGURIReference: JSBridgedClass {}
 public extension SVGURIReference {
-    @inlinable var href: SVGAnimatedString { jsObject[Strings.href].fromJSValue()! }
+    @inlinable var href: SVGAnimatedString { jsObject[.href].fromJSValue()! }
 }
 
 public class SVGUnitTypes: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.SVGUnitTypes].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.SVGUnitTypes].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         self.jsObject = jsObject
     }
-
+    
     public static let SVG_UNIT_TYPE_UNKNOWN: UInt16 = 0
-
+    
     public static let SVG_UNIT_TYPE_USERSPACEONUSE: UInt16 = 1
-
+    
     public static let SVG_UNIT_TYPE_OBJECTBOUNDINGBOX: UInt16 = 2
 }
 
 public class SVGUseElement: SVGGraphicsElement, SVGURIReference {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGUseElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGUseElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadonlyAttribute(jsObject: jsObject, name: Strings.x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: Strings.y)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: Strings.width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: Strings.height)
-        _instanceRoot = ReadonlyAttribute(jsObject: jsObject, name: Strings.instanceRoot)
-        _animatedInstanceRoot = ReadonlyAttribute(jsObject: jsObject, name: Strings.animatedInstanceRoot)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var x: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var y: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var width: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var height: SVGAnimatedLength
-
-    @ReadonlyAttribute
-    public var instanceRoot: SVGElement?
-
-    @ReadonlyAttribute
-    public var animatedInstanceRoot: SVGElement?
+    
+    public var x: SVGAnimatedLength {
+        jsObject[.x].fromJSValue()!
+    }
+    
+    public var y: SVGAnimatedLength {
+        jsObject[.y].fromJSValue()!
+    }
+    
+    public var width: SVGAnimatedLength {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: SVGAnimatedLength {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var instanceRoot: SVGElement? {
+        jsObject[.instanceRoot].fromJSValue()
+    }
+    
+    public var animatedInstanceRoot: SVGElement? {
+        jsObject[.animatedInstanceRoot].fromJSValue()
+    }
 }
 
 public class SVGUseElementShadowRoot: ShadowRoot {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGUseElementShadowRoot].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGUseElementShadowRoot].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class SVGViewElement: SVGElement, SVGFitToViewBox {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.SVGViewElement].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.SVGViewElement].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
 }
 
 public class TimeEvent: Event {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.TimeEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _view = ReadonlyAttribute(jsObject: jsObject, name: Strings.view)
-        _detail = ReadonlyAttribute(jsObject: jsObject, name: Strings.detail)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.TimeEvent].function }
+    
+    public var view: WindowProxy? {
+        jsObject[.view].fromJSValue()
     }
-
-    @ReadonlyAttribute
-    public var view: WindowProxy?
-
-    @ReadonlyAttribute
-    public var detail: Int32
-
+    
+    public var detail: Int32 {
+        jsObject[.detail].fromJSValue()!
+    }
+    
     @inlinable public func initTimeEvent(typeArg: String, viewArg: Window?, detailArg: Int32) {
         let this = jsObject
-        _ = this[Strings.initTimeEvent].function!(this: this, arguments: [_toJSValue(typeArg), _toJSValue(viewArg), _toJSValue(detailArg)])
+        _ = this[.initTimeEvent].function!(this: this, arguments: [_toJSValue(typeArg), _toJSValue(viewArg), _toJSValue(detailArg)])
     }
-}
-
-@usableFromInline enum Strings {
-    @usableFromInline static let _self: JSString = "self"
-    @usableFromInline static let Object: JSString = "Object"
-    @usableFromInline static let SVGAElement: JSString = "SVGAElement"
-    @usableFromInline static let SVGAngle: JSString = "SVGAngle"
-    @usableFromInline static let SVGAnimateElement: JSString = "SVGAnimateElement"
-    @usableFromInline static let SVGAnimateMotionElement: JSString = "SVGAnimateMotionElement"
-    @usableFromInline static let SVGAnimateTransformElement: JSString = "SVGAnimateTransformElement"
-    @usableFromInline static let SVGAnimatedAngle: JSString = "SVGAnimatedAngle"
-    @usableFromInline static let SVGAnimatedBoolean: JSString = "SVGAnimatedBoolean"
-    @usableFromInline static let SVGAnimatedEnumeration: JSString = "SVGAnimatedEnumeration"
-    @usableFromInline static let SVGAnimatedInteger: JSString = "SVGAnimatedInteger"
-    @usableFromInline static let SVGAnimatedLength: JSString = "SVGAnimatedLength"
-    @usableFromInline static let SVGAnimatedLengthList: JSString = "SVGAnimatedLengthList"
-    @usableFromInline static let SVGAnimatedNumber: JSString = "SVGAnimatedNumber"
-    @usableFromInline static let SVGAnimatedNumberList: JSString = "SVGAnimatedNumberList"
-    @usableFromInline static let SVGAnimatedPreserveAspectRatio: JSString = "SVGAnimatedPreserveAspectRatio"
-    @usableFromInline static let SVGAnimatedRect: JSString = "SVGAnimatedRect"
-    @usableFromInline static let SVGAnimatedString: JSString = "SVGAnimatedString"
-    @usableFromInline static let SVGAnimatedTransformList: JSString = "SVGAnimatedTransformList"
-    @usableFromInline static let SVGAnimationElement: JSString = "SVGAnimationElement"
-    @usableFromInline static let SVGCircleElement: JSString = "SVGCircleElement"
-    @usableFromInline static let SVGClipPathElement: JSString = "SVGClipPathElement"
-    @usableFromInline static let SVGDefsElement: JSString = "SVGDefsElement"
-    @usableFromInline static let SVGDescElement: JSString = "SVGDescElement"
-    @usableFromInline static let SVGDiscardElement: JSString = "SVGDiscardElement"
-    @usableFromInline static let SVGElement: JSString = "SVGElement"
-    @usableFromInline static let SVGEllipseElement: JSString = "SVGEllipseElement"
-    @usableFromInline static let SVGForeignObjectElement: JSString = "SVGForeignObjectElement"
-    @usableFromInline static let SVGGElement: JSString = "SVGGElement"
-    @usableFromInline static let SVGGeometryElement: JSString = "SVGGeometryElement"
-    @usableFromInline static let SVGGradientElement: JSString = "SVGGradientElement"
-    @usableFromInline static let SVGGraphicsElement: JSString = "SVGGraphicsElement"
-    @usableFromInline static let SVGImageElement: JSString = "SVGImageElement"
-    @usableFromInline static let SVGLength: JSString = "SVGLength"
-    @usableFromInline static let SVGLengthList: JSString = "SVGLengthList"
-    @usableFromInline static let SVGLineElement: JSString = "SVGLineElement"
-    @usableFromInline static let SVGLinearGradientElement: JSString = "SVGLinearGradientElement"
-    @usableFromInline static let SVGMPathElement: JSString = "SVGMPathElement"
-    @usableFromInline static let SVGMarkerElement: JSString = "SVGMarkerElement"
-    @usableFromInline static let SVGMaskElement: JSString = "SVGMaskElement"
-    @usableFromInline static let SVGMetadataElement: JSString = "SVGMetadataElement"
-    @usableFromInline static let SVGNumber: JSString = "SVGNumber"
-    @usableFromInline static let SVGNumberList: JSString = "SVGNumberList"
-    @usableFromInline static let SVGPathElement: JSString = "SVGPathElement"
-    @usableFromInline static let SVGPatternElement: JSString = "SVGPatternElement"
-    @usableFromInline static let SVGPointList: JSString = "SVGPointList"
-    @usableFromInline static let SVGPolygonElement: JSString = "SVGPolygonElement"
-    @usableFromInline static let SVGPolylineElement: JSString = "SVGPolylineElement"
-    @usableFromInline static let SVGPreserveAspectRatio: JSString = "SVGPreserveAspectRatio"
-    @usableFromInline static let SVGRadialGradientElement: JSString = "SVGRadialGradientElement"
-    @usableFromInline static let SVGRectElement: JSString = "SVGRectElement"
-    @usableFromInline static let SVGSVGElement: JSString = "SVGSVGElement"
-    @usableFromInline static let SVGScriptElement: JSString = "SVGScriptElement"
-    @usableFromInline static let SVGSetElement: JSString = "SVGSetElement"
-    @usableFromInline static let SVGStopElement: JSString = "SVGStopElement"
-    @usableFromInline static let SVGStringList: JSString = "SVGStringList"
-    @usableFromInline static let SVGStyleElement: JSString = "SVGStyleElement"
-    @usableFromInline static let SVGSwitchElement: JSString = "SVGSwitchElement"
-    @usableFromInline static let SVGSymbolElement: JSString = "SVGSymbolElement"
-    @usableFromInline static let SVGTSpanElement: JSString = "SVGTSpanElement"
-    @usableFromInline static let SVGTextContentElement: JSString = "SVGTextContentElement"
-    @usableFromInline static let SVGTextElement: JSString = "SVGTextElement"
-    @usableFromInline static let SVGTextPathElement: JSString = "SVGTextPathElement"
-    @usableFromInline static let SVGTextPositioningElement: JSString = "SVGTextPositioningElement"
-    @usableFromInline static let SVGTitleElement: JSString = "SVGTitleElement"
-    @usableFromInline static let SVGTransform: JSString = "SVGTransform"
-    @usableFromInline static let SVGTransformList: JSString = "SVGTransformList"
-    @usableFromInline static let SVGUnitTypes: JSString = "SVGUnitTypes"
-    @usableFromInline static let SVGUseElement: JSString = "SVGUseElement"
-    @usableFromInline static let SVGUseElementShadowRoot: JSString = "SVGUseElementShadowRoot"
-    @usableFromInline static let SVGViewElement: JSString = "SVGViewElement"
-    @usableFromInline static let TimeEvent: JSString = "TimeEvent"
-    @usableFromInline static let align: JSString = "align"
-    @usableFromInline static let angle: JSString = "angle"
-    @usableFromInline static let animVal: JSString = "animVal"
-    @usableFromInline static let animatedInstanceRoot: JSString = "animatedInstanceRoot"
-    @usableFromInline static let animatedPoints: JSString = "animatedPoints"
-    @usableFromInline static let animationsPaused: JSString = "animationsPaused"
-    @usableFromInline static let appendItem: JSString = "appendItem"
-    @usableFromInline static let baseVal: JSString = "baseVal"
-    @usableFromInline static let beginElement: JSString = "beginElement"
-    @usableFromInline static let beginElementAt: JSString = "beginElementAt"
-    @usableFromInline static let checkEnclosure: JSString = "checkEnclosure"
-    @usableFromInline static let checkIntersection: JSString = "checkIntersection"
-    @usableFromInline static let className: JSString = "className"
-    @usableFromInline static let clear: JSString = "clear"
-    @usableFromInline static let clipPathUnits: JSString = "clipPathUnits"
-    @usableFromInline static let clipped: JSString = "clipped"
-    @usableFromInline static let consolidate: JSString = "consolidate"
-    @usableFromInline static let convertToSpecifiedUnits: JSString = "convertToSpecifiedUnits"
-    @usableFromInline static let correspondingElement: JSString = "correspondingElement"
-    @usableFromInline static let correspondingUseElement: JSString = "correspondingUseElement"
-    @usableFromInline static let createSVGAngle: JSString = "createSVGAngle"
-    @usableFromInline static let createSVGLength: JSString = "createSVGLength"
-    @usableFromInline static let createSVGMatrix: JSString = "createSVGMatrix"
-    @usableFromInline static let createSVGNumber: JSString = "createSVGNumber"
-    @usableFromInline static let createSVGPoint: JSString = "createSVGPoint"
-    @usableFromInline static let createSVGRect: JSString = "createSVGRect"
-    @usableFromInline static let createSVGTransform: JSString = "createSVGTransform"
-    @usableFromInline static let createSVGTransformFromMatrix: JSString = "createSVGTransformFromMatrix"
-    @usableFromInline static let crossOrigin: JSString = "crossOrigin"
-    @usableFromInline static let currentScale: JSString = "currentScale"
-    @usableFromInline static let currentTranslate: JSString = "currentTranslate"
-    @usableFromInline static let cx: JSString = "cx"
-    @usableFromInline static let cy: JSString = "cy"
-    @usableFromInline static let deselectAll: JSString = "deselectAll"
-    @usableFromInline static let detail: JSString = "detail"
-    @usableFromInline static let download: JSString = "download"
-    @usableFromInline static let dx: JSString = "dx"
-    @usableFromInline static let dy: JSString = "dy"
-    @usableFromInline static let endElement: JSString = "endElement"
-    @usableFromInline static let endElementAt: JSString = "endElementAt"
-    @usableFromInline static let fill: JSString = "fill"
-    @usableFromInline static let forceRedraw: JSString = "forceRedraw"
-    @usableFromInline static let fr: JSString = "fr"
-    @usableFromInline static let fx: JSString = "fx"
-    @usableFromInline static let fy: JSString = "fy"
-    @usableFromInline static let getBBox: JSString = "getBBox"
-    @usableFromInline static let getCTM: JSString = "getCTM"
-    @usableFromInline static let getCharNumAtPosition: JSString = "getCharNumAtPosition"
-    @usableFromInline static let getComputedTextLength: JSString = "getComputedTextLength"
-    @usableFromInline static let getCurrentTime: JSString = "getCurrentTime"
-    @usableFromInline static let getElementById: JSString = "getElementById"
-    @usableFromInline static let getEnclosureList: JSString = "getEnclosureList"
-    @usableFromInline static let getEndPositionOfChar: JSString = "getEndPositionOfChar"
-    @usableFromInline static let getExtentOfChar: JSString = "getExtentOfChar"
-    @usableFromInline static let getIntersectionList: JSString = "getIntersectionList"
-    @usableFromInline static let getItem: JSString = "getItem"
-    @usableFromInline static let getNumberOfChars: JSString = "getNumberOfChars"
-    @usableFromInline static let getPointAtLength: JSString = "getPointAtLength"
-    @usableFromInline static let getRotationOfChar: JSString = "getRotationOfChar"
-    @usableFromInline static let getSVGDocument: JSString = "getSVGDocument"
-    @usableFromInline static let getScreenCTM: JSString = "getScreenCTM"
-    @usableFromInline static let getSimpleDuration: JSString = "getSimpleDuration"
-    @usableFromInline static let getStartPositionOfChar: JSString = "getStartPositionOfChar"
-    @usableFromInline static let getStartTime: JSString = "getStartTime"
-    @usableFromInline static let getSubStringLength: JSString = "getSubStringLength"
-    @usableFromInline static let getTotalLength: JSString = "getTotalLength"
-    @usableFromInline static let gradientTransform: JSString = "gradientTransform"
-    @usableFromInline static let gradientUnits: JSString = "gradientUnits"
-    @usableFromInline static let hash: JSString = "hash"
-    @usableFromInline static let height: JSString = "height"
-    @usableFromInline static let host: JSString = "host"
-    @usableFromInline static let hostname: JSString = "hostname"
-    @usableFromInline static let href: JSString = "href"
-    @usableFromInline static let hreflang: JSString = "hreflang"
-    @usableFromInline static let initTimeEvent: JSString = "initTimeEvent"
-    @usableFromInline static let initialize: JSString = "initialize"
-    @usableFromInline static let insertItemBefore: JSString = "insertItemBefore"
-    @usableFromInline static let instanceRoot: JSString = "instanceRoot"
-    @usableFromInline static let isPointInFill: JSString = "isPointInFill"
-    @usableFromInline static let isPointInStroke: JSString = "isPointInStroke"
-    @usableFromInline static let length: JSString = "length"
-    @usableFromInline static let lengthAdjust: JSString = "lengthAdjust"
-    @usableFromInline static let markerHeight: JSString = "markerHeight"
-    @usableFromInline static let markerUnits: JSString = "markerUnits"
-    @usableFromInline static let markerWidth: JSString = "markerWidth"
-    @usableFromInline static let markers: JSString = "markers"
-    @usableFromInline static let maskContentUnits: JSString = "maskContentUnits"
-    @usableFromInline static let maskUnits: JSString = "maskUnits"
-    @usableFromInline static let matrix: JSString = "matrix"
-    @usableFromInline static let media: JSString = "media"
-    @usableFromInline static let meetOrSlice: JSString = "meetOrSlice"
-    @usableFromInline static let method: JSString = "method"
-    @usableFromInline static let newValueSpecifiedUnits: JSString = "newValueSpecifiedUnits"
-    @usableFromInline static let numberOfItems: JSString = "numberOfItems"
-    @usableFromInline static let offset: JSString = "offset"
-    @usableFromInline static let onbegin: JSString = "onbegin"
-    @usableFromInline static let onend: JSString = "onend"
-    @usableFromInline static let onrepeat: JSString = "onrepeat"
-    @usableFromInline static let orient: JSString = "orient"
-    @usableFromInline static let orientAngle: JSString = "orientAngle"
-    @usableFromInline static let orientType: JSString = "orientType"
-    @usableFromInline static let origin: JSString = "origin"
-    @usableFromInline static let ownerSVGElement: JSString = "ownerSVGElement"
-    @usableFromInline static let password: JSString = "password"
-    @usableFromInline static let pathLength: JSString = "pathLength"
-    @usableFromInline static let pathname: JSString = "pathname"
-    @usableFromInline static let patternContentUnits: JSString = "patternContentUnits"
-    @usableFromInline static let patternTransform: JSString = "patternTransform"
-    @usableFromInline static let patternUnits: JSString = "patternUnits"
-    @usableFromInline static let pauseAnimations: JSString = "pauseAnimations"
-    @usableFromInline static let ping: JSString = "ping"
-    @usableFromInline static let points: JSString = "points"
-    @usableFromInline static let port: JSString = "port"
-    @usableFromInline static let preserveAspectRatio: JSString = "preserveAspectRatio"
-    @usableFromInline static let `protocol`: JSString = "protocol"
-    @usableFromInline static let r: JSString = "r"
-    @usableFromInline static let refX: JSString = "refX"
-    @usableFromInline static let refY: JSString = "refY"
-    @usableFromInline static let referrerPolicy: JSString = "referrerPolicy"
-    @usableFromInline static let rel: JSString = "rel"
-    @usableFromInline static let relList: JSString = "relList"
-    @usableFromInline static let removeItem: JSString = "removeItem"
-    @usableFromInline static let replaceItem: JSString = "replaceItem"
-    @usableFromInline static let requiredExtensions: JSString = "requiredExtensions"
-    @usableFromInline static let rotate: JSString = "rotate"
-    @usableFromInline static let rx: JSString = "rx"
-    @usableFromInline static let ry: JSString = "ry"
-    @usableFromInline static let search: JSString = "search"
-    @usableFromInline static let selectSubString: JSString = "selectSubString"
-    @usableFromInline static let setCurrentTime: JSString = "setCurrentTime"
-    @usableFromInline static let setMatrix: JSString = "setMatrix"
-    @usableFromInline static let setOrientToAngle: JSString = "setOrientToAngle"
-    @usableFromInline static let setOrientToAuto: JSString = "setOrientToAuto"
-    @usableFromInline static let setRotate: JSString = "setRotate"
-    @usableFromInline static let setScale: JSString = "setScale"
-    @usableFromInline static let setSkewX: JSString = "setSkewX"
-    @usableFromInline static let setSkewY: JSString = "setSkewY"
-    @usableFromInline static let setTranslate: JSString = "setTranslate"
-    @usableFromInline static let spacing: JSString = "spacing"
-    @usableFromInline static let spreadMethod: JSString = "spreadMethod"
-    @usableFromInline static let startOffset: JSString = "startOffset"
-    @usableFromInline static let stroke: JSString = "stroke"
-    @usableFromInline static let suspendRedraw: JSString = "suspendRedraw"
-    @usableFromInline static let systemLanguage: JSString = "systemLanguage"
-    @usableFromInline static let target: JSString = "target"
-    @usableFromInline static let targetElement: JSString = "targetElement"
-    @usableFromInline static let text: JSString = "text"
-    @usableFromInline static let textLength: JSString = "textLength"
-    @usableFromInline static let title: JSString = "title"
-    @usableFromInline static let toString: JSString = "toString"
-    @usableFromInline static let transform: JSString = "transform"
-    @usableFromInline static let type: JSString = "type"
-    @usableFromInline static let unitType: JSString = "unitType"
-    @usableFromInline static let unpauseAnimations: JSString = "unpauseAnimations"
-    @usableFromInline static let unsuspendRedraw: JSString = "unsuspendRedraw"
-    @usableFromInline static let unsuspendRedrawAll: JSString = "unsuspendRedrawAll"
-    @usableFromInline static let username: JSString = "username"
-    @usableFromInline static let value: JSString = "value"
-    @usableFromInline static let valueAsString: JSString = "valueAsString"
-    @usableFromInline static let valueInSpecifiedUnits: JSString = "valueInSpecifiedUnits"
-    @usableFromInline static let view: JSString = "view"
-    @usableFromInline static let viewBox: JSString = "viewBox"
-    @usableFromInline static let viewportElement: JSString = "viewportElement"
-    @usableFromInline static let width: JSString = "width"
-    @usableFromInline static let x: JSString = "x"
-    @usableFromInline static let x1: JSString = "x1"
-    @usableFromInline static let x2: JSString = "x2"
-    @usableFromInline static let y: JSString = "y"
-    @usableFromInline static let y1: JSString = "y1"
-    @usableFromInline static let y2: JSString = "y2"
 }

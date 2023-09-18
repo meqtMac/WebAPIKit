@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by 蒋艺 on 2023/9/14.
 //
@@ -13,21 +13,21 @@ import WebAPIBase
 
 public class ImageBitmap: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ImageBitmap].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _width = ReadonlyAttribute(jsObject: jsObject, name: .width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: .height)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var width: UInt32
-
-    @ReadonlyAttribute
-    public var height: UInt32
-
+    
+    public var width: UInt32 {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: UInt32 {
+        jsObject[.height].fromJSValue()!
+    }
+    
     @inlinable public func close() {
         let this = jsObject
         _ = this[.close].function!(this: this, arguments: [])
@@ -45,49 +45,51 @@ public class ImageBitmapOptions: BridgedDictionary {
         object[.resizeQuality] = _toJSValue(resizeQuality)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _imageOrientation = ReadWriteAttribute(jsObject: object, name: .imageOrientation)
-        _premultiplyAlpha = ReadWriteAttribute(jsObject: object, name: .premultiplyAlpha)
-        _colorSpaceConversion = ReadWriteAttribute(jsObject: object, name: .colorSpaceConversion)
-        _resizeWidth = ReadWriteAttribute(jsObject: object, name: .resizeWidth)
-        _resizeHeight = ReadWriteAttribute(jsObject: object, name: .resizeHeight)
-        _resizeQuality = ReadWriteAttribute(jsObject: object, name: .resizeQuality)
-        super.init(unsafelyWrapping: object)
+    
+    public var imageOrientation: ImageOrientation {
+        get { jsObject[.imageOrientation].fromJSValue()!}
+        set { jsObject[.imageOrientation] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var imageOrientation: ImageOrientation
-
-    @ReadWriteAttribute
-    public var premultiplyAlpha: PremultiplyAlpha
-
-    @ReadWriteAttribute
-    public var colorSpaceConversion: ColorSpaceConversion
-
-    @ReadWriteAttribute
-    public var resizeWidth: UInt32
-
-    @ReadWriteAttribute
-    public var resizeHeight: UInt32
-
-    @ReadWriteAttribute
-    public var resizeQuality: ResizeQuality
+    
+    public var premultiplyAlpha: PremultiplyAlpha {
+        get { jsObject[.premultiplyAlpha].fromJSValue()!}
+        set { jsObject[.premultiplyAlpha] = newValue.jsValue }
+    }
+    
+    public var colorSpaceConversion: ColorSpaceConversion {
+        get { jsObject[.colorSpaceConversion].fromJSValue()!}
+        set { jsObject[.colorSpaceConversion] = newValue.jsValue }
+    }
+    
+    public var resizeWidth: UInt32 {
+        get { jsObject[.resizeWidth].fromJSValue()!}
+        set { jsObject[.resizeWidth] = newValue.jsValue }
+    }
+    
+    public var resizeHeight: UInt32 {
+        get { jsObject[.resizeHeight].fromJSValue()!}
+        set { jsObject[.resizeHeight] = newValue.jsValue }
+    }
+    
+    public var resizeQuality: ResizeQuality {
+        get { jsObject[.resizeQuality].fromJSValue()!}
+        set { jsObject[.resizeQuality] = newValue.jsValue }
+    }
 }
 
 public class ImageBitmapRenderingContext: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ImageBitmapRenderingContext].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _canvas = ReadonlyAttribute(jsObject: jsObject, name: .canvas)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var canvas: RenderingCanvas
-
+    
+    public var canvas: RenderingCanvas {
+        jsObject[.canvas].fromJSValue()!
+    }
+    
     @inlinable public func transferFromImageBitmap(bitmap: ImageBitmap?) {
         let this = jsObject
         _ = this[.transferFromImageBitmap].function!(this: this, arguments: [_toJSValue(bitmap)])
@@ -100,48 +102,45 @@ public class ImageBitmapRenderingContextSettings: BridgedDictionary {
         object[.alpha] = _toJSValue(alpha)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _alpha = ReadWriteAttribute(jsObject: object, name: .alpha)
-        super.init(unsafelyWrapping: object)
+    
+    public var alpha: Bool {
+        get { jsObject[.alpha].fromJSValue()!}
+        set { jsObject[.alpha] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var alpha: Bool
 }
 
 public class ImageData: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ImageData].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _width = ReadonlyAttribute(jsObject: jsObject, name: .width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: .height)
-        _data = ReadonlyAttribute(jsObject: jsObject, name: .data)
-        _colorSpace = ReadonlyAttribute(jsObject: jsObject, name: .colorSpace)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(sw: UInt32, sh: UInt32, settings: ImageDataSettings? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(sw), _toJSValue(sh), _toJSValue(settings)]))
     }
-
+    
     @inlinable public convenience init(data: Uint8ClampedArray, sw: UInt32, sh: UInt32? = nil, settings: ImageDataSettings? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(data), _toJSValue(sw), _toJSValue(sh), _toJSValue(settings)]))
     }
-
-    @ReadonlyAttribute
-    public var width: UInt32
-
-    @ReadonlyAttribute
-    public var height: UInt32
-
-    @ReadonlyAttribute
-    public var data: Uint8ClampedArray
-
-    @ReadonlyAttribute
-    public var colorSpace: PredefinedColorSpace
+    
+    public var width: UInt32 {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: UInt32 {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var data: Uint8ClampedArray {
+        jsObject[.data].fromJSValue()!
+    }
+    
+    public var colorSpace: PredefinedColorSpace {
+        jsObject[.colorSpace].fromJSValue()!
+    }
 }
 
 public class ImageDataSettings: BridgedDictionary {
@@ -150,14 +149,10 @@ public class ImageDataSettings: BridgedDictionary {
         object[.colorSpace] = _toJSValue(colorSpace)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _colorSpace = ReadWriteAttribute(jsObject: object, name: .colorSpace)
-        super.init(unsafelyWrapping: object)
+    public var colorSpace: PredefinedColorSpace {
+        get { jsObject[.colorSpace].fromJSValue()!}
+        set { jsObject[.colorSpace] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var colorSpace: PredefinedColorSpace
 }
 
 public class ImageDecodeOptions: BridgedDictionary {
@@ -167,18 +162,16 @@ public class ImageDecodeOptions: BridgedDictionary {
         object[.completeFramesOnly] = _toJSValue(completeFramesOnly)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _frameIndex = ReadWriteAttribute(jsObject: object, name: .frameIndex)
-        _completeFramesOnly = ReadWriteAttribute(jsObject: object, name: .completeFramesOnly)
-        super.init(unsafelyWrapping: object)
+    
+    public var frameIndex: UInt32 {
+        get { jsObject[.frameIndex].fromJSValue()!}
+        set { jsObject[.frameIndex] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var frameIndex: UInt32
-
-    @ReadWriteAttribute
-    public var completeFramesOnly: Bool
+    
+    public var completeFramesOnly: Bool {
+        get { jsObject[.completeFramesOnly].fromJSValue()!}
+        set { jsObject[.completeFramesOnly] = newValue.jsValue }
+    }
 }
 
 public class ImageDecodeResult: BridgedDictionary {
@@ -188,76 +181,74 @@ public class ImageDecodeResult: BridgedDictionary {
         object[.complete] = _toJSValue(complete)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _image = ReadWriteAttribute(jsObject: object, name: .image)
-        _complete = ReadWriteAttribute(jsObject: object, name: .complete)
-        super.init(unsafelyWrapping: object)
+    
+    public var image: VideoFrame {
+        get { jsObject[.image].fromJSValue()!}
+        set { jsObject[.image] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var image: VideoFrame
-
-    @ReadWriteAttribute
-    public var complete: Bool
+    
+    public var complete: Bool {
+        get { jsObject[.complete].fromJSValue()!}
+        set { jsObject[.complete] = newValue.jsValue }
+    }
 }
 
 public class ImageDecoder: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ImageDecoder].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _complete = ReadonlyAttribute(jsObject: jsObject, name: .complete)
-        _completed = ReadonlyAttribute(jsObject: jsObject, name: .completed)
-        _tracks = ReadonlyAttribute(jsObject: jsObject, name: .tracks)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(init: ImageDecoderInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var type: String
-
-    @ReadonlyAttribute
-    public var complete: Bool
-
-    @ReadonlyAttribute
-    public var completed: JSPromise
-
-    @ReadonlyAttribute
-    public var tracks: ImageTrackList
-
+    
+    public var type: String {
+        jsObject[.type].fromJSValue()!
+    }
+    
+    public var complete: Bool {
+        jsObject[.complete].fromJSValue()!
+    }
+    
+    public var completed: JSPromise {
+        jsObject[.completed].fromJSValue()!
+    }
+    
+    public var tracks: ImageTrackList {
+        jsObject[.tracks].fromJSValue()!
+    }
+    
     @inlinable public func decode(options: ImageDecodeOptions? = nil) -> JSPromise {
         let this = jsObject
         return this[.decode].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func decode(options: ImageDecodeOptions? = nil) async throws -> ImageDecodeResult {
         let this = jsObject
         let _promise: JSPromise = this[.decode].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func reset() {
         let this = jsObject
         _ = this[.reset].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func close() {
         let this = jsObject
         _ = this[.close].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public class func isTypeSupported(type: String) -> JSPromise {
         let this = constructor!
         return this[.isTypeSupported].function!(this: this, arguments: [_toJSValue(type)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public class func isTypeSupported(type: String) async throws -> Bool {
         let this = constructor!
@@ -278,44 +269,47 @@ public class ImageDecoderInit: BridgedDictionary {
         object[.transfer] = _toJSValue(transfer)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _data = ReadWriteAttribute(jsObject: object, name: .data)
-        _colorSpaceConversion = ReadWriteAttribute(jsObject: object, name: .colorSpaceConversion)
-        _desiredWidth = ReadWriteAttribute(jsObject: object, name: .desiredWidth)
-        _desiredHeight = ReadWriteAttribute(jsObject: object, name: .desiredHeight)
-        _preferAnimation = ReadWriteAttribute(jsObject: object, name: .preferAnimation)
-        _transfer = ReadWriteAttribute(jsObject: object, name: .transfer)
-        super.init(unsafelyWrapping: object)
+    
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var data: ImageBufferSource
-
-    @ReadWriteAttribute
-    public var colorSpaceConversion: ColorSpaceConversion
-
-    @ReadWriteAttribute
-    public var desiredWidth: UInt32
-
-    @ReadWriteAttribute
-    public var desiredHeight: UInt32
-
-    @ReadWriteAttribute
-    public var preferAnimation: Bool
-
-    @ReadWriteAttribute
-    public var transfer: [ArrayBuffer]
+    
+    public var data: ImageBufferSource {
+        get { jsObject[.data].fromJSValue()!}
+        set { jsObject[.data] = newValue.jsValue }
+    }
+    
+    public var colorSpaceConversion: ColorSpaceConversion {
+        get { jsObject[.colorSpaceConversion].fromJSValue()!}
+        set { jsObject[.colorSpaceConversion] = newValue.jsValue }
+    }
+    
+    public var desiredWidth: UInt32 {
+        get { jsObject[.desiredWidth].fromJSValue()!}
+        set { jsObject[.desiredWidth] = newValue.jsValue }
+    }
+    
+    public var desiredHeight: UInt32 {
+        get { jsObject[.desiredHeight].fromJSValue()!}
+        set { jsObject[.desiredHeight] = newValue.jsValue }
+    }
+    
+    public var preferAnimation: Bool {
+        get { jsObject[.preferAnimation].fromJSValue()!}
+        set { jsObject[.preferAnimation] = newValue.jsValue }
+    }
+    
+    public var transfer: [ArrayBuffer] {
+        get { jsObject[.transfer].fromJSValue()!}
+        set { jsObject[.transfer] = newValue.jsValue }
+    }
 }
 
 public enum ImageBufferSource: JSValueCompatible {
     case bufferSource(BufferSource)
     case readableStream(ReadableStream)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let bufferSource: BufferSource = value.fromJSValue() {
             return .bufferSource(bufferSource)
@@ -325,7 +319,7 @@ public enum ImageBufferSource: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .bufferSource(bufferSource):
@@ -343,35 +337,33 @@ public class ImageEncodeOptions: BridgedDictionary {
         object[.quality] = _toJSValue(quality)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _quality = ReadWriteAttribute(jsObject: object, name: .quality)
-        super.init(unsafelyWrapping: object)
+    
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var quality: Double
+    
+    public var quality: Double {
+        get { jsObject[.quality].fromJSValue()!}
+        set { jsObject[.quality] = newValue.jsValue }
+    }
 }
 
 public enum ImageOrientation: JSString, JSValueCompatible {
     case fromImage = "from-image"
     case flipY = "flipY"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -379,74 +371,75 @@ public enum ImageSmoothingQuality: JSString, JSValueCompatible {
     case low = "low"
     case medium = "medium"
     case high = "high"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class ImageTrack: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ImageTrack].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _animated = ReadonlyAttribute(jsObject: jsObject, name: .animated)
-        _frameCount = ReadonlyAttribute(jsObject: jsObject, name: .frameCount)
-        _repetitionCount = ReadonlyAttribute(jsObject: jsObject, name: .repetitionCount)
-        _selected = ReadWriteAttribute(jsObject: jsObject, name: .selected)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var animated: Bool
-
-    @ReadonlyAttribute
-    public var frameCount: UInt32
-
-    @ReadonlyAttribute
-    public var repetitionCount: Float
-
-    @ReadWriteAttribute
-    public var selected: Bool
+    
+    public var animated: Bool {
+        jsObject[.animated].fromJSValue()!
+    }
+    
+    public var frameCount: UInt32 {
+        jsObject[.frameCount].fromJSValue()!
+    }
+    
+    public var repetitionCount: Float {
+        jsObject[.repetitionCount].fromJSValue()!
+    }
+    
+    public var selected: Bool {
+        get { jsObject[.selected].fromJSValue()!}
+        set { jsObject[.selected] = newValue.jsValue }
+    }
 }
 
 public class ImageTrackList: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.ImageTrackList].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _ready = ReadonlyAttribute(jsObject: jsObject, name: .ready)
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
-        _selectedIndex = ReadonlyAttribute(jsObject: jsObject, name: .selectedIndex)
-        _selectedTrack = ReadonlyAttribute(jsObject: jsObject, name: .selectedTrack)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public subscript(key: Int) -> ImageTrack {
         jsObject[key].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var ready: JSPromise
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
-    @ReadonlyAttribute
-    public var selectedIndex: Int32
-
-    @ReadonlyAttribute
-    public var selectedTrack: ImageTrack?
+    
+    public var ready: JSPromise {
+        jsObject[.ready].fromJSValue()!
+    }
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
+    public var selectedIndex: Int32 {
+        jsObject[.selectedIndex].fromJSValue()!
+    }
+    
+    public var selectedTrack: ImageTrack? {
+        jsObject[.selectedTrack].fromJSValue()
+    }
 }
 

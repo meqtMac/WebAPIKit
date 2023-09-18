@@ -15,15 +15,8 @@ import WebAPIBase
 public class HTMLHtmlElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLHtmlElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _version = ReadWriteAttribute(jsObject: jsObject, name: .version)
-        super.init(unsafelyWrapping: jsObject)
+    public var version: String {
+        get { jsObject[.version].fromJSValue()!}
+        set { jsObject[.version] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var version: String
 }

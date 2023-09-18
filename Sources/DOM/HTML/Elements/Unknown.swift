@@ -13,8 +13,4 @@ import WebAPIBase
 
 public class HTMLUnknownElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLUnknownElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        super.init(unsafelyWrapping: jsObject)
-    }
 }

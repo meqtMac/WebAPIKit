@@ -15,8 +15,4 @@ import WebAPIBase
 
 public class MathMLElement: Element, GlobalEventHandlers, HTMLOrSVGElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.MathMLElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        super.init(unsafelyWrapping: jsObject)
-    }
 }

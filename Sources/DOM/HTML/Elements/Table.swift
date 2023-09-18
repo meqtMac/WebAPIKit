@@ -15,267 +15,252 @@ import WebAPIBase
 public class HTMLTableCaptionElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableCaptionElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        super.init(unsafelyWrapping: jsObject)
+    public var align: String {
+        get { jsObject[.align].fromJSValue()! }
+        set { jsObject[.align] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var align: String
 }
 
 public class HTMLTableCellElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableCellElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _colSpan = ReadWriteAttribute(jsObject: jsObject, name: .colSpan)
-        _rowSpan = ReadWriteAttribute(jsObject: jsObject, name: .rowSpan)
-        _headers = ReadWriteAttribute(jsObject: jsObject, name: .headers)
-        _cellIndex = ReadonlyAttribute(jsObject: jsObject, name: .cellIndex)
-        _scope = ReadWriteAttribute(jsObject: jsObject, name: .scope)
-        _abbr = ReadWriteAttribute(jsObject: jsObject, name: .abbr)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _axis = ReadWriteAttribute(jsObject: jsObject, name: .axis)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _ch = ReadWriteAttribute(jsObject: jsObject, name: .ch)
-        _chOff = ReadWriteAttribute(jsObject: jsObject, name: .chOff)
-        _noWrap = ReadWriteAttribute(jsObject: jsObject, name: .noWrap)
-        _vAlign = ReadWriteAttribute(jsObject: jsObject, name: .vAlign)
-        _bgColor = ReadWriteAttribute(jsObject: jsObject, name: .bgColor)
-        super.init(unsafelyWrapping: jsObject)
+    public var colSpan: UInt32 {
+        get { jsObject[.colSpan].fromJSValue()!}
+        set { jsObject[.colSpan] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var rowSpan: UInt32 {
+        get { jsObject[.rowSpan].fromJSValue()!}
+        set { jsObject[.rowSpan] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var colSpan: UInt32
+    public var headers: String {
+        get { jsObject[.headers].fromJSValue()!}
+        set { jsObject[.headers] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var rowSpan: UInt32
+    public var cellIndex: Int32 {
+        jsObject[.cellIndex].fromJSValue()!
+ 
+    }
 
-    @ReadWriteAttribute
-    public var headers: String
+    public var scope: String {
+        get { jsObject[.scope].fromJSValue()!}
+        set { jsObject[.scope] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var cellIndex: Int32
+    public var abbr: String {
+        get { jsObject[.abbr].fromJSValue()!}
+        set { jsObject[.abbr] = newValue.jsValue }
+ 
+    }
 
-    @ReadWriteAttribute
-    public var scope: String
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var abbr: String
+    public var axis: String {
+        get { jsObject[.axis].fromJSValue()!}
+        set { jsObject[.axis] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var align: String
+    public var height: String {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var axis: String
+    public var width: String {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var height: String
+    public var ch: String {
+        get { jsObject[.ch].fromJSValue()!}
+        set { jsObject[.ch] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var width: String
+    public var chOff: String {
+        get { jsObject[.chOff].fromJSValue()!}
+        set { jsObject[.chOff] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var ch: String
+    public var noWrap: Bool {
+        get { jsObject[.noWrap].fromJSValue()!}
+        set { jsObject[.noWrap] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var chOff: String
+    public var vAlign: String {
+        get { jsObject[.vAlign].fromJSValue()!}
+        set { jsObject[.vAlign] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var noWrap: Bool
-
-    @ReadWriteAttribute
-    public var vAlign: String
-
-    @ReadWriteAttribute
-    public var bgColor: String
+    public var bgColor: String {
+        get { jsObject[.bgColor].fromJSValue()!}
+        set { jsObject[.bgColor] = newValue.jsValue }
+    }
 }
 
 public class HTMLTableColElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableColElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _span = ReadWriteAttribute(jsObject: jsObject, name: .span)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _ch = ReadWriteAttribute(jsObject: jsObject, name: .ch)
-        _chOff = ReadWriteAttribute(jsObject: jsObject, name: .chOff)
-        _vAlign = ReadWriteAttribute(jsObject: jsObject, name: .vAlign)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        super.init(unsafelyWrapping: jsObject)
+    public var span: UInt32 {
+        get { jsObject[.span].fromJSValue()!}
+        set { jsObject[.span] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var span: UInt32
+    public var ch: String {
+        get { jsObject[.ch].fromJSValue()!}
+        set { jsObject[.ch] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var align: String
+    public var chOff: String {
+        get { jsObject[.chOff].fromJSValue()!}
+        set { jsObject[.chOff] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var ch: String
+    public var vAlign: String {
+        get { jsObject[.vAlign].fromJSValue()!}
+        set { jsObject[.vAlign] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var chOff: String
-
-    @ReadWriteAttribute
-    public var vAlign: String
-
-    @ReadWriteAttribute
-    public var width: String
+    public var width: String {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
 }
 
 public class HTMLTableElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _caption = ReadWriteAttribute(jsObject: jsObject, name: .caption)
-        _tHead = ReadWriteAttribute(jsObject: jsObject, name: .tHead)
-        _tFoot = ReadWriteAttribute(jsObject: jsObject, name: .tFoot)
-        _tBodies = ReadonlyAttribute(jsObject: jsObject, name: .tBodies)
-        _rows = ReadonlyAttribute(jsObject: jsObject, name: .rows)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _border = ReadWriteAttribute(jsObject: jsObject, name: .border)
-        _frame = ReadWriteAttribute(jsObject: jsObject, name: .frame)
-        _rules = ReadWriteAttribute(jsObject: jsObject, name: .rules)
-        _summary = ReadWriteAttribute(jsObject: jsObject, name: .summary)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _bgColor = ReadWriteAttribute(jsObject: jsObject, name: .bgColor)
-        _cellPadding = ReadWriteAttribute(jsObject: jsObject, name: .cellPadding)
-        _cellSpacing = ReadWriteAttribute(jsObject: jsObject, name: .cellSpacing)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var caption: HTMLTableCaptionElement? {
+        get { jsObject[.caption].fromJSValue() }
+        set { jsObject[.caption] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var caption: HTMLTableCaptionElement?
-
+    
     @inlinable public func createCaption() -> HTMLTableCaptionElement {
         let this = jsObject
         return this[.createCaption].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func deleteCaption() {
         let this = jsObject
         _ = this[.deleteCaption].function!(this: this, arguments: [])
     }
-
-    @ReadWriteAttribute
-    public var tHead: HTMLTableSectionElement?
-
+    
+    public var tHead: HTMLTableSectionElement? {
+        get { jsObject[.tHead].fromJSValue()}
+        set { jsObject[.tHead] = newValue.jsValue }
+    }
+    
     @inlinable public func createTHead() -> HTMLTableSectionElement {
         let this = jsObject
         return this[.createTHead].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func deleteTHead() {
         let this = jsObject
         _ = this[.deleteTHead].function!(this: this, arguments: [])
     }
-
-    @ReadWriteAttribute
-    public var tFoot: HTMLTableSectionElement?
-
+    
+    public var tFoot: HTMLTableSectionElement? {
+        get { jsObject[.tFoot].fromJSValue()}
+        set { jsObject[.tFoot] = newValue.jsValue }
+    }
+    
     @inlinable public func createTFoot() -> HTMLTableSectionElement {
         let this = jsObject
         return this[.createTFoot].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func deleteTFoot() {
         let this = jsObject
         _ = this[.deleteTFoot].function!(this: this, arguments: [])
     }
-
-    @ReadonlyAttribute
-    public var tBodies: HTMLCollection
-
+    
+    public var tBodies: HTMLCollection {
+        jsObject[.tBodies].fromJSValue()!
+    }
+    
     @inlinable public func createTBody() -> HTMLTableSectionElement {
         let this = jsObject
         return this[.createTBody].function!(this: this, arguments: []).fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var rows: HTMLCollection
-
+    
+    public var rows: HTMLCollection {
+        jsObject[.rows].fromJSValue()!
+    }
+    
     @inlinable public func insertRow(index: Int32? = nil) -> HTMLTableRowElement {
         let this = jsObject
         return this[.insertRow].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
     }
-
+    
     @inlinable public func deleteRow(index: Int32) {
         let this = jsObject
         _ = this[.deleteRow].function!(this: this, arguments: [_toJSValue(index)])
     }
-
-    @ReadWriteAttribute
-    public var align: String
-
-    @ReadWriteAttribute
-    public var border: String
-
-    @ReadWriteAttribute
-    public var frame: String
-
-    @ReadWriteAttribute
-    public var rules: String
-
-    @ReadWriteAttribute
-    public var summary: String
-
-    @ReadWriteAttribute
-    public var width: String
-
-    @ReadWriteAttribute
-    public var bgColor: String
-
-    @ReadWriteAttribute
-    public var cellPadding: String
-
-    @ReadWriteAttribute
-    public var cellSpacing: String
+    
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
+    
+    public var border: String {
+        get { jsObject[.border].fromJSValue()!}
+        set { jsObject[.border] = newValue.jsValue }
+    }
+    public var frame: String {
+        get { jsObject[.frame].fromJSValue()!}
+        set { jsObject[.frame] = newValue.jsValue }
+    }
+    public var rules: String {
+        get { jsObject[.rules].fromJSValue()!}
+        set { jsObject[.rules] = newValue.jsValue }
+    }
+    
+    public var summary: String {
+        get { jsObject[.summary].fromJSValue()!}
+        set { jsObject[.summary] = newValue.jsValue }
+    }
+    public var width: String {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
+    public var bgColor: String {
+        get { jsObject[.bgColor].fromJSValue()!}
+        set { jsObject[.bgColor] = newValue.jsValue }
+    }
+    public var cellPadding: String {
+        get { jsObject[.cellPadding].fromJSValue()!}
+        set { jsObject[.cellPadding] = newValue.jsValue }
+    }
+    public var cellSpacing: String {
+        get { jsObject[.cellSpacing].fromJSValue()!}
+        set { jsObject[.cellSpacing] = newValue.jsValue }
+    }
 }
+
 
 public class HTMLTableRowElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableRowElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _rowIndex = ReadonlyAttribute(jsObject: jsObject, name: .rowIndex)
-        _sectionRowIndex = ReadonlyAttribute(jsObject: jsObject, name: .sectionRowIndex)
-        _cells = ReadonlyAttribute(jsObject: jsObject, name: .cells)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _ch = ReadWriteAttribute(jsObject: jsObject, name: .ch)
-        _chOff = ReadWriteAttribute(jsObject: jsObject, name: .chOff)
-        _vAlign = ReadWriteAttribute(jsObject: jsObject, name: .vAlign)
-        _bgColor = ReadWriteAttribute(jsObject: jsObject, name: .bgColor)
-        super.init(unsafelyWrapping: jsObject)
+    public var rowIndex: Int32 {
+        jsObject[.rowIndex].fromJSValue()!
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var sectionRowIndex: Int32 {
+        jsObject[.sectionRowIndex].fromJSValue()!
     }
-
-    @ReadonlyAttribute
-    public var rowIndex: Int32
-
-    @ReadonlyAttribute
-    public var sectionRowIndex: Int32
-
-    @ReadonlyAttribute
-    public var cells: HTMLCollection
+    
+    public var cells: HTMLCollection {
+        jsObject[.cells].fromJSValue()!
+    }
 
     @inlinable public func insertCell(index: Int32? = nil) -> HTMLTableCellElement {
         let this = jsObject
@@ -287,40 +272,38 @@ public class HTMLTableRowElement: HTMLElement {
         _ = this[.deleteCell].function!(this: this, arguments: [_toJSValue(index)])
     }
 
-    @ReadWriteAttribute
-    public var align: String
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var ch: String
+    public var ch: String {
+        get { jsObject[.ch].fromJSValue()!}
+        set { jsObject[.ch] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var chOff: String
+    public var chOff: String {
+        get { jsObject[.chOff].fromJSValue()!}
+        set { jsObject[.chOff] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var vAlign: String
+    public var vAlign: String {
+        get { jsObject[.vAlign].fromJSValue()!}
+        set { jsObject[.vAlign] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var bgColor: String
+    public var bgColor: String {
+        get { jsObject[.bgColor].fromJSValue()!}
+        set { jsObject[.bgColor] = newValue.jsValue }
+    }
 }
 
 public class HTMLTableSectionElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableSectionElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _rows = ReadonlyAttribute(jsObject: jsObject, name: .rows)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _ch = ReadWriteAttribute(jsObject: jsObject, name: .ch)
-        _chOff = ReadWriteAttribute(jsObject: jsObject, name: .chOff)
-        _vAlign = ReadWriteAttribute(jsObject: jsObject, name: .vAlign)
-        super.init(unsafelyWrapping: jsObject)
+    public var rows: HTMLCollection {
+        jsObject[.rows].fromJSValue()!
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadonlyAttribute
-    public var rows: HTMLCollection
 
     @inlinable public func insertRow(index: Int32? = nil) -> HTMLTableRowElement {
         let this = jsObject
@@ -332,15 +315,24 @@ public class HTMLTableSectionElement: HTMLElement {
         _ = this[.deleteRow].function!(this: this, arguments: [_toJSValue(index)])
     }
 
-    @ReadWriteAttribute
-    public var align: String
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var ch: String
+    public var ch: String {
+        get { jsObject[.ch].fromJSValue()!}
+        set { jsObject[.ch] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var chOff: String
+    public var chOff: String {
+        get { jsObject[.chOff].fromJSValue()!}
+        set { jsObject[.chOff] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var vAlign: String
+    public var vAlign: String {
+        get { jsObject[.vAlign].fromJSValue()!}
+        set { jsObject[.vAlign] = newValue.jsValue }
+ 
+    }
 }

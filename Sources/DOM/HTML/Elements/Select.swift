@@ -15,60 +15,52 @@ import WebAPIBase
 public class HTMLSelectElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLSelectElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _autocomplete = ReadWriteAttribute(jsObject: jsObject, name: .autocomplete)
-        _disabled = ReadWriteAttribute(jsObject: jsObject, name: .disabled)
-        _form = ReadonlyAttribute(jsObject: jsObject, name: .form)
-        _multiple = ReadWriteAttribute(jsObject: jsObject, name: .multiple)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _required = ReadWriteAttribute(jsObject: jsObject, name: .required)
-        _size = ReadWriteAttribute(jsObject: jsObject, name: .size)
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _options = ReadonlyAttribute(jsObject: jsObject, name: .options)
-        _length = ReadWriteAttribute(jsObject: jsObject, name: .length)
-        _selectedOptions = ReadonlyAttribute(jsObject: jsObject, name: .selectedOptions)
-        _selectedIndex = ReadWriteAttribute(jsObject: jsObject, name: .selectedIndex)
-        _value = ReadWriteAttribute(jsObject: jsObject, name: .value)
-        _willValidate = ReadonlyAttribute(jsObject: jsObject, name: .willValidate)
-        _validity = ReadonlyAttribute(jsObject: jsObject, name: .validity)
-        _validationMessage = ReadonlyAttribute(jsObject: jsObject, name: .validationMessage)
-        _labels = ReadonlyAttribute(jsObject: jsObject, name: .labels)
-        super.init(unsafelyWrapping: jsObject)
+    public var autocomplete: String {
+        get { jsObject[.autocomplete].fromJSValue()!}
+        set { jsObject[.autocomplete] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var disabled: Bool {
+        get { jsObject[.disabled].fromJSValue()!}
+        set { jsObject[.disabled] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var autocomplete: String
+public var form: HTMLFormElement? {
+jsObject[.form].fromJSValue()
+    }
 
-    @ReadWriteAttribute
-    public var disabled: Bool
+    public var multiple: Bool {
+        get { jsObject[.multiple].fromJSValue()!}
+        set { jsObject[.multiple] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var form: HTMLFormElement?
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var multiple: Bool
+    public var required: Bool {
+        get { jsObject[.required].fromJSValue()!}
+        set { jsObject[.required] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var size: UInt32 {
+        get { jsObject[.size].fromJSValue()!}
+        set { jsObject[.size] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var required: Bool
+public var type: String {
+jsObject[.type].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var size: UInt32
+public var options: HTMLOptionsCollection {
+jsObject[.options].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var type: String
-
-    @ReadonlyAttribute
-    public var options: HTMLOptionsCollection
-
-    @ReadWriteAttribute
-    public var length: UInt32
+    public var length: UInt32 {
+        get { jsObject[.length].fromJSValue()!}
+        set { jsObject[.length] = newValue.jsValue }
+    }
 
     @inlinable public func item(index: UInt32) -> HTMLOptionElement? {
         let this = jsObject
@@ -119,23 +111,31 @@ public class HTMLSelectElement: HTMLElement {
         }
     }
 
-    @ReadonlyAttribute
-    public var selectedOptions: HTMLCollection
+public var selectedOptions: HTMLCollection {
+jsObject[.selectedOptions].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var selectedIndex: Int32
+    public var selectedIndex: Int32 {
+        get { jsObject[.selectedIndex].fromJSValue()!}
+        set { jsObject[.selectedIndex] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var value: String
+    public var value: String {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var willValidate: Bool
+public var willValidate: Bool {
+jsObject[.willValidate].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var validity: ValidityState
+public var validity: ValidityState {
+jsObject[.validity].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var validationMessage: String
+public var validationMessage: String {
+jsObject[.validationMessage].fromJSValue()!
+    }
 
     @inlinable public func checkValidity() -> Bool {
         let this = jsObject
@@ -152,6 +152,7 @@ public class HTMLSelectElement: HTMLElement {
         _ = this[.setCustomValidity].function!(this: this, arguments: [_toJSValue(error)])
     }
 
-    @ReadonlyAttribute
-    public var labels: NodeList
+public var labels: NodeList {
+jsObject[.labels].fromJSValue()!
+    }
 }

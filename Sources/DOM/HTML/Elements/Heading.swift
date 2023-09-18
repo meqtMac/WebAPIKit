@@ -15,15 +15,8 @@ import WebAPIBase
 public class HTMLHeadingElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLHeadingElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        super.init(unsafelyWrapping: jsObject)
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var align: String
 }

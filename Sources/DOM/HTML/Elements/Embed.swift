@@ -15,40 +15,38 @@ import WebAPIBase
 public class HTMLEmbedElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLEmbedElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _src = ReadWriteAttribute(jsObject: jsObject, name: .src)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        super.init(unsafelyWrapping: jsObject)
+    public var src: String {
+        get { jsObject[.src].fromJSValue()!}
+        set { jsObject[.src] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var src: String
+    public var width: String {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var width: String
-
-    @ReadWriteAttribute
-    public var height: String
+    public var height: String {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
 
     @inlinable public func getSVGDocument() -> Document? {
         let this = jsObject
         return this[.getSVGDocument].function!(this: this, arguments: []).fromJSValue()
     }
 
-    @ReadWriteAttribute
-    public var align: String
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 }

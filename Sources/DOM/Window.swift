@@ -22,107 +22,80 @@ public class Window: EventTarget,
         Window(unsafelyWrapping: JSObject.global)
     }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _event = ReadonlyAttribute(jsObject: jsObject, name: .event)
-        _window = ReadonlyAttribute(jsObject: jsObject, name: .window)
-        _self = ReadonlyAttribute(jsObject: jsObject, name: ._self)
-        _document = ReadonlyAttribute(jsObject: jsObject, name: .document)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _location = ReadonlyAttribute(jsObject: jsObject, name: .location)
-        _history = ReadonlyAttribute(jsObject: jsObject, name: .history)
-        _navigation = ReadonlyAttribute(jsObject: jsObject, name: .navigation)
-        _customElements = ReadonlyAttribute(jsObject: jsObject, name: .customElements)
-        _locationbar = ReadonlyAttribute(jsObject: jsObject, name: .locationbar)
-        _menubar = ReadonlyAttribute(jsObject: jsObject, name: .menubar)
-        _personalbar = ReadonlyAttribute(jsObject: jsObject, name: .personalbar)
-        _scrollbars = ReadonlyAttribute(jsObject: jsObject, name: .scrollbars)
-        _statusbar = ReadonlyAttribute(jsObject: jsObject, name: .statusbar)
-        _toolbar = ReadonlyAttribute(jsObject: jsObject, name: .toolbar)
-        _status = ReadWriteAttribute(jsObject: jsObject, name: .status)
-        _closed = ReadonlyAttribute(jsObject: jsObject, name: .closed)
-        _frames = ReadonlyAttribute(jsObject: jsObject, name: .frames)
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
-        _top = ReadonlyAttribute(jsObject: jsObject, name: .top)
-        _opener = ReadWriteAttribute(jsObject: jsObject, name: .opener)
-        _parent = ReadonlyAttribute(jsObject: jsObject, name: .parent)
-        _frameElement = ReadonlyAttribute(jsObject: jsObject, name: .frameElement)
-        _navigator = ReadonlyAttribute(jsObject: jsObject, name: .navigator)
-        _clientInformation = ReadonlyAttribute(jsObject: jsObject, name: .clientInformation)
-        _originAgentCluster = ReadonlyAttribute(jsObject: jsObject, name: .originAgentCluster)
-        _external = ReadonlyAttribute(jsObject: jsObject, name: .external)
-        _screen = ReadonlyAttribute(jsObject: jsObject, name: .screen)
-        _visualViewport = ReadonlyAttribute(jsObject: jsObject, name: .visualViewport)
-        _innerWidth = ReadonlyAttribute(jsObject: jsObject, name: .innerWidth)
-        _innerHeight = ReadonlyAttribute(jsObject: jsObject, name: .innerHeight)
-        _scrollX = ReadonlyAttribute(jsObject: jsObject, name: .scrollX)
-        _pageXOffset = ReadonlyAttribute(jsObject: jsObject, name: .pageXOffset)
-        _scrollY = ReadonlyAttribute(jsObject: jsObject, name: .scrollY)
-        _pageYOffset = ReadonlyAttribute(jsObject: jsObject, name: .pageYOffset)
-        _screenX = ReadonlyAttribute(jsObject: jsObject, name: .screenX)
-        _screenLeft = ReadonlyAttribute(jsObject: jsObject, name: .screenLeft)
-        _screenY = ReadonlyAttribute(jsObject: jsObject, name: .screenY)
-        _screenTop = ReadonlyAttribute(jsObject: jsObject, name: .screenTop)
-        _outerWidth = ReadonlyAttribute(jsObject: jsObject, name: .outerWidth)
-        _outerHeight = ReadonlyAttribute(jsObject: jsObject, name: .outerHeight)
-        _devicePixelRatio = ReadonlyAttribute(jsObject: jsObject, name: .devicePixelRatio)
-        super.init(unsafelyWrapping: jsObject)
+    public var event: Event? {
+        jsObject[.event].fromJSValue()
     }
     
-    @ReadonlyAttribute
-    public var event: Event?
+    public var window: WindowProxy {
+        jsObject[.window].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var window: WindowProxy
+    public var `self`: WindowProxy {
+        jsObject[._self].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var `self`: WindowProxy
+    public var document: Document {
+        jsObject[.document].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var document: Document
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var name: String
+    public var location: Location {
+        jsObject[.location].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var location: Location
+    public var history: History {
+        jsObject[.history].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var history: History
+    public var navigation: Navigation {
+        jsObject[.navigation].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var navigation: Navigation
+    public var customElements: CustomElementRegistry {
+        jsObject[.customElements].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var customElements: CustomElementRegistry
+    public var locationbar: BarProp {
+        jsObject[.locationbar].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var locationbar: BarProp
+    public var menubar: BarProp {
+        jsObject[.menubar].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var menubar: BarProp
+    public var personalbar: BarProp {
+        jsObject[.personalbar].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var personalbar: BarProp
+    public var scrollbars: BarProp {
+        jsObject[.scrollbars].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var scrollbars: BarProp
+    public var statusbar: BarProp {
+        jsObject[.statusbar].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var statusbar: BarProp
+    public var toolbar: BarProp {
+        jsObject[.toolbar].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var toolbar: BarProp
-    
-    @ReadWriteAttribute
-    public var status: String
+    public var status: String {
+        get { jsObject[.status].fromJSValue()!}
+        set { jsObject[.status] = newValue.jsValue }
+    }
     
     @inlinable public func close() {
         let this = jsObject
         _ = this[.close].function!(this: this, arguments: [])
     }
     
-    @ReadonlyAttribute
-    public var closed: Bool
+    public var closed: Bool {
+        jsObject[.closed].fromJSValue()!
+    }
     
     @inlinable public func stop() {
         let this = jsObject
@@ -139,23 +112,30 @@ public class Window: EventTarget,
         _ = this[.blur].function!(this: this, arguments: [])
     }
     
-    @ReadonlyAttribute
-    public var frames: WindowProxy
+    public var frames: WindowProxy {
+        jsObject[.frames].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var length: UInt32
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var top: WindowProxy?
+    public var top: WindowProxy? {
+        jsObject[.top].fromJSValue()
+    }
     
-    @ReadWriteAttribute
-    public var opener: JSValue
+    public var opener: JSValue {
+        get { jsObject[.opener].fromJSValue()!}
+        set { jsObject[.opener] = newValue.jsValue }
+    }
     
-    @ReadonlyAttribute
-    public var parent: WindowProxy?
+    public var parent: WindowProxy? {
+        jsObject[.parent].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var frameElement: Element?
+    public var frameElement: Element? {
+        jsObject[.frameElement].fromJSValue()
+    }
     
     @inlinable public func open(url: String? = nil, target: String? = nil, features: String? = nil) -> WindowProxy? {
         let this = jsObject
@@ -166,14 +146,17 @@ public class Window: EventTarget,
         jsObject[key].fromJSValue()!
     }
     
-    @ReadonlyAttribute
-    public var navigator: Navigator
+    public var navigator: Navigator {
+        jsObject[.navigator].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var clientInformation: Navigator
+    public var clientInformation: Navigator {
+        jsObject[.clientInformation].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var originAgentCluster: Bool
+    public var originAgentCluster: Bool {
+        jsObject[.originAgentCluster].fromJSValue()!
+    }
     
     @inlinable public func alert() {
         let this = jsObject
@@ -220,19 +203,22 @@ public class Window: EventTarget,
         _ = this[.releaseEvents].function!(this: this, arguments: [])
     }
     
-    @ReadonlyAttribute
-    public var external: External
+    public var external: External {
+        jsObject[.external].fromJSValue()!
+    }
     
     @inlinable public func matchMedia(query: String) -> MediaQueryList {
         let this = jsObject
         return this[.matchMedia].function!(this: this, arguments: [_toJSValue(query)]).fromJSValue()!
     }
     
-    @ReadonlyAttribute
-    public var screen: Screen
+    public var screen: Screen {
+        jsObject[.screen].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var visualViewport: VisualViewport?
+    public var visualViewport: VisualViewport? {
+        jsObject[.visualViewport].fromJSValue()
+    }
     
     @inlinable public func moveTo(x: Int32, y: Int32) {
         let this = jsObject
@@ -254,23 +240,29 @@ public class Window: EventTarget,
         _ = this[.resizeBy].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y)])
     }
     
-    @ReadonlyAttribute
-    public var innerWidth: Int32
+    public var innerWidth: Int32 {
+        jsObject[.innerWidth].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var innerHeight: Int32
+    public var innerHeight: Int32 {
+        jsObject[.innerHeight].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var scrollX: Double
+    public var scrollX: Double {
+        jsObject[.scrollX].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var pageXOffset: Double
+    public var pageXOffset: Double {
+        jsObject[.pageXOffset].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var scrollY: Double
+    public var scrollY: Double {
+        jsObject[.scrollY].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var pageYOffset: Double
+    public var pageYOffset: Double {
+        jsObject[.pageYOffset].fromJSValue()!
+    }
     
     @inlinable public func scroll(options: ScrollToOptions? = nil) {
         let this = jsObject
@@ -302,26 +294,33 @@ public class Window: EventTarget,
         _ = this[.scrollBy].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y)])
     }
     
-    @ReadonlyAttribute
-    public var screenX: Int32
+    public var screenX: Int32 {
+        jsObject[.screenX].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var screenLeft: Int32
+    public var screenLeft: Int32 {
+        jsObject[.screenLeft].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var screenY: Int32
+    public var screenY: Int32 {
+        jsObject[.screenY].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var screenTop: Int32
+    public var screenTop: Int32 {
+        jsObject[.screenTop].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var outerWidth: Int32
+    public var outerWidth: Int32 {
+        jsObject[.outerWidth].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var outerHeight: Int32
+    public var outerHeight: Int32 {
+        jsObject[.outerHeight].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var devicePixelRatio: Double
+    public var devicePixelRatio: Double {
+        jsObject[.devicePixelRatio].fromJSValue()!
+    }
 }
 
 public protocol WindowEventHandlers: JSBridgedClass {}
@@ -646,13 +645,10 @@ public class WindowPostMessageOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
     
-    public required init(unsafelyWrapping object: JSObject) {
-        _targetOrigin = ReadWriteAttribute(jsObject: object, name: .targetOrigin)
-        super.init(unsafelyWrapping: object)
+    public var targetOrigin: String {
+        get { jsObject[.targetOrigin].fromJSValue()!}
+        set { jsObject[.targetOrigin] = newValue.jsValue }
     }
-    
-    @ReadWriteAttribute
-    public var targetOrigin: String
 }
 
 public protocol WindowSessionStorage: JSBridgedClass {}
@@ -706,67 +702,67 @@ extension Window {
 }
 
 extension Window.CustomElementRegistry {
-        public class ElementDefinitionOptions: BridgedDictionary {
-            public convenience init(extends: String) {
-                let object = JSObject.global[.Object].function!.new()
-                object[.extends] = _toJSValue(extends)
-                self.init(unsafelyWrapping: object)
-            }
-            
-            public required init(unsafelyWrapping object: JSObject) {
-                _extends = ReadWriteAttribute(jsObject: object, name: .extends)
-                super.init(unsafelyWrapping: object)
-            }
-            
-            @ReadWriteAttribute
-            public var extends: String
+    public class ElementDefinitionOptions: BridgedDictionary {
+        public convenience init(extends: String) {
+            let object = JSObject.global[.Object].function!.new()
+            object[.extends] = _toJSValue(extends)
+            self.init(unsafelyWrapping: object)
         }
+        
+        public required init(unsafelyWrapping object: JSObject) {
+            _extends = ReadWriteAttribute(jsObject: object, name: .extends)
+            super.init(unsafelyWrapping: object)
+        }
+        
+        @ReadWriteAttribute
+        public var extends: String
     }
+}
 
 public class VisualViewport: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.VisualViewport].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _offsetLeft = ReadonlyAttribute(jsObject: jsObject, name: .offsetLeft)
-        _offsetTop = ReadonlyAttribute(jsObject: jsObject, name: .offsetTop)
-        _pageLeft = ReadonlyAttribute(jsObject: jsObject, name: .pageLeft)
-        _pageTop = ReadonlyAttribute(jsObject: jsObject, name: .pageTop)
-        _width = ReadonlyAttribute(jsObject: jsObject, name: .width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: .height)
-        _scale = ReadonlyAttribute(jsObject: jsObject, name: .scale)
         _onresize = ClosureAttribute1Optional(jsObject: jsObject, name: .onresize)
         _onscroll = ClosureAttribute1Optional(jsObject: jsObject, name: .onscroll)
         _onscrollend = ClosureAttribute1Optional(jsObject: jsObject, name: .onscrollend)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var offsetLeft: Double
-
-    @ReadonlyAttribute
-    public var offsetTop: Double
-
-    @ReadonlyAttribute
-    public var pageLeft: Double
-
-    @ReadonlyAttribute
-    public var pageTop: Double
-
-    @ReadonlyAttribute
-    public var width: Double
-
-    @ReadonlyAttribute
-    public var height: Double
-
-    @ReadonlyAttribute
-    public var scale: Double
-
+    
+    public var offsetLeft: Double {
+        jsObject[.offsetLeft].fromJSValue()!
+    }
+    
+    public var offsetTop: Double {
+        jsObject[.offsetTop].fromJSValue()!
+    }
+    
+    public var pageLeft: Double {
+        jsObject[.pageLeft].fromJSValue()!
+    }
+    
+    public var pageTop: Double {
+        jsObject[.pageTop].fromJSValue()!
+    }
+    
+    public var width: Double {
+        jsObject[.width].fromJSValue()!
+    }
+    
+    public var height: Double {
+        jsObject[.height].fromJSValue()!
+    }
+    
+    public var scale: Double {
+        jsObject[.scale].fromJSValue()!
+    }
+    
     @ClosureAttribute1Optional
     public var onresize: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onscroll: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onscrollend: EventHandler
 }

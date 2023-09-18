@@ -16,41 +16,37 @@ import WebAPIBase
 public class TouchEvent: UIEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.TouchEvent].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _touches = ReadonlyAttribute(jsObject: jsObject, name: .touches)
-        _targetTouches = ReadonlyAttribute(jsObject: jsObject, name: .targetTouches)
-        _changedTouches = ReadonlyAttribute(jsObject: jsObject, name: .changedTouches)
-        _altKey = ReadonlyAttribute(jsObject: jsObject, name: .altKey)
-        _metaKey = ReadonlyAttribute(jsObject: jsObject, name: .metaKey)
-        _ctrlKey = ReadonlyAttribute(jsObject: jsObject, name: .ctrlKey)
-        _shiftKey = ReadonlyAttribute(jsObject: jsObject, name: .shiftKey)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init(type: String, eventInitDict: TouchEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var touches: TouchList
+public var touches: TouchList {
+jsObject[.touches].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var targetTouches: TouchList
+public var targetTouches: TouchList {
+jsObject[.targetTouches].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var changedTouches: TouchList
+public var changedTouches: TouchList {
+jsObject[.changedTouches].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var altKey: Bool
+public var altKey: Bool {
+jsObject[.altKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var metaKey: Bool
+public var metaKey: Bool {
+jsObject[.metaKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var ctrlKey: Bool
+public var ctrlKey: Bool {
+jsObject[.ctrlKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var shiftKey: Bool
+public var shiftKey: Bool {
+jsObject[.shiftKey].fromJSValue()!
+    }
 
     @inlinable public subscript(key: String) -> Bool {
         jsObject[key].fromJSValue()!
@@ -71,21 +67,20 @@ public class TouchEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _touches = ReadWriteAttribute(jsObject: object, name: .touches)
-        _targetTouches = ReadWriteAttribute(jsObject: object, name: .targetTouches)
-        _changedTouches = ReadWriteAttribute(jsObject: object, name: .changedTouches)
-        super.init(unsafelyWrapping: object)
+    public var touches: [Touch] {
+        get { jsObject[.touches].fromJSValue()!}
+        set { jsObject[.touches] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var touches: [Touch]
+    public var targetTouches: [Touch] {
+        get { jsObject[.targetTouches].fromJSValue()!}
+        set { jsObject[.targetTouches] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var targetTouches: [Touch]
-
-    @ReadWriteAttribute
-    public var changedTouches: [Touch]
+    public var changedTouches: [Touch] {
+        get { jsObject[.changedTouches].fromJSValue()!}
+        set { jsObject[.changedTouches] = newValue.jsValue }
+    }
 }
 
 public class Touch: JSBridgedClass {
@@ -94,72 +89,72 @@ public class Touch: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _identifier = ReadonlyAttribute(jsObject: jsObject, name: .identifier)
-        _target = ReadonlyAttribute(jsObject: jsObject, name: .target)
-        _screenX = ReadonlyAttribute(jsObject: jsObject, name: .screenX)
-        _screenY = ReadonlyAttribute(jsObject: jsObject, name: .screenY)
-        _clientX = ReadonlyAttribute(jsObject: jsObject, name: .clientX)
-        _clientY = ReadonlyAttribute(jsObject: jsObject, name: .clientY)
-        _pageX = ReadonlyAttribute(jsObject: jsObject, name: .pageX)
-        _pageY = ReadonlyAttribute(jsObject: jsObject, name: .pageY)
-        _radiusX = ReadonlyAttribute(jsObject: jsObject, name: .radiusX)
-        _radiusY = ReadonlyAttribute(jsObject: jsObject, name: .radiusY)
-        _rotationAngle = ReadonlyAttribute(jsObject: jsObject, name: .rotationAngle)
-        _force = ReadonlyAttribute(jsObject: jsObject, name: .force)
-        _altitudeAngle = ReadonlyAttribute(jsObject: jsObject, name: .altitudeAngle)
-        _azimuthAngle = ReadonlyAttribute(jsObject: jsObject, name: .azimuthAngle)
-        _touchType = ReadonlyAttribute(jsObject: jsObject, name: .touchType)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
     @inlinable public convenience init(touchInitDict: TouchInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(touchInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var identifier: Int32
+public var identifier: Int32 {
+jsObject[.identifier].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var target: EventTarget
+public var target: EventTarget {
+jsObject[.target].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var screenX: Double
+public var screenX: Double {
+jsObject[.screenX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var screenY: Double
+public var screenY: Double {
+jsObject[.screenY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var clientX: Double
+public var clientX: Double {
+jsObject[.clientX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var clientY: Double
+public var clientY: Double {
+jsObject[.clientY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var pageX: Double
+public var pageX: Double {
+jsObject[.pageX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var pageY: Double
+public var pageY: Double {
+jsObject[.pageY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var radiusX: Float
+public var radiusX: Float {
+jsObject[.radiusX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var radiusY: Float
+public var radiusY: Float {
+jsObject[.radiusY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var rotationAngle: Float
+public var rotationAngle: Float {
+jsObject[.rotationAngle].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var force: Float
+public var force: Float {
+jsObject[.force].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var altitudeAngle: Float
+public var altitudeAngle: Float {
+jsObject[.altitudeAngle].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var azimuthAngle: Float
+public var azimuthAngle: Float {
+jsObject[.azimuthAngle].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var touchType: TouchType
+public var touchType: TouchType {
+jsObject[.touchType].fromJSValue()!
+    }
 }
 
 
@@ -185,69 +180,80 @@ public class TouchInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _identifier = ReadWriteAttribute(jsObject: object, name: .identifier)
-        _target = ReadWriteAttribute(jsObject: object, name: .target)
-        _clientX = ReadWriteAttribute(jsObject: object, name: .clientX)
-        _clientY = ReadWriteAttribute(jsObject: object, name: .clientY)
-        _screenX = ReadWriteAttribute(jsObject: object, name: .screenX)
-        _screenY = ReadWriteAttribute(jsObject: object, name: .screenY)
-        _pageX = ReadWriteAttribute(jsObject: object, name: .pageX)
-        _pageY = ReadWriteAttribute(jsObject: object, name: .pageY)
-        _radiusX = ReadWriteAttribute(jsObject: object, name: .radiusX)
-        _radiusY = ReadWriteAttribute(jsObject: object, name: .radiusY)
-        _rotationAngle = ReadWriteAttribute(jsObject: object, name: .rotationAngle)
-        _force = ReadWriteAttribute(jsObject: object, name: .force)
-        _altitudeAngle = ReadWriteAttribute(jsObject: object, name: .altitudeAngle)
-        _azimuthAngle = ReadWriteAttribute(jsObject: object, name: .azimuthAngle)
-        _touchType = ReadWriteAttribute(jsObject: object, name: .touchType)
-        super.init(unsafelyWrapping: object)
+    public var identifier: Int32 {
+        get { jsObject[.identifier].fromJSValue()!}
+        set { jsObject[.identifier] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var identifier: Int32
+    public var target: EventTarget {
+        get { jsObject[.target].fromJSValue()!}
+        set { jsObject[.target] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var target: EventTarget
+    public var clientX: Double {
+        get { jsObject[.clientX].fromJSValue()!}
+        set { jsObject[.clientX] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var clientX: Double
+    public var clientY: Double {
+        get { jsObject[.clientY].fromJSValue()!}
+        set { jsObject[.clientY] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var clientY: Double
+    public var screenX: Double {
+        get { jsObject[.screenX].fromJSValue()!}
+        set { jsObject[.screenX] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var screenX: Double
+    public var screenY: Double {
+        get { jsObject[.screenY].fromJSValue()!}
+        set { jsObject[.screenY] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var screenY: Double
+    public var pageX: Double {
+        get { jsObject[.pageX].fromJSValue()!}
+        set { jsObject[.pageX] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var pageX: Double
+    public var pageY: Double {
+        get { jsObject[.pageY].fromJSValue()!}
+        set { jsObject[.pageY] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var pageY: Double
+    public var radiusX: Float {
+        get { jsObject[.radiusX].fromJSValue()!}
+        set { jsObject[.radiusX] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var radiusX: Float
+    public var radiusY: Float {
+        get { jsObject[.radiusY].fromJSValue()!}
+        set { jsObject[.radiusY] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var radiusY: Float
+    public var rotationAngle: Float {
+        get { jsObject[.rotationAngle].fromJSValue()!}
+        set { jsObject[.rotationAngle] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var rotationAngle: Float
+    public var force: Float {
+        get { jsObject[.force].fromJSValue()!}
+        set { jsObject[.force] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var force: Float
+    public var altitudeAngle: Double {
+        get { jsObject[.altitudeAngle].fromJSValue()!}
+        set { jsObject[.altitudeAngle] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var altitudeAngle: Double
+    public var azimuthAngle: Double {
+        get { jsObject[.azimuthAngle].fromJSValue()!}
+        set { jsObject[.azimuthAngle] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var azimuthAngle: Double
-
-    @ReadWriteAttribute
-    public var touchType: TouchType
+    public var touchType: TouchType {
+        get { jsObject[.touchType].fromJSValue()!}
+        set { jsObject[.touchType] = newValue.jsValue }
+    }
 }
 
 public class TouchList: JSBridgedClass {
@@ -256,12 +262,12 @@ public class TouchList: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var length: UInt32
+public var length: UInt32 {
+jsObject[.length].fromJSValue()!
+    }
 
     @inlinable public subscript(key: Int) -> Touch? {
         jsObject[key].fromJSValue()

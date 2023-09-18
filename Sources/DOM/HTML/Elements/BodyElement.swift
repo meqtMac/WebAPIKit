@@ -15,35 +15,33 @@ import WebAPIBase
 public class HTMLBodyElement: HTMLElement, WindowEventHandlers {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLBodyElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _text = ReadWriteAttribute(jsObject: jsObject, name: .text)
-        _link = ReadWriteAttribute(jsObject: jsObject, name: .link)
-        _vLink = ReadWriteAttribute(jsObject: jsObject, name: .vLink)
-        _aLink = ReadWriteAttribute(jsObject: jsObject, name: .aLink)
-        _bgColor = ReadWriteAttribute(jsObject: jsObject, name: .bgColor)
-        _background = ReadWriteAttribute(jsObject: jsObject, name: .background)
-        super.init(unsafelyWrapping: jsObject)
+    public var text: String {
+        get { jsObject[.text].fromJSValue()!}
+        set { jsObject[.text] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var link: String {
+        get { jsObject[.link].fromJSValue()!}
+        set { jsObject[.link] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var text: String
+    public var vLink: String {
+        get { jsObject[.vLink].fromJSValue()!}
+        set { jsObject[.vLink] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var link: String
+    public var aLink: String {
+        get { jsObject[.aLink].fromJSValue()!}
+        set { jsObject[.aLink] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var vLink: String
+    public var bgColor: String {
+        get { jsObject[.bgColor].fromJSValue()!}
+        set { jsObject[.bgColor] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var aLink: String
-
-    @ReadWriteAttribute
-    public var bgColor: String
-
-    @ReadWriteAttribute
-    public var background: String
+    public var background: String {
+        get { jsObject[.background].fromJSValue()!}
+        set { jsObject[.background] = newValue.jsValue }
+    }
 }

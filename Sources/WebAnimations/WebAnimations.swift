@@ -23,16 +23,7 @@ public class Animation: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global["Animation"].function }
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _id = ReadWriteAttribute(jsObject: jsObject, name: "id")
-        _effect = ReadWriteAttribute(jsObject: jsObject, name: "effect")
-        _timeline = ReadWriteAttribute(jsObject: jsObject, name: "timeline")
-        _playbackRate = ReadWriteAttribute(jsObject: jsObject, name: "playbackRate")
-        _playState = ReadonlyAttribute(jsObject: jsObject, name: "playState")
-        _replaceState = ReadonlyAttribute(jsObject: jsObject, name: "replaceState")
-        _pending = ReadonlyAttribute(jsObject: jsObject, name: "pending")
-        _ready = ReadonlyAttribute(jsObject: jsObject, name: "ready")
-        _finished = ReadonlyAttribute(jsObject: jsObject, name: "finished")
-        _onfinish = ClosureAttribute1Optional(jsObject: jsObject, name: "onfinish")
+       _onfinish = ClosureAttribute1Optional(jsObject: jsObject, name: "onfinish")
         _oncancel = ClosureAttribute1Optional(jsObject: jsObject, name: "oncancel")
         _onremove = ClosureAttribute1Optional(jsObject: jsObject, name: "onremove")
         super.init(unsafelyWrapping: jsObject)
@@ -42,32 +33,45 @@ public class Animation: EventTarget {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(effect), _toJSValue(timeline)]))
     }
 
-    @ReadWriteAttribute
-    public var id: String
+    public var id: String {
+        get { jsObject["id"].fromJSValue()!}
+        set { jsObject["id"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var effect: AnimationEffect?
+    public var effect: AnimationEffect? {
+        get { jsObject["effect"].fromJSValue()}
+        set { jsObject["effect"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var timeline: AnimationTimeline?
+    public var timeline: AnimationTimeline? {
+        get { jsObject["timeline"].fromJSValue()}
+        set { jsObject["timeline"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var playbackRate: Double
+    public var playbackRate: Double {
+        get { jsObject["playbackRate"].fromJSValue()!}
+        set { jsObject["playbackRate"] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var playState: AnimationPlayState
+    public var playState: AnimationPlayState {
+        jsObject["playState"].fromJSValue()!
+    }
+    
+    public var replaceState: AnimationReplaceState {
+        jsObject["replaceState"].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var replaceState: AnimationReplaceState
+public var pending: Bool {
+jsObject["pending"].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var pending: Bool
-
-    @ReadonlyAttribute
-    public var ready: JSPromise
-
-    @ReadonlyAttribute
-    public var finished: JSPromise
+    public var ready: JSPromise {
+        jsObject["ready"].fromJSValue()!
+    }
+    
+public var finished: JSPromise {
+jsObject["finished"].fromJSValue()!
+    }
 
     @ClosureAttribute1Optional
     public var onfinish: EventHandler
@@ -192,25 +196,25 @@ public class BaseComputedKeyframe: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _offset = ReadWriteAttribute(jsObject: object, name: "offset")
-        _computedOffset = ReadWriteAttribute(jsObject: object, name: "computedOffset")
-        _easing = ReadWriteAttribute(jsObject: object, name: "easing")
-        _composite = ReadWriteAttribute(jsObject: object, name: "composite")
-        super.init(unsafelyWrapping: object)
+    public var offset: Double? {
+        get { jsObject["offset"].fromJSValue()}
+        set { jsObject["offset"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var offset: Double?
+    public var computedOffset: Double {
+        get { jsObject["computedOffset"].fromJSValue()!}
+        set { jsObject["computedOffset"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var computedOffset: Double
+    public var easing: String {
+        get { jsObject["easing"].fromJSValue()!}
+        set { jsObject["easing"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var easing: String
-
-    @ReadWriteAttribute
-    public var composite: CompositeOperationOrAuto
+    public var composite: CompositeOperationOrAuto {
+        get { jsObject["composite"].fromJSValue()!}
+        set { jsObject["composite"] = newValue.jsValue }
+    }
 }
 
 public class BaseKeyframe: BridgedDictionary {
@@ -222,21 +226,20 @@ public class BaseKeyframe: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _offset = ReadWriteAttribute(jsObject: object, name: "offset")
-        _easing = ReadWriteAttribute(jsObject: object, name: "easing")
-        _composite = ReadWriteAttribute(jsObject: object, name: "composite")
-        super.init(unsafelyWrapping: object)
+    public var offset: Double? {
+        get { jsObject["offset"].fromJSValue()}
+        set { jsObject["offset"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var offset: Double?
+    public var easing: String {
+        get { jsObject["easing"].fromJSValue()!}
+        set { jsObject["easing"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var easing: String
-
-    @ReadWriteAttribute
-    public var composite: CompositeOperationOrAuto
+    public var composite: CompositeOperationOrAuto {
+        get { jsObject["composite"].fromJSValue()!}
+        set { jsObject["composite"] = newValue.jsValue }
+    }
 }
 
 public class BasePropertyIndexedKeyframe: BridgedDictionary {
@@ -248,21 +251,20 @@ public class BasePropertyIndexedKeyframe: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _offset = ReadWriteAttribute(jsObject: object, name: "offset")
-        _easing = ReadWriteAttribute(jsObject: object, name: "easing")
-        _composite = ReadWriteAttribute(jsObject: object, name: "composite")
-        super.init(unsafelyWrapping: object)
+    public var offset: nullable_Double_or_seq_of_nullable_Double {
+        get { jsObject["offset"].fromJSValue()!}
+        set { jsObject["offset"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var offset: nullable_Double_or_seq_of_nullable_Double
+    public var easing: String_or_seq_of_String {
+        get { jsObject["easing"].fromJSValue()!}
+        set { jsObject["easing"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var easing: String_or_seq_of_String
-
-    @ReadWriteAttribute
-    public var composite: CompositeOperationOrAuto_or_seq_of_CompositeOperationOrAuto
+    public var composite: CompositeOperationOrAuto_or_seq_of_CompositeOperationOrAuto {
+        get { jsObject["composite"].fromJSValue()!}
+        set { jsObject["composite"] = newValue.jsValue }
+    }
 }
 
 public enum CompositeOperation: JSString, JSValueCompatible {
@@ -312,17 +314,15 @@ public class ComputedEffectTiming: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _progress = ReadWriteAttribute(jsObject: object, name: "progress")
-        _currentIteration = ReadWriteAttribute(jsObject: object, name: "currentIteration")
-        super.init(unsafelyWrapping: object)
+    public var progress: Double? {
+        get { jsObject["progress"].fromJSValue()}
+        set { jsObject["progress"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var progress: Double?
-
-    @ReadWriteAttribute
-    public var currentIteration: Double?
+    public var currentIteration: Double? {
+        get { jsObject["currentIteration"].fromJSValue()}
+        set { jsObject["currentIteration"] = newValue.jsValue }
+    }
 }
 
 public extension DocumentOrShadowRoot {
@@ -350,13 +350,10 @@ public class DocumentTimelineOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _originTime = ReadWriteAttribute(jsObject: object, name: "originTime")
-        super.init(unsafelyWrapping: object)
+    public var originTime: DOMHighResTimeStamp {
+        get { jsObject["originTime"].fromJSValue()!}
+        set { jsObject["originTime"] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var originTime: DOMHighResTimeStamp
 }
 
 public class EffectTiming: BridgedDictionary {
@@ -370,29 +367,30 @@ public class EffectTiming: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _fill = ReadWriteAttribute(jsObject: object, name: "fill")
-        _iterationStart = ReadWriteAttribute(jsObject: object, name: "iterationStart")
-        _iterations = ReadWriteAttribute(jsObject: object, name: "iterations")
-        _direction = ReadWriteAttribute(jsObject: object, name: "direction")
-        _easing = ReadWriteAttribute(jsObject: object, name: "easing")
-        super.init(unsafelyWrapping: object)
+    public var fill: FillMode {
+        get { jsObject["fill"].fromJSValue()!}
+        set { jsObject["fill"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var fill: FillMode
+    public var iterationStart: Double {
+        get { jsObject["iterationStart"].fromJSValue()!}
+        set { jsObject["iterationStart"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var iterationStart: Double
+    public var iterations: Double {
+        get { jsObject["iterations"].fromJSValue()!}
+        set { jsObject["iterations"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var iterations: Double
+    public var direction: PlaybackDirection {
+        get { jsObject["direction"].fromJSValue()!}
+        set { jsObject["direction"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var direction: PlaybackDirection
-
-    @ReadWriteAttribute
-    public var easing: String
+    public var easing: String {
+        get { jsObject["easing"].fromJSValue()!}
+        set { jsObject["easing"] = newValue.jsValue }
+    }
 }
 
 public enum FillMode: JSString, JSValueCompatible {
@@ -423,13 +421,10 @@ public class GetAnimationsOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _subtree = ReadWriteAttribute(jsObject: object, name: "subtree")
-        super.init(unsafelyWrapping: object)
+    public var subtree: Bool {
+        get { jsObject["subtree"].fromJSValue()!}
+        set { jsObject["subtree"] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var subtree: Bool
 }
 
 public class KeyframeAnimationOptions: BridgedDictionary {
@@ -440,28 +435,19 @@ public class KeyframeAnimationOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _id = ReadWriteAttribute(jsObject: object, name: "id")
-        _timeline = ReadWriteAttribute(jsObject: object, name: "timeline")
-        super.init(unsafelyWrapping: object)
+    public var id: String {
+        get { jsObject["id"].fromJSValue()!}
+        set { jsObject["id"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var id: String
-
-    @ReadWriteAttribute
-    public var timeline: AnimationTimeline?
+    public var timeline: AnimationTimeline? {
+        get { jsObject["timeline"].fromJSValue()}
+        set { jsObject["timeline"] = newValue.jsValue }
+    }
 }
 
 public class KeyframeEffect: AnimationEffect {
     @inlinable override public class var constructor: JSFunction? { JSObject.global["KeyframeEffect"].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _target = ReadWriteAttribute(jsObject: jsObject, name: "target")
-        _pseudoElement = ReadWriteAttribute(jsObject: jsObject, name: "pseudoElement")
-        _composite = ReadWriteAttribute(jsObject: jsObject, name: "composite")
-        super.init(unsafelyWrapping: jsObject)
-    }
 
     @inlinable public convenience init(target: Element?, keyframes: JSObject?, options: Double_or_KeyframeEffectOptions? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(target), _toJSValue(keyframes), _toJSValue(options)]))
@@ -471,14 +457,20 @@ public class KeyframeEffect: AnimationEffect {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(source)]))
     }
 
-    @ReadWriteAttribute
-    public var target: Element?
+    public var target: Element? {
+        get { jsObject["target"].fromJSValue()}
+        set { jsObject["target"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var pseudoElement: String?
+    public var pseudoElement: String? {
+        get { jsObject["pseudoElement"].fromJSValue()}
+        set { jsObject["pseudoElement"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var composite: CompositeOperation
+    public var composite: CompositeOperation {
+        get { jsObject["composite"].fromJSValue()!}
+        set { jsObject["composite"] = newValue.jsValue }
+    }
 
     @inlinable public func getKeyframes() -> [JSObject] {
         return jsObject["getKeyframes"].function!(this: jsObject, arguments: []).fromJSValue()!
@@ -497,17 +489,15 @@ public class KeyframeEffectOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _composite = ReadWriteAttribute(jsObject: object, name: "composite")
-        _pseudoElement = ReadWriteAttribute(jsObject: object, name: "pseudoElement")
-        super.init(unsafelyWrapping: object)
+    public var composite: CompositeOperation {
+        get { jsObject["composite"].fromJSValue()!}
+        set { jsObject["composite"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var composite: CompositeOperation
-
-    @ReadWriteAttribute
-    public var pseudoElement: String?
+    public var pseudoElement: String? {
+        get { jsObject["pseudoElement"].fromJSValue()}
+        set { jsObject["pseudoElement"] = newValue.jsValue }
+    }
 }
 
 public class OptionalEffectTiming: BridgedDictionary {
@@ -524,41 +514,45 @@ public class OptionalEffectTiming: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _delay = ReadWriteAttribute(jsObject: object, name: "delay")
-        _endDelay = ReadWriteAttribute(jsObject: object, name: "endDelay")
-        _fill = ReadWriteAttribute(jsObject: object, name: "fill")
-        _iterationStart = ReadWriteAttribute(jsObject: object, name: "iterationStart")
-        _iterations = ReadWriteAttribute(jsObject: object, name: "iterations")
-        _duration = ReadWriteAttribute(jsObject: object, name: "duration")
-        _direction = ReadWriteAttribute(jsObject: object, name: "direction")
-        _easing = ReadWriteAttribute(jsObject: object, name: "easing")
-        super.init(unsafelyWrapping: object)
+    public var delay: Double {
+        get { jsObject["delay"].fromJSValue()!}
+        set { jsObject["delay"] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var delay: Double
+    public var endDelay: Double {
+        get { jsObject["endDelay"].fromJSValue()!}
+        set { jsObject["endDelay"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var endDelay: Double
+    public var fill: FillMode {
+        get { jsObject["fill"].fromJSValue()!}
+        set { jsObject["fill"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var fill: FillMode
+    public var iterationStart: Double {
+        get { jsObject["iterationStart"].fromJSValue()!}
+        set { jsObject["iterationStart"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var iterationStart: Double
+    public var iterations: Double {
+        get { jsObject["iterations"].fromJSValue()!}
+        set { jsObject["iterations"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var iterations: Double
+    public var duration: Double_or_String {
+        get { jsObject["duration"].fromJSValue()!}
+        set { jsObject["duration"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var duration: Double_or_String
+    public var direction: PlaybackDirection {
+        get { jsObject["direction"].fromJSValue()!}
+        set { jsObject["direction"] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var direction: PlaybackDirection
-
-    @ReadWriteAttribute
-    public var easing: String
+    public var easing: String {
+        get { jsObject["easing"].fromJSValue()!}
+        set { jsObject["easing"] = newValue.jsValue }
+    }
 }
 
 public enum PlaybackDirection: JSString, JSValueCompatible {

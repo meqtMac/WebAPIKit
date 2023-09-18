@@ -11,7 +11,7 @@ import JavaScriptKit
 import WebAPIBase
 
 
-struct PixelDataView: HTMLProtocol {
+struct PixelDataView: HTML {
     let element: HTMLButtonElement
    
     private static func pick(with event: MouseEvent, destinationCanvas: HTMLCanvasElement, on canvasObject: HTMLCanvasElement) {
@@ -39,7 +39,7 @@ struct PixelDataView: HTMLProtocol {
     
     init(parent: HTMLElement) {
         self.element = Button(title: "Pixel") {
-            parent.jsObject.innerHTML = ""
+            parent.removeChilds()
             let width: Int32 = 600, height: Int32 = 600
             let canvas = Canvas(width: UInt32(width), height: UInt32(height))
             _ = parent.jsValue.appendChild(canvas.element.jsValue)
@@ -100,7 +100,7 @@ func drawCircles(on context: CanvasRenderingContext2D) {
     context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
 }
 
-struct GrayScaleView: HTMLProtocol {
+struct GrayScaleView: HTML {
     let element: HTMLButtonElement
     static let width: Int32 = 600
     static let height: Int32 = 600

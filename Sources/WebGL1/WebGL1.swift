@@ -13,20 +13,20 @@ public class WebGLActiveInfo: JSBridgedClass {
     public let jsObject: JSObject
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _size = ReadonlyAttribute(jsObject: jsObject, name: .size)
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
         self.jsObject = jsObject
     }
     
-    @ReadonlyAttribute
-    public var size: GLint
+    public var size: GLint {
+        jsObject[.size].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var type: GLenum
+    public var type: GLenum {
+        jsObject[.type].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var name: String
+    public var name: String {
+        jsObject[.name].fromJSValue()!
+    }
 }
 
 public class WebGLBuffer: WebGLObject {
@@ -38,7 +38,7 @@ public class WebGLBuffer: WebGLObject {
 }
 
 public class WebGLContextAttributes: BridgedDictionary {
-    public convenience init(alpha: Bool, 
+    public convenience init(alpha: Bool,
                             depth: Bool,
                             stencil: Bool,
                             antialias: Bool,
@@ -60,61 +60,63 @@ public class WebGLContextAttributes: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
     
-    public required init(unsafelyWrapping object: JSObject) {
-        _alpha = ReadWriteAttribute(jsObject: object, name: .alpha)
-        _depth = ReadWriteAttribute(jsObject: object, name: .depth)
-        _stencil = ReadWriteAttribute(jsObject: object, name: .stencil)
-        _antialias = ReadWriteAttribute(jsObject: object, name: .antialias)
-        _premultipliedAlpha = ReadWriteAttribute(jsObject: object, name: .premultipliedAlpha)
-        _preserveDrawingBuffer = ReadWriteAttribute(jsObject: object, name: .preserveDrawingBuffer)
-        _powerPreference = ReadWriteAttribute(jsObject: object, name: .powerPreference)
-        _failIfMajorPerformanceCaveat = ReadWriteAttribute(jsObject: object, name: .failIfMajorPerformanceCaveat)
-        _desynchronized = ReadWriteAttribute(jsObject: object, name: .desynchronized)
-        super.init(unsafelyWrapping: object)
+    
+    public var alpha: Bool {
+        get { jsObject[.alpha].fromJSValue()!}
+        set { jsObject[.alpha] = newValue.jsValue }
     }
     
-    @ReadWriteAttribute
-    public var alpha: Bool
+    public var depth: Bool {
+        get { jsObject[.depth].fromJSValue()!}
+        set { jsObject[.depth] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var depth: Bool
+    public var stencil: Bool {
+        get { jsObject[.stencil].fromJSValue()!}
+        set { jsObject[.stencil] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var stencil: Bool
+    public var antialias: Bool {
+        get { jsObject[.antialias].fromJSValue()!}
+        set { jsObject[.antialias] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var antialias: Bool
+    public var premultipliedAlpha: Bool {
+        get { jsObject[.premultipliedAlpha].fromJSValue()!}
+        set { jsObject[.premultipliedAlpha] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var premultipliedAlpha: Bool
+    public var preserveDrawingBuffer: Bool {
+        get { jsObject[.preserveDrawingBuffer].fromJSValue()!}
+        set { jsObject[.preserveDrawingBuffer] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var preserveDrawingBuffer: Bool
+    public var powerPreference: WebGLPowerPreference {
+        get { jsObject[.powerPreference].fromJSValue()!}
+        set { jsObject[.powerPreference] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var powerPreference: WebGLPowerPreference
+    public var failIfMajorPerformanceCaveat: Bool {
+        get { jsObject[.failIfMajorPerformanceCaveat].fromJSValue()!}
+        set { jsObject[.failIfMajorPerformanceCaveat] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var failIfMajorPerformanceCaveat: Bool
-    
-    @ReadWriteAttribute
-    public var desynchronized: Bool
+    public var desynchronized: Bool {
+        get { jsObject[.desynchronized].fromJSValue()!}
+        set { jsObject[.desynchronized] = newValue.jsValue }
+    }
 }
 
 public class WebGLContextEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.WebGLContextEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _statusMessage = ReadonlyAttribute(jsObject: jsObject, name: .statusMessage)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     @inlinable public convenience init(type: String, eventInit: WebGLContextEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInit)]))
     }
     
-    @ReadonlyAttribute
-    public var statusMessage: String
+    public var statusMessage: String {
+        jsObject[.statusMessage].fromJSValue()!
+    }
 }
 
 public class WebGLContextEventInit: BridgedDictionary {
@@ -124,13 +126,10 @@ public class WebGLContextEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
     
-    public required init(unsafelyWrapping object: JSObject) {
-        _statusMessage = ReadWriteAttribute(jsObject: object, name: .statusMessage)
-        super.init(unsafelyWrapping: object)
+    public var statusMessage: String {
+        get { jsObject[.statusMessage].fromJSValue()!}
+        set { jsObject[.statusMessage] = newValue.jsValue }
     }
-    
-    @ReadWriteAttribute
-    public var statusMessage: String
 }
 
 public class WebGLFramebuffer: WebGLObject {
@@ -186,9 +185,9 @@ public class WebGLRenderbuffer: WebGLObject {
     }
 }
 
-public class WebGLRenderingContext: JSBridgedClass, 
+public class WebGLRenderingContext: JSBridgedClass,
                                         WebGLRenderingContextBase,
-                                        WebGLRenderingContextOverloads {
+                                    WebGLRenderingContextOverloads {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.WebGLRenderingContext].function }
     
     public let jsObject: JSObject
@@ -200,7 +199,7 @@ public class WebGLRenderingContext: JSBridgedClass,
 
 public protocol WebGLRenderingContextBase: JSBridgedClass {}
 public extension WebGLRenderingContextBase {
-   
+    
     @inlinable var canvas: RenderingCanvas { jsObject[.canvas].fromJSValue()! }
     
     @inlinable var drawingBufferWidth: GLsizei { jsObject[.drawingBufferWidth].fromJSValue()! }
@@ -852,24 +851,24 @@ public extension WebGLRenderingContextOverloads {
     @inlinable func texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: OffscreenCanvas) {
         _ = jsObject[.texImage2D].function!(this: jsObject, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(internalformat), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-
-
+    
+    
     @inlinable func texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: HTMLImageElement) {
         _ = jsObject[.texImage2D].function!(this: jsObject, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(internalformat), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
     @inlinable func texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: HTMLVideoElement) {
         _ = jsObject[.texImage2D].function!(this: jsObject, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(internalformat), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-
-
+    
+    
     @inlinable func texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: ImageBitmap) {
         _ = jsObject[.texImage2D].function!(this: jsObject, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(internalformat), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-
+    
     @inlinable func texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: ImageData) {
         _ = jsObject[.texImage2D].function!(this: jsObject, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(internalformat), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-
+    
     @inlinable func texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: VideoFrame) {
         _ = jsObject[.texImage2D].function!(this: jsObject, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(internalformat), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
@@ -878,34 +877,34 @@ public extension WebGLRenderingContextOverloads {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(width), _toJSValue(height), _toJSValue(format), _toJSValue(type), JSTypedArray(pixels).arrayBuffer.jsValue])
     }
-
-
-
+    
+    
+    
     @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: HTMLCanvasElement) {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-     @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: HTMLVideoElement) {
+    @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: HTMLVideoElement) {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-     @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: HTMLImageElement) {
+    @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: HTMLImageElement) {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-     @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: ImageBitmap) {
+    @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: ImageBitmap) {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-     @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: ImageData) {
+    @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: ImageData) {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-     @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: OffscreenCanvas) {
+    @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: OffscreenCanvas) {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
-     @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: VideoFrame) {
+    @inlinable func texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: VideoFrame) {
         let this = jsObject
         _ = this[.texSubImage2D].function!(this: this, arguments: [_toJSValue(target), _toJSValue(level), _toJSValue(xoffset), _toJSValue(yoffset), _toJSValue(format), _toJSValue(type), _toJSValue(source)])
     }
@@ -980,20 +979,20 @@ public class WebGLShaderPrecisionFormat: JSBridgedClass {
     public let jsObject: JSObject
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _rangeMin = ReadonlyAttribute(jsObject: jsObject, name: .rangeMin)
-        _rangeMax = ReadonlyAttribute(jsObject: jsObject, name: .rangeMax)
-        _precision = ReadonlyAttribute(jsObject: jsObject, name: .precision)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
     
-    @ReadonlyAttribute
-    public var rangeMin: GLint
+    public var rangeMin: GLint {
+        jsObject[.rangeMin].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var rangeMax: GLint
+    public var rangeMax: GLint {
+        jsObject[.rangeMax].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var precision: GLint
+    public var precision: GLint {
+        jsObject[.precision].fromJSValue()!
+    }
 }
 
 public class WebGLTexture: WebGLObject {

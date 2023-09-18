@@ -11,7 +11,7 @@ import JavaScriptKit
 import WebAPIBase
 import WebGL1
 
-struct WebGL1Element: HTMLProtocol {
+struct WebGL1Element: HTML {
     let element: HTMLButtonElement
     
     static let vertextShaderSource = """
@@ -31,7 +31,8 @@ struct WebGL1Element: HTMLProtocol {
     
     init(parent: HTMLElement) {
         let button = Button(title: "WebGL1") {
-            parent.jsObject.innerHTML = ""
+            parent.removeChilds()
+
             let width: UInt32 = 640
             let height: UInt32 = 480
             let canvas = Canvas(width: width, height: height)

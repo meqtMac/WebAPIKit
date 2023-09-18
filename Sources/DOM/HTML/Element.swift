@@ -21,59 +21,50 @@ open class Element: Node,
                         GeometryUtils {
     @inlinable override open class var constructor: JSFunction? { JSObject.global[.Element].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _namespaceURI = ReadonlyAttribute(jsObject: jsObject, name: .namespaceURI)
-        _prefix = ReadonlyAttribute(jsObject: jsObject, name: .prefix)
-        _localName = ReadonlyAttribute(jsObject: jsObject, name: .localName)
-        _tagName = ReadonlyAttribute(jsObject: jsObject, name: .tagName)
-        _id = ReadWriteAttribute(jsObject: jsObject, name: .id)
-        _className = ReadWriteAttribute(jsObject: jsObject, name: .className)
-        _classList = ReadonlyAttribute(jsObject: jsObject, name: .classList)
-        _slot = ReadWriteAttribute(jsObject: jsObject, name: .slot)
-        _attributes = ReadonlyAttribute(jsObject: jsObject, name: .attributes)
-        _shadowRoot = ReadonlyAttribute(jsObject: jsObject, name: .shadowRoot)
-        _scrollTop = ReadWriteAttribute(jsObject: jsObject, name: .scrollTop)
-        _scrollLeft = ReadWriteAttribute(jsObject: jsObject, name: .scrollLeft)
-        _scrollWidth = ReadonlyAttribute(jsObject: jsObject, name: .scrollWidth)
-        _scrollHeight = ReadonlyAttribute(jsObject: jsObject, name: .scrollHeight)
-        _clientTop = ReadonlyAttribute(jsObject: jsObject, name: .clientTop)
-        _clientLeft = ReadonlyAttribute(jsObject: jsObject, name: .clientLeft)
-        _clientWidth = ReadonlyAttribute(jsObject: jsObject, name: .clientWidth)
-        _clientHeight = ReadonlyAttribute(jsObject: jsObject, name: .clientHeight)
-        super.init(unsafelyWrapping: jsObject)
+    public var namespaceURI: String? {
+        jsObject[.namespaceURI].fromJSValue()
     }
 
-    @ReadonlyAttribute
-    public var namespaceURI: String?
+    public var prefix: String? {
+         jsObject[.prefix].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var prefix: String?
+    public var localName: String {
+        jsObject[.localName].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var localName: String
+    public var tagName: String {
+        jsObject[.tagName].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var tagName: String
+    public var id: String {
+        get { jsObject[.id].fromJSValue()! }
+        set { jsObject[.id] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var id: String
+    public var className: String {
+        get { jsObject[.className].fromJSValue()! }
+        set { jsObject[.className] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var className: String
+    public var classList: DOMTokenList {
+        get { jsObject[.classList].fromJSValue()! }
+        set { jsObject[.classList] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var classList: DOMTokenList
-
-    @ReadWriteAttribute
-    public var slot: String
+    public var slot: String {
+        get { jsObject[.slot].fromJSValue()!}
+        set { jsObject[.slot] = newValue.jsValue }
+    }
 
     @inlinable public func hasAttributes() -> Bool {
         let this = jsObject
         return this[.hasAttributes].function!(this: this, arguments: []).fromJSValue()!
     }
 
-    @ReadonlyAttribute
-    public var attributes: NamedNodeMap
+    public var attributes: NamedNodeMap {
+        jsObject[.attributes].fromJSValue()!
+    }
 
     @inlinable public func getAttributeNames() -> [String] {
         let this = jsObject
@@ -155,8 +146,9 @@ open class Element: Node,
         return this[.attachShadow].function!(this: this, arguments: [_toJSValue(`init`)]).fromJSValue()!
     }
 
-    @ReadonlyAttribute
-    public var shadowRoot: ShadowRoot?
+    public var shadowRoot: ShadowRoot? {
+        jsObject[.shadowRoot].fromJSValue()
+    }
 
     @inlinable public func closest(selectors: String) -> Element? {
         let this = jsObject
@@ -260,29 +252,42 @@ open class Element: Node,
         _ = this[.scrollBy].function!(this: this, arguments: [_toJSValue(x), _toJSValue(y)])
     }
 
-    @ReadWriteAttribute
-    public var scrollTop: Double
+    public var scrollTop: Double {
+        get { jsObject[.scrollTop].fromJSValue()!}
+        set { jsObject[.scrollTop] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var scrollLeft: Double
+    public var scrollLeft: Double {
+        get { jsObject[.scrollLeft].fromJSValue()!}
+        set { jsObject[.scrollLeft] = newValue.jsValue }
+ 
+    }
 
-    @ReadonlyAttribute
-    public var scrollWidth: Int32
+    public var scrollWidth: Int32 {
+        jsObject[.scrollWidth].fromJSValue()!
+ 
+    }
 
-    @ReadonlyAttribute
-    public var scrollHeight: Int32
+    public var scrollHeight: Int32 {
+        jsObject[.scrollHeight].fromJSValue()!
+ 
+    }
 
-    @ReadonlyAttribute
-    public var clientTop: Int32
+    public var clientTop: Int32 {
+        jsObject[.clientTop].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var clientLeft: Int32
+    public var clientLeft: Int32 {
+        jsObject[.clientLeft].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var clientWidth: Int32
+    public var clientWidth: Int32 {
+        jsObject[.clientWidth].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var clientHeight: Int32
+    public var clientHeight: Int32 {
+        jsObject[.clientHeight].fromJSValue()!
+    }
 }
 
 public class NamedNodeMap: JSBridgedClass {
@@ -291,12 +296,12 @@ public class NamedNodeMap: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var length: UInt32
+public var length: UInt32 {
+jsObject[.length].fromJSValue()!
+    }
 
     @inlinable public subscript(key: Int) -> Attr? {
         jsObject[key].fromJSValue()

@@ -6,147 +6,157 @@ import JavaScriptKit
 
 open class DOMException: JSBridgedClass {
     @inlinable open class var constructor: JSFunction? { JSObject.global[.DOMException].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
-        _message = ReadonlyAttribute(jsObject: jsObject, name: .message)
-        _code = ReadonlyAttribute(jsObject: jsObject, name: .code)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(message: String? = nil, name: String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(message), _toJSValue(name)]))
     }
-
-    @ReadonlyAttribute
-    public var name: String
-
-    @ReadonlyAttribute
-    public var message: String
-
-    @ReadonlyAttribute
-    public var code: UInt16
-
+    
+    public var name: String {
+        jsObject[.name].fromJSValue()!
+    }
+    
+    public var message: String {
+        jsObject[.message].fromJSValue()!
+    }
+    
+    public var code: UInt16 {
+        jsObject[.code].fromJSValue()!
+    }
+    
     public static let INDEX_SIZE_ERR: UInt16 = 1
-
+    
     public static let DOMSTRING_SIZE_ERR: UInt16 = 2
-
+    
     public static let HIERARCHY_REQUEST_ERR: UInt16 = 3
-
+    
     public static let WRONG_DOCUMENT_ERR: UInt16 = 4
-
+    
     public static let INVALID_CHARACTER_ERR: UInt16 = 5
-
+    
     public static let NO_DATA_ALLOWED_ERR: UInt16 = 6
-
+    
     public static let NO_MODIFICATION_ALLOWED_ERR: UInt16 = 7
-
+    
     public static let NOT_FOUND_ERR: UInt16 = 8
-
+    
     public static let NOT_SUPPORTED_ERR: UInt16 = 9
-
+    
     public static let INUSE_ATTRIBUTE_ERR: UInt16 = 10
-
+    
     public static let INVALID_STATE_ERR: UInt16 = 11
-
+    
     public static let SYNTAX_ERR: UInt16 = 12
-
+    
     public static let INVALID_MODIFICATION_ERR: UInt16 = 13
-
+    
     public static let NAMESPACE_ERR: UInt16 = 14
-
+    
     public static let INVALID_ACCESS_ERR: UInt16 = 15
-
+    
     public static let VALIDATION_ERR: UInt16 = 16
-
+    
     public static let TYPE_MISMATCH_ERR: UInt16 = 17
-
+    
     public static let SECURITY_ERR: UInt16 = 18
-
+    
     public static let NETWORK_ERR: UInt16 = 19
-
+    
     public static let ABORT_ERR: UInt16 = 20
-
+    
     public static let URL_MISMATCH_ERR: UInt16 = 21
-
+    
     public static let QUOTA_EXCEEDED_ERR: UInt16 = 22
-
+    
     public static let TIMEOUT_ERR: UInt16 = 23
-
+    
     public static let INVALID_NODE_TYPE_ERR: UInt16 = 24
-
+    
     public static let DATA_CLONE_ERR: UInt16 = 25
 }
 
 public typealias VoidFunction = () -> Void
 public class URL: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.URL].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _href = ReadWriteAttribute(jsObject: jsObject, name: .href)
-        _origin = ReadonlyAttribute(jsObject: jsObject, name: .origin)
-        _protocol = ReadWriteAttribute(jsObject: jsObject, name: .protocol)
-        _username = ReadWriteAttribute(jsObject: jsObject, name: .username)
-        _password = ReadWriteAttribute(jsObject: jsObject, name: .password)
-        _host = ReadWriteAttribute(jsObject: jsObject, name: .host)
-        _hostname = ReadWriteAttribute(jsObject: jsObject, name: .hostname)
-        _port = ReadWriteAttribute(jsObject: jsObject, name: .port)
-        _pathname = ReadWriteAttribute(jsObject: jsObject, name: .pathname)
-        _search = ReadWriteAttribute(jsObject: jsObject, name: .search)
-        _searchParams = ReadonlyAttribute(jsObject: jsObject, name: .searchParams)
-        _hash = ReadWriteAttribute(jsObject: jsObject, name: .hash)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(url: String, base: String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(url), _toJSValue(base)]))
     }
-
+    
     @inlinable public class func canParse(url: String, base: String? = nil) -> Bool {
         let this = constructor!
         return this[.canParse].function!(this: this, arguments: [_toJSValue(url), _toJSValue(base)]).fromJSValue()!
     }
-
-    @ReadWriteAttribute
-    public var href: String
-
-    @ReadonlyAttribute
-    public var origin: String
-
-    @ReadWriteAttribute
-    public var `protocol`: String
-
-    @ReadWriteAttribute
-    public var username: String
-
-    @ReadWriteAttribute
-    public var password: String
-
-    @ReadWriteAttribute
-    public var host: String
-
-    @ReadWriteAttribute
-    public var hostname: String
-
-    @ReadWriteAttribute
-    public var port: String
-
-    @ReadWriteAttribute
-    public var pathname: String
-
-    @ReadWriteAttribute
-    public var search: String
-
-    @ReadonlyAttribute
-    public var searchParams: URLSearchParams
-
-    @ReadWriteAttribute
-    public var hash: String
-
+    
+    public var href: String {
+        get { jsObject[.href].fromJSValue()!}
+        set { jsObject[.href] = newValue.jsValue }
+    }
+    
+    public var origin: String {
+        jsObject[.origin].fromJSValue()!
+    }
+    
+    public var `protocol`: String {
+        get { jsObject[.`protocol`].fromJSValue()!}
+        set { jsObject[.`protocol`] = newValue.jsValue }
+    }
+    
+    public var username: String {
+        get { jsObject[.username].fromJSValue()!}
+        set { jsObject[.username] = newValue.jsValue }
+    }
+    
+    public var password: String {
+        get { jsObject[.password].fromJSValue()!}
+        set { jsObject[.password] = newValue.jsValue }
+    }
+    
+    public var host: String {
+        get { jsObject[.host].fromJSValue()!}
+        set { jsObject[.host] = newValue.jsValue }
+    }
+    
+    public var hostname: String {
+        get { jsObject[.hostname].fromJSValue()!}
+        set { jsObject[.hostname] = newValue.jsValue }
+    }
+    
+    public var port: String {
+        get { jsObject[.port].fromJSValue()!}
+        set { jsObject[.port] = newValue.jsValue }
+    }
+    
+    public var pathname: String {
+        get { jsObject[.pathname].fromJSValue()!}
+        set { jsObject[.pathname] = newValue.jsValue }
+    }
+    
+    public var search: String {
+        get { jsObject[.search].fromJSValue()!}
+        set { jsObject[.search] = newValue.jsValue }
+    }
+    
+    public var searchParams: URLSearchParams {
+        jsObject[.searchParams].fromJSValue()!
+    }
+    
+    public var hash: String {
+        get { jsObject[.hash].fromJSValue()!}
+        set { jsObject[.hash] = newValue.jsValue }
+    }
+    
     @inlinable public func toJSON() -> String {
         let this = jsObject
         return this[.toJSON].function!(this: this, arguments: []).fromJSValue()!
@@ -155,61 +165,61 @@ public class URL: JSBridgedClass {
 
 public class URLSearchParams: JSBridgedClass, Sequence {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.URLSearchParams].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _size = ReadonlyAttribute(jsObject: jsObject, name: .size)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(init: String_or_record_String_to_String_or_seq_of_seq_of_String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var size: UInt32
-
+    
+    public var size: UInt32 {
+        jsObject[.size].fromJSValue()!
+    }
+    
     @inlinable public func append(name: String, value: String) {
         let this = jsObject
         _ = this[.append].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
     }
-
+    
     @inlinable public func delete(name: String, value: String? = nil) {
         let this = jsObject
         _ = this[.delete].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
     }
-
+    
     @inlinable public func get(name: String) -> String? {
         let this = jsObject
         return this[.get].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()
     }
-
+    
     @inlinable public func getAll(name: String) -> [String] {
         let this = jsObject
         return this[.getAll].function!(this: this, arguments: [_toJSValue(name)]).fromJSValue()!
     }
-
+    
     @inlinable public func has(name: String, value: String? = nil) -> Bool {
         let this = jsObject
         return this[.has].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)]).fromJSValue()!
     }
-
+    
     @inlinable public func set(name: String, value: String) {
         let this = jsObject
         _ = this[.set].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
     }
-
+    
     @inlinable public func sort() {
         let this = jsObject
         _ = this[.sort].function!(this: this, arguments: [])
     }
-
+    
     public typealias Element = String
     public func makeIterator() -> ValueIterableIterator<URLSearchParams> {
         ValueIterableIterator(sequence: self)
     }
-
+    
     @inlinable public var description: String {
         jsObject[.toString]!().fromJSValue()!
     }
@@ -219,97 +229,97 @@ public enum console {
     @inlinable public static var jsObject: JSObject {
         JSObject.global[.console].object!
     }
-
+    
     @inlinable public static func assert(condition: Bool? = nil, data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.assert].function!(this: this, arguments: [_toJSValue(condition)] + data.map(_toJSValue))
     }
-
+    
     @inlinable public static func clear() {
         let this = JSObject.global[.console].object!
         _ = this[.clear].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public static func debug(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.debug].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func error(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.error].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func info(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.info].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func log(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.log].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func table(tabularData: JSValue? = nil, properties: [String]? = nil) {
         let this = JSObject.global[.console].object!
         _ = this[.table].function!(this: this, arguments: [_toJSValue(tabularData), _toJSValue(properties)])
     }
-
+    
     @inlinable public static func trace(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.trace].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func warn(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.warn].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func dir(item: JSValue? = nil, options: JSObject? = nil) {
         let this = JSObject.global[.console].object!
         _ = this[.dir].function!(this: this, arguments: [_toJSValue(item), _toJSValue(options)])
     }
-
+    
     @inlinable public static func dirxml(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.dirxml].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func count(label: String? = nil) {
         let this = JSObject.global[.console].object!
         _ = this[.count].function!(this: this, arguments: [_toJSValue(label)])
     }
-
+    
     @inlinable public static func countReset(label: String? = nil) {
         let this = JSObject.global[.console].object!
         _ = this[.countReset].function!(this: this, arguments: [_toJSValue(label)])
     }
-
+    
     @inlinable public static func group(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.group].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func groupCollapsed(data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.groupCollapsed].function!(this: this, arguments: data.map(_toJSValue))
     }
-
+    
     @inlinable public static func groupEnd() {
         let this = JSObject.global[.console].object!
         _ = this[.groupEnd].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public static func time(label: String? = nil) {
         let this = JSObject.global[.console].object!
         _ = this[.time].function!(this: this, arguments: [_toJSValue(label)])
     }
-
+    
     @inlinable public static func timeLog(label: String? = nil, data: JSValue...) {
         let this = JSObject.global[.console].object!
         _ = this[.timeLog].function!(this: this, arguments: [_toJSValue(label)] + data.map(_toJSValue))
     }
-
+    
     @inlinable public static func timeEnd(label: String? = nil) {
         let this = JSObject.global[.console].object!
         _ = this[.timeEnd].function!(this: this, arguments: [_toJSValue(label)])
@@ -317,7 +327,7 @@ public enum console {
 }
 
 extension JSString {
-//@usableFromInline enum Strings {
+    //@usableFromInline enum Strings {
     @usableFromInline static let _self: JSString = "self"
     @usableFromInline static let DOMException: JSString = "DOMException"
     @usableFromInline static let URL: JSString = "URL"
@@ -374,7 +384,7 @@ public enum AllowSharedBufferSource: JSValueCompatible {
     case arrayBuffer(ArrayBuffer)
     case arrayBufferView(ArrayBufferView)
     case sharedArrayBuffer(SharedArrayBuffer)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let arrayBuffer: ArrayBuffer = value.fromJSValue() {
             return .arrayBuffer(arrayBuffer)
@@ -387,7 +397,7 @@ public enum AllowSharedBufferSource: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .arrayBuffer(arrayBuffer):
@@ -403,7 +413,7 @@ public enum AllowSharedBufferSource: JSValueCompatible {
 public enum BufferSource: JSValueCompatible {
     case arrayBuffer(ArrayBuffer)
     case arrayBufferView(ArrayBufferView)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let arrayBuffer: ArrayBuffer = value.fromJSValue() {
             return .arrayBuffer(arrayBuffer)
@@ -413,7 +423,7 @@ public enum BufferSource: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .arrayBuffer(arrayBuffer):
@@ -429,7 +439,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
     case string(String)
     case record_String_to_String([String: String])
     case seq_of_seq_of_String([[String]])
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let string: String = value.fromJSValue() {
             return .string(string)
@@ -442,7 +452,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .string(string):
@@ -457,21 +467,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 
 /* variadic generics please */
 @propertyWrapper public final class ClosureAttribute0<ReturnType>
-    where ReturnType: JSValueCompatible
+where ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: () -> ReturnType {
         get { ClosureAttribute0[name, in: jsObject] }
         set { ClosureAttribute0[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> () -> ReturnType {
         get {
             let function = jsObject[name].function!
@@ -486,7 +496,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<ReturnType>(_ value: @escaping () -> ReturnType) -> JSValue
-    where ReturnType: JSValueCompatible
+where ReturnType: JSValueCompatible
 {
     JSClosure { _ in
         _toJSValue(value())
@@ -494,21 +504,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute0Optional<ReturnType>
-    where ReturnType: JSValueCompatible
+where ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (() -> ReturnType)? {
         get { ClosureAttribute0Optional[name, in: jsObject] }
         set { ClosureAttribute0Optional[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (() -> ReturnType)? {
         get {
             guard let function = jsObject[name].function else {
@@ -529,7 +539,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<ReturnType>(_ value: (() -> ReturnType)?) -> JSValue
-    where ReturnType: JSValueCompatible
+where ReturnType: JSValueCompatible
 {
     JSClosure { _ in
         _toJSValue(value?())
@@ -539,17 +549,17 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 @propertyWrapper public final class ClosureAttribute0OptionalVoid {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (() -> Void)? {
         get { ClosureAttribute0OptionalVoid[name, in: jsObject] }
         set { ClosureAttribute0OptionalVoid[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (() -> Void)? {
         get {
             guard let function = jsObject[name].function else {
@@ -580,17 +590,17 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 @propertyWrapper public final class ClosureAttribute0Void {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: () -> Void {
         get { ClosureAttribute0Void[name, in: jsObject] }
         set { ClosureAttribute0Void[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> () -> Void {
         get {
             let function = jsObject[name].function!
@@ -613,21 +623,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute1<A0, ReturnType>
-    where A0: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (A0) -> ReturnType {
         get { ClosureAttribute1[name, in: jsObject] }
         set { ClosureAttribute1[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (A0) -> ReturnType {
         get {
             let function = jsObject[name].function!
@@ -642,7 +652,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, ReturnType>(_ value: @escaping (A0) -> ReturnType) -> JSValue
-    where A0: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value($0[0].fromJSValue()!))
@@ -650,21 +660,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute1Optional<A0, ReturnType>
-    where A0: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: ((A0) -> ReturnType)? {
         get { ClosureAttribute1Optional[name, in: jsObject] }
         set { ClosureAttribute1Optional[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> ((A0) -> ReturnType)? {
         get {
             guard let function = jsObject[name].function else {
@@ -685,7 +695,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, ReturnType>(_ value: ((A0) -> ReturnType)?) -> JSValue
-    where A0: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value?($0[0].fromJSValue()!))
@@ -693,21 +703,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute1OptionalVoid<A0>
-    where A0: JSValueCompatible
+where A0: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: ((A0) -> Void)? {
         get { ClosureAttribute1OptionalVoid[name, in: jsObject] }
         set { ClosureAttribute1OptionalVoid[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> ((A0) -> Void)? {
         get {
             guard let function = jsObject[name].function else {
@@ -729,7 +739,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0>(_ value: ((A0) -> Void)?) -> JSValue
-    where A0: JSValueCompatible
+where A0: JSValueCompatible
 {
     JSClosure {
         value?($0[0].fromJSValue()!)
@@ -738,21 +748,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute1Void<A0>
-    where A0: JSValueCompatible
+where A0: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (A0) -> Void {
         get { ClosureAttribute1Void[name, in: jsObject] }
         set { ClosureAttribute1Void[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (A0) -> Void {
         get {
             let function = jsObject[name].function!
@@ -768,7 +778,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0>(_ value: @escaping (A0) -> Void) -> JSValue
-    where A0: JSValueCompatible
+where A0: JSValueCompatible
 {
     JSClosure {
         value($0[0].fromJSValue()!)
@@ -777,21 +787,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute2<A0, A1, ReturnType>
-    where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (A0, A1) -> ReturnType {
         get { ClosureAttribute2[name, in: jsObject] }
         set { ClosureAttribute2[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (A0, A1) -> ReturnType {
         get {
             let function = jsObject[name].function!
@@ -806,7 +816,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, ReturnType>(_ value: @escaping (A0, A1) -> ReturnType) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value($0[0].fromJSValue()!, $0[1].fromJSValue()!))
@@ -814,21 +824,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute2Optional<A0, A1, ReturnType>
-    where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: ((A0, A1) -> ReturnType)? {
         get { ClosureAttribute2Optional[name, in: jsObject] }
         set { ClosureAttribute2Optional[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> ((A0, A1) -> ReturnType)? {
         get {
             guard let function = jsObject[name].function else {
@@ -849,7 +859,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, ReturnType>(_ value: ((A0, A1) -> ReturnType)?) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value?($0[0].fromJSValue()!, $0[1].fromJSValue()!))
@@ -857,21 +867,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute2OptionalVoid<A0, A1>
-    where A0: JSValueCompatible, A1: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: ((A0, A1) -> Void)? {
         get { ClosureAttribute2OptionalVoid[name, in: jsObject] }
         set { ClosureAttribute2OptionalVoid[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> ((A0, A1) -> Void)? {
         get {
             guard let function = jsObject[name].function else {
@@ -893,7 +903,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1>(_ value: ((A0, A1) -> Void)?) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible
 {
     JSClosure {
         value?($0[0].fromJSValue()!, $0[1].fromJSValue()!)
@@ -902,21 +912,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute2Void<A0, A1>
-    where A0: JSValueCompatible, A1: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (A0, A1) -> Void {
         get { ClosureAttribute2Void[name, in: jsObject] }
         set { ClosureAttribute2Void[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (A0, A1) -> Void {
         get {
             let function = jsObject[name].function!
@@ -932,7 +942,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1>(_ value: @escaping (A0, A1) -> Void) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible
 {
     JSClosure {
         value($0[0].fromJSValue()!, $0[1].fromJSValue()!)
@@ -941,21 +951,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute3<A0, A1, A2, ReturnType>
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (A0, A1, A2) -> ReturnType {
         get { ClosureAttribute3[name, in: jsObject] }
         set { ClosureAttribute3[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (A0, A1, A2) -> ReturnType {
         get {
             let function = jsObject[name].function!
@@ -970,7 +980,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, A2, ReturnType>(_ value: @escaping (A0, A1, A2) -> ReturnType) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value($0[0].fromJSValue()!, $0[1].fromJSValue()!, $0[2].fromJSValue()!))
@@ -978,21 +988,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute3Optional<A0, A1, A2, ReturnType>
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: ((A0, A1, A2) -> ReturnType)? {
         get { ClosureAttribute3Optional[name, in: jsObject] }
         set { ClosureAttribute3Optional[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> ((A0, A1, A2) -> ReturnType)? {
         get {
             guard let function = jsObject[name].function else {
@@ -1013,7 +1023,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, A2, ReturnType>(_ value: ((A0, A1, A2) -> ReturnType)?) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value?($0[0].fromJSValue()!, $0[1].fromJSValue()!, $0[2].fromJSValue()!))
@@ -1021,21 +1031,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute3OptionalVoid<A0, A1, A2>
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: ((A0, A1, A2) -> Void)? {
         get { ClosureAttribute3OptionalVoid[name, in: jsObject] }
         set { ClosureAttribute3OptionalVoid[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> ((A0, A1, A2) -> Void)? {
         get {
             guard let function = jsObject[name].function else {
@@ -1057,7 +1067,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, A2>(_ value: ((A0, A1, A2) -> Void)?) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
 {
     JSClosure {
         value?($0[0].fromJSValue()!, $0[1].fromJSValue()!, $0[2].fromJSValue()!)
@@ -1066,21 +1076,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute3Void<A0, A1, A2>
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (A0, A1, A2) -> Void {
         get { ClosureAttribute3Void[name, in: jsObject] }
         set { ClosureAttribute3Void[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (A0, A1, A2) -> Void {
         get {
             let function = jsObject[name].function!
@@ -1096,7 +1106,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, A2>(_ value: @escaping (A0, A1, A2) -> Void) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible
 {
     JSClosure {
         value($0[0].fromJSValue()!, $0[1].fromJSValue()!, $0[2].fromJSValue()!)
@@ -1105,21 +1115,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute5<A0, A1, A2, A3, A4, ReturnType>
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: (A0, A1, A2, A3, A4) -> ReturnType {
         get { ClosureAttribute5[name, in: jsObject] }
         set { ClosureAttribute5[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> (A0, A1, A2, A3, A4) -> ReturnType {
         get {
             let function = jsObject[name].function!
@@ -1134,7 +1144,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, A2, A3, A4, ReturnType>(_ value: @escaping (A0, A1, A2, A3, A4) -> ReturnType) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value($0[0].fromJSValue()!, $0[1].fromJSValue()!, $0[2].fromJSValue()!, $0[3].fromJSValue()!, $0[4].fromJSValue()!))
@@ -1142,21 +1152,21 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @propertyWrapper public final class ClosureAttribute5Optional<A0, A1, A2, A3, A4, ReturnType>
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
 {
     @usableFromInline let jsObject: JSObject
     @usableFromInline let name: JSString
-
+    
     @inlinable public init(jsObject: JSObject, name: JSString) {
         self.jsObject = jsObject
         self.name = name
     }
-
+    
     @inlinable public var wrappedValue: ((A0, A1, A2, A3, A4) -> ReturnType)? {
         get { ClosureAttribute5Optional[name, in: jsObject] }
         set { ClosureAttribute5Optional[name, in: jsObject] = newValue }
     }
-
+    
     @inlinable public static subscript(name: JSString, in jsObject: JSObject) -> ((A0, A1, A2, A3, A4) -> ReturnType)? {
         get {
             guard let function = jsObject[name].function else {
@@ -1177,7 +1187,7 @@ public enum String_or_record_String_to_String_or_seq_of_seq_of_String: JSValueCo
 }
 
 @inlinable public func _toJSValue<A0, A1, A2, A3, A4, ReturnType>(_ value: ((A0, A1, A2, A3, A4) -> ReturnType)?) -> JSValue
-    where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
+where A0: JSValueCompatible, A1: JSValueCompatible, A2: JSValueCompatible, A3: JSValueCompatible, A4: JSValueCompatible, ReturnType: JSValueCompatible
 {
     JSClosure {
         _toJSValue(value?($0[0].fromJSValue()!, $0[1].fromJSValue()!, $0[2].fromJSValue()!, $0[3].fromJSValue()!, $0[4].fromJSValue()!))

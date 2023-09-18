@@ -15,23 +15,19 @@ import WebAPIBase
 public class HTMLFontElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLFontElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _color = ReadWriteAttribute(jsObject: jsObject, name: .color)
-        _face = ReadWriteAttribute(jsObject: jsObject, name: .face)
-        _size = ReadWriteAttribute(jsObject: jsObject, name: .size)
-        super.init(unsafelyWrapping: jsObject)
+   public var color: String {
+        get { jsObject[.color].fromJSValue()!}
+        set { jsObject[.color] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var face: String {
+        get { jsObject[.face].fromJSValue()!}
+        set { jsObject[.face] = newValue.jsValue }
+ 
     }
 
-    @ReadWriteAttribute
-    public var color: String
-
-    @ReadWriteAttribute
-    public var face: String
-
-    @ReadWriteAttribute
-    public var size: String
+    public var size: String {
+        get { jsObject[.size].fromJSValue()!}
+        set { jsObject[.size] = newValue.jsValue }
+    }
 }

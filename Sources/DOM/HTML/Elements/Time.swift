@@ -15,16 +15,9 @@ import WebAPIBase
 
 public class HTMLTimeElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTimeElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _dateTime = ReadWriteAttribute(jsObject: jsObject, name: .dateTime)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var dateTime: String {
+        get { jsObject[.dateTime].fromJSValue()!}
+        set { jsObject[.dateTime] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var dateTime: String
 }

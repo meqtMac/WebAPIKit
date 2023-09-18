@@ -15,72 +15,77 @@ import WebAPIBase
 public class HTMLScriptElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLScriptElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _src = ReadWriteAttribute(jsObject: jsObject, name: .src)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _noModule = ReadWriteAttribute(jsObject: jsObject, name: .noModule)
-        _async = ReadWriteAttribute(jsObject: jsObject, name: .async)
-        _defer = ReadWriteAttribute(jsObject: jsObject, name: .defer)
-        _crossOrigin = ReadWriteAttribute(jsObject: jsObject, name: .crossOrigin)
-        _text = ReadWriteAttribute(jsObject: jsObject, name: .text)
-        _integrity = ReadWriteAttribute(jsObject: jsObject, name: .integrity)
-        _referrerPolicy = ReadWriteAttribute(jsObject: jsObject, name: .referrerPolicy)
-        _blocking = ReadonlyAttribute(jsObject: jsObject, name: .blocking)
-        _fetchPriority = ReadWriteAttribute(jsObject: jsObject, name: .fetchPriority)
-        _charset = ReadWriteAttribute(jsObject: jsObject, name: .charset)
-        _event = ReadWriteAttribute(jsObject: jsObject, name: .event)
-        _htmlFor = ReadWriteAttribute(jsObject: jsObject, name: .htmlFor)
-        super.init(unsafelyWrapping: jsObject)
+    public var src: String {
+        get { jsObject[.src].fromJSValue()!}
+        set { jsObject[.src] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var src: String
+    public var noModule: Bool {
+        get { jsObject[.noModule].fromJSValue()!}
+        set { jsObject[.noModule] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var type: String
+    public var async: Bool {
+        get { jsObject[.async].fromJSValue()!}
+        set { jsObject[.async] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var noModule: Bool
+    public var `defer`: Bool {
+        get { jsObject[.`defer`].fromJSValue()!}
+        set { jsObject[.`defer`] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var async: Bool
+    public var crossOrigin: String? {
+        get { jsObject[.crossOrigin].fromJSValue()}
+        set { jsObject[.crossOrigin] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var `defer`: Bool
+    public var text: String {
+        get { jsObject[.text].fromJSValue()!}
+        set { jsObject[.text] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var crossOrigin: String?
+    public var integrity: String {
+        get { jsObject[.integrity].fromJSValue()!}
+        set { jsObject[.integrity] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var text: String
+    public var referrerPolicy: String {
+        get { jsObject[.referrerPolicy].fromJSValue()!}
+        set { jsObject[.referrerPolicy] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var integrity: String
+public var blocking: DOMTokenList {
+jsObject[.blocking].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var referrerPolicy: String
-
-    @ReadonlyAttribute
-    public var blocking: DOMTokenList
-
-    @ReadWriteAttribute
-    public var fetchPriority: String
+    public var fetchPriority: String {
+        get { jsObject[.fetchPriority].fromJSValue()!}
+        set { jsObject[.fetchPriority] = newValue.jsValue }
+    }
 
     @inlinable public class func supports(type: String) -> Bool {
         let this = constructor!
         return this[.supports].function!(this: this, arguments: [_toJSValue(type)]).fromJSValue()!
     }
 
-    @ReadWriteAttribute
-    public var charset: String
+    public var charset: String {
+        get { jsObject[.charset].fromJSValue()!}
+        set { jsObject[.charset] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var event: String
+    public var event: String {
+        get { jsObject[.event].fromJSValue()!}
+        set { jsObject[.event] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var htmlFor: String
+    public var htmlFor: String {
+        get { jsObject[.htmlFor].fromJSValue()!}
+        set { jsObject[.htmlFor] = newValue.jsValue }
+    }
 }

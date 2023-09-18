@@ -36,17 +36,15 @@ public class ScrollIntoViewOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _block = ReadWriteAttribute(jsObject: object, name: .block)
-        _inline = ReadWriteAttribute(jsObject: object, name: .inline)
-        super.init(unsafelyWrapping: object)
+    public var block: ScrollLogicalPosition {
+        get { jsObject[.block].fromJSValue()!}
+        set { jsObject[.block] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var block: ScrollLogicalPosition
-
-    @ReadWriteAttribute
-    public var inline: ScrollLogicalPosition
+    public var inline: ScrollLogicalPosition {
+        get { jsObject[.inline].fromJSValue()!}
+        set { jsObject[.inline] = newValue.jsValue }
+    }
 }
 
 public enum ScrollLogicalPosition: JSString, JSValueCompatible {
@@ -75,14 +73,11 @@ public class ScrollOptions: BridgedDictionary {
         object[.behavior] = _toJSValue(behavior)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _behavior = ReadWriteAttribute(jsObject: object, name: .behavior)
-        super.init(unsafelyWrapping: object)
+    
+    public var behavior: ScrollBehavior {
+        get { jsObject[.behavior].fromJSValue()!}
+        set { jsObject[.behavior] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var behavior: ScrollBehavior
 }
 
 public enum ScrollRestoration: JSString, JSValueCompatible {
@@ -110,17 +105,15 @@ public class ScrollToOptions: BridgedDictionary {
         object[.top] = _toJSValue(top)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _left = ReadWriteAttribute(jsObject: object, name: .left)
-        _top = ReadWriteAttribute(jsObject: object, name: .top)
-        super.init(unsafelyWrapping: object)
+    
+    public var left: Double {
+        get { jsObject[.left].fromJSValue()!}
+        set { jsObject[.left] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var left: Double
-
-    @ReadWriteAttribute
-    public var top: Double
+    public var top: Double {
+        get { jsObject[.top].fromJSValue()!}
+        set { jsObject[.top] = newValue.jsValue }
+    }
 }
 

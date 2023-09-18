@@ -15,35 +15,30 @@ import WebAPIBase
 public class HTMLTrackElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTrackElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _kind = ReadWriteAttribute(jsObject: jsObject, name: .kind)
-        _src = ReadWriteAttribute(jsObject: jsObject, name: .src)
-        _srclang = ReadWriteAttribute(jsObject: jsObject, name: .srclang)
-        _label = ReadWriteAttribute(jsObject: jsObject, name: .label)
-        _default = ReadWriteAttribute(jsObject: jsObject, name: .default)
-        _readyState = ReadonlyAttribute(jsObject: jsObject, name: .readyState)
-        _track = ReadonlyAttribute(jsObject: jsObject, name: .track)
-        super.init(unsafelyWrapping: jsObject)
+    public var kind: String {
+        get { jsObject[.kind].fromJSValue()! }
+        set { jsObject[.kind] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var src: String {
+        get { jsObject[.src].fromJSValue()! }
+        set { jsObject[.src] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var kind: String
+    public var srclang: String {
+        get { jsObject[.srclang].fromJSValue()! }
+        set { jsObject[.srclang] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var src: String
+    public var label: String {
+        get { jsObject[.label].fromJSValue()! }
+        set { jsObject[.label] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var srclang: String
-
-    @ReadWriteAttribute
-    public var label: String
-
-    @ReadWriteAttribute
-    public var `default`: Bool
+    public var `default`: Bool {
+        get { jsObject[.default].fromJSValue()! }
+        set { jsObject[.default] = newValue.jsValue }
+    }
 
     public static let NONE: UInt16 = 0
 
@@ -53,9 +48,11 @@ public class HTMLTrackElement: HTMLElement {
 
     public static let ERROR: UInt16 = 3
 
-    @ReadonlyAttribute
-    public var readyState: UInt16
+    public var readyState: UInt16 {
+        jsObject[.readyState].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var track: TextTrack
+    public var track: TextTrack {
+        jsObject[.track].fromJSValue()!
+    }
 }

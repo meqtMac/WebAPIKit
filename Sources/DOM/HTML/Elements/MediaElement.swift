@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by 蒋艺 on 2023/9/14.
 //
@@ -15,52 +15,29 @@ import WebAPIBase
 public class HTMLMediaElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLMediaElement].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _error = ReadonlyAttribute(jsObject: jsObject, name: .error)
-        _src = ReadWriteAttribute(jsObject: jsObject, name: .src)
-        _srcObject = ReadWriteAttribute(jsObject: jsObject, name: .srcObject)
-        _currentSrc = ReadonlyAttribute(jsObject: jsObject, name: .currentSrc)
-        _crossOrigin = ReadWriteAttribute(jsObject: jsObject, name: .crossOrigin)
-        _networkState = ReadonlyAttribute(jsObject: jsObject, name: .networkState)
-        _preload = ReadWriteAttribute(jsObject: jsObject, name: .preload)
-        _buffered = ReadonlyAttribute(jsObject: jsObject, name: .buffered)
-        _readyState = ReadonlyAttribute(jsObject: jsObject, name: .readyState)
-        _seeking = ReadonlyAttribute(jsObject: jsObject, name: .seeking)
-        _currentTime = ReadWriteAttribute(jsObject: jsObject, name: .currentTime)
-        _duration = ReadonlyAttribute(jsObject: jsObject, name: .duration)
-        _paused = ReadonlyAttribute(jsObject: jsObject, name: .paused)
-        _defaultPlaybackRate = ReadWriteAttribute(jsObject: jsObject, name: .defaultPlaybackRate)
-        _playbackRate = ReadWriteAttribute(jsObject: jsObject, name: .playbackRate)
-        _preservesPitch = ReadWriteAttribute(jsObject: jsObject, name: .preservesPitch)
-        _played = ReadonlyAttribute(jsObject: jsObject, name: .played)
-        _seekable = ReadonlyAttribute(jsObject: jsObject, name: .seekable)
-        _ended = ReadonlyAttribute(jsObject: jsObject, name: .ended)
-        _autoplay = ReadWriteAttribute(jsObject: jsObject, name: .autoplay)
-        _loop = ReadWriteAttribute(jsObject: jsObject, name: .loop)
-        _controls = ReadWriteAttribute(jsObject: jsObject, name: .controls)
-        _volume = ReadWriteAttribute(jsObject: jsObject, name: .volume)
-        _muted = ReadWriteAttribute(jsObject: jsObject, name: .muted)
-        _defaultMuted = ReadWriteAttribute(jsObject: jsObject, name: .defaultMuted)
-        _audioTracks = ReadonlyAttribute(jsObject: jsObject, name: .audioTracks)
-        _videoTracks = ReadonlyAttribute(jsObject: jsObject, name: .videoTracks)
-        _textTracks = ReadonlyAttribute(jsObject: jsObject, name: .textTracks)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var error: MediaError? {
+        jsObject[.error].fromJSValue()
     }
     
-    @ReadonlyAttribute
-    public var error: MediaError?
+    public var src: String {
+        get { jsObject[.src].fromJSValue()!}
+        set { jsObject[.src] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var src: String
+    public var srcObject: MediaProvider? {
+        get { jsObject[.srcObject].fromJSValue()}
+        set { jsObject[.srcObject] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var srcObject: MediaProvider?
+    public var currentSrc: String {
+        jsObject[.currentSrc].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var currentSrc: String
-    
-    @ReadWriteAttribute
-    public var crossOrigin: String?
+    public var crossOrigin: String? {
+        get { jsObject[.crossOrigin].fromJSValue()}
+        set { jsObject[.crossOrigin] = newValue.jsValue }
+    }
     
     public static let NETWORK_EMPTY: UInt16 = 0
     
@@ -70,14 +47,18 @@ public class HTMLMediaElement: HTMLElement {
     
     public static let NETWORK_NO_SOURCE: UInt16 = 3
     
-    @ReadonlyAttribute
-    public var networkState: UInt16
+    public var networkState: UInt16 {
+        jsObject[.networkState].fromJSValue()!
+    }
     
-    @ReadWriteAttribute
-    public var preload: String
+    public var preload: String {
+        get { jsObject[.preload].fromJSValue()!}
+        set { jsObject[.preload] = newValue.jsValue }
+    }
     
-    @ReadonlyAttribute
-    public var buffered: TimeRanges
+    public var buffered: TimeRanges {
+        jsObject[.buffered].fromJSValue()!
+    }
     
     @inlinable public func load() {
         let this = jsObject
@@ -99,54 +80,73 @@ public class HTMLMediaElement: HTMLElement {
     
     public static let HAVE_ENOUGH_DATA: UInt16 = 4
     
-    @ReadonlyAttribute
-    public var readyState: UInt16
+    public var readyState: UInt16 {
+        jsObject[.readyState].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var seeking: Bool
+    public var seeking: Bool {
+        jsObject[.seeking].fromJSValue()!
+    }
     
-    @ReadWriteAttribute
-    public var currentTime: Double
+    public var currentTime: Double {
+        get { jsObject[.currentTime].fromJSValue()!}
+        set { jsObject[.currentTime] = newValue.jsValue }
+    }
     
     @inlinable public func fastSeek(time: Double) {
         let this = jsObject
         _ = this[.fastSeek].function!(this: this, arguments: [_toJSValue(time)])
     }
     
-    @ReadonlyAttribute
-    public var duration: Double
+    public var duration: Double {
+        jsObject[.duration].fromJSValue()!
+    }
     
     @inlinable public func getStartDate() -> JSObject {
         let this = jsObject
         return this[.getStartDate].function!(this: this, arguments: []).fromJSValue()!
     }
     
-    @ReadonlyAttribute
-    public var paused: Bool
+    public var paused: Bool {
+        jsObject[.paused].fromJSValue()!
+    }
     
-    @ReadWriteAttribute
-    public var defaultPlaybackRate: Double
+    public var defaultPlaybackRate: Double {
+        get { jsObject[.defaultPlaybackRate].fromJSValue()!}
+        set { jsObject[.defaultPlaybackRate] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var playbackRate: Double
+    public var playbackRate: Double {
+        get { jsObject[.playbackRate].fromJSValue()!}
+        set { jsObject[.playbackRate] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var preservesPitch: Bool
+    public var preservesPitch: Bool {
+        get { jsObject[.preservesPitch].fromJSValue()!}
+        set { jsObject[.preservesPitch] = newValue.jsValue }
+    }
     
-    @ReadonlyAttribute
-    public var played: TimeRanges
+    public var played: TimeRanges {
+        jsObject[.played].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var seekable: TimeRanges
+    public var seekable: TimeRanges {
+        jsObject[.seekable].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var ended: Bool
+    public var ended: Bool {
+        jsObject[.ended].fromJSValue()!
+    }
     
-    @ReadWriteAttribute
-    public var autoplay: Bool
+    public var autoplay: Bool {
+        get { jsObject[.autoplay].fromJSValue()!}
+        set { jsObject[.autoplay] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var loop: Bool
+    public var loop: Bool {
+        get { jsObject[.loop].fromJSValue()!}
+        set { jsObject[.loop] = newValue.jsValue }
+    }
     
     @inlinable public func play() -> JSPromise {
         let this = jsObject
@@ -165,26 +165,37 @@ public class HTMLMediaElement: HTMLElement {
         _ = this[.pause].function!(this: this, arguments: [])
     }
     
-    @ReadWriteAttribute
-    public var controls: Bool
+    public var controls: Bool {
+        get { jsObject[.controls].fromJSValue()!}
+        set { jsObject[.controls] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var volume: Double
+    public var volume: Double {
+        get { jsObject[.volume].fromJSValue()!}
+        set { jsObject[.volume] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var muted: Bool
+    public var muted: Bool {
+        get { jsObject[.muted].fromJSValue()!}
+        set { jsObject[.muted] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var defaultMuted: Bool
+    public var defaultMuted: Bool {
+        get { jsObject[.defaultMuted].fromJSValue()!}
+        set { jsObject[.defaultMuted] = newValue.jsValue }
+    }
     
-    @ReadonlyAttribute
-    public var audioTracks: AudioTrackList
+    public var audioTracks: AudioTrackList {
+        jsObject[.audioTracks].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var videoTracks: VideoTrackList
+    public var videoTracks: VideoTrackList {
+        jsObject[.videoTracks].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var textTracks: TextTrackList
+    public var textTracks: TextTrackList {
+        jsObject[.textTracks].fromJSValue()!
+    }
     
     @inlinable public func addTextTrack(kind: TextTrackKind, label: String? = nil, language: String? = nil) -> TextTrack {
         let this = jsObject
@@ -197,7 +208,7 @@ public enum MediaProvider: JSValueCompatible {
     case blob(Blob)
     case mediaSource(MediaSource)
     case mediaStream(MediaStream)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let blob: Blob = value.fromJSValue() {
             return .blob(blob)
@@ -210,7 +221,7 @@ public enum MediaProvider: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .blob(blob):

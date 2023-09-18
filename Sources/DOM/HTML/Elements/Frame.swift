@@ -15,51 +15,51 @@ import WebAPIBase
 public class HTMLFrameElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLFrameElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _scrolling = ReadWriteAttribute(jsObject: jsObject, name: .scrolling)
-        _src = ReadWriteAttribute(jsObject: jsObject, name: .src)
-        _frameBorder = ReadWriteAttribute(jsObject: jsObject, name: .frameBorder)
-        _longDesc = ReadWriteAttribute(jsObject: jsObject, name: .longDesc)
-        _noResize = ReadWriteAttribute(jsObject: jsObject, name: .noResize)
-        _contentDocument = ReadonlyAttribute(jsObject: jsObject, name: .contentDocument)
-        _contentWindow = ReadonlyAttribute(jsObject: jsObject, name: .contentWindow)
-        _marginHeight = ReadWriteAttribute(jsObject: jsObject, name: .marginHeight)
-        _marginWidth = ReadWriteAttribute(jsObject: jsObject, name: .marginWidth)
-        super.init(unsafelyWrapping: jsObject)
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var scrolling: String {
+        get { jsObject[.scrolling].fromJSValue()!}
+        set { jsObject[.scrolling] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var src: String {
+        get { jsObject[.src].fromJSValue()!}
+        set { jsObject[.src] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var scrolling: String
+    public var frameBorder: String {
+        get { jsObject[.frameBorder].fromJSValue()!}
+        set { jsObject[.frameBorder] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var src: String
+    public var longDesc: String {
+        get { jsObject[.longDesc].fromJSValue()!}
+        set { jsObject[.longDesc] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var frameBorder: String
+    public var noResize: Bool {
+        get { jsObject[.noResize].fromJSValue()!}
+        set { jsObject[.noResize] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var longDesc: String
+public var contentDocument: Document? {
+jsObject[.contentDocument].fromJSValue()
+    }
 
-    @ReadWriteAttribute
-    public var noResize: Bool
+public var contentWindow: WindowProxy? {
+jsObject[.contentWindow].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var contentDocument: Document?
+    public var marginHeight: String {
+        get { jsObject[.marginHeight].fromJSValue()!}
+        set { jsObject[.marginHeight] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var contentWindow: WindowProxy?
-
-    @ReadWriteAttribute
-    public var marginHeight: String
-
-    @ReadWriteAttribute
-    public var marginWidth: String
+    public var marginWidth: String {
+        get { jsObject[.marginWidth].fromJSValue()!}
+        set { jsObject[.marginWidth] = newValue.jsValue }
+    }
 }

@@ -15,66 +15,66 @@ import WebAPIBase
 public class HTMLButtonElement: HTMLElement, PopoverInvokerElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLButtonElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _disabled = ReadWriteAttribute(jsObject: jsObject, name: .disabled)
-        _form = ReadonlyAttribute(jsObject: jsObject, name: .form)
-        _formAction = ReadWriteAttribute(jsObject: jsObject, name: .formAction)
-        _formEnctype = ReadWriteAttribute(jsObject: jsObject, name: .formEnctype)
-        _formMethod = ReadWriteAttribute(jsObject: jsObject, name: .formMethod)
-        _formNoValidate = ReadWriteAttribute(jsObject: jsObject, name: .formNoValidate)
-        _formTarget = ReadWriteAttribute(jsObject: jsObject, name: .formTarget)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _value = ReadWriteAttribute(jsObject: jsObject, name: .value)
-        _willValidate = ReadonlyAttribute(jsObject: jsObject, name: .willValidate)
-        _validity = ReadonlyAttribute(jsObject: jsObject, name: .validity)
-        _validationMessage = ReadonlyAttribute(jsObject: jsObject, name: .validationMessage)
-        _labels = ReadonlyAttribute(jsObject: jsObject, name: .labels)
-        super.init(unsafelyWrapping: jsObject)
+    public var disabled: Bool {
+        get { jsObject[.disabled].fromJSValue()!}
+        set { jsObject[.disabled] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+public var form: HTMLFormElement? {
+jsObject[.form].fromJSValue()
     }
 
-    @ReadWriteAttribute
-    public var disabled: Bool
+    public var formAction: String {
+        get { jsObject[.formAction].fromJSValue()!}
+        set { jsObject[.formAction] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var form: HTMLFormElement?
+    public var formEnctype: String {
+        get { jsObject[.formEnctype].fromJSValue()!}
+        set { jsObject[.formEnctype] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var formAction: String
+    public var formMethod: String {
+        get { jsObject[.formMethod].fromJSValue()!}
+        set { jsObject[.formMethod] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var formEnctype: String
+    public var formNoValidate: Bool {
+        get { jsObject[.formNoValidate].fromJSValue()!}
+        set { jsObject[.formNoValidate] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var formMethod: String
+    public var formTarget: String {
+        get { jsObject[.formTarget].fromJSValue()!}
+        set { jsObject[.formTarget] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var formNoValidate: Bool
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var formTarget: String
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var value: String {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var type: String
+public var willValidate: Bool {
+jsObject[.willValidate].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var value: String
+public var validity: ValidityState {
+jsObject[.validity].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var willValidate: Bool
-
-    @ReadonlyAttribute
-    public var validity: ValidityState
-
-    @ReadonlyAttribute
-    public var validationMessage: String
+public var validationMessage: String {
+jsObject[.validationMessage].fromJSValue()!
+    }
 
     @inlinable public func checkValidity() -> Bool {
         let this = jsObject
@@ -91,6 +91,7 @@ public class HTMLButtonElement: HTMLElement, PopoverInvokerElement {
         _ = this[.setCustomValidity].function!(this: this, arguments: [_toJSValue(error)])
     }
 
-    @ReadonlyAttribute
-    public var labels: NodeList
+public var labels: NodeList {
+jsObject[.labels].fromJSValue()!
+    }
 }

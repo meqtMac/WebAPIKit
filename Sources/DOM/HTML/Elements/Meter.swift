@@ -15,39 +15,37 @@ import WebAPIBase
 public class HTMLMeterElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLMeterElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _value = ReadWriteAttribute(jsObject: jsObject, name: .value)
-        _min = ReadWriteAttribute(jsObject: jsObject, name: .min)
-        _max = ReadWriteAttribute(jsObject: jsObject, name: .max)
-        _low = ReadWriteAttribute(jsObject: jsObject, name: .low)
-        _high = ReadWriteAttribute(jsObject: jsObject, name: .high)
-        _optimum = ReadWriteAttribute(jsObject: jsObject, name: .optimum)
-        _labels = ReadonlyAttribute(jsObject: jsObject, name: .labels)
-        super.init(unsafelyWrapping: jsObject)
+    public var value: Double {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var min: Double {
+        get { jsObject[.min].fromJSValue()!}
+        set { jsObject[.min] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var value: Double
+    public var max: Double {
+        get { jsObject[.max].fromJSValue()!}
+        set { jsObject[.max] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var min: Double
+    public var low: Double {
+        get { jsObject[.low].fromJSValue()!}
+        set { jsObject[.low] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var max: Double
+    public var high: Double {
+        get { jsObject[.high].fromJSValue()!}
+        set { jsObject[.high] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var low: Double
+    public var optimum: Double {
+        get { jsObject[.optimum].fromJSValue()!}
+        set { jsObject[.optimum] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var high: Double
-
-    @ReadWriteAttribute
-    public var optimum: Double
-
-    @ReadonlyAttribute
-    public var labels: NodeList
+public var labels: NodeList {
+jsObject[.labels].fromJSValue()!
+    }
 }

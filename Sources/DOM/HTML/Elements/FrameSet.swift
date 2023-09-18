@@ -15,19 +15,13 @@ import WebAPIBase
 public class HTMLFrameSetElement: HTMLElement, WindowEventHandlers {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLFrameSetElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _cols = ReadWriteAttribute(jsObject: jsObject, name: .cols)
-        _rows = ReadWriteAttribute(jsObject: jsObject, name: .rows)
-        super.init(unsafelyWrapping: jsObject)
+    public var cols: String {
+        get { jsObject[.cols].fromJSValue()!}
+        set { jsObject[.cols] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var rows: String {
+        get { jsObject[.rows].fromJSValue()!}
+        set { jsObject[.rows] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var cols: String
-
-    @ReadWriteAttribute
-    public var rows: String
 }

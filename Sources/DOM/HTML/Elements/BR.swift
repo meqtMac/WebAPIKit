@@ -15,15 +15,9 @@ import WebAPIBase
 public class HTMLBRElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLBRElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _clear = ReadWriteAttribute(jsObject: jsObject, name: .clear)
-        super.init(unsafelyWrapping: jsObject)
+    public var clear: String {
+        get { jsObject[.clear].fromJSValue()!}
+        set { jsObject[.clear] = newValue.jsValue }
+ 
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var clear: String
 }

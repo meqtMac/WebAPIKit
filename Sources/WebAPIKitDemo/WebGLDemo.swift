@@ -65,12 +65,12 @@ void main() {
 }
 """
 
-struct WebGLDemo: HTMLProtocol {
+struct WebGLDemo: HTML {
     let element: HTMLElement
     
     init(parent: HTMLElement) {
         let button = Button(title: "WebGL") {
-            parent.jsObject.innerHTML = ""
+            parent.removeChilds()
             let canvas = Canvas(width: 800, height: 800)
             _ = parent.jsValue.appendChild(canvas.element.jsValue)
             

@@ -15,27 +15,23 @@ import WebAPIBase
 public class HTMLOListElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLOListElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _reversed = ReadWriteAttribute(jsObject: jsObject, name: .reversed)
-        _start = ReadWriteAttribute(jsObject: jsObject, name: .start)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _compact = ReadWriteAttribute(jsObject: jsObject, name: .compact)
-        super.init(unsafelyWrapping: jsObject)
+    public var reversed: Bool {
+        get { jsObject[.reversed].fromJSValue()!}
+        set { jsObject[.reversed] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var start: Int32 {
+        get { jsObject[.start].fromJSValue()!}
+        set { jsObject[.start] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var reversed: Bool
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var start: Int32
-
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var compact: Bool
+    public var compact: Bool {
+        get { jsObject[.compact].fromJSValue()!}
+        set { jsObject[.compact] = newValue.jsValue }
+    }
 }

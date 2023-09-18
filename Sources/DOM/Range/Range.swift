@@ -17,28 +17,28 @@ public class AbstractRange: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _startContainer = ReadonlyAttribute(jsObject: jsObject, name: .startContainer)
-        _startOffset = ReadonlyAttribute(jsObject: jsObject, name: .startOffset)
-        _endContainer = ReadonlyAttribute(jsObject: jsObject, name: .endContainer)
-        _endOffset = ReadonlyAttribute(jsObject: jsObject, name: .endOffset)
-        _collapsed = ReadonlyAttribute(jsObject: jsObject, name: .collapsed)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var startContainer: Node
+public var startContainer: Node {
+jsObject[.startContainer].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var startOffset: UInt32
+public var startOffset: UInt32 {
+jsObject[.startOffset].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var endContainer: Node
+public var endContainer: Node {
+jsObject[.endContainer].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var endOffset: UInt32
+public var endOffset: UInt32 {
+jsObject[.endOffset].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var collapsed: Bool
+public var collapsed: Bool {
+jsObject[.collapsed].fromJSValue()!
+    }
 }
 
 
@@ -50,17 +50,15 @@ public class ConstrainDoubleRange: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _exact = ReadWriteAttribute(jsObject: object, name: .exact)
-        _ideal = ReadWriteAttribute(jsObject: object, name: .ideal)
-        super.init(unsafelyWrapping: object)
+    public var exact: Double {
+        get { jsObject[.exact].fromJSValue()!}
+        set { jsObject[.exact] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var exact: Double
-
-    @ReadWriteAttribute
-    public var ideal: Double
+    public var ideal: Double {
+        get { jsObject[.ideal].fromJSValue()!}
+        set { jsObject[.ideal] = newValue.jsValue }
+    }
 }
 
 public class ConstrainULongRange: BridgedDictionary {
@@ -71,17 +69,15 @@ public class ConstrainULongRange: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _exact = ReadWriteAttribute(jsObject: object, name: .exact)
-        _ideal = ReadWriteAttribute(jsObject: object, name: .ideal)
-        super.init(unsafelyWrapping: object)
+    public var exact: UInt32 {
+        get { jsObject[.exact].fromJSValue()!}
+        set { jsObject[.exact] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var exact: UInt32
-
-    @ReadWriteAttribute
-    public var ideal: UInt32
+    public var ideal: UInt32 {
+        get { jsObject[.ideal].fromJSValue()!}
+        set { jsObject[.ideal] = newValue.jsValue }
+    }
 }
 
 public class DoubleRange: BridgedDictionary {
@@ -92,33 +88,23 @@ public class DoubleRange: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _max = ReadWriteAttribute(jsObject: object, name: .max)
-        _min = ReadWriteAttribute(jsObject: object, name: .min)
-        super.init(unsafelyWrapping: object)
+    public var max: Double {
+        get { jsObject[.max].fromJSValue()!}
+        set { jsObject[.max] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var max: Double
-
-    @ReadWriteAttribute
-    public var min: Double
+    public var min: Double {
+        get { jsObject[.min].fromJSValue()!}
+        set { jsObject[.min] = newValue.jsValue }
+    }
 }
 
 public class Range: AbstractRange {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.Range].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _commonAncestorContainer = ReadonlyAttribute(jsObject: jsObject, name: .commonAncestorContainer)
-        super.init(unsafelyWrapping: jsObject)
+public var commonAncestorContainer: Node {
+jsObject[.commonAncestorContainer].fromJSValue()!
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadonlyAttribute
-    public var commonAncestorContainer: Node
 
     @inlinable public func setStart(node: Node, offset: UInt32) {
         let this = jsObject
@@ -265,25 +251,25 @@ public class StaticRangeInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _startContainer = ReadWriteAttribute(jsObject: object, name: .startContainer)
-        _startOffset = ReadWriteAttribute(jsObject: object, name: .startOffset)
-        _endContainer = ReadWriteAttribute(jsObject: object, name: .endContainer)
-        _endOffset = ReadWriteAttribute(jsObject: object, name: .endOffset)
-        super.init(unsafelyWrapping: object)
+    public var startContainer: Node {
+        get { jsObject[.startContainer].fromJSValue()!}
+        set { jsObject[.startContainer] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var startContainer: Node
+    public var startOffset: UInt32 {
+        get { jsObject[.startOffset].fromJSValue()!}
+        set { jsObject[.startOffset] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var startOffset: UInt32
+    public var endContainer: Node {
+        get { jsObject[.endContainer].fromJSValue()!}
+        set { jsObject[.endContainer] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var endContainer: Node
-
-    @ReadWriteAttribute
-    public var endOffset: UInt32
+    public var endOffset: UInt32 {
+        get { jsObject[.endOffset].fromJSValue()!}
+        set { jsObject[.endOffset] = newValue.jsValue }
+    }
 }
 
 public class TimeRanges: JSBridgedClass {
@@ -292,12 +278,12 @@ public class TimeRanges: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var length: UInt32
+public var length: UInt32 {
+jsObject[.length].fromJSValue()!
+    }
 
     @inlinable public func start(index: UInt32) -> Double {
         let this = jsObject
@@ -317,17 +303,15 @@ public class ULongRange: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _max = ReadWriteAttribute(jsObject: object, name: .max)
-        _min = ReadWriteAttribute(jsObject: object, name: .min)
-        super.init(unsafelyWrapping: object)
+    public var max: UInt32 {
+        get { jsObject[.max].fromJSValue()!}
+        set { jsObject[.max] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var max: UInt32
-
-    @ReadWriteAttribute
-    public var min: UInt32
+    public var min: UInt32 {
+        get { jsObject[.min].fromJSValue()!}
+        set { jsObject[.min] = newValue.jsValue }
+    }
 }
 public enum ConstrainDouble: JSValueCompatible {
     case constrainDoubleRange(ConstrainDoubleRange)

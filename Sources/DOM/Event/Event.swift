@@ -17,37 +17,28 @@ open class Event: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _target = ReadonlyAttribute(jsObject: jsObject, name: .target)
-        _srcElement = ReadonlyAttribute(jsObject: jsObject, name: .srcElement)
-        _currentTarget = ReadonlyAttribute(jsObject: jsObject, name: .currentTarget)
-        _eventPhase = ReadonlyAttribute(jsObject: jsObject, name: .eventPhase)
-        _cancelBubble = ReadWriteAttribute(jsObject: jsObject, name: .cancelBubble)
-        _bubbles = ReadonlyAttribute(jsObject: jsObject, name: .bubbles)
-        _cancelable = ReadonlyAttribute(jsObject: jsObject, name: .cancelable)
-        _returnValue = ReadWriteAttribute(jsObject: jsObject, name: .returnValue)
-        _defaultPrevented = ReadonlyAttribute(jsObject: jsObject, name: .defaultPrevented)
-        _composed = ReadonlyAttribute(jsObject: jsObject, name: .composed)
-        _isTrusted = ReadonlyAttribute(jsObject: jsObject, name: .isTrusted)
-        _timeStamp = ReadonlyAttribute(jsObject: jsObject, name: .timeStamp)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
     @inlinable public convenience init(type: String, eventInitDict: EventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var type: String
+public var type: String {
+jsObject[.type].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var target: EventTarget?
+public var target: EventTarget? {
+jsObject[.target].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var srcElement: EventTarget?
+public var srcElement: EventTarget? {
+jsObject[.srcElement].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var currentTarget: EventTarget?
+public var currentTarget: EventTarget? {
+jsObject[.currentTarget].fromJSValue()
+    }
 
     @inlinable public func composedPath() -> [EventTarget] {
         let this = jsObject
@@ -62,47 +53,58 @@ open class Event: JSBridgedClass {
 
     public static let BUBBLING_PHASE: UInt16 = 3
 
-    @ReadonlyAttribute
-    public var eventPhase: UInt16
+public var eventPhase: UInt16 {
+jsObject[.eventPhase].fromJSValue()!
+    }
 
     @inlinable public func stopPropagation() {
         let this = jsObject
         _ = this[.stopPropagation].function!(this: this, arguments: [])
     }
 
-    @ReadWriteAttribute
-    public var cancelBubble: Bool
+    public var cancelBubble: Bool {
+        get { jsObject[.cancelBubble].fromJSValue()!}
+        set { jsObject[.cancelBubble] = newValue.jsValue }
+    }
 
     @inlinable public func stopImmediatePropagation() {
         let this = jsObject
         _ = this[.stopImmediatePropagation].function!(this: this, arguments: [])
     }
 
-    @ReadonlyAttribute
-    public var bubbles: Bool
+public var bubbles: Bool {
+jsObject[.bubbles].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var cancelable: Bool
+public var cancelable: Bool {
+jsObject[.cancelable].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var returnValue: Bool
+    public var returnValue: Bool {
+        get { jsObject[.returnValue].fromJSValue()!}
+        set { jsObject[.returnValue] = newValue.jsValue }
+    }
 
     @inlinable public func preventDefault() {
         let this = jsObject
         _ = this[.preventDefault].function!(this: this, arguments: [])
     }
 
-    @ReadonlyAttribute
-    public var defaultPrevented: Bool
+public var defaultPrevented: Bool {
+jsObject[.defaultPrevented].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var composed: Bool
+public var composed: Bool {
+jsObject[.composed].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var isTrusted: Bool
+public var isTrusted: Bool {
+jsObject[.isTrusted].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var timeStamp: DOMHighResTimeStamp
+public var timeStamp: DOMHighResTimeStamp {
+jsObject[.timeStamp].fromJSValue()!
+    }
 
     @inlinable public func initEvent(type: String, bubbles: Bool? = nil, cancelable: Bool? = nil) {
         let this = jsObject
@@ -119,21 +121,20 @@ public class EventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _bubbles = ReadWriteAttribute(jsObject: object, name: .bubbles)
-        _cancelable = ReadWriteAttribute(jsObject: object, name: .cancelable)
-        _composed = ReadWriteAttribute(jsObject: object, name: .composed)
-        super.init(unsafelyWrapping: object)
+    public var bubbles: Bool {
+        get { jsObject[.bubbles].fromJSValue()!}
+        set { jsObject[.bubbles] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var bubbles: Bool
+    public var cancelable: Bool {
+        get { jsObject[.cancelable].fromJSValue()!}
+        set { jsObject[.cancelable] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var cancelable: Bool
-
-    @ReadWriteAttribute
-    public var composed: Bool
+    public var composed: Bool {
+        get { jsObject[.composed].fromJSValue()!}
+        set { jsObject[.composed] = newValue.jsValue }
+    }
 }
 
 public typealias EventListener = (Event) -> Void
@@ -144,13 +145,10 @@ public class EventListenerOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _capture = ReadWriteAttribute(jsObject: object, name: .capture)
-        super.init(unsafelyWrapping: object)
+    public var capture: Bool {
+        get { jsObject[.capture].fromJSValue()!}
+        set { jsObject[.capture] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var capture: Bool
 }
 
 public class EventModifierInit: BridgedDictionary {
@@ -173,93 +171,99 @@ public class EventModifierInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _ctrlKey = ReadWriteAttribute(jsObject: object, name: .ctrlKey)
-        _shiftKey = ReadWriteAttribute(jsObject: object, name: .shiftKey)
-        _altKey = ReadWriteAttribute(jsObject: object, name: .altKey)
-        _metaKey = ReadWriteAttribute(jsObject: object, name: .metaKey)
-        _modifierAltGraph = ReadWriteAttribute(jsObject: object, name: .modifierAltGraph)
-        _modifierCapsLock = ReadWriteAttribute(jsObject: object, name: .modifierCapsLock)
-        _modifierFn = ReadWriteAttribute(jsObject: object, name: .modifierFn)
-        _modifierFnLock = ReadWriteAttribute(jsObject: object, name: .modifierFnLock)
-        _modifierHyper = ReadWriteAttribute(jsObject: object, name: .modifierHyper)
-        _modifierNumLock = ReadWriteAttribute(jsObject: object, name: .modifierNumLock)
-        _modifierScrollLock = ReadWriteAttribute(jsObject: object, name: .modifierScrollLock)
-        _modifierSuper = ReadWriteAttribute(jsObject: object, name: .modifierSuper)
-        _modifierSymbol = ReadWriteAttribute(jsObject: object, name: .modifierSymbol)
-        _modifierSymbolLock = ReadWriteAttribute(jsObject: object, name: .modifierSymbolLock)
-        super.init(unsafelyWrapping: object)
+    public var ctrlKey: Bool {
+        get { jsObject[.ctrlKey].fromJSValue()!}
+        set { jsObject[.ctrlKey] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var ctrlKey: Bool
+    public var shiftKey: Bool {
+        get { jsObject[.shiftKey].fromJSValue()!}
+        set { jsObject[.shiftKey] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var shiftKey: Bool
+    public var altKey: Bool {
+        get { jsObject[.altKey].fromJSValue()!}
+        set { jsObject[.altKey] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var altKey: Bool
+    public var metaKey: Bool {
+        get { jsObject[.metaKey].fromJSValue()!}
+        set { jsObject[.metaKey] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var metaKey: Bool
+    public var modifierAltGraph: Bool {
+        get { jsObject[.modifierAltGraph].fromJSValue()!}
+        set { jsObject[.modifierAltGraph] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierAltGraph: Bool
+    public var modifierCapsLock: Bool {
+        get { jsObject[.modifierCapsLock].fromJSValue()!}
+        set { jsObject[.modifierCapsLock] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierCapsLock: Bool
+    public var modifierFn: Bool {
+        get { jsObject[.modifierFn].fromJSValue()!}
+        set { jsObject[.modifierFn] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierFn: Bool
+    public var modifierFnLock: Bool {
+        get { jsObject[.modifierFnLock].fromJSValue()!}
+        set { jsObject[.modifierFnLock] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierFnLock: Bool
+    public var modifierHyper: Bool {
+        get { jsObject[.modifierHyper].fromJSValue()!}
+        set { jsObject[.modifierHyper] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierHyper: Bool
+    public var modifierNumLock: Bool {
+        get { jsObject[.modifierNumLock].fromJSValue()!}
+        set { jsObject[.modifierNumLock] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierNumLock: Bool
+    public var modifierScrollLock: Bool {
+        get { jsObject[.modifierScrollLock].fromJSValue()!}
+        set { jsObject[.modifierScrollLock] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierScrollLock: Bool
+    public var modifierSuper: Bool {
+        get { jsObject[.modifierSuper].fromJSValue()!}
+        set { jsObject[.modifierSuper] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierSuper: Bool
+    public var modifierSymbol: Bool {
+        get { jsObject[.modifierSymbol].fromJSValue()!}
+        set { jsObject[.modifierSymbol] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var modifierSymbol: Bool
-
-    @ReadWriteAttribute
-    public var modifierSymbolLock: Bool
+    public var modifierSymbolLock: Bool {
+        get { jsObject[.modifierSymbolLock].fromJSValue()!}
+        set { jsObject[.modifierSymbolLock] = newValue.jsValue }
+    }
 }
 public class UIEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.UIEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _view = ReadonlyAttribute(jsObject: jsObject, name: .view)
-        _detail = ReadonlyAttribute(jsObject: jsObject, name: .detail)
-        _which = ReadonlyAttribute(jsObject: jsObject, name: .which)
-        super.init(unsafelyWrapping: jsObject)
-    }
 
     @inlinable public convenience init(type: String, eventInitDict: UIEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var view: Window?
+public var view: Window? {
+jsObject[.view].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var detail: Int32
+public var detail: Int32 {
+jsObject[.detail].fromJSValue()!
+    }
 
     @inlinable public func initUIEvent(typeArg: String, bubblesArg: Bool? = nil, cancelableArg: Bool? = nil, viewArg: Window? = nil, detailArg: Int32? = nil) {
         let this = jsObject
         _ = this[.initUIEvent].function!(this: this, arguments: [_toJSValue(typeArg), _toJSValue(bubblesArg), _toJSValue(cancelableArg), _toJSValue(viewArg), _toJSValue(detailArg)])
     }
 
-    @ReadonlyAttribute
-    public var which: UInt32
+public var which: UInt32 {
+jsObject[.which].fromJSValue()!
+    }
 }
 
 public class UIEventInit: BridgedDictionary {
@@ -270,37 +274,32 @@ public class UIEventInit: BridgedDictionary {
         object[.which] = _toJSValue(which)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _view = ReadWriteAttribute(jsObject: object, name: .view)
-        _detail = ReadWriteAttribute(jsObject: object, name: .detail)
-        _which = ReadWriteAttribute(jsObject: object, name: .which)
-        super.init(unsafelyWrapping: object)
+    
+    public var view: Window? {
+        get { jsObject[.view].fromJSValue()}
+        set { jsObject[.view] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var view: Window?
+    public var detail: Int32 {
+        get { jsObject[.detail].fromJSValue()!}
+        set { jsObject[.detail] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var detail: Int32
-
-    @ReadWriteAttribute
-    public var which: UInt32
+    public var which: UInt32 {
+        get { jsObject[.which].fromJSValue()!}
+        set { jsObject[.which] = newValue.jsValue }
+    }
 }
 public class CompositionEvent: UIEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.CompositionEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _data = ReadonlyAttribute(jsObject: jsObject, name: .data)
-        super.init(unsafelyWrapping: jsObject)
-    }
 
     @inlinable public convenience init(type: String, eventInitDict: CompositionEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var data: String
+public var data: String {
+jsObject[.data].fromJSValue()!
+    }
 
     @inlinable public func initCompositionEvent(typeArg: String, bubblesArg: Bool? = nil, cancelableArg: Bool? = nil, viewArg: WindowProxy? = nil, dataArg: String? = nil) {
         let this = jsObject
@@ -314,29 +313,22 @@ public class CompositionEventInit: BridgedDictionary {
         object[.data] = _toJSValue(data)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _data = ReadWriteAttribute(jsObject: object, name: .data)
-        super.init(unsafelyWrapping: object)
+    
+    public var data: String {
+        get { jsObject[.data].fromJSValue()!}
+        set { jsObject[.data] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var data: String
 }
 public class FocusEvent: UIEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.FocusEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _relatedTarget = ReadonlyAttribute(jsObject: jsObject, name: .relatedTarget)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
+    
     @inlinable public convenience init(type: String, eventInitDict: FocusEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var relatedTarget: EventTarget?
+public var relatedTarget: EventTarget? {
+jsObject[.relatedTarget].fromJSValue()
+    }
 }
 
 public class FocusEventInit: BridgedDictionary {
@@ -345,37 +337,29 @@ public class FocusEventInit: BridgedDictionary {
         object[.relatedTarget] = _toJSValue(relatedTarget)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _relatedTarget = ReadWriteAttribute(jsObject: object, name: .relatedTarget)
-        super.init(unsafelyWrapping: object)
+    public var relatedTarget: EventTarget? {
+        get { jsObject[.relatedTarget].fromJSValue()}
+        set { jsObject[.relatedTarget] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var relatedTarget: EventTarget?
 }
 public class InputEvent: UIEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.InputEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _data = ReadonlyAttribute(jsObject: jsObject, name: .data)
-        _isComposing = ReadonlyAttribute(jsObject: jsObject, name: .isComposing)
-        _inputType = ReadonlyAttribute(jsObject: jsObject, name: .inputType)
-        super.init(unsafelyWrapping: jsObject)
-    }
 
     @inlinable public convenience init(type: String, eventInitDict: InputEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var data: String?
+public var data: String? {
+jsObject[.data].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var isComposing: Bool
+public var isComposing: Bool {
+jsObject[.isComposing].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var inputType: String
+public var inputType: String {
+jsObject[.inputType].fromJSValue()!
+    }
 }
 
 public class InputEventInit: BridgedDictionary {
@@ -387,40 +371,24 @@ public class InputEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _data = ReadWriteAttribute(jsObject: object, name: .data)
-        _isComposing = ReadWriteAttribute(jsObject: object, name: .isComposing)
-        _inputType = ReadWriteAttribute(jsObject: object, name: .inputType)
-        super.init(unsafelyWrapping: object)
+    public var data: String? {
+        get { jsObject[.data].fromJSValue()}
+        set { jsObject[.data] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var data: String?
+    public var isComposing: Bool {
+        get { jsObject[.isComposing].fromJSValue()!}
+        set { jsObject[.isComposing] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var isComposing: Bool
-
-    @ReadWriteAttribute
-    public var inputType: String
+    public var inputType: String {
+        get { jsObject[.inputType].fromJSValue()!}
+        set { jsObject[.inputType] = newValue.jsValue }
+    }
 }
 
 public class KeyboardEvent: UIEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.KeyboardEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _key = ReadonlyAttribute(jsObject: jsObject, name: .key)
-        _code = ReadonlyAttribute(jsObject: jsObject, name: .code)
-        _location = ReadonlyAttribute(jsObject: jsObject, name: .location)
-        _ctrlKey = ReadonlyAttribute(jsObject: jsObject, name: .ctrlKey)
-        _shiftKey = ReadonlyAttribute(jsObject: jsObject, name: .shiftKey)
-        _altKey = ReadonlyAttribute(jsObject: jsObject, name: .altKey)
-        _metaKey = ReadonlyAttribute(jsObject: jsObject, name: .metaKey)
-        _repeat = ReadonlyAttribute(jsObject: jsObject, name: .repeat)
-        _isComposing = ReadonlyAttribute(jsObject: jsObject, name: .isComposing)
-        _charCode = ReadonlyAttribute(jsObject: jsObject, name: .charCode)
-        _keyCode = ReadonlyAttribute(jsObject: jsObject, name: .keyCode)
-        super.init(unsafelyWrapping: jsObject)
-    }
 
     @inlinable public convenience init(type: String, eventInitDict: KeyboardEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
@@ -434,32 +402,41 @@ public class KeyboardEvent: UIEvent {
 
     public static let DOM_KEY_LOCATION_NUMPAD: UInt32 = 0x03
 
-    @ReadonlyAttribute
-    public var key: String
+public var key: String {
+jsObject[.key].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var code: String
+public var code: String {
+jsObject[.code].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var location: UInt32
+public var location: UInt32 {
+jsObject[.location].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var ctrlKey: Bool
+public var ctrlKey: Bool {
+jsObject[.ctrlKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var shiftKey: Bool
+public var shiftKey: Bool {
+jsObject[.shiftKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var altKey: Bool
+public var altKey: Bool {
+jsObject[.altKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var metaKey: Bool
+public var metaKey: Bool {
+jsObject[.metaKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var `repeat`: Bool
+public var `repeat`: Bool {
+jsObject[.`repeat`].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var isComposing: Bool
+public var isComposing: Bool {
+jsObject[.isComposing].fromJSValue()!
+    }
 
     @inlinable public func getModifierState(keyArg: String) -> Bool {
         let this = jsObject
@@ -471,11 +448,13 @@ public class KeyboardEvent: UIEvent {
         _ = this[.initKeyboardEvent].function!(this: this, arguments: [_toJSValue(typeArg), _toJSValue(bubblesArg), _toJSValue(cancelableArg), _toJSValue(viewArg), _toJSValue(keyArg), _toJSValue(locationArg), _toJSValue(ctrlKey), _toJSValue(altKey), _toJSValue(shiftKey), _toJSValue(metaKey)])
     }
 
-    @ReadonlyAttribute
-    public var charCode: UInt32
+public var charCode: UInt32 {
+jsObject[.charCode].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var keyCode: UInt32
+public var keyCode: UInt32 {
+jsObject[.keyCode].fromJSValue()!
+    }
 }
 
 public class KeyboardEventInit: BridgedDictionary {
@@ -491,98 +470,91 @@ public class KeyboardEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _key = ReadWriteAttribute(jsObject: object, name: .key)
-        _code = ReadWriteAttribute(jsObject: object, name: .code)
-        _location = ReadWriteAttribute(jsObject: object, name: .location)
-        _repeat = ReadWriteAttribute(jsObject: object, name: .repeat)
-        _isComposing = ReadWriteAttribute(jsObject: object, name: .isComposing)
-        _charCode = ReadWriteAttribute(jsObject: object, name: .charCode)
-        _keyCode = ReadWriteAttribute(jsObject: object, name: .keyCode)
-        super.init(unsafelyWrapping: object)
+    public var key: String {
+        get { jsObject[.key].fromJSValue()!}
+        set { jsObject[.key] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var key: String
+    public var code: String {
+        get { jsObject[.code].fromJSValue()!}
+        set { jsObject[.code] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var code: String
+    public var location: UInt32 {
+        get { jsObject[.location].fromJSValue()!}
+        set { jsObject[.location] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var location: UInt32
+    public var `repeat`: Bool {
+        get { jsObject[.`repeat`].fromJSValue()!}
+        set { jsObject[.`repeat`] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var `repeat`: Bool
+    public var isComposing: Bool {
+        get { jsObject[.isComposing].fromJSValue()!}
+        set { jsObject[.isComposing] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var isComposing: Bool
+    public var charCode: UInt32 {
+        get { jsObject[.charCode].fromJSValue()!}
+        set { jsObject[.charCode] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var charCode: UInt32
-
-    @ReadWriteAttribute
-    public var keyCode: UInt32
+    public var keyCode: UInt32 {
+        get { jsObject[.keyCode].fromJSValue()!}
+        set { jsObject[.keyCode] = newValue.jsValue }
+    }
 }
 public class MouseEvent: UIEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.MouseEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _screenX = ReadonlyAttribute(jsObject: jsObject, name: .screenX)
-        _screenY = ReadonlyAttribute(jsObject: jsObject, name: .screenY)
-        _clientX = ReadonlyAttribute(jsObject: jsObject, name: .clientX)
-        _clientY = ReadonlyAttribute(jsObject: jsObject, name: .clientY)
-        _ctrlKey = ReadonlyAttribute(jsObject: jsObject, name: .ctrlKey)
-        _shiftKey = ReadonlyAttribute(jsObject: jsObject, name: .shiftKey)
-        _altKey = ReadonlyAttribute(jsObject: jsObject, name: .altKey)
-        _metaKey = ReadonlyAttribute(jsObject: jsObject, name: .metaKey)
-        _button = ReadonlyAttribute(jsObject: jsObject, name: .button)
-        _buttons = ReadonlyAttribute(jsObject: jsObject, name: .buttons)
-        _relatedTarget = ReadonlyAttribute(jsObject: jsObject, name: .relatedTarget)
-        _pageX = ReadonlyAttribute(jsObject: jsObject, name: .pageX)
-        _pageY = ReadonlyAttribute(jsObject: jsObject, name: .pageY)
-        _x = ReadonlyAttribute(jsObject: jsObject, name: .x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: .y)
-        _offsetX = ReadonlyAttribute(jsObject: jsObject, name: .offsetX)
-        _offsetY = ReadonlyAttribute(jsObject: jsObject, name: .offsetY)
-        super.init(unsafelyWrapping: jsObject)
-    }
 
     @inlinable public convenience init(type: String, eventInitDict: MouseEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var screenX: Int32
+public var screenX: Int32 {
+jsObject[.screenX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var screenY: Int32
+public var screenY: Int32 {
+jsObject[.screenY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var clientX: Int32
+public var clientX: Int32 {
+jsObject[.clientX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var clientY: Int32
+public var clientY: Int32 {
+jsObject[.clientY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var ctrlKey: Bool
+public var ctrlKey: Bool {
+jsObject[.ctrlKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var shiftKey: Bool
+public var shiftKey: Bool {
+jsObject[.shiftKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var altKey: Bool
+public var altKey: Bool {
+jsObject[.altKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var metaKey: Bool
+public var metaKey: Bool {
+jsObject[.metaKey].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var button: Int16
+public var button: Int16 {
+jsObject[.button].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var buttons: UInt16
+public var buttons: UInt16 {
+jsObject[.buttons].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var relatedTarget: EventTarget?
+public var relatedTarget: EventTarget? {
+jsObject[.relatedTarget].fromJSValue()
+    }
 
     @inlinable public func getModifierState(keyArg: String) -> Bool {
         let this = jsObject
@@ -594,23 +566,29 @@ public class MouseEvent: UIEvent {
         _ = this[.initMouseEvent].function!(this: this, arguments: [_toJSValue(typeArg), _toJSValue(bubblesArg), _toJSValue(cancelableArg), _toJSValue(viewArg), _toJSValue(detailArg), _toJSValue(screenXArg), _toJSValue(screenYArg), _toJSValue(clientXArg), _toJSValue(clientYArg), _toJSValue(ctrlKeyArg), _toJSValue(altKeyArg), _toJSValue(shiftKeyArg), _toJSValue(metaKeyArg), _toJSValue(buttonArg), _toJSValue(relatedTargetArg)])
     }
 
-    @ReadonlyAttribute
-    public var pageX: Double
+public var pageX: Double {
+jsObject[.pageX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var pageY: Double
+public var pageY: Double {
+jsObject[.pageY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var x: Double
+public var x: Double {
+jsObject[.x].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var y: Double
+public var y: Double {
+jsObject[.y].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var offsetX: Double
+public var offsetX: Double {
+jsObject[.offsetX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var offsetY: Double
+public var offsetY: Double {
+jsObject[.offsetY].fromJSValue()!
+    }
 }
 
 public class MouseEventInit: BridgedDictionary {
@@ -625,54 +603,53 @@ public class MouseEventInit: BridgedDictionary {
         object[.relatedTarget] = _toJSValue(relatedTarget)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _screenX = ReadWriteAttribute(jsObject: object, name: .screenX)
-        _screenY = ReadWriteAttribute(jsObject: object, name: .screenY)
-        _clientX = ReadWriteAttribute(jsObject: object, name: .clientX)
-        _clientY = ReadWriteAttribute(jsObject: object, name: .clientY)
-        _button = ReadWriteAttribute(jsObject: object, name: .button)
-        _buttons = ReadWriteAttribute(jsObject: object, name: .buttons)
-        _relatedTarget = ReadWriteAttribute(jsObject: object, name: .relatedTarget)
-        super.init(unsafelyWrapping: object)
+    
+    public var screenX: Int32 {
+        get { jsObject[.screenX].fromJSValue()!}
+        set { jsObject[.screenX] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var screenX: Int32
+    public var screenY: Int32 {
+        get { jsObject[.screenY].fromJSValue()!}
+        set { jsObject[.screenY] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var screenY: Int32
+    public var clientX: Int32 {
+        get { jsObject[.clientX].fromJSValue()!}
+        set { jsObject[.clientX] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var clientX: Int32
+    public var clientY: Int32 {
+        get { jsObject[.clientY].fromJSValue()!}
+        set { jsObject[.clientY] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var clientY: Int32
+    public var button: Int16 {
+        get { jsObject[.button].fromJSValue()!}
+        set { jsObject[.button] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var button: Int16
+    public var buttons: UInt16 {
+        get { jsObject[.buttons].fromJSValue()!}
+        set { jsObject[.buttons] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var buttons: UInt16
-
-    @ReadWriteAttribute
-    public var relatedTarget: EventTarget?
+    public var relatedTarget: EventTarget? {
+        get { jsObject[.relatedTarget].fromJSValue()}
+        set { jsObject[.relatedTarget] = newValue.jsValue }
+    }
 }
 
 public class DragEvent: MouseEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.DragEvent].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _dataTransfer = ReadonlyAttribute(jsObject: jsObject, name: .dataTransfer)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init(type: String, eventInitDict: DragEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var dataTransfer: DataTransfer?
+public var dataTransfer: DataTransfer? {
+jsObject[.dataTransfer].fromJSValue()
+    }
 }
 
 public class DragEventInit: BridgedDictionary {
@@ -682,24 +659,13 @@ public class DragEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _dataTransfer = ReadWriteAttribute(jsObject: object, name: .dataTransfer)
-        super.init(unsafelyWrapping: object)
+    public var dataTransfer: DataTransfer? {
+        get { jsObject[.dataTransfer].fromJSValue()}
+        set { jsObject[.dataTransfer] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var dataTransfer: DataTransfer?
 }
 public class WheelEvent: MouseEvent {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.WheelEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _deltaX = ReadonlyAttribute(jsObject: jsObject, name: .deltaX)
-        _deltaY = ReadonlyAttribute(jsObject: jsObject, name: .deltaY)
-        _deltaZ = ReadonlyAttribute(jsObject: jsObject, name: .deltaZ)
-        _deltaMode = ReadonlyAttribute(jsObject: jsObject, name: .deltaMode)
-        super.init(unsafelyWrapping: jsObject)
-    }
 
     @inlinable public convenience init(type: String, eventInitDict: WheelEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
@@ -711,17 +677,21 @@ public class WheelEvent: MouseEvent {
 
     public static let DOM_DELTA_PAGE: UInt32 = 0x02
 
-    @ReadonlyAttribute
-    public var deltaX: Double
+public var deltaX: Double {
+jsObject[.deltaX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var deltaY: Double
+public var deltaY: Double {
+jsObject[.deltaY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var deltaZ: Double
+public var deltaZ: Double {
+jsObject[.deltaZ].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var deltaMode: UInt32
+public var deltaMode: UInt32 {
+jsObject[.deltaMode].fromJSValue()!
+    }
 }
 
 public class WheelEventInit: BridgedDictionary {
@@ -734,23 +704,23 @@ public class WheelEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _deltaX = ReadWriteAttribute(jsObject: object, name: .deltaX)
-        _deltaY = ReadWriteAttribute(jsObject: object, name: .deltaY)
-        _deltaZ = ReadWriteAttribute(jsObject: object, name: .deltaZ)
-        _deltaMode = ReadWriteAttribute(jsObject: object, name: .deltaMode)
-        super.init(unsafelyWrapping: object)
+    public var deltaX: Double {
+        get { jsObject[.deltaX].fromJSValue()!}
+        set { jsObject[.deltaX] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var deltaX: Double
+    public var deltaY: Double {
+        get { jsObject[.deltaY].fromJSValue()!}
+        set { jsObject[.deltaY] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var deltaY: Double
+    public var deltaZ: Double {
+        get { jsObject[.deltaZ].fromJSValue()!}
+        set { jsObject[.deltaZ] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var deltaZ: Double
-
-    @ReadWriteAttribute
-    public var deltaMode: UInt32
+    public var deltaMode: UInt32 {
+        get { jsObject[.deltaMode].fromJSValue()!}
+        set { jsObject[.deltaMode] = newValue.jsValue }
+    }
 }

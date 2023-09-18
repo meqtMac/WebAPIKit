@@ -114,21 +114,20 @@ public class CacheQueryOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _ignoreSearch = ReadWriteAttribute(jsObject: object, name: .ignoreSearch)
-        _ignoreMethod = ReadWriteAttribute(jsObject: object, name: .ignoreMethod)
-        _ignoreVary = ReadWriteAttribute(jsObject: object, name: .ignoreVary)
-        super.init(unsafelyWrapping: object)
+    public var ignoreSearch: Bool {
+        get { jsObject[.ignoreSearch].fromJSValue()!}
+        set { jsObject[.ignoreSearch] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var ignoreSearch: Bool
+    public var ignoreMethod: Bool {
+        get { jsObject[.ignoreMethod].fromJSValue()!}
+        set { jsObject[.ignoreMethod] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var ignoreMethod: Bool
-
-    @ReadWriteAttribute
-    public var ignoreVary: Bool
+    public var ignoreVary: Bool {
+        get { jsObject[.ignoreVary].fromJSValue()!}
+        set { jsObject[.ignoreVary] = newValue.jsValue }
+    }
 }
 
 public class CacheStorage: JSBridgedClass {

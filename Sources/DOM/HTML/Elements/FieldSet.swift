@@ -15,45 +15,39 @@ import WebAPIBase
 public class HTMLFieldSetElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLFieldSetElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _disabled = ReadWriteAttribute(jsObject: jsObject, name: .disabled)
-        _form = ReadonlyAttribute(jsObject: jsObject, name: .form)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _elements = ReadonlyAttribute(jsObject: jsObject, name: .elements)
-        _willValidate = ReadonlyAttribute(jsObject: jsObject, name: .willValidate)
-        _validity = ReadonlyAttribute(jsObject: jsObject, name: .validity)
-        _validationMessage = ReadonlyAttribute(jsObject: jsObject, name: .validationMessage)
-        super.init(unsafelyWrapping: jsObject)
+    public var disabled: Bool {
+        get { jsObject[.disabled].fromJSValue()!}
+        set { jsObject[.disabled] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+public var form: HTMLFormElement? {
+jsObject[.form].fromJSValue()
     }
 
-    @ReadWriteAttribute
-    public var disabled: Bool
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var form: HTMLFormElement?
+public var type: String {
+jsObject[.type].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var name: String
+public var elements: HTMLCollection {
+jsObject[.elements].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var type: String
+public var willValidate: Bool {
+jsObject[.willValidate].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var elements: HTMLCollection
+public var validity: ValidityState {
+jsObject[.validity].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var willValidate: Bool
-
-    @ReadonlyAttribute
-    public var validity: ValidityState
-
-    @ReadonlyAttribute
-    public var validationMessage: String
+public var validationMessage: String {
+jsObject[.validationMessage].fromJSValue()!
+    }
 
     @inlinable public func checkValidity() -> Bool {
         let this = jsObject

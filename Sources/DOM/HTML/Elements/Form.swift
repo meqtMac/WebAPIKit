@@ -15,65 +15,67 @@ import WebAPIBase
 public class HTMLFormElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLFormElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _acceptCharset = ReadWriteAttribute(jsObject: jsObject, name: .acceptCharset)
-        _action = ReadWriteAttribute(jsObject: jsObject, name: .action)
-        _autocomplete = ReadWriteAttribute(jsObject: jsObject, name: .autocomplete)
-        _enctype = ReadWriteAttribute(jsObject: jsObject, name: .enctype)
-        _encoding = ReadWriteAttribute(jsObject: jsObject, name: .encoding)
-        _method = ReadWriteAttribute(jsObject: jsObject, name: .method)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _noValidate = ReadWriteAttribute(jsObject: jsObject, name: .noValidate)
-        _target = ReadWriteAttribute(jsObject: jsObject, name: .target)
-        _rel = ReadWriteAttribute(jsObject: jsObject, name: .rel)
-        _relList = ReadonlyAttribute(jsObject: jsObject, name: .relList)
-        _elements = ReadonlyAttribute(jsObject: jsObject, name: .elements)
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
-        super.init(unsafelyWrapping: jsObject)
+    public var acceptCharset: String {
+        get { jsObject[.acceptCharset].fromJSValue()!}
+        set { jsObject[.acceptCharset] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var action: String {
+        get { jsObject[.action].fromJSValue()!}
+        set { jsObject[.action] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var acceptCharset: String
+    public var autocomplete: String {
+        get { jsObject[.autocomplete].fromJSValue()!}
+        set { jsObject[.autocomplete] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var action: String
+    public var enctype: String {
+        get { jsObject[.enctype].fromJSValue()!}
+        set { jsObject[.enctype] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var autocomplete: String
+    public var encoding: String {
+        get { jsObject[.encoding].fromJSValue()!}
+        set { jsObject[.encoding] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var enctype: String
+    public var method: String {
+        get { jsObject[.method].fromJSValue()!}
+        set { jsObject[.method] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var encoding: String
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var method: String
+    public var noValidate: Bool {
+        get { jsObject[.noValidate].fromJSValue()!}
+        set { jsObject[.noValidate] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var target: String {
+        get { jsObject[.target].fromJSValue()!}
+        set { jsObject[.target] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var noValidate: Bool
+    public var rel: String {
+        get { jsObject[.rel].fromJSValue()!}
+        set { jsObject[.rel] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var target: String
+public var relList: DOMTokenList {
+jsObject[.relList].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var rel: String
+public var elements: HTMLFormControlsCollection {
+jsObject[.elements].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var relList: DOMTokenList
-
-    @ReadonlyAttribute
-    public var elements: HTMLFormControlsCollection
-
-    @ReadonlyAttribute
-    public var length: UInt32
+public var length: UInt32 {
+jsObject[.length].fromJSValue()!
+    }
 
     @inlinable public subscript(key: Int) -> Element {
         jsObject[key].fromJSValue()!

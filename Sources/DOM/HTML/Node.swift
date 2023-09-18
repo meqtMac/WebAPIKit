@@ -15,24 +15,6 @@ import WebAPIBase
 open class Node: EventTarget {
     @inlinable override open class var constructor: JSFunction? { JSObject.global[.Node].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _nodeType = ReadonlyAttribute(jsObject: jsObject, name: .nodeType)
-        _nodeName = ReadonlyAttribute(jsObject: jsObject, name: .nodeName)
-        _baseURI = ReadonlyAttribute(jsObject: jsObject, name: .baseURI)
-        _isConnected = ReadonlyAttribute(jsObject: jsObject, name: .isConnected)
-        _ownerDocument = ReadonlyAttribute(jsObject: jsObject, name: .ownerDocument)
-        _parentNode = ReadonlyAttribute(jsObject: jsObject, name: .parentNode)
-        _parentElement = ReadonlyAttribute(jsObject: jsObject, name: .parentElement)
-        _childNodes = ReadonlyAttribute(jsObject: jsObject, name: .childNodes)
-        _firstChild = ReadonlyAttribute(jsObject: jsObject, name: .firstChild)
-        _lastChild = ReadonlyAttribute(jsObject: jsObject, name: .lastChild)
-        _previousSibling = ReadonlyAttribute(jsObject: jsObject, name: .previousSibling)
-        _nextSibling = ReadonlyAttribute(jsObject: jsObject, name: .nextSibling)
-        _nodeValue = ReadWriteAttribute(jsObject: jsObject, name: .nodeValue)
-        _textContent = ReadWriteAttribute(jsObject: jsObject, name: .textContent)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     public static let ELEMENT_NODE: UInt16 = 1
 
     public static let ATTRIBUTE_NODE: UInt16 = 2
@@ -57,57 +39,75 @@ open class Node: EventTarget {
 
     public static let NOTATION_NODE: UInt16 = 12
 
-    @ReadonlyAttribute
-    public var nodeType: UInt16
+    public var nodeType: UInt16 {
+        jsObject[.nodeType].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var nodeName: String
+    public var nodeName: String {
+        jsObject[.nodeName].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var baseURI: String
+    public var baseURI: String {
+        jsObject[.baseURI].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var isConnected: Bool
+    public var isConnected: Bool {
+        jsObject[.isConnected].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var ownerDocument: Document?
+    public var ownerDocument: Document? {
+        jsObject[.ownerDocument].fromJSValue()
+    }
 
     @inlinable public func getRootNode(options: GetRootNodeOptions? = nil) -> Self {
         let this = jsObject
         return this[.getRootNode].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
     }
 
-    @ReadonlyAttribute
-    public var parentNode: Node?
+    public var parentNode: Node? {
+        jsObject[.parentNode].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var parentElement: Element?
+    public var parentElement: Element? {
+        jsObject[.parentElement].fromJSValue()!
+    }
 
     @inlinable public func hasChildNodes() -> Bool {
         let this = jsObject
         return this[.hasChildNodes].function!(this: this, arguments: []).fromJSValue()!
     }
 
-    @ReadonlyAttribute
-    public var childNodes: NodeList
+    public var childNodes: NodeList {
+        jsObject[.childNodes].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var firstChild: Node?
+    @inlinable
+    public var firstChild: Node? {
+        jsObject[.firstChild].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var lastChild: Node?
+    @inlinable
+    public var lastChild: Node? {
+        jsObject[.lastChild].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var previousSibling: Node?
+    public var previousSibling: Node? {
+        jsObject[.previousSibling].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var nextSibling: Node?
+    public var nextSibling: Node? {
+        jsObject[.nextSibling].fromJSValue()
+    }
 
-    @ReadWriteAttribute
-    public var nodeValue: String?
+    public var nodeValue: String? {
+        get { jsObject[.nodeValue].fromJSValue() }
+        set { jsObject[.nodeValue] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var textContent: String?
+    public var textContent: String? {
+        get { jsObject[.textContent].fromJSValue()}
+        set { jsObject[.textContent] = newValue.jsValue }
+    }
 
     @inlinable public func normalize() {
         let this = jsObject
@@ -166,9 +166,9 @@ open class Node: EventTarget {
         return this[.isDefaultNamespace].function!(this: this, arguments: [_toJSValue(namespace)]).fromJSValue()!
     }
 
-    @inlinable public func insertBefore(node: Node, child: Node?) -> Self {
+    @inlinable public func insertBefore(node: Node, child: Node?)  {
         let this = jsObject
-        return this[.insertBefore].function!(this: this, arguments: [_toJSValue(node), _toJSValue(child)]).fromJSValue()!
+        _ =  this[.insertBefore].function!(this: this, arguments: [_toJSValue(node), _toJSValue(child)])
     }
 
     @inlinable public func appendChild(node: Node) {
@@ -176,54 +176,54 @@ open class Node: EventTarget {
        _ =  this[.appendChild].function!(this: this, arguments: [_toJSValue(node)])
     }
 
-    @inlinable public func replaceChild(node: Node, child: Node) -> Self {
+    @inlinable public func replaceChild(node: Node, child: Node) {
         let this = jsObject
-        return this[.replaceChild].function!(this: this, arguments: [_toJSValue(node), _toJSValue(child)]).fromJSValue()!
+        _ =  this[.replaceChild].function!(this: this, arguments: [_toJSValue(node), _toJSValue(child)])
     }
 
-    @inlinable public func removeChild(child: Node) -> Self {
+    @inlinable public func removeChild(child: Node) {
         let this = jsObject
-        return this[.removeChild].function!(this: this, arguments: [_toJSValue(child)]).fromJSValue()!
+        this[.removeChild].function!(this: this, arguments: [_toJSValue(child)])
     }
 }
 
 public class NodeIterator: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.NodeIterator].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _root = ReadonlyAttribute(jsObject: jsObject, name: .root)
-        _referenceNode = ReadonlyAttribute(jsObject: jsObject, name: .referenceNode)
-        _pointerBeforeReferenceNode = ReadonlyAttribute(jsObject: jsObject, name: .pointerBeforeReferenceNode)
-        _whatToShow = ReadonlyAttribute(jsObject: jsObject, name: .whatToShow)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var root: Node
-
-    @ReadonlyAttribute
-    public var referenceNode: Node
-
-    @ReadonlyAttribute
-    public var pointerBeforeReferenceNode: Bool
-
-    @ReadonlyAttribute
-    public var whatToShow: UInt32
-
+    
+    public var root: Node {
+        jsObject[.root].fromJSValue()!
+    }
+    
+    public var referenceNode: Node {
+        jsObject[.referenceNode].fromJSValue()!
+    }
+    
+    public var pointerBeforeReferenceNode: Bool {
+        jsObject[.pointerBeforeReferenceNode].fromJSValue()!
+    }
+    
+    public var whatToShow: UInt32 {
+        jsObject[.whatToShow].fromJSValue()!
+    }
+    
     // XXX: member 'filter' is ignored
-
+    
     @inlinable public func nextNode() -> Node? {
         let this = jsObject
         return this[.nextNode].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func previousNode() -> Node? {
         let this = jsObject
         return this[.previousNode].function!(this: this, arguments: []).fromJSValue()
     }
-
+    
     @inlinable public func detach() {
         let this = jsObject
         _ = this[.detach].function!(this: this, arguments: [])
@@ -236,7 +236,6 @@ public class NodeList: JSBridgedClass, Sequence {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
         self.jsObject = jsObject
     }
 
@@ -249,8 +248,9 @@ public class NodeList: JSBridgedClass, Sequence {
         return this[.item].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()
     }
 
-    @ReadonlyAttribute
-    public var length: UInt32
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
 
     public typealias Element = Node
     public func makeIterator() -> ValueIterableIterator<NodeList> {

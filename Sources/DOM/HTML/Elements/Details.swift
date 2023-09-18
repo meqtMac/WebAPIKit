@@ -15,15 +15,8 @@ import WebAPIBase
 public class HTMLDetailsElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLDetailsElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _open = ReadWriteAttribute(jsObject: jsObject, name: .open)
-        super.init(unsafelyWrapping: jsObject)
+    public var open: Bool {
+        get { jsObject[.open].fromJSValue()!}
+        set { jsObject[.open] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var open: Bool
 }

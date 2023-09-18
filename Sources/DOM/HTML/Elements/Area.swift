@@ -17,51 +17,56 @@ import WebAPIBase
 public class HTMLAreaElement: HTMLElement, HTMLHyperlinkElementUtils {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLAreaElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _alt = ReadWriteAttribute(jsObject: jsObject, name: .alt)
-        _coords = ReadWriteAttribute(jsObject: jsObject, name: .coords)
-        _shape = ReadWriteAttribute(jsObject: jsObject, name: .shape)
-        _target = ReadWriteAttribute(jsObject: jsObject, name: .target)
-        _download = ReadWriteAttribute(jsObject: jsObject, name: .download)
-        _ping = ReadWriteAttribute(jsObject: jsObject, name: .ping)
-        _rel = ReadWriteAttribute(jsObject: jsObject, name: .rel)
-        _relList = ReadonlyAttribute(jsObject: jsObject, name: .relList)
-        _referrerPolicy = ReadWriteAttribute(jsObject: jsObject, name: .referrerPolicy)
-        _noHref = ReadWriteAttribute(jsObject: jsObject, name: .noHref)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init() {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
     }
 
-    @ReadWriteAttribute
-    public var alt: String
+    public var alt: String {
+        get { jsObject[.alt].fromJSValue()!}
+        set { jsObject[.alt] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var coords: String
+    public var coords: String {
+        get { jsObject[.coords].fromJSValue()!}
+        set { jsObject[.coords] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var shape: String
+    public var shape: String {
+        get { jsObject[.shape].fromJSValue()!}
+        set { jsObject[.shape] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var target: String
+    public var target: String {
+        get { jsObject[.target].fromJSValue()!}
+        set { jsObject[.target] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var download: String
+    public var download: String {
+        get { jsObject[.download].fromJSValue()!}
+        set { jsObject[.download] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var ping: String
+    public var ping: String {
+        get { jsObject[.ping].fromJSValue()!}
+        set { jsObject[.ping] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var rel: String
+    public var rel: String {
+        get { jsObject[.rel].fromJSValue()!}
+        set { jsObject[.rel] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var relList: DOMTokenList
+public var relList: DOMTokenList {
+jsObject[.relList].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var referrerPolicy: String
+    public var referrerPolicy: String {
+        get { jsObject[.referrerPolicy].fromJSValue()!}
+        set { jsObject[.referrerPolicy] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var noHref: Bool
+    public var noHref: Bool {
+        get { jsObject[.noHref].fromJSValue()!}
+        set { jsObject[.noHref] = newValue.jsValue }
+    }
 }

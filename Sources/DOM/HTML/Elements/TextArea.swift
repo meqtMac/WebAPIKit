@@ -15,97 +15,99 @@ import WebAPIBase
 public class HTMLTextAreaElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTextAreaElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _autocomplete = ReadWriteAttribute(jsObject: jsObject, name: .autocomplete)
-        _cols = ReadWriteAttribute(jsObject: jsObject, name: .cols)
-        _dirName = ReadWriteAttribute(jsObject: jsObject, name: .dirName)
-        _disabled = ReadWriteAttribute(jsObject: jsObject, name: .disabled)
-        _form = ReadonlyAttribute(jsObject: jsObject, name: .form)
-        _maxLength = ReadWriteAttribute(jsObject: jsObject, name: .maxLength)
-        _minLength = ReadWriteAttribute(jsObject: jsObject, name: .minLength)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _placeholder = ReadWriteAttribute(jsObject: jsObject, name: .placeholder)
-        _readOnly = ReadWriteAttribute(jsObject: jsObject, name: .readOnly)
-        _required = ReadWriteAttribute(jsObject: jsObject, name: .required)
-        _rows = ReadWriteAttribute(jsObject: jsObject, name: .rows)
-        _wrap = ReadWriteAttribute(jsObject: jsObject, name: .wrap)
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _defaultValue = ReadWriteAttribute(jsObject: jsObject, name: .defaultValue)
-        _value = ReadWriteAttribute(jsObject: jsObject, name: .value)
-        _textLength = ReadonlyAttribute(jsObject: jsObject, name: .textLength)
-        _willValidate = ReadonlyAttribute(jsObject: jsObject, name: .willValidate)
-        _validity = ReadonlyAttribute(jsObject: jsObject, name: .validity)
-        _validationMessage = ReadonlyAttribute(jsObject: jsObject, name: .validationMessage)
-        _labels = ReadonlyAttribute(jsObject: jsObject, name: .labels)
-        _selectionStart = ReadWriteAttribute(jsObject: jsObject, name: .selectionStart)
-        _selectionEnd = ReadWriteAttribute(jsObject: jsObject, name: .selectionEnd)
-        _selectionDirection = ReadWriteAttribute(jsObject: jsObject, name: .selectionDirection)
-        super.init(unsafelyWrapping: jsObject)
+   public var autocomplete: String {
+        get { jsObject[.autocomplete].fromJSValue()!}
+        set { jsObject[.autocomplete] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var cols: UInt32 {
+        get { jsObject[.cols].fromJSValue()!}
+        set { jsObject[.cols] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var autocomplete: String
+    public var dirName: String {
+        get { jsObject[.dirName].fromJSValue()!}
+        set { jsObject[.dirName] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var cols: UInt32
+    public var disabled: Bool {
+        get { jsObject[.disabled].fromJSValue()!}
+        set { jsObject[.disabled] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var dirName: String
+    public var form: HTMLFormElement? {
+        jsObject[.form].fromJSValue()
+    }
 
-    @ReadWriteAttribute
-    public var disabled: Bool
+    public var maxLength: Int32 {
+        get { jsObject[.maxLength].fromJSValue()!}
+        set { jsObject[.maxLength] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var form: HTMLFormElement?
+    public var minLength: Int32 {
+        get { jsObject[.minLength].fromJSValue()!}
+        set { jsObject[.minLength] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var maxLength: Int32
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var minLength: Int32
+    public var placeholder: String {
+        get { jsObject[.placeholder].fromJSValue()!}
+        set { jsObject[.placeholder] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var readOnly: Bool {
+        get { jsObject[.readOnly].fromJSValue()!}
+        set { jsObject[.readOnly] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var placeholder: String
+    public var required: Bool {
+        get { jsObject[.required].fromJSValue()!}
+        set { jsObject[.required] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var readOnly: Bool
+    public var rows: UInt32 {
+        get { jsObject[.rows].fromJSValue()!}
+        set { jsObject[.rows] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var required: Bool
+    public var wrap: String {
+        get { jsObject[.wrap].fromJSValue()!}
+        set { jsObject[.wrap] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var rows: UInt32
+    public var type: String {
+        jsObject[.type].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var wrap: String
+    public var defaultValue: String {
+        get { jsObject[.defaultValue].fromJSValue()!}
+        set { jsObject[.defaultValue] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var type: String
+    public var value: String {
+        get { jsObject[.value].fromJSValue()!}
+        set { jsObject[.value] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var defaultValue: String
+    public var textLength: UInt32 {
+        jsObject[.textLength].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var value: String
+    public var willValidate: Bool {
+        jsObject[.willValidate].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var textLength: UInt32
+    public var validity: ValidityState {
+        jsObject[.validity].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var willValidate: Bool
-
-    @ReadonlyAttribute
-    public var validity: ValidityState
-
-    @ReadonlyAttribute
-    public var validationMessage: String
+    public var validationMessage: String {
+        jsObject[.validationMessage].fromJSValue()!
+    }
 
     @inlinable public func checkValidity() -> Bool {
         let this = jsObject
@@ -122,22 +124,29 @@ public class HTMLTextAreaElement: HTMLElement {
         _ = this[.setCustomValidity].function!(this: this, arguments: [_toJSValue(error)])
     }
 
-    @ReadonlyAttribute
-    public var labels: NodeList
+    public var labels: NodeList {
+        jsObject[.labels].fromJSValue()!
+    }
 
     @inlinable public func select() {
         let this = jsObject
         _ = this[.select].function!(this: this, arguments: [])
     }
 
-    @ReadWriteAttribute
-    public var selectionStart: UInt32
+    public var selectionStart: UInt32 {
+        get { jsObject[.selectionStart].fromJSValue()!}
+        set { jsObject[.slot] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var selectionEnd: UInt32
+    public var selectionEnd: UInt32 {
+        get { jsObject[.selectionEnd].fromJSValue()!}
+        set { jsObject[.selectionEnd] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var selectionDirection: String
+    public var selectionDirection: String {
+        get { jsObject[.selectionDirection].fromJSValue()!}
+        set { jsObject[.selectionDirection] = newValue.jsValue }
+    }
 
     @inlinable public func setRangeText(replacement: String) {
         let this = jsObject

@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by 蒋艺 on 2023/9/13.
 //
@@ -19,50 +19,50 @@ public enum VideoColorPrimaries: JSString, JSValueCompatible {
     case smpte170m = "smpte170m"
     case bt2020 = "bt2020"
     case smpte432 = "smpte432"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class VideoColorSpace: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.VideoColorSpace].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _primaries = ReadonlyAttribute(jsObject: jsObject, name: .primaries)
-        _transfer = ReadonlyAttribute(jsObject: jsObject, name: .transfer)
-        _matrix = ReadonlyAttribute(jsObject: jsObject, name: .matrix)
-        _fullRange = ReadonlyAttribute(jsObject: jsObject, name: .fullRange)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(init: VideoColorSpaceInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var primaries: VideoColorPrimaries?
-
-    @ReadonlyAttribute
-    public var transfer: VideoTransferCharacteristics?
-
-    @ReadonlyAttribute
-    public var matrix: VideoMatrixCoefficients?
-
-    @ReadonlyAttribute
-    public var fullRange: Bool?
-
+    
+    public var primaries: VideoColorPrimaries? {
+        jsObject[.primaries].fromJSValue()
+    }
+    
+    public var transfer: VideoTransferCharacteristics? {
+        jsObject[.transfer].fromJSValue()
+    }
+    
+    public var matrix: VideoMatrixCoefficients? {
+        jsObject[.matrix].fromJSValue()
+    }
+    
+    public var fullRange: Bool? {
+        jsObject[.fullRange].fromJSValue()
+    }
+    
     @inlinable public func toJSON() -> VideoColorSpaceInit {
         let this = jsObject
         return this[.toJSON].function!(this: this, arguments: []).fromJSValue()!
@@ -78,88 +78,88 @@ public class VideoColorSpaceInit: BridgedDictionary {
         object[.fullRange] = _toJSValue(fullRange)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _primaries = ReadWriteAttribute(jsObject: object, name: .primaries)
-        _transfer = ReadWriteAttribute(jsObject: object, name: .transfer)
-        _matrix = ReadWriteAttribute(jsObject: object, name: .matrix)
-        _fullRange = ReadWriteAttribute(jsObject: object, name: .fullRange)
-        super.init(unsafelyWrapping: object)
+    
+    public var primaries: VideoColorPrimaries? {
+        get { jsObject[.primaries].fromJSValue()}
+        set { jsObject[.primaries] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var primaries: VideoColorPrimaries?
-
-    @ReadWriteAttribute
-    public var transfer: VideoTransferCharacteristics?
-
-    @ReadWriteAttribute
-    public var matrix: VideoMatrixCoefficients?
-
-    @ReadWriteAttribute
-    public var fullRange: Bool?
+    
+    public var transfer: VideoTransferCharacteristics? {
+        get { jsObject[.transfer].fromJSValue()}
+        set { jsObject[.transfer] = newValue.jsValue }
+    }
+    
+    public var matrix: VideoMatrixCoefficients? {
+        get { jsObject[.matrix].fromJSValue()}
+        set { jsObject[.matrix] = newValue.jsValue }
+    }
+    
+    public var fullRange: Bool? {
+        get { jsObject[.fullRange].fromJSValue()}
+        set { jsObject[.fullRange] = newValue.jsValue }
+    }
 }
 
 public class VideoDecoder: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.VideoDecoder].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _state = ReadonlyAttribute(jsObject: jsObject, name: .state)
-        _decodeQueueSize = ReadonlyAttribute(jsObject: jsObject, name: .decodeQueueSize)
         _ondequeue = ClosureAttribute1Optional(jsObject: jsObject, name: .ondequeue)
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public convenience init(init: VideoDecoderInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var state: CodecState
-
-    @ReadonlyAttribute
-    public var decodeQueueSize: UInt32
-
+    
+    public var state: CodecState {
+        jsObject[.state].fromJSValue()!
+    }
+    
+    public var decodeQueueSize: UInt32 {
+        jsObject[.decodeQueueSize].fromJSValue()!
+    }
+    
     @ClosureAttribute1Optional
     public var ondequeue: EventHandler
-
+    
     @inlinable public func configure(config: VideoDecoderConfig) {
         let this = jsObject
         _ = this[.configure].function!(this: this, arguments: [_toJSValue(config)])
     }
-
+    
     @inlinable public func decode(chunk: EncodedVideoChunk) {
         let this = jsObject
         _ = this[.decode].function!(this: this, arguments: [_toJSValue(chunk)])
     }
-
+    
     @inlinable public func flush() -> JSPromise {
         let this = jsObject
         return this[.flush].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func flush() async throws {
         let this = jsObject
         let _promise: JSPromise = this[.flush].function!(this: this, arguments: []).fromJSValue()!
         _ = try await _promise.value
     }
-
+    
     @inlinable public func reset() {
         let this = jsObject
         _ = this[.reset].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func close() {
         let this = jsObject
         _ = this[.close].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public class func isConfigSupported(config: VideoDecoderConfig) -> JSPromise {
         let this = constructor!
         return this[.isConfigSupported].function!(this: this, arguments: [_toJSValue(config)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public class func isConfigSupported(config: VideoDecoderConfig) async throws -> VideoDecoderSupport {
         let this = constructor!
@@ -169,14 +169,14 @@ public class VideoDecoder: EventTarget {
 }
 
 public class VideoDecoderConfig: BridgedDictionary {
-    public convenience init(codec: String, 
+    public convenience init(codec: String,
                             description: AllowSharedBufferSource,
                             codedWidth: UInt32,
                             codedHeight: UInt32,
                             displayAspectWidth: UInt32,
                             displayAspectHeight: UInt32,
                             colorSpace: VideoColorSpaceInit,
-                            hardwareAcceleration: HardwareAcceleration, 
+                            hardwareAcceleration: HardwareAcceleration,
                             optimizeForLatency: Bool) {
         let object = JSObject.global[.Object].function!.new()
         object[.codec] = _toJSValue(codec)
@@ -190,64 +190,69 @@ public class VideoDecoderConfig: BridgedDictionary {
         object[.optimizeForLatency] = _toJSValue(optimizeForLatency)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _codec = ReadWriteAttribute(jsObject: object, name: .codec)
-        _description = ReadWriteAttribute(jsObject: object, name: .description)
-        _codedWidth = ReadWriteAttribute(jsObject: object, name: .codedWidth)
-        _codedHeight = ReadWriteAttribute(jsObject: object, name: .codedHeight)
-        _displayAspectWidth = ReadWriteAttribute(jsObject: object, name: .displayAspectWidth)
-        _displayAspectHeight = ReadWriteAttribute(jsObject: object, name: .displayAspectHeight)
-        _colorSpace = ReadWriteAttribute(jsObject: object, name: .colorSpace)
-        _hardwareAcceleration = ReadWriteAttribute(jsObject: object, name: .hardwareAcceleration)
-        _optimizeForLatency = ReadWriteAttribute(jsObject: object, name: .optimizeForLatency)
-        super.init(unsafelyWrapping: object)
+    
+   public var codec: String {
+        get { jsObject[.codec].fromJSValue()!}
+        set { jsObject[.codec] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var codec: String
-
-    @ReadWriteAttribute
-    public var description: AllowSharedBufferSource
-
-    @ReadWriteAttribute
-    public var codedWidth: UInt32
-
-    @ReadWriteAttribute
-    public var codedHeight: UInt32
-
-    @ReadWriteAttribute
-    public var displayAspectWidth: UInt32
-
-    @ReadWriteAttribute
-    public var displayAspectHeight: UInt32
-
-    @ReadWriteAttribute
-    public var colorSpace: VideoColorSpaceInit
-
-    @ReadWriteAttribute
-    public var hardwareAcceleration: HardwareAcceleration
-
-    @ReadWriteAttribute
-    public var optimizeForLatency: Bool
+    
+    public var description: AllowSharedBufferSource {
+        get { jsObject[.description].fromJSValue()!}
+        set { jsObject[.description] = newValue.jsValue }
+    }
+    
+    public var codedWidth: UInt32 {
+        get { jsObject[.codedWidth].fromJSValue()!}
+        set { jsObject[.codedWidth] = newValue.jsValue }
+    }
+    
+    public var codedHeight: UInt32 {
+        get { jsObject[.codedHeight].fromJSValue()!}
+        set { jsObject[.codedHeight] = newValue.jsValue }
+    }
+    
+    public var displayAspectWidth: UInt32 {
+        get { jsObject[.displayAspectWidth].fromJSValue()!}
+        set { jsObject[.displayAspectWidth] = newValue.jsValue }
+    }
+    
+    public var displayAspectHeight: UInt32 {
+        get { jsObject[.displayAspectHeight].fromJSValue()!}
+        set { jsObject[.displayAspectHeight] = newValue.jsValue }
+    }
+    
+    public var colorSpace: VideoColorSpaceInit {
+        get { jsObject[.colorSpace].fromJSValue()!}
+        set { jsObject[.colorSpace] = newValue.jsValue }
+    }
+    
+    public var hardwareAcceleration: HardwareAcceleration {
+        get { jsObject[.hardwareAcceleration].fromJSValue()!}
+        set { jsObject[.hardwareAcceleration] = newValue.jsValue }
+    }
+    
+    public var optimizeForLatency: Bool {
+        get { jsObject[.optimizeForLatency].fromJSValue()!}
+        set { jsObject[.optimizeForLatency] = newValue.jsValue }
+    }
 }
 
 public enum HardwareAcceleration: JSString, JSValueCompatible {
     case noPreference = "no-preference"
     case preferHardware = "prefer-hardware"
     case preferSoftware = "prefer-software"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -258,16 +263,16 @@ public class VideoDecoderInit: BridgedDictionary {
         ClosureAttribute1Void[.error, in: object] = error
         self.init(unsafelyWrapping: object)
     }
-
+    
     public required init(unsafelyWrapping object: JSObject) {
         _output = ClosureAttribute1Void(jsObject: object, name: .output)
         _error = ClosureAttribute1Void(jsObject: object, name: .error)
         super.init(unsafelyWrapping: object)
     }
-
+    
     @ClosureAttribute1Void
     public var output: VideoFrameOutputCallback
-
+    
     @ClosureAttribute1Void
     public var error: WebCodecsErrorCallback
 }
@@ -279,80 +284,78 @@ public class VideoDecoderSupport: BridgedDictionary {
         object[.config] = _toJSValue(config)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _supported = ReadWriteAttribute(jsObject: object, name: .supported)
-        _config = ReadWriteAttribute(jsObject: object, name: .config)
-        super.init(unsafelyWrapping: object)
+    
+    public var supported: Bool {
+        get { jsObject[.supported].fromJSValue()!}
+        set { jsObject[.supported] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var supported: Bool
-
-    @ReadWriteAttribute
-    public var config: VideoDecoderConfig
+    
+    public var config: VideoDecoderConfig {
+        get { jsObject[.config].fromJSValue()!}
+        set { jsObject[.config] = newValue.jsValue }
+    }
 }
 
 public class VideoEncoder: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.VideoEncoder].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _state = ReadonlyAttribute(jsObject: jsObject, name: .state)
-        _encodeQueueSize = ReadonlyAttribute(jsObject: jsObject, name: .encodeQueueSize)
         _ondequeue = ClosureAttribute1Optional(jsObject: jsObject, name: .ondequeue)
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public convenience init(init: VideoEncoderInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var state: CodecState
-
-    @ReadonlyAttribute
-    public var encodeQueueSize: UInt32
-
+    
+    public var state: CodecState {
+        jsObject[.state].fromJSValue()!
+    }
+    
+    public var encodeQueueSize: UInt32 {
+        jsObject[.encodeQueueSize].fromJSValue()!
+    }
+    
     @ClosureAttribute1Optional
     public var ondequeue: EventHandler
-
+    
     @inlinable public func configure(config: VideoEncoderConfig) {
         let this = jsObject
         _ = this[.configure].function!(this: this, arguments: [_toJSValue(config)])
     }
-
+    
     @inlinable public func encode(frame: VideoFrame, options: VideoEncoderEncodeOptions? = nil) {
         let this = jsObject
         _ = this[.encode].function!(this: this, arguments: [_toJSValue(frame), _toJSValue(options)])
     }
-
+    
     @inlinable public func flush() -> JSPromise {
         let this = jsObject
         return this[.flush].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func flush() async throws {
         let this = jsObject
         let _promise: JSPromise = this[.flush].function!(this: this, arguments: []).fromJSValue()!
         _ = try await _promise.value
     }
-
+    
     @inlinable public func reset() {
         let this = jsObject
         _ = this[.reset].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public func close() {
         let this = jsObject
         _ = this[.close].function!(this: this, arguments: [])
     }
-
+    
     @inlinable public class func isConfigSupported(config: VideoEncoderConfig) -> JSPromise {
         let this = constructor!
         return this[.isConfigSupported].function!(this: this, arguments: [_toJSValue(config)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public class func isConfigSupported(config: VideoEncoderConfig) async throws -> VideoEncoderSupport {
         let this = constructor!
@@ -365,18 +368,18 @@ public enum VideoEncoderBitrateMode: JSString, JSValueCompatible {
     case constant = "constant"
     case variable = "variable"
     case quantizer = "quantizer"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -397,58 +400,66 @@ public class VideoEncoderConfig: BridgedDictionary {
         object[.latencyMode] = _toJSValue(latencyMode)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _codec = ReadWriteAttribute(jsObject: object, name: .codec)
-        _width = ReadWriteAttribute(jsObject: object, name: .width)
-        _height = ReadWriteAttribute(jsObject: object, name: .height)
-        _displayWidth = ReadWriteAttribute(jsObject: object, name: .displayWidth)
-        _displayHeight = ReadWriteAttribute(jsObject: object, name: .displayHeight)
-        _bitrate = ReadWriteAttribute(jsObject: object, name: .bitrate)
-        _framerate = ReadWriteAttribute(jsObject: object, name: .framerate)
-        _hardwareAcceleration = ReadWriteAttribute(jsObject: object, name: .hardwareAcceleration)
-        _alpha = ReadWriteAttribute(jsObject: object, name: .alpha)
-        _scalabilityMode = ReadWriteAttribute(jsObject: object, name: .scalabilityMode)
-        _bitrateMode = ReadWriteAttribute(jsObject: object, name: .bitrateMode)
-        _latencyMode = ReadWriteAttribute(jsObject: object, name: .latencyMode)
-        super.init(unsafelyWrapping: object)
+    
+    public var codec: String {
+        get { jsObject[.codec].fromJSValue()!}
+        set { jsObject[.codec] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var codec: String
-
-    @ReadWriteAttribute
-    public var width: UInt32
-
-    @ReadWriteAttribute
-    public var height: UInt32
-
-    @ReadWriteAttribute
-    public var displayWidth: UInt32
-
-    @ReadWriteAttribute
-    public var displayHeight: UInt32
-
-    @ReadWriteAttribute
-    public var bitrate: UInt64
-
-    @ReadWriteAttribute
-    public var framerate: Double
-
-    @ReadWriteAttribute
-    public var hardwareAcceleration: HardwareAcceleration
-
-    @ReadWriteAttribute
-    public var alpha: AlphaOption
-
-    @ReadWriteAttribute
-    public var scalabilityMode: String
-
-    @ReadWriteAttribute
-    public var bitrateMode: VideoEncoderBitrateMode
-
-    @ReadWriteAttribute
-    public var latencyMode: LatencyMode
+    
+    public var width: UInt32 {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
+    
+    public var height: UInt32 {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
+    
+    public var displayWidth: UInt32 {
+        get { jsObject[.displayWidth].fromJSValue()!}
+        set { jsObject[.displayWidth] = newValue.jsValue }
+    }
+    
+    public var displayHeight: UInt32 {
+        get { jsObject[.displayHeight].fromJSValue()!}
+        set { jsObject[.displayHeight] = newValue.jsValue }
+    }
+    
+    public var bitrate: UInt64 {
+        get { jsObject[.bitrate].fromJSValue()!}
+        set { jsObject[.bitrate] = newValue.jsValue }
+    }
+    
+    public var framerate: Double {
+        get { jsObject[.framerate].fromJSValue()!}
+        set { jsObject[.framerate] = newValue.jsValue }
+    }
+    
+    public var hardwareAcceleration: HardwareAcceleration {
+        get { jsObject[.hardwareAcceleration].fromJSValue()!}
+        set { jsObject[.hardwareAcceleration] = newValue.jsValue }
+    }
+    
+    public var alpha: AlphaOption {
+        get { jsObject[.alpha].fromJSValue()!}
+        set { jsObject[.alpha] = newValue.jsValue }
+    }
+    
+    public var scalabilityMode: String {
+        get { jsObject[.scalabilityMode].fromJSValue()!}
+        set { jsObject[.scalabilityMode] = newValue.jsValue }
+    }
+    
+    public var bitrateMode: VideoEncoderBitrateMode {
+        get { jsObject[.bitrateMode].fromJSValue()!}
+        set { jsObject[.bitrateMode] = newValue.jsValue }
+    }
+    
+    public var latencyMode: LatencyMode {
+        get { jsObject[.latencyMode].fromJSValue()!}
+        set { jsObject[.latencyMode] = newValue.jsValue }
+    }
 }
 
 public class VideoEncoderEncodeOptions: BridgedDictionary {
@@ -457,14 +468,11 @@ public class VideoEncoderEncodeOptions: BridgedDictionary {
         object[.keyFrame] = _toJSValue(keyFrame)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _keyFrame = ReadWriteAttribute(jsObject: object, name: .keyFrame)
-        super.init(unsafelyWrapping: object)
+    
+   public var keyFrame: Bool {
+        get { jsObject[.keyFrame].fromJSValue()!}
+        set { jsObject[.keyFrame] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var keyFrame: Bool
 }
 
 public typealias EncodedVideoChunkOutputCallback = (EncodedVideoChunk, EncodedVideoChunkMetadata) -> Void
@@ -476,16 +484,16 @@ public class VideoEncoderInit: BridgedDictionary {
         ClosureAttribute1Void[.error, in: object] = error
         self.init(unsafelyWrapping: object)
     }
-
+    
     public required init(unsafelyWrapping object: JSObject) {
         _output = ClosureAttribute2Void(jsObject: object, name: .output)
         _error = ClosureAttribute1Void(jsObject: object, name: .error)
         super.init(unsafelyWrapping: object)
     }
-
+    
     @ClosureAttribute2Void
     public var output: EncodedVideoChunkOutputCallback
-
+    
     @ClosureAttribute1Void
     public var error: WebCodecsErrorCallback
 }
@@ -497,18 +505,16 @@ public class VideoEncoderSupport: BridgedDictionary {
         object[.config] = _toJSValue(config)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _supported = ReadWriteAttribute(jsObject: object, name: .supported)
-        _config = ReadWriteAttribute(jsObject: object, name: .config)
-        super.init(unsafelyWrapping: object)
+    
+   public var supported: Bool {
+        get { jsObject[.supported].fromJSValue()!}
+        set { jsObject[.supported] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var supported: Bool
-
-    @ReadWriteAttribute
-    public var config: VideoEncoderConfig
+    
+    public var config: VideoEncoderConfig {
+        get { jsObject[.config].fromJSValue()!}
+        set { jsObject[.config] = newValue.jsValue }
+    }
 }
 
 public enum VideoFacingModeEnum: JSString, JSValueCompatible {
@@ -516,40 +522,30 @@ public enum VideoFacingModeEnum: JSString, JSValueCompatible {
     case environment = "environment"
     case left = "left"
     case right = "right"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class VideoFrame: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.VideoFrame].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _format = ReadonlyAttribute(jsObject: jsObject, name: .format)
-        _codedWidth = ReadonlyAttribute(jsObject: jsObject, name: .codedWidth)
-        _codedHeight = ReadonlyAttribute(jsObject: jsObject, name: .codedHeight)
-        _codedRect = ReadonlyAttribute(jsObject: jsObject, name: .codedRect)
-        _visibleRect = ReadonlyAttribute(jsObject: jsObject, name: .visibleRect)
-        _displayWidth = ReadonlyAttribute(jsObject: jsObject, name: .displayWidth)
-        _displayHeight = ReadonlyAttribute(jsObject: jsObject, name: .displayHeight)
-        _duration = ReadonlyAttribute(jsObject: jsObject, name: .duration)
-        _timestamp = ReadonlyAttribute(jsObject: jsObject, name: .timestamp)
-        _colorSpace = ReadonlyAttribute(jsObject: jsObject, name: .colorSpace)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(image: HTMLCanvasElement, init: VideoFrameInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(image), _toJSValue(`init`)]))
     }
@@ -568,73 +564,78 @@ public class VideoFrame: JSBridgedClass {
     @inlinable public convenience init(image: VideoFrame, init: VideoFrameInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(image), _toJSValue(`init`)]))
     }
-
-
-
-
-
-
+    
     @inlinable public convenience init(data: AllowSharedBufferSource, init: VideoFrameBufferInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(data), _toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var format: VideoPixelFormat?
-
-    @ReadonlyAttribute
-    public var codedWidth: UInt32
-
-    @ReadonlyAttribute
-    public var codedHeight: UInt32
-
-    @ReadonlyAttribute
-    public var codedRect: DOMRectReadOnly?
-
-    @ReadonlyAttribute
-    public var visibleRect: DOMRectReadOnly?
-
-    @ReadonlyAttribute
-    public var displayWidth: UInt32
-
-    @ReadonlyAttribute
-    public var displayHeight: UInt32
-
-    @ReadonlyAttribute
-    public var duration: UInt64?
-
-    @ReadonlyAttribute
-    public var timestamp: Int64
-
-    @ReadonlyAttribute
-    public var colorSpace: VideoColorSpace
-
+    
+    public var format: VideoPixelFormat? {
+        jsObject[.format].fromJSValue()
+    }
+    
+    public var codedWidth: UInt32 {
+        jsObject[.codedWidth].fromJSValue()!
+    }
+    
+    public var codedHeight: UInt32 {
+        jsObject[.codedHeight].fromJSValue()!
+    }
+    
+    public var codedRect: DOMRectReadOnly? {
+        jsObject[.codedRect].fromJSValue()
+    }
+    
+    public var visibleRect: DOMRectReadOnly? {
+        jsObject[.visibleRect].fromJSValue()
+    }
+    
+    public var displayWidth: UInt32 {
+        jsObject[.displayWidth].fromJSValue()!
+    }
+    
+    public var displayHeight: UInt32 {
+        jsObject[.displayHeight].fromJSValue()!
+    }
+    
+    public var duration: UInt64? {
+        jsObject[.duration].fromJSValue()
+    }
+    
+    public var timestamp: Int64 {
+        jsObject[.timestamp].fromJSValue()!
+    }
+    
+    public var colorSpace: VideoColorSpace {
+        jsObject[.colorSpace].fromJSValue()!
+    }
+    
     @inlinable public func metadata() -> VideoFrameMetadata {
         let this = jsObject
         return this[.metadata].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func allocationSize(options: VideoFrameCopyToOptions? = nil) -> UInt32 {
         let this = jsObject
         return this[.allocationSize].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
     }
-
+    
     @inlinable public func copyTo(destination: AllowSharedBufferSource, options: VideoFrameCopyToOptions? = nil) -> JSPromise {
         let this = jsObject
         return this[.copyTo].function!(this: this, arguments: [_toJSValue(destination), _toJSValue(options)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func copyTo(destination: AllowSharedBufferSource, options: VideoFrameCopyToOptions? = nil) async throws -> [PlaneLayout] {
         let this = jsObject
         let _promise: JSPromise = this[.copyTo].function!(this: this, arguments: [_toJSValue(destination), _toJSValue(options)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func clone() -> Self {
         let this = jsObject
         return this[.clone].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @inlinable public func close() {
         let this = jsObject
         _ = this[.close].function!(this: this, arguments: [])
@@ -657,54 +658,61 @@ public class VideoFrameBufferInit: BridgedDictionary {
         object[.transfer] = _toJSValue(transfer)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _codedWidth = ReadWriteAttribute(jsObject: object, name: .codedWidth)
-        _codedHeight = ReadWriteAttribute(jsObject: object, name: .codedHeight)
-        _timestamp = ReadWriteAttribute(jsObject: object, name: .timestamp)
-        _duration = ReadWriteAttribute(jsObject: object, name: .duration)
-        _layout = ReadWriteAttribute(jsObject: object, name: .layout)
-        _visibleRect = ReadWriteAttribute(jsObject: object, name: .visibleRect)
-        _displayWidth = ReadWriteAttribute(jsObject: object, name: .displayWidth)
-        _displayHeight = ReadWriteAttribute(jsObject: object, name: .displayHeight)
-        _colorSpace = ReadWriteAttribute(jsObject: object, name: .colorSpace)
-        _transfer = ReadWriteAttribute(jsObject: object, name: .transfer)
-        super.init(unsafelyWrapping: object)
+    
+    public var format: VideoPixelFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var format: VideoPixelFormat
-
-    @ReadWriteAttribute
-    public var codedWidth: UInt32
-
-    @ReadWriteAttribute
-    public var codedHeight: UInt32
-
-    @ReadWriteAttribute
-    public var timestamp: Int64
-
-    @ReadWriteAttribute
-    public var duration: UInt64
-
-    @ReadWriteAttribute
-    public var layout: [PlaneLayout]
-
-    @ReadWriteAttribute
-    public var visibleRect: DOMRectInit
-
-    @ReadWriteAttribute
-    public var displayWidth: UInt32
-
-    @ReadWriteAttribute
-    public var displayHeight: UInt32
-
-    @ReadWriteAttribute
-    public var colorSpace: VideoColorSpaceInit
-
-    @ReadWriteAttribute
-    public var transfer: [ArrayBuffer]
+    
+    public var codedWidth: UInt32 {
+        get { jsObject[.codedWidth].fromJSValue()!}
+        set { jsObject[.codedWidth] = newValue.jsValue }
+    }
+    
+    public var codedHeight: UInt32 {
+        get { jsObject[.codedHeight].fromJSValue()!}
+        set { jsObject[.codedHeight] = newValue.jsValue }
+    }
+    
+    public var timestamp: Int64 {
+        get { jsObject[.timestamp].fromJSValue()!}
+        set { jsObject[.timestamp] = newValue.jsValue }
+    }
+    
+    public var duration: UInt64 {
+        get { jsObject[.duration].fromJSValue()!}
+        set { jsObject[.duration] = newValue.jsValue }
+    }
+    
+    public var layout: [PlaneLayout] {
+        get { jsObject[.layout].fromJSValue()!}
+        set { jsObject[.layout] = newValue.jsValue }
+    }
+    
+    public var visibleRect: DOMRectInit {
+        get { jsObject[.visibleRect].fromJSValue()!}
+        set { jsObject[.visibleRect] = newValue.jsValue }
+    }
+    
+    public var displayWidth: UInt32 {
+        get { jsObject[.displayWidth].fromJSValue()!}
+        set { jsObject[.displayWidth] = newValue.jsValue }
+    }
+    
+    public var displayHeight: UInt32 {
+        get { jsObject[.displayHeight].fromJSValue()!}
+        set { jsObject[.displayHeight] = newValue.jsValue }
+    }
+    
+    public var colorSpace: VideoColorSpaceInit {
+        get { jsObject[.colorSpace].fromJSValue()!}
+        set { jsObject[.colorSpace] = newValue.jsValue }
+    }
+    
+    public var transfer: [ArrayBuffer] {
+        get { jsObject[.transfer].fromJSValue()!}
+        set { jsObject[.transfer] = newValue.jsValue }
+    }
 }
 
 public class VideoFrameCopyToOptions: BridgedDictionary {
@@ -714,18 +722,16 @@ public class VideoFrameCopyToOptions: BridgedDictionary {
         object[.layout] = _toJSValue(layout)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _rect = ReadWriteAttribute(jsObject: object, name: .rect)
-        _layout = ReadWriteAttribute(jsObject: object, name: .layout)
-        super.init(unsafelyWrapping: object)
+    
+    public var rect: DOMRectInit {
+        get { jsObject[.rect].fromJSValue()!}
+        set { jsObject[.rect] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var rect: DOMRectInit
-
-    @ReadWriteAttribute
-    public var layout: [PlaneLayout]
+    
+    public var layout: [PlaneLayout] {
+        get { jsObject[.layout].fromJSValue()!}
+        set { jsObject[.layout] = newValue.jsValue }
+    }
 }
 
 public class VideoFrameInit: BridgedDictionary {
@@ -740,47 +746,50 @@ public class VideoFrameInit: BridgedDictionary {
         object[.metadata] = _toJSValue(metadata)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _duration = ReadWriteAttribute(jsObject: object, name: .duration)
-        _timestamp = ReadWriteAttribute(jsObject: object, name: .timestamp)
-        _alpha = ReadWriteAttribute(jsObject: object, name: .alpha)
-        _visibleRect = ReadWriteAttribute(jsObject: object, name: .visibleRect)
-        _displayWidth = ReadWriteAttribute(jsObject: object, name: .displayWidth)
-        _displayHeight = ReadWriteAttribute(jsObject: object, name: .displayHeight)
-        _metadata = ReadWriteAttribute(jsObject: object, name: .metadata)
-        super.init(unsafelyWrapping: object)
+    
+    public var duration: UInt64 {
+        get { jsObject[.duration].fromJSValue()!}
+        set { jsObject[.duration] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var duration: UInt64
-
-    @ReadWriteAttribute
-    public var timestamp: Int64
-
-    @ReadWriteAttribute
-    public var alpha: AlphaOption
-
-    @ReadWriteAttribute
-    public var visibleRect: DOMRectInit
-
-    @ReadWriteAttribute
-    public var displayWidth: UInt32
-
-    @ReadWriteAttribute
-    public var displayHeight: UInt32
-
-    @ReadWriteAttribute
-    public var metadata: VideoFrameMetadata
+    
+    public var timestamp: Int64 {
+        get { jsObject[.timestamp].fromJSValue()!}
+        set { jsObject[.timestamp] = newValue.jsValue }
+    }
+    
+    public var alpha: AlphaOption {
+        get { jsObject[.alpha].fromJSValue()!}
+        set { jsObject[.alpha] = newValue.jsValue }
+    }
+    
+    public var visibleRect: DOMRectInit {
+        get { jsObject[.visibleRect].fromJSValue()!}
+        set { jsObject[.visibleRect] = newValue.jsValue }
+    }
+    
+    public var displayWidth: UInt32 {
+        get { jsObject[.displayWidth].fromJSValue()!}
+        set { jsObject[.displayWidth] = newValue.jsValue }
+    }
+    
+    public var displayHeight: UInt32 {
+        get { jsObject[.displayHeight].fromJSValue()!}
+        set { jsObject[.displayHeight] = newValue.jsValue }
+    }
+    
+    public var metadata: VideoFrameMetadata {
+        get { jsObject[.metadata].fromJSValue()!}
+        set { jsObject[.metadata] = newValue.jsValue }
+    }
 }
 
 public class VideoFrameMetadata: BridgedDictionary {
     public convenience init() {
         let object = JSObject.global[.Object].function!.new()
-
+        
         self.init(unsafelyWrapping: object)
     }
-
+    
     public required init(unsafelyWrapping object: JSObject) {
         super.init(unsafelyWrapping: object)
     }
@@ -792,18 +801,18 @@ public enum VideoMatrixCoefficients: JSString, JSValueCompatible {
     case bt470bg = "bt470bg"
     case smpte170m = "smpte170m"
     case bt2020Ncl = "bt2020-ncl"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -817,106 +826,107 @@ public enum VideoPixelFormat: JSString, JSValueCompatible {
     case rGBX = "RGBX"
     case bGRA = "BGRA"
     case bGRX = "BGRX"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public enum VideoResizeModeEnum: JSString, JSValueCompatible {
     case none = "none"
     case cropAndScale = "crop-and-scale"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class VideoTrack: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.VideoTrack].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _id = ReadonlyAttribute(jsObject: jsObject, name: .id)
-        _kind = ReadonlyAttribute(jsObject: jsObject, name: .kind)
-        _label = ReadonlyAttribute(jsObject: jsObject, name: .label)
-        _language = ReadonlyAttribute(jsObject: jsObject, name: .language)
-        _selected = ReadWriteAttribute(jsObject: jsObject, name: .selected)
-        _sourceBuffer = ReadonlyAttribute(jsObject: jsObject, name: .sourceBuffer)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var id: String
-
-    @ReadonlyAttribute
-    public var kind: String
-
-    @ReadonlyAttribute
-    public var label: String
-
-    @ReadonlyAttribute
-    public var language: String
-
-    @ReadWriteAttribute
-    public var selected: Bool
-
-    @ReadonlyAttribute
-    public var sourceBuffer: SourceBuffer?
+    
+    public var id: String {
+        jsObject[.id].fromJSValue()!
+    }
+    
+    public var kind: String {
+        jsObject[.kind].fromJSValue()!
+    }
+    
+    public var label: String {
+        jsObject[.label].fromJSValue()!
+    }
+    
+    public var language: String {
+        jsObject[.language].fromJSValue()!
+    }
+    
+    public var selected: Bool {
+        get { jsObject[.selected].fromJSValue()!}
+        set { jsObject[.selected] = newValue.jsValue }
+    }
+    
+    public var sourceBuffer: SourceBuffer? {
+        jsObject[.sourceBuffer].fromJSValue()
+    }
 }
 
 public class VideoTrackList: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.VideoTrackList].function }
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
-        _selectedIndex = ReadonlyAttribute(jsObject: jsObject, name: .selectedIndex)
         _onchange = ClosureAttribute1Optional(jsObject: jsObject, name: .onchange)
         _onaddtrack = ClosureAttribute1Optional(jsObject: jsObject, name: .onaddtrack)
         _onremovetrack = ClosureAttribute1Optional(jsObject: jsObject, name: .onremovetrack)
         super.init(unsafelyWrapping: jsObject)
     }
-
-    @ReadonlyAttribute
-    public var length: UInt32
-
+    
+    public var length: UInt32 {
+        jsObject[.length].fromJSValue()!
+    }
+    
     @inlinable public subscript(key: Int) -> VideoTrack {
         jsObject[key].fromJSValue()!
     }
-
+    
     @inlinable public func getTrackById(id: String) -> VideoTrack? {
         let this = jsObject
         return this[.getTrackById].function!(this: this, arguments: [_toJSValue(id)]).fromJSValue()
     }
-
-    @ReadonlyAttribute
-    public var selectedIndex: Int32
-
+    
+    public var selectedIndex: Int32 {
+        jsObject[.selectedIndex].fromJSValue()!
+    }
+    
     @ClosureAttribute1Optional
     public var onchange: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onaddtrack: EventHandler
-
+    
     @ClosureAttribute1Optional
     public var onremovetrack: EventHandler
 }
@@ -928,50 +938,50 @@ public enum VideoTransferCharacteristics: JSString, JSValueCompatible {
     case linear = "linear"
     case pq = "pq"
     case hlg = "hlg"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class EncodedVideoChunk: JSBridgedClass {
     @inlinable public class var constructor: JSFunction? { JSObject.global[.EncodedVideoChunk].function }
-
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _timestamp = ReadonlyAttribute(jsObject: jsObject, name: .timestamp)
-        _duration = ReadonlyAttribute(jsObject: jsObject, name: .duration)
-        _byteLength = ReadonlyAttribute(jsObject: jsObject, name: .byteLength)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public convenience init(init: EncodedVideoChunkInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     }
-
-    @ReadonlyAttribute
-    public var type: EncodedVideoChunkType
-
-    @ReadonlyAttribute
-    public var timestamp: Int64
-
-    @ReadonlyAttribute
-    public var duration: UInt64?
-
-    @ReadonlyAttribute
-    public var byteLength: UInt32
-
+    
+    public var type: EncodedVideoChunkType {
+        jsObject[.type].fromJSValue()!
+    }
+    
+    public var timestamp: Int64 {
+        jsObject[.timestamp].fromJSValue()!
+    }
+    
+    public var duration: UInt64? {
+        jsObject[.duration].fromJSValue()
+    }
+    
+    public var byteLength: UInt32 {
+        jsObject[.byteLength].fromJSValue()!
+    }
+    
     @inlinable public func copyTo(destination: AllowSharedBufferSource) {
         let this = jsObject
         _ = this[.copyTo].function!(this: this, arguments: [_toJSValue(destination)])
@@ -987,26 +997,26 @@ public class EncodedVideoChunkInit: BridgedDictionary {
         object[.data] = _toJSValue(data)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _timestamp = ReadWriteAttribute(jsObject: object, name: .timestamp)
-        _duration = ReadWriteAttribute(jsObject: object, name: .duration)
-        _data = ReadWriteAttribute(jsObject: object, name: .data)
-        super.init(unsafelyWrapping: object)
+    
+    public var type: EncodedVideoChunkType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var type: EncodedVideoChunkType
-
-    @ReadWriteAttribute
-    public var timestamp: Int64
-
-    @ReadWriteAttribute
-    public var duration: UInt64
-
-    @ReadWriteAttribute
-    public var data: AllowSharedBufferSource
+    
+    public var timestamp: Int64 {
+        get { jsObject[.timestamp].fromJSValue()!}
+        set { jsObject[.timestamp] = newValue.jsValue }
+    }
+    
+    public var duration: UInt64 {
+        get { jsObject[.duration].fromJSValue()!}
+        set { jsObject[.duration] = newValue.jsValue }
+    }
+    
+    public var data: AllowSharedBufferSource {
+        get { jsObject[.data].fromJSValue()!}
+        set { jsObject[.data] = newValue.jsValue }
+    }
 }
 
 public class EncodedVideoChunkMetadata: BridgedDictionary {
@@ -1017,38 +1027,37 @@ public class EncodedVideoChunkMetadata: BridgedDictionary {
         object[.alphaSideData] = _toJSValue(alphaSideData)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _decoderConfig = ReadWriteAttribute(jsObject: object, name: .decoderConfig)
-        _svc = ReadWriteAttribute(jsObject: object, name: .svc)
-        _alphaSideData = ReadWriteAttribute(jsObject: object, name: .alphaSideData)
-        super.init(unsafelyWrapping: object)
+    
+    public var decoderConfig: VideoDecoderConfig {
+        get { jsObject[.decoderConfig].fromJSValue()!}
+        set { jsObject[.decoderConfig] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var decoderConfig: VideoDecoderConfig
-
-    @ReadWriteAttribute
-    public var svc: SvcOutputMetadata
-
-    @ReadWriteAttribute
-    public var alphaSideData: BufferSource
+    
+    public var svc: SvcOutputMetadata {
+        get { jsObject[.svc].fromJSValue()!}
+        set { jsObject[.svc] = newValue.jsValue }
+    }
+    
+    public var alphaSideData: BufferSource {
+        get { jsObject[.alphaSideData].fromJSValue()!}
+        set { jsObject[.alphaSideData] = newValue.jsValue }
+    }
 }
 
 public enum EncodedVideoChunkType: JSString, JSValueCompatible {
     case key = "key"
     case delta = "delta"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }

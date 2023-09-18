@@ -13,16 +13,16 @@ let document = globalThis.document
 
 @resultBuilder
 enum HTMLBuilder {
-    public typealias Component = [any HTMLProtocol]
+    public typealias Component = [any HTML]
     
-    static func buildBlock(_ components: any HTMLProtocol...) -> Component {
+    static func buildBlock(_ components: any HTML...) -> Component {
         return components
     }
     
     public static func buildBlock(_ components: Component...) -> Component {
         return components.flatMap { $0 }
     }
-    public static func buildExpression(_ expression: any HTMLProtocol) -> Component {
+    public static func buildExpression(_ expression: any HTML) -> Component {
         return [expression]
     }
     
@@ -47,12 +47,12 @@ enum HTMLBuilder {
     }
 }
 
-protocol HTMLProtocol {
+protocol HTML {
     associatedtype Element: HTMLElement
     var element: Element { get }
 }
 
-struct Button: HTMLProtocol {
+struct Button: HTML {
     let element: HTMLButtonElement
     
     init(title: String) {
@@ -70,14 +70,14 @@ struct Button: HTMLProtocol {
     }
 }
 
-struct Div: HTMLProtocol {
+struct Div: HTML {
     let element: HTMLDivElement
     
     init() {
         self.element = HTMLDivElement(from: document.createElement(localName: "div"))!
     }
     
-    init(@HTMLBuilder content: @escaping () -> [any HTMLProtocol] ) {
+    init(@HTMLBuilder content: () -> [any HTML] ) {
         element = HTMLDivElement(from: document.createElement(localName: "div"))!
         for child in content() {
             element.appendChild(node: child.element)
@@ -85,22 +85,24 @@ struct Div: HTMLProtocol {
     }
 }
 
-struct Canvas: HTMLProtocol {
+struct Canvas: HTML {
     internal let element: HTMLCanvasElement
     var context: CanvasRenderingContext2D {
         element.getContext(CanvasRenderingContext2D.self)!
     }
     
-//    var webglContext: WebGLRenderingContext {
-//
-//    }
-    
-    
     init(width: UInt32, height: UInt32) {
         element = HTMLCanvasElement(from: document.createElement(localName: "canvas"))!
         element.width = width
         element.height = height
-//        context = element.getContext(CanvasRenderingContext2D.self)!
+    }
+}
+
+extension HTMLElement {
+    public  func removeChilds() {
+        while let node = self.firstChild {
+            self.removeChild(child: node)
+        }
     }
 }
 

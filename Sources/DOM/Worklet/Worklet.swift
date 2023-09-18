@@ -40,11 +40,8 @@ public class WorkletOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _credentials = ReadWriteAttribute(jsObject: object, name: .credentials)
-        super.init(unsafelyWrapping: object)
+    public var credentials: RequestCredentials {
+        get { jsObject[.credentials].fromJSValue()!}
+        set { jsObject[.credentials] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var credentials: RequestCredentials
 }

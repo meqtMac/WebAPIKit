@@ -15,28 +15,24 @@ import WebAPIBase
 public class HTMLStyleElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLStyleElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _disabled = ReadWriteAttribute(jsObject: jsObject, name: .disabled)
-        _media = ReadWriteAttribute(jsObject: jsObject, name: .media)
-        _blocking = ReadonlyAttribute(jsObject: jsObject, name: .blocking)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        super.init(unsafelyWrapping: jsObject)
+    public var disabled: Bool {
+        get { jsObject[.disabled].fromJSValue()!}
+        set { jsObject[.disabled] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var media: String {
+        get { jsObject[.media].fromJSValue()!}
+        set { jsObject[.media] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var disabled: Bool
+    public var blocking: DOMTokenList {
+        jsObject[.blocking].fromJSValue()!
+    }
 
-    @ReadWriteAttribute
-    public var media: String
-
-    @ReadonlyAttribute
-    public var blocking: DOMTokenList
-
-    @ReadWriteAttribute
-    public var type: String
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
+ 
+    }
 }
 

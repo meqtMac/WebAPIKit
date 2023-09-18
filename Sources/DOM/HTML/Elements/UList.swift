@@ -14,19 +14,13 @@ import WebAPIBase
 public class HTMLUListElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLUListElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _compact = ReadWriteAttribute(jsObject: jsObject, name: .compact)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        super.init(unsafelyWrapping: jsObject)
+    public var compact: Bool {
+        get { jsObject[.compact].fromJSValue()! }
+        set { jsObject[.compact] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var type: String {
+        get { jsObject[.type].fromJSValue()! }
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var compact: Bool
-
-    @ReadWriteAttribute
-    public var type: String
 }

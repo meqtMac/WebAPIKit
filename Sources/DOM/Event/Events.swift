@@ -37,21 +37,17 @@ public class BeforeUnloadEvent: Event {
 public class BlobEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.BlobEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _data = ReadonlyAttribute(jsObject: jsObject, name: .data)
-        _timecode = ReadonlyAttribute(jsObject: jsObject, name: .timecode)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     @inlinable public convenience init(type: String, eventInitDict: BlobEventInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
     
-    @ReadonlyAttribute
-    public var data: Blob
+public var data: Blob {
+jsObject[.data].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var timecode: DOMHighResTimeStamp
+public var timecode: DOMHighResTimeStamp {
+jsObject[.timecode].fromJSValue()!
+    }
 }
 
 public class BlobEventInit: BridgedDictionary {
@@ -62,33 +58,27 @@ public class BlobEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
     
-    public required init(unsafelyWrapping object: JSObject) {
-        _data = ReadWriteAttribute(jsObject: object, name: .data)
-        _timecode = ReadWriteAttribute(jsObject: object, name: .timecode)
-        super.init(unsafelyWrapping: object)
+    public var data: Blob {
+        get { jsObject[.data].fromJSValue()!}
+        set { jsObject[.data] = newValue.jsValue }
     }
     
-    @ReadWriteAttribute
-    public var data: Blob
-    
-    @ReadWriteAttribute
-    public var timecode: DOMHighResTimeStamp
+    public var timecode: DOMHighResTimeStamp {
+        get { jsObject[.timecode].fromJSValue()!}
+        set { jsObject[.timecode] = newValue.jsValue }
+    }
 }
 
 public class CustomEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.CustomEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _detail = ReadonlyAttribute(jsObject: jsObject, name: .detail)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     @inlinable public convenience init(type: String, eventInitDict: CustomEventInit? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
     
-    @ReadonlyAttribute
-    public var detail: JSValue
+public var detail: JSValue {
+jsObject[.detail].fromJSValue()!
+    }
     
     @inlinable public func initCustomEvent(type: String, bubbles: Bool? = nil, cancelable: Bool? = nil, detail: JSValue? = nil) {
         let this = jsObject
@@ -103,44 +93,37 @@ public class CustomEventInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
     
-    public required init(unsafelyWrapping object: JSObject) {
-        _detail = ReadWriteAttribute(jsObject: object, name: .detail)
-        super.init(unsafelyWrapping: object)
+    public var detail: JSValue {
+        get { jsObject[.detail].fromJSValue()!}
+        set { jsObject[.detail] = newValue.jsValue }
     }
-    
-    @ReadWriteAttribute
-    public var detail: JSValue
 }
 public class ErrorEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.ErrorEvent].function }
-    
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _message = ReadonlyAttribute(jsObject: jsObject, name: .message)
-        _filename = ReadonlyAttribute(jsObject: jsObject, name: .filename)
-        _lineno = ReadonlyAttribute(jsObject: jsObject, name: .lineno)
-        _colno = ReadonlyAttribute(jsObject: jsObject, name: .colno)
-        _error = ReadonlyAttribute(jsObject: jsObject, name: .error)
-        super.init(unsafelyWrapping: jsObject)
-    }
     
     //    @inlinable public convenience init(type: String, eventInitDict: ErrorEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var message: String
+public var message: String {
+jsObject[.message].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var filename: String
+public var filename: String {
+jsObject[.filename].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var lineno: UInt32
+public var lineno: UInt32 {
+jsObject[.lineno].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var colno: UInt32
+public var colno: UInt32 {
+jsObject[.colno].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var error: JSValue
+public var error: JSValue {
+jsObject[.error].fromJSValue()!
+    }
 }
 
 //public class ErrorEventInit: BridgedDictionary {
@@ -195,17 +178,13 @@ public class ErrorEvent: Event {
 public class FormDataEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.FormDataEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _formData = ReadonlyAttribute(jsObject: jsObject, name: .formData)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: FormDataEventInit) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var formData: FormData
+public var formData: FormData {
+jsObject[.formData].fromJSValue()!
+    }
 }
 
 //public class FormDataEventInit: BridgedDictionary {
@@ -269,21 +248,17 @@ public class FormDataEvent: Event {
 public class HashChangeEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HashChangeEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _oldURL = ReadonlyAttribute(jsObject: jsObject, name: .oldURL)
-        _newURL = ReadonlyAttribute(jsObject: jsObject, name: .newURL)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: HashChangeEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var oldURL: String
+public var oldURL: String {
+jsObject[.oldURL].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var newURL: String
+public var newURL: String {
+jsObject[.newURL].fromJSValue()!
+    }
 }
 
 //public class HashChangeEventInit: BridgedDictionary {
@@ -310,33 +285,29 @@ public class HashChangeEvent: Event {
 public class MessageEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.MessageEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _data = ReadonlyAttribute(jsObject: jsObject, name: .data)
-        _origin = ReadonlyAttribute(jsObject: jsObject, name: .origin)
-        _lastEventId = ReadonlyAttribute(jsObject: jsObject, name: .lastEventId)
-        _source = ReadonlyAttribute(jsObject: jsObject, name: .source)
-        _ports = ReadonlyAttribute(jsObject: jsObject, name: .ports)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: MessageEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var data: JSValue
+public var data: JSValue {
+jsObject[.data].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var origin: String
+public var origin: String {
+jsObject[.origin].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var lastEventId: String
+public var lastEventId: String {
+jsObject[.lastEventId].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var source: MessageEventSource?
+public var source: MessageEventSource? {
+jsObject[.source].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var ports: [MessagePort]
+public var ports: [MessagePort] {
+jsObject[.ports].fromJSValue()!
+    }
     
     @inlinable public func initMessageEvent(type: String, bubbles: Bool? = nil, cancelable: Bool? = nil, data: JSValue? = nil, origin: String? = nil, lastEventId: String? = nil, source: MessageEventSource? = nil, ports: [MessagePort]? = nil) {
         let this = jsObject
@@ -377,49 +348,45 @@ public class MessageEvent: Event {
 public class NavigateEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.NavigateEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _navigationType = ReadonlyAttribute(jsObject: jsObject, name: .navigationType)
-        _destination = ReadonlyAttribute(jsObject: jsObject, name: .destination)
-        _canIntercept = ReadonlyAttribute(jsObject: jsObject, name: .canIntercept)
-        _userInitiated = ReadonlyAttribute(jsObject: jsObject, name: .userInitiated)
-        _hashChange = ReadonlyAttribute(jsObject: jsObject, name: .hashChange)
-        _signal = ReadonlyAttribute(jsObject: jsObject, name: .signal)
-        _formData = ReadonlyAttribute(jsObject: jsObject, name: .formData)
-        _downloadRequest = ReadonlyAttribute(jsObject: jsObject, name: .downloadRequest)
-        _info = ReadonlyAttribute(jsObject: jsObject, name: .info)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: NavigateEventInit) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var navigationType: NavigationType
+public var navigationType: NavigationType {
+jsObject[.navigationType].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var destination: NavigationDestination
+public var destination: NavigationDestination {
+jsObject[.destination].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var canIntercept: Bool
+public var canIntercept: Bool {
+jsObject[.canIntercept].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var userInitiated: Bool
+public var userInitiated: Bool {
+jsObject[.userInitiated].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var hashChange: Bool
+public var hashChange: Bool {
+jsObject[.hashChange].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var signal: AbortSignal
+public var signal: AbortSignal {
+jsObject[.signal].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var formData: FormData?
+public var formData: FormData? {
+jsObject[.formData].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var downloadRequest: String?
+public var downloadRequest: String? {
+jsObject[.downloadRequest].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var info: JSValue
+public var info: JSValue {
+jsObject[.info].fromJSValue()!
+    }
     
     @inlinable public func intercept(options: NavigationInterceptOptions? = nil) {
         let this = jsObject
@@ -491,21 +458,18 @@ public class NavigateEvent: Event {
 public class NavigationCurrentEntryChangeEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.NavigationCurrentEntryChangeEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _navigationType = ReadonlyAttribute(jsObject: jsObject, name: .navigationType)
-        _from = ReadonlyAttribute(jsObject: jsObject, name: .from)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    //
+   //
     //    @inlinable public convenience init(type: String, eventInitDict: NavigationCurrentEntryChangeEventInit) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var navigationType: NavigationType?
+public var navigationType: NavigationType? {
+jsObject[.navigationType].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var from: NavigationHistoryEntry
+public var from: NavigationHistoryEntry {
+jsObject[.from].fromJSValue()!
+    }
 }
 
 //public class NavigationCurrentEntryChangeEventInit: BridgedDictionary {
@@ -531,17 +495,13 @@ public class NavigationCurrentEntryChangeEvent: Event {
 public class PageTransitionEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.PageTransitionEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _persisted = ReadonlyAttribute(jsObject: jsObject, name: .persisted)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: PageTransitionEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var persisted: Bool
+public var persisted: Bool {
+jsObject[.persisted].fromJSValue()!
+    }
 }
 
 //public class PageTransitionEventInit: BridgedDictionary {
@@ -563,17 +523,13 @@ public class PageTransitionEvent: Event {
 public class PopStateEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.PopStateEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _state = ReadonlyAttribute(jsObject: jsObject, name: .state)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: PopStateEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var state: JSValue
+public var state: JSValue {
+jsObject[.state].fromJSValue()!
+    }
 }
 
 //public class PopStateEventInit: BridgedDictionary {
@@ -595,25 +551,21 @@ public class PopStateEvent: Event {
 public class ProgressEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.ProgressEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _lengthComputable = ReadonlyAttribute(jsObject: jsObject, name: .lengthComputable)
-        _loaded = ReadonlyAttribute(jsObject: jsObject, name: .loaded)
-        _total = ReadonlyAttribute(jsObject: jsObject, name: .total)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: ProgressEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var lengthComputable: Bool
+public var lengthComputable: Bool {
+jsObject[.lengthComputable].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var loaded: UInt64
+public var loaded: UInt64 {
+jsObject[.loaded].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var total: UInt64
+public var total: UInt64 {
+jsObject[.total].fromJSValue()!
+    }
 }
 
 //public class ProgressEventInit: BridgedDictionary {
@@ -645,21 +597,17 @@ public class ProgressEvent: Event {
 public class PromiseRejectionEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.PromiseRejectionEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _promise = ReadonlyAttribute(jsObject: jsObject, name: .promise)
-        _reason = ReadonlyAttribute(jsObject: jsObject, name: .reason)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: PromiseRejectionEventInit) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var promise: JSPromise
+public var promise: JSPromise {
+jsObject[.promise].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var reason: JSValue
+public var reason: JSValue {
+jsObject[.reason].fromJSValue()!
+    }
 }
 
 //public class PromiseRejectionEventInit: BridgedDictionary {
@@ -685,34 +633,30 @@ public class PromiseRejectionEvent: Event {
 
 public class StorageEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.StorageEvent].function }
-    
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _key = ReadonlyAttribute(jsObject: jsObject, name: .key)
-        _oldValue = ReadonlyAttribute(jsObject: jsObject, name: .oldValue)
-        _newValue = ReadonlyAttribute(jsObject: jsObject, name: .newValue)
-        _url = ReadonlyAttribute(jsObject: jsObject, name: .url)
-        _storageArea = ReadonlyAttribute(jsObject: jsObject, name: .storageArea)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
+   
     //    @inlinable public convenience init(type: String, eventInitDict: StorageEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var key: String?
+public var key: String? {
+jsObject[.key].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var oldValue: String?
+public var oldValue: String? {
+jsObject[.oldValue].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var newValue: String?
+public var newValue: String? {
+jsObject[.newValue].fromJSValue()
+    }
     
-    @ReadonlyAttribute
-    public var url: String
+public var url: String {
+jsObject[.url].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var storageArea: Storage?
+public var storageArea: Storage? {
+jsObject[.storageArea].fromJSValue()
+    }
     
     @inlinable public func initStorageEvent(type: String, 
                                             bubbles: Bool? = nil,
@@ -766,17 +710,13 @@ public class StorageEvent: Event {
 public class SubmitEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.SubmitEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _submitter = ReadonlyAttribute(jsObject: jsObject, name: .submitter)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
-    //    @inlinable public convenience init(type: String, eventInitDict: SubmitEventInit? = nil) {
+   //    @inlinable public convenience init(type: String, eventInitDict: SubmitEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var submitter: HTMLElement?
+public var submitter: HTMLElement? {
+jsObject[.submitter].fromJSValue()
+    }
 }
 
 //public class SubmitEventInit: BridgedDictionary {
@@ -797,21 +737,17 @@ public class SubmitEvent: Event {
 public class ToggleEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.ToggleEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _oldState = ReadonlyAttribute(jsObject: jsObject, name: .oldState)
-        _newState = ReadonlyAttribute(jsObject: jsObject, name: .newState)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(type: String, eventInitDict: ToggleEventInit? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     //    }
     
-    @ReadonlyAttribute
-    public var oldState: String
+public var oldState: String {
+jsObject[.oldState].fromJSValue()!
+    }
     
-    @ReadonlyAttribute
-    public var newState: String
+public var newState: String {
+jsObject[.newState].fromJSValue()!
+    }
 }
 
 //public class ToggleEventInit: BridgedDictionary {
@@ -840,13 +776,9 @@ public class ToggleEvent: Event {
 public class TrackEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.TrackEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _track = ReadonlyAttribute(jsObject: jsObject, name: .track)
-        super.init(unsafelyWrapping: jsObject)
+public var track: AudioTrack_or_TextTrack_or_VideoTrack? {
+jsObject[.track].fromJSValue()
     }
-   
-    @ReadonlyAttribute
-    public var track: AudioTrack_or_TextTrack_or_VideoTrack?
 }
 
 public enum AudioTrack_or_TextTrack_or_VideoTrack: JSValueCompatible  {
@@ -878,18 +810,3 @@ public enum AudioTrack_or_TextTrack_or_VideoTrack: JSValueCompatible  {
         }
     }
 }
-//public class TrackEventInit: BridgedDictionary {
-//    public convenience init(track: AudioTrack_or_TextTrack_or_VideoTrack?) {
-//        let object = JSObject.global[.Object].function!.new()
-//        object[.track] = _toJSValue(track)
-//        self.init(unsafelyWrapping: object)
-//    }
-//
-//    public required init(unsafelyWrapping object: JSObject) {
-//        _track = ReadWriteAttribute(jsObject: object, name: .track)
-//        super.init(unsafelyWrapping: object)
-//    }
-//
-//    @ReadWriteAttribute
-//    public var track: AudioTrack_or_TextTrack_or_VideoTrack?
-//}

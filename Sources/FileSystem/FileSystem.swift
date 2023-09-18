@@ -9,278 +9,266 @@ import WebAPIBase
 
 public class DirectoryPickerOptions: BridgedDictionary {
     public convenience init(id: String, startIn: StartInDirectory, mode: FileSystemPermissionMode) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.id] = _toJSValue(id)
-        object[Strings.startIn] = _toJSValue(startIn)
-        object[Strings.mode] = _toJSValue(mode)
+        let object = JSObject.global[.Object].function!.new()
+        object[.id] = _toJSValue(id)
+        object[.startIn] = _toJSValue(startIn)
+        object[.mode] = _toJSValue(mode)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _id = ReadWriteAttribute(jsObject: object, name: Strings.id)
-        _startIn = ReadWriteAttribute(jsObject: object, name: Strings.startIn)
-        _mode = ReadWriteAttribute(jsObject: object, name: Strings.mode)
-        super.init(unsafelyWrapping: object)
+    
+    public var id: String {
+        get { jsObject[.id].fromJSValue()!}
+        set { jsObject[.id] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var id: String
-
-    @ReadWriteAttribute
-    public var startIn: StartInDirectory
-
-    @ReadWriteAttribute
-    public var mode: FileSystemPermissionMode
+    
+    public var startIn: StartInDirectory {
+        get { jsObject[.startIn].fromJSValue()!}
+        set { jsObject[.startIn] = newValue.jsValue }
+    }
+    
+    public var mode: FileSystemPermissionMode {
+        get { jsObject[.mode].fromJSValue()!}
+        set { jsObject[.mode] = newValue.jsValue }
+    }
 }
 
 public class FilePickerAcceptType: BridgedDictionary {
     public convenience init(description: String, accept: [String: String_or_seq_of_String]) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.description] = _toJSValue(description)
-        object[Strings.accept] = _toJSValue(accept)
+        let object = JSObject.global[.Object].function!.new()
+        object[.description] = _toJSValue(description)
+        object[.accept] = _toJSValue(accept)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _description = ReadWriteAttribute(jsObject: object, name: Strings.description)
-        _accept = ReadWriteAttribute(jsObject: object, name: Strings.accept)
-        super.init(unsafelyWrapping: object)
+    
+    public var description: String {
+        get { jsObject[.description].fromJSValue()!}
+        set { jsObject[.description] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var description: String
-
-    @ReadWriteAttribute
-    public var accept: [String: String_or_seq_of_String]
+    
+    public var accept: [String: String_or_seq_of_String] {
+        get { jsObject[.accept].fromJSValue()!}
+        set { jsObject[.accept] = newValue.jsValue }
+    }
 }
 
 public class FilePickerOptions: BridgedDictionary {
     public convenience init(types: [FilePickerAcceptType], excludeAcceptAllOption: Bool, id: String, startIn: StartInDirectory) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.types] = _toJSValue(types)
-        object[Strings.excludeAcceptAllOption] = _toJSValue(excludeAcceptAllOption)
-        object[Strings.id] = _toJSValue(id)
-        object[Strings.startIn] = _toJSValue(startIn)
+        let object = JSObject.global[.Object].function!.new()
+        object[.types] = _toJSValue(types)
+        object[.excludeAcceptAllOption] = _toJSValue(excludeAcceptAllOption)
+        object[.id] = _toJSValue(id)
+        object[.startIn] = _toJSValue(startIn)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _types = ReadWriteAttribute(jsObject: object, name: Strings.types)
-        _excludeAcceptAllOption = ReadWriteAttribute(jsObject: object, name: Strings.excludeAcceptAllOption)
-        _id = ReadWriteAttribute(jsObject: object, name: Strings.id)
-        _startIn = ReadWriteAttribute(jsObject: object, name: Strings.startIn)
-        super.init(unsafelyWrapping: object)
+    
+    public var types: [FilePickerAcceptType] {
+        get { jsObject[.types].fromJSValue()!}
+        set { jsObject[.types] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var types: [FilePickerAcceptType]
-
-    @ReadWriteAttribute
-    public var excludeAcceptAllOption: Bool
-
-    @ReadWriteAttribute
-    public var id: String
-
-    @ReadWriteAttribute
-    public var startIn: StartInDirectory
+    
+    public var excludeAcceptAllOption: Bool {
+        get { jsObject[.excludeAcceptAllOption].fromJSValue()!}
+        set { jsObject[.excludeAcceptAllOption] = newValue.jsValue }
+    }
+    
+    public var id: String {
+        get { jsObject[.id].fromJSValue()!}
+        set { jsObject[.id] = newValue.jsValue }
+    }
+    
+    public var startIn: StartInDirectory {
+        get { jsObject[.startIn].fromJSValue()!}
+        set { jsObject[.startIn] = newValue.jsValue }
+    }
 }
 
 public class FileSystemCreateWritableOptions: BridgedDictionary {
     public convenience init(keepExistingData: Bool) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.keepExistingData] = _toJSValue(keepExistingData)
+        let object = JSObject.global[.Object].function!.new()
+        object[.keepExistingData] = _toJSValue(keepExistingData)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _keepExistingData = ReadWriteAttribute(jsObject: object, name: Strings.keepExistingData)
-        super.init(unsafelyWrapping: object)
+    
+    public var keepExistingData: Bool {
+        get { jsObject[.keepExistingData].fromJSValue()!}
+        set { jsObject[.keepExistingData] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var keepExistingData: Bool
 }
 
 public class FileSystemDirectoryHandle: FileSystemHandle, AsyncSequence {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.FileSystemDirectoryHandle].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.FileSystemDirectoryHandle].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     public typealias Element = String
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     public func makeAsyncIterator() -> ValueIterableAsyncIterator<FileSystemDirectoryHandle> {
         ValueIterableAsyncIterator(sequence: self)
     }
-
+    
     @inlinable public func getFileHandle(name: String, options: FileSystemGetFileOptions? = nil) -> JSPromise {
         let this = jsObject
-        return this[Strings.getFileHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
+        return this[.getFileHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func getFileHandle(name: String, options: FileSystemGetFileOptions? = nil) async throws -> FileSystemFileHandle {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.getFileHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
+        let _promise: JSPromise = this[.getFileHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func getDirectoryHandle(name: String, options: FileSystemGetDirectoryOptions? = nil) -> JSPromise {
         let this = jsObject
-        return this[Strings.getDirectoryHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
+        return this[.getDirectoryHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func getDirectoryHandle(name: String, options: FileSystemGetDirectoryOptions? = nil) async throws -> FileSystemDirectoryHandle {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.getDirectoryHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
+        let _promise: JSPromise = this[.getDirectoryHandle].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func removeEntry(name: String, options: FileSystemRemoveOptions? = nil) -> JSPromise {
         let this = jsObject
-        return this[Strings.removeEntry].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
+        return this[.removeEntry].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func removeEntry(name: String, options: FileSystemRemoveOptions? = nil) async throws {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.removeEntry].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
+        let _promise: JSPromise = this[.removeEntry].function!(this: this, arguments: [_toJSValue(name), _toJSValue(options)]).fromJSValue()!
         _ = try await _promise.value
     }
-
+    
     @inlinable public func resolve(possibleDescendant: FileSystemHandle) -> JSPromise {
         let this = jsObject
-        return this[Strings.resolve].function!(this: this, arguments: [_toJSValue(possibleDescendant)]).fromJSValue()!
+        return this[.resolve].function!(this: this, arguments: [_toJSValue(possibleDescendant)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func resolve(possibleDescendant: FileSystemHandle) async throws -> [String]? {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.resolve].function!(this: this, arguments: [_toJSValue(possibleDescendant)]).fromJSValue()!
+        let _promise: JSPromise = this[.resolve].function!(this: this, arguments: [_toJSValue(possibleDescendant)]).fromJSValue()!
         return try await _promise.value.fromJSValue()
     }
 }
 
 public class FileSystemFileHandle: FileSystemHandle {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.FileSystemFileHandle].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.FileSystemFileHandle].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public func getFile() -> JSPromise {
         let this = jsObject
-        return this[Strings.getFile].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getFile].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func getFile() async throws -> File {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.getFile].function!(this: this, arguments: []).fromJSValue()!
+        let _promise: JSPromise = this[.getFile].function!(this: this, arguments: []).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func createWritable(options: FileSystemCreateWritableOptions? = nil) -> JSPromise {
         let this = jsObject
-        return this[Strings.createWritable].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
+        return this[.createWritable].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func createWritable(options: FileSystemCreateWritableOptions? = nil) async throws -> FileSystemWritableFileStream {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.createWritable].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
+        let _promise: JSPromise = this[.createWritable].function!(this: this, arguments: [_toJSValue(options)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     // XXX: member 'createSyncAccessHandle' is ignored
-
+    
     // XXX: member 'createSyncAccessHandle' is ignored
 }
 
 public class FileSystemGetDirectoryOptions: BridgedDictionary {
     public convenience init(create: Bool) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.create] = _toJSValue(create)
+        let object = JSObject.global[.Object].function!.new()
+        object[.create] = _toJSValue(create)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _create = ReadWriteAttribute(jsObject: object, name: Strings.create)
-        super.init(unsafelyWrapping: object)
+    
+    public var create: Bool {
+        get { jsObject[.create].fromJSValue()!}
+        set { jsObject[.create] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var create: Bool
 }
 
 public class FileSystemGetFileOptions: BridgedDictionary {
     public convenience init(create: Bool) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.create] = _toJSValue(create)
+        let object = JSObject.global[.Object].function!.new()
+        object[.create] = _toJSValue(create)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _create = ReadWriteAttribute(jsObject: object, name: Strings.create)
-        super.init(unsafelyWrapping: object)
+    
+    public var create: Bool {
+        get { jsObject[.create].fromJSValue()!}
+        set { jsObject[.create] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var create: Bool
 }
 
 public class FileSystemHandle: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.FileSystemHandle].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.FileSystemHandle].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _kind = ReadonlyAttribute(jsObject: jsObject, name: Strings.kind)
-        _name = ReadonlyAttribute(jsObject: jsObject, name: Strings.name)
         self.jsObject = jsObject
     }
-
-    @ReadonlyAttribute
-    public var kind: FileSystemHandleKind
-
-    @ReadonlyAttribute
-    public var name: String
-
+    
+    public var kind: FileSystemHandleKind {
+        jsObject[.kind].fromJSValue()!
+    }
+    
+    public var name: String {
+        jsObject[.name].fromJSValue()!
+    }
+    
     @inlinable public func isSameEntry(other: FileSystemHandle) -> JSPromise {
         let this = jsObject
-        return this[Strings.isSameEntry].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
+        return this[.isSameEntry].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func isSameEntry(other: FileSystemHandle) async throws -> Bool {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.isSameEntry].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
+        let _promise: JSPromise = this[.isSameEntry].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func queryPermission(descriptor: FileSystemHandlePermissionDescriptor? = nil) -> JSPromise {
         let this = jsObject
-        return this[Strings.queryPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
+        return this[.queryPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func queryPermission(descriptor: FileSystemHandlePermissionDescriptor? = nil) async throws -> PermissionState {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.queryPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
+        let _promise: JSPromise = this[.queryPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func requestPermission(descriptor: FileSystemHandlePermissionDescriptor? = nil) -> JSPromise {
         let this = jsObject
-        return this[Strings.requestPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
+        return this[.requestPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func requestPermission(descriptor: FileSystemHandlePermissionDescriptor? = nil) async throws -> PermissionState {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.requestPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
+        let _promise: JSPromise = this[.requestPermission].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
 }
@@ -288,273 +276,254 @@ public class FileSystemHandle: JSBridgedClass {
 public enum FileSystemHandleKind: JSString, JSValueCompatible {
     case file = "file"
     case directory = "directory"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class FileSystemHandlePermissionDescriptor: BridgedDictionary {
     public convenience init(mode: FileSystemPermissionMode) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.mode] = _toJSValue(mode)
+        let object = JSObject.global[.Object].function!.new()
+        object[.mode] = _toJSValue(mode)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _mode = ReadWriteAttribute(jsObject: object, name: Strings.mode)
-        super.init(unsafelyWrapping: object)
+    
+    public var mode: FileSystemPermissionMode {
+        get { jsObject[.mode].fromJSValue()!}
+        set { jsObject[.mode] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var mode: FileSystemPermissionMode
 }
 
 public class FileSystemPermissionDescriptor: BridgedDictionary {
     public convenience init(handle: FileSystemHandle, mode: FileSystemPermissionMode) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.handle] = _toJSValue(handle)
-        object[Strings.mode] = _toJSValue(mode)
+        let object = JSObject.global[.Object].function!.new()
+        object[.handle] = _toJSValue(handle)
+        object[.mode] = _toJSValue(mode)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _handle = ReadWriteAttribute(jsObject: object, name: Strings.handle)
-        _mode = ReadWriteAttribute(jsObject: object, name: Strings.mode)
-        super.init(unsafelyWrapping: object)
+    
+    public var handle: FileSystemHandle {
+        get { jsObject[.handle].fromJSValue()!}
+        set { jsObject[.handle] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var handle: FileSystemHandle
-
-    @ReadWriteAttribute
-    public var mode: FileSystemPermissionMode
+    
+    public var mode: FileSystemPermissionMode {
+        get { jsObject[.mode].fromJSValue()!}
+        set { jsObject[.mode] = newValue.jsValue }
+    }
 }
 
 public enum FileSystemPermissionMode: JSString, JSValueCompatible {
     case read = "read"
     case readwrite = "readwrite"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class FileSystemReadWriteOptions: BridgedDictionary {
     public convenience init(at: UInt64) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.at] = _toJSValue(at)
+        let object = JSObject.global[.Object].function!.new()
+        object[.at] = _toJSValue(at)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _at = ReadWriteAttribute(jsObject: object, name: Strings.at)
-        super.init(unsafelyWrapping: object)
+    
+    public var at: UInt64 {
+        get { jsObject[.at].fromJSValue()!}
+        set { jsObject[.at] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var at: UInt64
 }
 
 public class FileSystemRemoveOptions: BridgedDictionary {
     public convenience init(recursive: Bool) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.recursive] = _toJSValue(recursive)
+        let object = JSObject.global[.Object].function!.new()
+        object[.recursive] = _toJSValue(recursive)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _recursive = ReadWriteAttribute(jsObject: object, name: Strings.recursive)
-        super.init(unsafelyWrapping: object)
+    
+    public var recursive: Bool {
+        get { jsObject[.recursive].fromJSValue()!}
+        set { jsObject[.recursive] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var recursive: Bool
 }
 
 public class FileSystemWritableFileStream: WritableStream {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.FileSystemWritableFileStream].function }
-
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.FileSystemWritableFileStream].function }
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         super.init(unsafelyWrapping: jsObject)
     }
-
+    
     @inlinable public func write(data blob: Blob) async throws {
-        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(blob)]).fromJSValue()!
+        let _promise: JSPromise = jsObject[.write].function!(this: jsObject, arguments: [_toJSValue(blob)]).fromJSValue()!
         _ = try await _promise.value
     }
     @inlinable public func write(data bufferSource: BufferSource) async throws {
-        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(bufferSource)]).fromJSValue()!
+        let _promise: JSPromise = jsObject[.write].function!(this: jsObject, arguments: [_toJSValue(bufferSource)]).fromJSValue()!
         _ = try await _promise.value
     }
-     @inlinable public func write(data string: String) async throws {
-        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(string)]).fromJSValue()!
+    @inlinable public func write(data string: String) async throws {
+        let _promise: JSPromise = jsObject[.write].function!(this: jsObject, arguments: [_toJSValue(string)]).fromJSValue()!
         _ = try await _promise.value
     }
-     @inlinable public func write(data writeParams: WriteParams) async throws {
-        let _promise: JSPromise = jsObject[Strings.write].function!(this: jsObject, arguments: [_toJSValue(writeParams)]).fromJSValue()!
+    @inlinable public func write(data writeParams: WriteParams) async throws {
+        let _promise: JSPromise = jsObject[.write].function!(this: jsObject, arguments: [_toJSValue(writeParams)]).fromJSValue()!
         _ = try await _promise.value
     }
- 
-
-
+    
+    
+    
     @inlinable public func seek(position: UInt64) -> JSPromise {
         let this = jsObject
-        return this[Strings.seek].function!(this: this, arguments: [_toJSValue(position)]).fromJSValue()!
+        return this[.seek].function!(this: this, arguments: [_toJSValue(position)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func seek(position: UInt64) async throws {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.seek].function!(this: this, arguments: [_toJSValue(position)]).fromJSValue()!
+        let _promise: JSPromise = this[.seek].function!(this: this, arguments: [_toJSValue(position)]).fromJSValue()!
         _ = try await _promise.value
     }
-
+    
     @inlinable public func truncate(size: UInt64) -> JSPromise {
         let this = jsObject
-        return this[Strings.truncate].function!(this: this, arguments: [_toJSValue(size)]).fromJSValue()!
+        return this[.truncate].function!(this: this, arguments: [_toJSValue(size)]).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func truncate(size: UInt64) async throws {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.truncate].function!(this: this, arguments: [_toJSValue(size)]).fromJSValue()!
+        let _promise: JSPromise = this[.truncate].function!(this: this, arguments: [_toJSValue(size)]).fromJSValue()!
         _ = try await _promise.value
     }
 }
 
 public protocol NavigatorStorage: JSBridgedClass {}
 public extension NavigatorStorage {
-    @inlinable var storage: StorageManager { jsObject[Strings.storage].fromJSValue()! }
+    @inlinable var storage: StorageManager { jsObject[.storage].fromJSValue()! }
 }
 
 extension Navigator: NavigatorStorage {}
 
 public class OpenFilePickerOptions: BridgedDictionary {
     public convenience init(multiple: Bool) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.multiple] = _toJSValue(multiple)
+        let object = JSObject.global[.Object].function!.new()
+        object[.multiple] = _toJSValue(multiple)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _multiple = ReadWriteAttribute(jsObject: object, name: Strings.multiple)
-        super.init(unsafelyWrapping: object)
+    
+    public var multiple: Bool {
+        get { jsObject[.multiple].fromJSValue()!}
+        set { jsObject[.multiple] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var multiple: Bool
 }
 
 public class SaveFilePickerOptions: BridgedDictionary {
     public convenience init(suggestedName: String?) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.suggestedName] = _toJSValue(suggestedName)
+        let object = JSObject.global[.Object].function!.new()
+        object[.suggestedName] = _toJSValue(suggestedName)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _suggestedName = ReadWriteAttribute(jsObject: object, name: Strings.suggestedName)
-        super.init(unsafelyWrapping: object)
+    
+    public var suggestedName: String? {
+        get { jsObject[.suggestedName].fromJSValue()}
+        set { jsObject[.suggestedName] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var suggestedName: String?
 }
 
 public class StorageEstimate: BridgedDictionary {
     public convenience init(usage: UInt64, quota: UInt64) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.usage] = _toJSValue(usage)
-        object[Strings.quota] = _toJSValue(quota)
+        let object = JSObject.global[.Object].function!.new()
+        object[.usage] = _toJSValue(usage)
+        object[.quota] = _toJSValue(quota)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _usage = ReadWriteAttribute(jsObject: object, name: Strings.usage)
-        _quota = ReadWriteAttribute(jsObject: object, name: Strings.quota)
-        super.init(unsafelyWrapping: object)
+    
+    public var usage: UInt64 {
+        get { jsObject[.usage].fromJSValue()!}
+        set { jsObject[.usage] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var usage: UInt64
-
-    @ReadWriteAttribute
-    public var quota: UInt64
+    
+    public var quota: UInt64 {
+        get { jsObject[.quota].fromJSValue()!}
+        set { jsObject[.quota] = newValue.jsValue }
+    }
 }
 
 public class StorageManager: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.StorageManager].function }
-
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.StorageManager].function }
+    
     public let jsObject: JSObject
-
+    
     public required init(unsafelyWrapping jsObject: JSObject) {
         self.jsObject = jsObject
     }
-
+    
     @inlinable public func getDirectory() -> JSPromise {
         let this = jsObject
-        return this[Strings.getDirectory].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getDirectory].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func getDirectory() async throws -> FileSystemDirectoryHandle {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.getDirectory].function!(this: this, arguments: []).fromJSValue()!
+        let _promise: JSPromise = this[.getDirectory].function!(this: this, arguments: []).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func persisted() -> JSPromise {
         let this = jsObject
-        return this[Strings.persisted].function!(this: this, arguments: []).fromJSValue()!
+        return this[.persisted].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func persisted() async throws -> Bool {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.persisted].function!(this: this, arguments: []).fromJSValue()!
+        let _promise: JSPromise = this[.persisted].function!(this: this, arguments: []).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func persist() -> JSPromise {
         let this = jsObject
-        return this[Strings.persist].function!(this: this, arguments: []).fromJSValue()!
+        return this[.persist].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func persist() async throws -> Bool {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.persist].function!(this: this, arguments: []).fromJSValue()!
+        let _promise: JSPromise = this[.persist].function!(this: this, arguments: []).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
-
+    
     @inlinable public func estimate() -> JSPromise {
         let this = jsObject
-        return this[Strings.estimate].function!(this: this, arguments: []).fromJSValue()!
+        return this[.estimate].function!(this: this, arguments: []).fromJSValue()!
     }
-
+    
     @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     @inlinable public func estimate() async throws -> StorageEstimate {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.estimate].function!(this: this, arguments: []).fromJSValue()!
+        let _promise: JSPromise = this[.estimate].function!(this: this, arguments: []).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
 }
@@ -566,18 +535,18 @@ public enum WellKnownDirectory: JSString, JSValueCompatible {
     case music = "music"
     case pictures = "pictures"
     case videos = "videos"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
@@ -585,100 +554,50 @@ public enum WriteCommandType: JSString, JSValueCompatible {
     case write = "write"
     case seek = "seek"
     case truncate = "truncate"
-
+    
     @inlinable public static func construct(from jsValue: JSValue) -> Self? {
         if let string = jsValue.jsString {
             return Self(rawValue: string)
         }
         return nil
     }
-
+    
     @inlinable public init?(string: String) {
         self.init(rawValue: JSString(string))
     }
-
+    
     @inlinable public var jsValue: JSValue { rawValue.jsValue }
 }
 
 public class WriteParams: BridgedDictionary {
     public convenience init(type: WriteCommandType, size: UInt64?, position: UInt64?, data: Blob_or_BufferSource_or_String?) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.type] = _toJSValue(type)
-        object[Strings.size] = _toJSValue(size)
-        object[Strings.position] = _toJSValue(position)
-        object[Strings.data] = _toJSValue(data)
+        let object = JSObject.global[.Object].function!.new()
+        object[.type] = _toJSValue(type)
+        object[.size] = _toJSValue(size)
+        object[.position] = _toJSValue(position)
+        object[.data] = _toJSValue(data)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: Strings.type)
-        _size = ReadWriteAttribute(jsObject: object, name: Strings.size)
-        _position = ReadWriteAttribute(jsObject: object, name: Strings.position)
-        _data = ReadWriteAttribute(jsObject: object, name: Strings.data)
-        super.init(unsafelyWrapping: object)
+    
+    public var type: WriteCommandType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var type: WriteCommandType
-
-    @ReadWriteAttribute
-    public var size: UInt64?
-
-    @ReadWriteAttribute
-    public var position: UInt64?
-
-    @ReadWriteAttribute
-    public var data: Blob_or_BufferSource_or_String?
-}
-
-@usableFromInline enum Strings {
-    @usableFromInline static let _self: JSString = "self"
-    @usableFromInline static let FileSystemDirectoryHandle: JSString = "FileSystemDirectoryHandle"
-    @usableFromInline static let FileSystemFileHandle: JSString = "FileSystemFileHandle"
-    @usableFromInline static let FileSystemHandle: JSString = "FileSystemHandle"
-    @usableFromInline static let FileSystemWritableFileStream: JSString = "FileSystemWritableFileStream"
-    @usableFromInline static let Object: JSString = "Object"
-    @usableFromInline static let StorageManager: JSString = "StorageManager"
-    @usableFromInline static let accept: JSString = "accept"
-    @usableFromInline static let at: JSString = "at"
-    @usableFromInline static let create: JSString = "create"
-    @usableFromInline static let createWritable: JSString = "createWritable"
-    @usableFromInline static let data: JSString = "data"
-    @usableFromInline static let description: JSString = "description"
-    @usableFromInline static let estimate: JSString = "estimate"
-    @usableFromInline static let excludeAcceptAllOption: JSString = "excludeAcceptAllOption"
-    @usableFromInline static let getDirectory: JSString = "getDirectory"
-    @usableFromInline static let getDirectoryHandle: JSString = "getDirectoryHandle"
-    @usableFromInline static let getFile: JSString = "getFile"
-    @usableFromInline static let getFileHandle: JSString = "getFileHandle"
-    @usableFromInline static let handle: JSString = "handle"
-    @usableFromInline static let id: JSString = "id"
-    @usableFromInline static let isSameEntry: JSString = "isSameEntry"
-    @usableFromInline static let keepExistingData: JSString = "keepExistingData"
-    @usableFromInline static let kind: JSString = "kind"
-    @usableFromInline static let mode: JSString = "mode"
-    @usableFromInline static let multiple: JSString = "multiple"
-    @usableFromInline static let name: JSString = "name"
-    @usableFromInline static let persist: JSString = "persist"
-    @usableFromInline static let persisted: JSString = "persisted"
-    @usableFromInline static let position: JSString = "position"
-    @usableFromInline static let queryPermission: JSString = "queryPermission"
-    @usableFromInline static let quota: JSString = "quota"
-    @usableFromInline static let recursive: JSString = "recursive"
-    @usableFromInline static let removeEntry: JSString = "removeEntry"
-    @usableFromInline static let requestPermission: JSString = "requestPermission"
-    @usableFromInline static let resolve: JSString = "resolve"
-    @usableFromInline static let seek: JSString = "seek"
-    @usableFromInline static let size: JSString = "size"
-    @usableFromInline static let startIn: JSString = "startIn"
-    @usableFromInline static let storage: JSString = "storage"
-    @usableFromInline static let suggestedName: JSString = "suggestedName"
-    @usableFromInline static let toString: JSString = "toString"
-    @usableFromInline static let truncate: JSString = "truncate"
-    @usableFromInline static let type: JSString = "type"
-    @usableFromInline static let types: JSString = "types"
-    @usableFromInline static let usage: JSString = "usage"
-    @usableFromInline static let write: JSString = "write"
+    
+    public var size: UInt64? {
+        get { jsObject[.size].fromJSValue()}
+        set { jsObject[.size] = newValue.jsValue }
+    }
+    
+    public var position: UInt64? {
+        get { jsObject[.position].fromJSValue()}
+        set { jsObject[.position] = newValue.jsValue }
+    }
+    
+    public var data: Blob_or_BufferSource_or_String? {
+        get { jsObject[.data].fromJSValue()}
+        set { jsObject[.data] = newValue.jsValue }
+    }
 }
 
 public protocol Any_Blob_or_BufferSource_or_String: ConvertibleToJSValue {}
@@ -690,53 +609,53 @@ public enum Blob_or_BufferSource_or_String: JSValueCompatible, Any_Blob_or_Buffe
     case blob(Blob)
     case bufferSource(BufferSource)
     case string(String)
-
+    
     init(_ blob: Blob) {
         let val: Blob_or_BufferSource_or_String = .blob(blob)
         self = val
     }
-
+    
     init(_ bufferSource: BufferSource) {
         let val: Blob_or_BufferSource_or_String = .bufferSource(bufferSource)
         self = val
     }
-
+    
     init(_ arrayBuffer: ArrayBuffer) {
         let val: BufferSource = .arrayBuffer(arrayBuffer)
         self = .init(val)
     }
-
+    
     init(_ arrayBufferView: ArrayBufferView) {
         let val: BufferSource = .arrayBufferView(arrayBufferView)
         self = .init(val)
     }
-
+    
     init(_ string: String) {
         let val: Blob_or_BufferSource_or_String = .string(string)
         self = val
     }
-
+    
     public var blob: Blob? {
         switch self {
         case let .blob(blob): return blob
         default: return nil
         }
     }
-
+    
     public var bufferSource: BufferSource? {
         switch self {
         case let .bufferSource(bufferSource): return bufferSource
         default: return nil
         }
     }
-
+    
     public var string: String? {
         switch self {
         case let .string(string): return string
         default: return nil
         }
     }
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let blob: Blob = value.fromJSValue() {
             return .blob(blob)
@@ -749,7 +668,7 @@ public enum Blob_or_BufferSource_or_String: JSValueCompatible, Any_Blob_or_Buffe
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .blob(blob):
@@ -770,7 +689,7 @@ extension WellKnownDirectory: Any_StartInDirectory {}
 public enum StartInDirectory: JSValueCompatible, Any_StartInDirectory {
     case fileSystemHandle(FileSystemHandle)
     case wellKnownDirectory(WellKnownDirectory)
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let fileSystemHandle: FileSystemHandle = value.fromJSValue() {
             return .fileSystemHandle(fileSystemHandle)
@@ -780,7 +699,7 @@ public enum StartInDirectory: JSValueCompatible, Any_StartInDirectory {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .fileSystemHandle(fileSystemHandle):
@@ -794,7 +713,7 @@ public enum StartInDirectory: JSValueCompatible, Any_StartInDirectory {
 public enum String_or_seq_of_String: JSValueCompatible {
     case string(String)
     case seq_of_String([String])
-
+    
     public static func construct(from value: JSValue) -> Self? {
         if let string: String = value.fromJSValue() {
             return .string(string)
@@ -804,7 +723,7 @@ public enum String_or_seq_of_String: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .string(string):

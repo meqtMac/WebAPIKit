@@ -31,70 +31,81 @@ public class MediaTrackCapabilities: BridgedDictionary {
         object[.groupId] = _toJSValue(groupId)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _width = ReadWriteAttribute(jsObject: object, name: .width)
-        _height = ReadWriteAttribute(jsObject: object, name: .height)
-        _aspectRatio = ReadWriteAttribute(jsObject: object, name: .aspectRatio)
-        _frameRate = ReadWriteAttribute(jsObject: object, name: .frameRate)
-        _facingMode = ReadWriteAttribute(jsObject: object, name: .facingMode)
-        _resizeMode = ReadWriteAttribute(jsObject: object, name: .resizeMode)
-        _sampleRate = ReadWriteAttribute(jsObject: object, name: .sampleRate)
-        _sampleSize = ReadWriteAttribute(jsObject: object, name: .sampleSize)
-        _echoCancellation = ReadWriteAttribute(jsObject: object, name: .echoCancellation)
-        _autoGainControl = ReadWriteAttribute(jsObject: object, name: .autoGainControl)
-        _noiseSuppression = ReadWriteAttribute(jsObject: object, name: .noiseSuppression)
-        _latency = ReadWriteAttribute(jsObject: object, name: .latency)
-        _channelCount = ReadWriteAttribute(jsObject: object, name: .channelCount)
-        _deviceId = ReadWriteAttribute(jsObject: object, name: .deviceId)
-        _groupId = ReadWriteAttribute(jsObject: object, name: .groupId)
-        super.init(unsafelyWrapping: object)
+    
+    public var width: ULongRange {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var width: ULongRange
-
-    @ReadWriteAttribute
-    public var height: ULongRange
-
-    @ReadWriteAttribute
-    public var aspectRatio: DoubleRange
-
-    @ReadWriteAttribute
-    public var frameRate: DoubleRange
-
-    @ReadWriteAttribute
-    public var facingMode: [String]
-
-    @ReadWriteAttribute
-    public var resizeMode: [String]
-
-    @ReadWriteAttribute
-    public var sampleRate: ULongRange
-
-    @ReadWriteAttribute
-    public var sampleSize: ULongRange
-
-    @ReadWriteAttribute
-    public var echoCancellation: [Bool]
-
-    @ReadWriteAttribute
-    public var autoGainControl: [Bool]
-
-    @ReadWriteAttribute
-    public var noiseSuppression: [Bool]
-
-    @ReadWriteAttribute
-    public var latency: DoubleRange
-
-    @ReadWriteAttribute
-    public var channelCount: ULongRange
-
-    @ReadWriteAttribute
-    public var deviceId: String
-
-    @ReadWriteAttribute
-    public var groupId: String
+    
+    public var height: ULongRange {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
+    
+    public var aspectRatio: DoubleRange {
+        get { jsObject[.aspectRatio].fromJSValue()!}
+        set { jsObject[.aspectRatio] = newValue.jsValue }
+    }
+    
+    public var frameRate: DoubleRange {
+        get { jsObject[.frameRate].fromJSValue()!}
+        set { jsObject[.frameRate] = newValue.jsValue }
+    }
+    
+    public var facingMode: [String] {
+        get { jsObject[.facingMode].fromJSValue()!}
+        set { jsObject[.facingMode] = newValue.jsValue }
+    }
+    
+    public var resizeMode: [String] {
+        get { jsObject[.resizeMode].fromJSValue()!}
+        set { jsObject[.resizeMode] = newValue.jsValue }
+    }
+    
+    public var sampleRate: ULongRange {
+        get { jsObject[.sampleRate].fromJSValue()!}
+        set { jsObject[.sampleRate] = newValue.jsValue }
+    }
+    
+    public var sampleSize: ULongRange {
+        get { jsObject[.sampleSize].fromJSValue()!}
+        set { jsObject[.sampleSize] = newValue.jsValue }
+    }
+    
+    public var echoCancellation: [Bool] {
+        get { jsObject[.echoCancellation].fromJSValue()!}
+        set { jsObject[.echoCancellation] = newValue.jsValue }
+    }
+    
+    public var autoGainControl: [Bool] {
+        get { jsObject[.autoGainControl].fromJSValue()!}
+        set { jsObject[.autoGainControl] = newValue.jsValue }
+    }
+    
+    public var noiseSuppression: [Bool] {
+        get { jsObject[.noiseSuppression].fromJSValue()!}
+        set { jsObject[.noiseSuppression] = newValue.jsValue }
+    }
+    
+    public var latency: DoubleRange {
+        get { jsObject[.latency].fromJSValue()!}
+        set { jsObject[.latency] = newValue.jsValue }
+    }
+    
+    public var channelCount: ULongRange {
+        get { jsObject[.channelCount].fromJSValue()!}
+        set { jsObject[.channelCount] = newValue.jsValue }
+    }
+    
+    public var deviceId: String {
+        get { jsObject[.deviceId].fromJSValue()!}
+        set { jsObject[.deviceId] = newValue.jsValue }
+    }
+    
+    public var groupId: String {
+        get { jsObject[.groupId].fromJSValue()!}
+        set { jsObject[.groupId] = newValue.jsValue }
+    }
 }
 
 public class MediaTrackConstraintSet: BridgedDictionary {
@@ -204,69 +215,80 @@ public class MediaTrackConstraintSet: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
     
-    public required init(unsafelyWrapping object: JSObject) {
-        _width = ReadWriteAttribute(jsObject: object, name: .width)
-        _height = ReadWriteAttribute(jsObject: object, name: .height)
-        _aspectRatio = ReadWriteAttribute(jsObject: object, name: .aspectRatio)
-        _frameRate = ReadWriteAttribute(jsObject: object, name: .frameRate)
-        _facingMode = ReadWriteAttribute(jsObject: object, name: .facingMode)
-        _resizeMode = ReadWriteAttribute(jsObject: object, name: .resizeMode)
-        _sampleRate = ReadWriteAttribute(jsObject: object, name: .sampleRate)
-        _sampleSize = ReadWriteAttribute(jsObject: object, name: .sampleSize)
-        _echoCancellation = ReadWriteAttribute(jsObject: object, name: .echoCancellation)
-        _autoGainControl = ReadWriteAttribute(jsObject: object, name: .autoGainControl)
-        _noiseSuppression = ReadWriteAttribute(jsObject: object, name: .noiseSuppression)
-        _latency = ReadWriteAttribute(jsObject: object, name: .latency)
-        _channelCount = ReadWriteAttribute(jsObject: object, name: .channelCount)
-        _deviceId = ReadWriteAttribute(jsObject: object, name: .deviceId)
-        _groupId = ReadWriteAttribute(jsObject: object, name: .groupId)
-        super.init(unsafelyWrapping: object)
+    public var width: ConstrainULong {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
     }
     
-    @ReadWriteAttribute
-    public var width: ConstrainULong
+    public var height: ConstrainULong {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var height: ConstrainULong
+    public var aspectRatio: ConstrainDouble {
+        get { jsObject[.aspectRatio].fromJSValue()!}
+        set { jsObject[.aspectRatio] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var aspectRatio: ConstrainDouble
+    public var frameRate: ConstrainDouble {
+        get { jsObject[.frameRate].fromJSValue()!}
+        set { jsObject[.frameRate] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var frameRate: ConstrainDouble
+    public var facingMode: ConstrainDOMString {
+        get { jsObject[.facingMode].fromJSValue()!}
+        set { jsObject[.facingMode] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var facingMode: ConstrainDOMString
+    public var resizeMode: ConstrainDOMString {
+        get { jsObject[.resizeMode].fromJSValue()!}
+        set { jsObject[.resizeMode] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var resizeMode: ConstrainDOMString
+    public var sampleRate: ConstrainULong {
+        get { jsObject[.sampleRate].fromJSValue()!}
+        set { jsObject[.sampleRate] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var sampleRate: ConstrainULong
+    public var sampleSize: ConstrainULong {
+        get { jsObject[.sampleSize].fromJSValue()!}
+        set { jsObject[.sampleSize] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var sampleSize: ConstrainULong
+    public var echoCancellation: ConstrainBoolean {
+        get { jsObject[.echoCancellation].fromJSValue()!}
+        set { jsObject[.echoCancellation] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var echoCancellation: ConstrainBoolean
+    public var autoGainControl: ConstrainBoolean {
+        get { jsObject[.autoGainControl].fromJSValue()!}
+        set { jsObject[.autoGainControl] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var autoGainControl: ConstrainBoolean
+    public var noiseSuppression: ConstrainBoolean {
+        get { jsObject[.noiseSuppression].fromJSValue()!}
+        set { jsObject[.noiseSuppression] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var noiseSuppression: ConstrainBoolean
+    public var latency: ConstrainDouble {
+        get { jsObject[.latency].fromJSValue()!}
+        set { jsObject[.latency] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var latency: ConstrainDouble
+    public var channelCount: ConstrainULong {
+        get { jsObject[.channelCount].fromJSValue()!}
+        set { jsObject[.channelCount] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var channelCount: ConstrainULong
+    public var deviceId: ConstrainDOMString {
+        get { jsObject[.deviceId].fromJSValue()!}
+        set { jsObject[.deviceId] = newValue.jsValue }
+    }
     
-    @ReadWriteAttribute
-    public var deviceId: ConstrainDOMString
-    
-    @ReadWriteAttribute
-    public var groupId: ConstrainDOMString
+    public var groupId: ConstrainDOMString {
+        get { jsObject[.groupId].fromJSValue()!}
+        set { jsObject[.groupId] = newValue.jsValue }
+    }
 }
 
 public class MediaTrackConstraints: BridgedDictionary {
@@ -276,13 +298,10 @@ public class MediaTrackConstraints: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
     
-    public required init(unsafelyWrapping object: JSObject) {
-        _advanced = ReadWriteAttribute(jsObject: object, name: .advanced)
-        super.init(unsafelyWrapping: object)
+    public var advanced: [MediaTrackConstraintSet] {
+        get { jsObject[.advanced].fromJSValue()!}
+        set { jsObject[.advanced] = newValue.jsValue }
     }
-    
-    @ReadWriteAttribute
-    public var advanced: [MediaTrackConstraintSet]
 }
 
 public class MediaTrackSettings: BridgedDictionary {
@@ -305,70 +324,81 @@ public class MediaTrackSettings: BridgedDictionary {
         object[.groupId] = _toJSValue(groupId)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _width = ReadWriteAttribute(jsObject: object, name: .width)
-        _height = ReadWriteAttribute(jsObject: object, name: .height)
-        _aspectRatio = ReadWriteAttribute(jsObject: object, name: .aspectRatio)
-        _frameRate = ReadWriteAttribute(jsObject: object, name: .frameRate)
-        _facingMode = ReadWriteAttribute(jsObject: object, name: .facingMode)
-        _resizeMode = ReadWriteAttribute(jsObject: object, name: .resizeMode)
-        _sampleRate = ReadWriteAttribute(jsObject: object, name: .sampleRate)
-        _sampleSize = ReadWriteAttribute(jsObject: object, name: .sampleSize)
-        _echoCancellation = ReadWriteAttribute(jsObject: object, name: .echoCancellation)
-        _autoGainControl = ReadWriteAttribute(jsObject: object, name: .autoGainControl)
-        _noiseSuppression = ReadWriteAttribute(jsObject: object, name: .noiseSuppression)
-        _latency = ReadWriteAttribute(jsObject: object, name: .latency)
-        _channelCount = ReadWriteAttribute(jsObject: object, name: .channelCount)
-        _deviceId = ReadWriteAttribute(jsObject: object, name: .deviceId)
-        _groupId = ReadWriteAttribute(jsObject: object, name: .groupId)
-        super.init(unsafelyWrapping: object)
+    
+    public var width: UInt32 {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var width: UInt32
-
-    @ReadWriteAttribute
-    public var height: UInt32
-
-    @ReadWriteAttribute
-    public var aspectRatio: Double
-
-    @ReadWriteAttribute
-    public var frameRate: Double
-
-    @ReadWriteAttribute
-    public var facingMode: String
-
-    @ReadWriteAttribute
-    public var resizeMode: String
-
-    @ReadWriteAttribute
-    public var sampleRate: UInt32
-
-    @ReadWriteAttribute
-    public var sampleSize: UInt32
-
-    @ReadWriteAttribute
-    public var echoCancellation: Bool
-
-    @ReadWriteAttribute
-    public var autoGainControl: Bool
-
-    @ReadWriteAttribute
-    public var noiseSuppression: Bool
-
-    @ReadWriteAttribute
-    public var latency: Double
-
-    @ReadWriteAttribute
-    public var channelCount: UInt32
-
-    @ReadWriteAttribute
-    public var deviceId: String
-
-    @ReadWriteAttribute
-    public var groupId: String
+    
+    public var height: UInt32 {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
+    
+    public var aspectRatio: Double {
+        get { jsObject[.aspectRatio].fromJSValue()!}
+        set { jsObject[.aspectRatio] = newValue.jsValue }
+    }
+    
+    public var frameRate: Double {
+        get { jsObject[.frameRate].fromJSValue()!}
+        set { jsObject[.frameRate] = newValue.jsValue }
+    }
+    
+    public var facingMode: String {
+        get { jsObject[.facingMode].fromJSValue()!}
+        set { jsObject[.facingMode] = newValue.jsValue }
+    }
+    
+    public var resizeMode: String {
+        get { jsObject[.resizeMode].fromJSValue()!}
+        set { jsObject[.resizeMode] = newValue.jsValue }
+    }
+    
+    public var sampleRate: UInt32 {
+        get { jsObject[.sampleRate].fromJSValue()!}
+        set { jsObject[.sampleRate] = newValue.jsValue }
+    }
+    
+    public var sampleSize: UInt32 {
+        get { jsObject[.sampleSize].fromJSValue()!}
+        set { jsObject[.sampleSize] = newValue.jsValue }
+    }
+    
+    public var echoCancellation: Bool {
+        get { jsObject[.echoCancellation].fromJSValue()!}
+        set { jsObject[.echoCancellation] = newValue.jsValue }
+    }
+    
+    public var autoGainControl: Bool {
+        get { jsObject[.autoGainControl].fromJSValue()!}
+        set { jsObject[.autoGainControl] = newValue.jsValue }
+    }
+    
+    public var noiseSuppression: Bool {
+        get { jsObject[.noiseSuppression].fromJSValue()!}
+        set { jsObject[.noiseSuppression] = newValue.jsValue }
+    }
+    
+    public var latency: Double {
+        get { jsObject[.latency].fromJSValue()!}
+        set { jsObject[.latency] = newValue.jsValue }
+    }
+    
+    public var channelCount: UInt32 {
+        get { jsObject[.channelCount].fromJSValue()!}
+        set { jsObject[.channelCount] = newValue.jsValue }
+    }
+    
+    public var deviceId: String {
+        get { jsObject[.deviceId].fromJSValue()!}
+        set { jsObject[.deviceId] = newValue.jsValue }
+    }
+    
+    public var groupId: String {
+        get { jsObject[.groupId].fromJSValue()!}
+        set { jsObject[.groupId] = newValue.jsValue }
+    }
 }
 
 public class MediaTrackSupportedConstraints: BridgedDictionary {
@@ -391,77 +421,88 @@ public class MediaTrackSupportedConstraints: BridgedDictionary {
         object[.groupId] = _toJSValue(groupId)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _width = ReadWriteAttribute(jsObject: object, name: .width)
-        _height = ReadWriteAttribute(jsObject: object, name: .height)
-        _aspectRatio = ReadWriteAttribute(jsObject: object, name: .aspectRatio)
-        _frameRate = ReadWriteAttribute(jsObject: object, name: .frameRate)
-        _facingMode = ReadWriteAttribute(jsObject: object, name: .facingMode)
-        _resizeMode = ReadWriteAttribute(jsObject: object, name: .resizeMode)
-        _sampleRate = ReadWriteAttribute(jsObject: object, name: .sampleRate)
-        _sampleSize = ReadWriteAttribute(jsObject: object, name: .sampleSize)
-        _echoCancellation = ReadWriteAttribute(jsObject: object, name: .echoCancellation)
-        _autoGainControl = ReadWriteAttribute(jsObject: object, name: .autoGainControl)
-        _noiseSuppression = ReadWriteAttribute(jsObject: object, name: .noiseSuppression)
-        _latency = ReadWriteAttribute(jsObject: object, name: .latency)
-        _channelCount = ReadWriteAttribute(jsObject: object, name: .channelCount)
-        _deviceId = ReadWriteAttribute(jsObject: object, name: .deviceId)
-        _groupId = ReadWriteAttribute(jsObject: object, name: .groupId)
-        super.init(unsafelyWrapping: object)
+    
+    public var width: Bool {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var width: Bool
-
-    @ReadWriteAttribute
-    public var height: Bool
-
-    @ReadWriteAttribute
-    public var aspectRatio: Bool
-
-    @ReadWriteAttribute
-    public var frameRate: Bool
-
-    @ReadWriteAttribute
-    public var facingMode: Bool
-
-    @ReadWriteAttribute
-    public var resizeMode: Bool
-
-    @ReadWriteAttribute
-    public var sampleRate: Bool
-
-    @ReadWriteAttribute
-    public var sampleSize: Bool
-
-    @ReadWriteAttribute
-    public var echoCancellation: Bool
-
-    @ReadWriteAttribute
-    public var autoGainControl: Bool
-
-    @ReadWriteAttribute
-    public var noiseSuppression: Bool
-
-    @ReadWriteAttribute
-    public var latency: Bool
-
-    @ReadWriteAttribute
-    public var channelCount: Bool
-
-    @ReadWriteAttribute
-    public var deviceId: Bool
-
-    @ReadWriteAttribute
-    public var groupId: Bool
+    
+    public var height: Bool {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
+    
+    public var aspectRatio: Bool {
+        get { jsObject[.aspectRatio].fromJSValue()!}
+        set { jsObject[.aspectRatio] = newValue.jsValue }
+    }
+    
+    public var frameRate: Bool {
+        get { jsObject[.frameRate].fromJSValue()!}
+        set { jsObject[.frameRate] = newValue.jsValue }
+    }
+    
+    public var facingMode: Bool {
+        get { jsObject[.facingMode].fromJSValue()!}
+        set { jsObject[.facingMode] = newValue.jsValue }
+    }
+    
+    public var resizeMode: Bool {
+        get { jsObject[.resizeMode].fromJSValue()!}
+        set { jsObject[.resizeMode] = newValue.jsValue }
+    }
+    
+    public var sampleRate: Bool {
+        get { jsObject[.sampleRate].fromJSValue()!}
+        set { jsObject[.sampleRate] = newValue.jsValue }
+    }
+    
+    public var sampleSize: Bool {
+        get { jsObject[.sampleSize].fromJSValue()!}
+        set { jsObject[.sampleSize] = newValue.jsValue }
+    }
+    
+    public var echoCancellation: Bool {
+        get { jsObject[.echoCancellation].fromJSValue()!}
+        set { jsObject[.echoCancellation] = newValue.jsValue }
+    }
+    
+    public var autoGainControl: Bool {
+        get { jsObject[.autoGainControl].fromJSValue()!}
+        set { jsObject[.autoGainControl] = newValue.jsValue }
+    }
+    
+    public var noiseSuppression: Bool {
+        get { jsObject[.noiseSuppression].fromJSValue()!}
+        set { jsObject[.noiseSuppression] = newValue.jsValue }
+    }
+    
+    public var latency: Bool {
+        get { jsObject[.latency].fromJSValue()!}
+        set { jsObject[.latency] = newValue.jsValue }
+    }
+    
+    public var channelCount: Bool {
+        get { jsObject[.channelCount].fromJSValue()!}
+        set { jsObject[.channelCount] = newValue.jsValue }
+    }
+    
+    public var deviceId: Bool {
+        get { jsObject[.deviceId].fromJSValue()!}
+        set { jsObject[.deviceId] = newValue.jsValue }
+    }
+    
+    public var groupId: Bool {
+        get { jsObject[.groupId].fromJSValue()!}
+        set { jsObject[.groupId] = newValue.jsValue }
+    }
 }
 
 public enum ConstrainBoolean: JSValueCompatible {
     case bool(Bool)
     case constrainBooleanParameters(ConstrainBooleanParameters)
-
-   public static func construct(from value: JSValue) -> Self? {
+    
+    public static func construct(from value: JSValue) -> Self? {
         if let bool: Bool = value.fromJSValue() {
             return .bool(bool)
         }
@@ -470,7 +511,7 @@ public enum ConstrainBoolean: JSValueCompatible {
         }
         return nil
     }
-
+    
     public var jsValue: JSValue {
         switch self {
         case let .bool(bool):
@@ -479,28 +520,26 @@ public enum ConstrainBoolean: JSValueCompatible {
             return constrainBooleanParameters.jsValue
         }
     }
-
+    
 }
 
 extension ConstrainBoolean {
-     public class ConstrainBooleanParameters: BridgedDictionary {
-    public convenience init(exact: Bool, ideal: Bool) {
-        let object = JSObject.global[.Object].function!.new()
-        object[.exact] = _toJSValue(exact)
-        object[.ideal] = _toJSValue(ideal)
-        self.init(unsafelyWrapping: object)
-    }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _exact = ReadWriteAttribute(jsObject: object, name: .exact)
-        _ideal = ReadWriteAttribute(jsObject: object, name: .ideal)
-        super.init(unsafelyWrapping: object)
-    }
-
-    @ReadWriteAttribute
-    public var exact: Bool
-
-    @ReadWriteAttribute
-    public var ideal: Bool
-}   
+    public class ConstrainBooleanParameters: BridgedDictionary {
+        public convenience init(exact: Bool, ideal: Bool) {
+            let object = JSObject.global[.Object].function!.new()
+            object[.exact] = _toJSValue(exact)
+            object[.ideal] = _toJSValue(ideal)
+            self.init(unsafelyWrapping: object)
+        }
+        
+        public var exact: Bool {
+            get { jsObject[.exact].fromJSValue()!}
+            set { jsObject[.exact] = newValue.jsValue }
+        }
+        
+        public var ideal: Bool {
+            get { jsObject[.ideal].fromJSValue()!}
+            set { jsObject[.ideal] = newValue.jsValue }
+        }
+    }   
 }

@@ -22,10 +22,6 @@ open class EventTarget: JSBridgedClass {
         self.jsObject = jsObject
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
     @inlinable public func addEventListener(type: String, callback: EventListener?, options: AddEventListenerOptions? = nil) {
         let this = jsObject
         _ = this[.addEventListener].function!(this: this, arguments: [_toJSValue(type), _toJSValue(callback), _toJSValue(options)])
@@ -34,7 +30,6 @@ open class EventTarget: JSBridgedClass {
         let this = jsObject
         _ = this[.addEventListener].function!(this: this, arguments: [_toJSValue(type), _toJSValue(callback), _toJSValue(options)])
     }
-
 
     @inlinable public func removeEventListener(type: String, callback: EventListener?, options: EventListenerOptions? = nil) {
         let this = jsObject
@@ -56,10 +51,7 @@ public class EventSource: EventTarget {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.EventSource].function }
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _url = ReadonlyAttribute(jsObject: jsObject, name: .url)
-        _withCredentials = ReadonlyAttribute(jsObject: jsObject, name: .withCredentials)
-        _readyState = ReadonlyAttribute(jsObject: jsObject, name: .readyState)
-        _onopen = ClosureAttribute1Optional(jsObject: jsObject, name: .onopen)
+       _onopen = ClosureAttribute1Optional(jsObject: jsObject, name: .onopen)
         _onmessage = ClosureAttribute1Optional(jsObject: jsObject, name: .onmessage)
         _onerror = ClosureAttribute1Optional(jsObject: jsObject, name: .onerror)
         super.init(unsafelyWrapping: jsObject)
@@ -69,11 +61,13 @@ public class EventSource: EventTarget {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(url), _toJSValue(eventSourceInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var url: String
+public var url: String {
+jsObject[.url].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var withCredentials: Bool
+public var withCredentials: Bool {
+jsObject[.withCredentials].fromJSValue()!
+    }
 
     public static let CONNECTING: UInt16 = 0
 
@@ -81,8 +75,9 @@ public class EventSource: EventTarget {
 
     public static let CLOSED: UInt16 = 2
 
-    @ReadonlyAttribute
-    public var readyState: UInt16
+public var readyState: UInt16 {
+jsObject[.readyState].fromJSValue()!
+    }
 
     @ClosureAttribute1Optional
     public var onopen: EventHandler
@@ -106,13 +101,10 @@ public class EventSourceInit: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _withCredentials = ReadWriteAttribute(jsObject: object, name: .withCredentials)
-        super.init(unsafelyWrapping: object)
+    public var withCredentials: Bool {
+        get { jsObject[.withCredentials].fromJSValue()!}
+        set { jsObject[.withCredentials] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var withCredentials: Bool
 }
 
 public class AddEventListenerOptions: BridgedDictionary {
@@ -124,20 +116,19 @@ public class AddEventListenerOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _passive = ReadWriteAttribute(jsObject: object, name: .passive)
-        _once = ReadWriteAttribute(jsObject: object, name: .once)
-        _signal = ReadWriteAttribute(jsObject: object, name: .signal)
-        super.init(unsafelyWrapping: object)
+    public var passive: Bool {
+        get { jsObject[.passive].fromJSValue()!}
+        set { jsObject[.passive] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var passive: Bool
+    public var once: Bool {
+        get { jsObject[.once].fromJSValue()!}
+        set { jsObject[.once] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var once: Bool
-
-    @ReadWriteAttribute
-    public var signal: AbortSignal
+    public var signal: AbortSignal {
+        get { jsObject[.signal].fromJSValue()!}
+        set { jsObject[.signal] = newValue.jsValue }
+    }
 }
 

@@ -18,8 +18,6 @@ public class Blob: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _size = ReadonlyAttribute(jsObject: jsObject, name: .size)
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
         self.jsObject = jsObject
     }
 
@@ -27,11 +25,13 @@ public class Blob: JSBridgedClass {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(blobParts), _toJSValue(options)]))
     }
 
-    @ReadonlyAttribute
-    public var size: UInt64
+public var size: UInt64 {
+jsObject[.size].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var type: String
+public var type: String {
+jsObject[.type].fromJSValue()!
+    }
 
     @inlinable public func slice(start: Int64? = nil, end: Int64? = nil, contentType: String? = nil) -> Self {
         let this = jsObject
@@ -68,17 +68,15 @@ public class BlobPropertyBag: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _endings = ReadWriteAttribute(jsObject: object, name: .endings)
-        super.init(unsafelyWrapping: object)
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var type: String
-
-    @ReadWriteAttribute
-    public var endings: EndingType
+    public var endings: EndingType {
+        get { jsObject[.endings].fromJSValue()!}
+        set { jsObject[.endings] = newValue.jsValue }
+    }
 }
 
 public extension Blob {

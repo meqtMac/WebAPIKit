@@ -13,10 +13,6 @@ import WebAPIBase
 
 public class XMLDocument: Document {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.XMLDocument].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        super.init(unsafelyWrapping: jsObject)
-    }
 }
 
 public class XMLHttpRequest: XMLHttpRequestEventTarget {
@@ -24,18 +20,7 @@ public class XMLHttpRequest: XMLHttpRequestEventTarget {
 
     public required init(unsafelyWrapping jsObject: JSObject) {
         _onreadystatechange = ClosureAttribute1Optional(jsObject: jsObject, name: .onreadystatechange)
-        _readyState = ReadonlyAttribute(jsObject: jsObject, name: .readyState)
-        _timeout = ReadWriteAttribute(jsObject: jsObject, name: .timeout)
-        _withCredentials = ReadWriteAttribute(jsObject: jsObject, name: .withCredentials)
-        _upload = ReadonlyAttribute(jsObject: jsObject, name: .upload)
-        _responseURL = ReadonlyAttribute(jsObject: jsObject, name: .responseURL)
-        _status = ReadonlyAttribute(jsObject: jsObject, name: .status)
-        _statusText = ReadonlyAttribute(jsObject: jsObject, name: .statusText)
-        _responseType = ReadWriteAttribute(jsObject: jsObject, name: .responseType)
-        _response = ReadonlyAttribute(jsObject: jsObject, name: .response)
-        _responseText = ReadonlyAttribute(jsObject: jsObject, name: .responseText)
-        _responseXML = ReadonlyAttribute(jsObject: jsObject, name: .responseXML)
-        super.init(unsafelyWrapping: jsObject)
+       super.init(unsafelyWrapping: jsObject)
     }
 
     @inlinable public convenience init() {
@@ -55,8 +40,9 @@ public class XMLHttpRequest: XMLHttpRequestEventTarget {
 
     public static let DONE: UInt16 = 4
 
-    @ReadonlyAttribute
-    public var readyState: UInt16
+public var readyState: UInt16 {
+jsObject[.readyState].fromJSValue()!
+    }
 
     @inlinable public func open(method: String, url: String) {
         let this = jsObject
@@ -73,14 +59,19 @@ public class XMLHttpRequest: XMLHttpRequestEventTarget {
         _ = this[.setRequestHeader].function!(this: this, arguments: [_toJSValue(name), _toJSValue(value)])
     }
 
-    @ReadWriteAttribute
-    public var timeout: UInt32
+    public var timeout: UInt32 {
+        get { jsObject[.timeout].fromJSValue()!}
+        set { jsObject[.timeout] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var withCredentials: Bool
+    public var withCredentials: Bool {
+        get { jsObject[.withCredentials].fromJSValue()!}
+        set { jsObject[.withCredentials] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var upload: XMLHttpRequestUpload
+public var upload: XMLHttpRequestUpload {
+jsObject[.upload].fromJSValue()!
+    }
 
    @inlinable public func send(body: Document? = nil) {
         let this = jsObject
@@ -113,14 +104,17 @@ public class XMLHttpRequest: XMLHttpRequestEventTarget {
         _ = this[.abort].function!(this: this, arguments: [])
     }
 
-    @ReadonlyAttribute
-    public var responseURL: String
+public var responseURL: String {
+jsObject[.responseURL].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var status: UInt16
+public var status: UInt16 {
+jsObject[.status].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var statusText: String
+public var statusText: String {
+jsObject[.statusText].fromJSValue()!
+    }
 
     @inlinable public func getResponseHeader(name: String) -> String? {
         let this = jsObject
@@ -137,17 +131,22 @@ public class XMLHttpRequest: XMLHttpRequestEventTarget {
         _ = this[.overrideMimeType].function!(this: this, arguments: [_toJSValue(mime)])
     }
 
-    @ReadWriteAttribute
-    public var responseType: XMLHttpRequestResponseType
+    public var responseType: XMLHttpRequestResponseType {
+        get { jsObject[.responseType].fromJSValue()!}
+        set { jsObject[.responseType] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var response: JSValue
+public var response: JSValue {
+jsObject[.response].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var responseText: String
+public var responseText: String {
+jsObject[.responseText].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var responseXML: Document?
+public var responseXML: Document? {
+jsObject[.responseXML].fromJSValue()
+    }
 }
 
 public class XMLHttpRequestEventTarget: EventTarget {
@@ -260,14 +259,7 @@ public class XPathResult: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _resultType = ReadonlyAttribute(jsObject: jsObject, name: .resultType)
-        _numberValue = ReadonlyAttribute(jsObject: jsObject, name: .numberValue)
-        _stringValue = ReadonlyAttribute(jsObject: jsObject, name: .stringValue)
-        _booleanValue = ReadonlyAttribute(jsObject: jsObject, name: .booleanValue)
-        _singleNodeValue = ReadonlyAttribute(jsObject: jsObject, name: .singleNodeValue)
-        _invalidIteratorState = ReadonlyAttribute(jsObject: jsObject, name: .invalidIteratorState)
-        _snapshotLength = ReadonlyAttribute(jsObject: jsObject, name: .snapshotLength)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
     public static let ANY_TYPE: UInt16 = 0
@@ -290,26 +282,33 @@ public class XPathResult: JSBridgedClass {
 
     public static let FIRST_ORDERED_NODE_TYPE: UInt16 = 9
 
-    @ReadonlyAttribute
-    public var resultType: UInt16
+public var resultType: UInt16 {
+jsObject[.resultType].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var numberValue: Double
+public var numberValue: Double {
+jsObject[.numberValue].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var stringValue: String
+public var stringValue: String {
+jsObject[.stringValue].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var booleanValue: Bool
+public var booleanValue: Bool {
+jsObject[.booleanValue].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var singleNodeValue: Node?
+public var singleNodeValue: Node? {
+jsObject[.singleNodeValue].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var invalidIteratorState: Bool
+public var invalidIteratorState: Bool {
+jsObject[.invalidIteratorState].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var snapshotLength: UInt32
+public var snapshotLength: UInt32 {
+jsObject[.snapshotLength].fromJSValue()!
+    }
 
     @inlinable public func iterateNext() -> Node? {
         let this = jsObject

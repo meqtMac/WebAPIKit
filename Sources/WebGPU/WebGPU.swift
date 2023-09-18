@@ -15,7 +15,6 @@ public class GPU: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _wgslLanguageFeatures = ReadonlyAttribute(jsObject: jsObject, name: .wgslLanguageFeatures)
         self.jsObject = jsObject
     }
 
@@ -36,8 +35,9 @@ public class GPU: JSBridgedClass {
         return this[.getPreferredCanvasFormat].function!(this: this, arguments: []).fromJSValue()!
     }
 
-    @ReadonlyAttribute
-    public var wgslLanguageFeatures: WGSLLanguageFeatures
+public var wgslLanguageFeatures: WGSLLanguageFeatures {
+jsObject[.wgslLanguageFeatures].fromJSValue()!
+    }
 }
 
 public class GPUAdapter: JSBridgedClass {
@@ -46,20 +46,20 @@ public class GPUAdapter: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _features = ReadonlyAttribute(jsObject: jsObject, name: .features)
-        _limits = ReadonlyAttribute(jsObject: jsObject, name: .limits)
-        _isFallbackAdapter = ReadonlyAttribute(jsObject: jsObject, name: .isFallbackAdapter)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var features: GPUSupportedFeatures
+public var features: GPUSupportedFeatures {
+jsObject[.features].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var limits: GPUSupportedLimits
+public var limits: GPUSupportedLimits {
+jsObject[.limits].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var isFallbackAdapter: Bool
+public var isFallbackAdapter: Bool {
+jsObject[.isFallbackAdapter].fromJSValue()!
+    }
 
     @inlinable public func requestDevice(descriptor: GPUDeviceDescriptor? = nil) -> JSPromise {
         let this = jsObject
@@ -92,24 +92,24 @@ public class GPUAdapterInfo: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _vendor = ReadonlyAttribute(jsObject: jsObject, name: .vendor)
-        _architecture = ReadonlyAttribute(jsObject: jsObject, name: .architecture)
-        _device = ReadonlyAttribute(jsObject: jsObject, name: .device)
-        _description = ReadonlyAttribute(jsObject: jsObject, name: .description)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var vendor: String
+public var vendor: String {
+jsObject[.vendor].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var architecture: String
+public var architecture: String {
+jsObject[.architecture].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var device: String
+public var device: String {
+jsObject[.device].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var description: String
+public var description: String {
+jsObject[.description].fromJSValue()!
+    }
 }
 
 public enum GPUAddressMode: JSString, JSValueCompatible {
@@ -166,17 +166,15 @@ public class GPUBindGroupDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _layout = ReadWriteAttribute(jsObject: object, name: .layout)
-        _entries = ReadWriteAttribute(jsObject: object, name: .entries)
-        super.init(unsafelyWrapping: object)
+    public var layout: GPUBindGroupLayout {
+        get { jsObject[.layout].fromJSValue()!}
+        set { jsObject[.layout] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var layout: GPUBindGroupLayout
-
-    @ReadWriteAttribute
-    public var entries: [GPUBindGroupEntry]
+    public var entries: [GPUBindGroupEntry] {
+        get { jsObject[.entries].fromJSValue()!}
+        set { jsObject[.entries] = newValue.jsValue }
+    }
 }
 
 public class GPUBindGroupEntry: BridgedDictionary {
@@ -187,17 +185,15 @@ public class GPUBindGroupEntry: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _binding = ReadWriteAttribute(jsObject: object, name: .binding)
-        _resource = ReadWriteAttribute(jsObject: object, name: .resource)
-        super.init(unsafelyWrapping: object)
+    public var binding: GPUIndex32 {
+        get { jsObject[.binding].fromJSValue()!}
+        set { jsObject[.binding] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var binding: GPUIndex32
-
-    @ReadWriteAttribute
-    public var resource: GPUBindingResource
+    public var resource: GPUBindingResource {
+        get { jsObject[.resource].fromJSValue()!}
+        set { jsObject[.resource] = newValue.jsValue }
+    }
 }
 
 public class GPUBindGroupLayout: JSBridgedClass, GPUObjectBase {
@@ -217,13 +213,10 @@ public class GPUBindGroupLayoutDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _entries = ReadWriteAttribute(jsObject: object, name: .entries)
-        super.init(unsafelyWrapping: object)
+    public var entries: [GPUBindGroupLayoutEntry] {
+        get { jsObject[.entries].fromJSValue()!}
+        set { jsObject[.entries] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var entries: [GPUBindGroupLayoutEntry]
 }
 
 public class GPUBindGroupLayoutEntry: BridgedDictionary {
@@ -239,37 +232,40 @@ public class GPUBindGroupLayoutEntry: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _binding = ReadWriteAttribute(jsObject: object, name: .binding)
-        _visibility = ReadWriteAttribute(jsObject: object, name: .visibility)
-        _buffer = ReadWriteAttribute(jsObject: object, name: .buffer)
-        _sampler = ReadWriteAttribute(jsObject: object, name: .sampler)
-        _texture = ReadWriteAttribute(jsObject: object, name: .texture)
-        _storageTexture = ReadWriteAttribute(jsObject: object, name: .storageTexture)
-        _externalTexture = ReadWriteAttribute(jsObject: object, name: .externalTexture)
-        super.init(unsafelyWrapping: object)
+    public var binding: GPUIndex32 {
+        get { jsObject[.binding].fromJSValue()!}
+        set { jsObject[.binding] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var binding: GPUIndex32
+    public var visibility: GPUShaderStageFlags {
+        get { jsObject[.visibility].fromJSValue()!}
+        set { jsObject[.visibility] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var visibility: GPUShaderStageFlags
+    public var buffer: GPUBufferBindingLayout {
+        get { jsObject[.buffer].fromJSValue()!}
+        set { jsObject[.buffer] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var buffer: GPUBufferBindingLayout
+    public var sampler: GPUSamplerBindingLayout {
+        get { jsObject[.sampler].fromJSValue()!}
+        set { jsObject[.sampler] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var sampler: GPUSamplerBindingLayout
+    public var texture: GPUTextureBindingLayout {
+        get { jsObject[.texture].fromJSValue()!}
+        set { jsObject[.texture] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var texture: GPUTextureBindingLayout
+    public var storageTexture: GPUStorageTextureBindingLayout {
+        get { jsObject[.storageTexture].fromJSValue()!}
+        set { jsObject[.storageTexture] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var storageTexture: GPUStorageTextureBindingLayout
-
-    @ReadWriteAttribute
-    public var externalTexture: GPUExternalTextureBindingLayout
+    public var externalTexture: GPUExternalTextureBindingLayout {
+        get { jsObject[.externalTexture].fromJSValue()!}
+        set { jsObject[.externalTexture] = newValue.jsValue }
+    }
 }
 
 public protocol GPUBindingCommandsMixin: JSBridgedClass {}
@@ -294,21 +290,20 @@ public class GPUBlendComponent: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _operation = ReadWriteAttribute(jsObject: object, name: .operation)
-        _srcFactor = ReadWriteAttribute(jsObject: object, name: .srcFactor)
-        _dstFactor = ReadWriteAttribute(jsObject: object, name: .dstFactor)
-        super.init(unsafelyWrapping: object)
+    public var operation: GPUBlendOperation {
+        get { jsObject[.operation].fromJSValue()!}
+        set { jsObject[.operation] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var operation: GPUBlendOperation
+    public var srcFactor: GPUBlendFactor {
+        get { jsObject[.srcFactor].fromJSValue()!}
+        set { jsObject[.srcFactor] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var srcFactor: GPUBlendFactor
-
-    @ReadWriteAttribute
-    public var dstFactor: GPUBlendFactor
+    public var dstFactor: GPUBlendFactor {
+        get { jsObject[.dstFactor].fromJSValue()!}
+        set { jsObject[.dstFactor] = newValue.jsValue }
+    }
 }
 
 public enum GPUBlendFactor: JSString, JSValueCompatible {
@@ -368,18 +363,16 @@ public class GPUBlendState: BridgedDictionary {
         object[.alpha] = _toJSValue(alpha)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _color = ReadWriteAttribute(jsObject: object, name: .color)
-        _alpha = ReadWriteAttribute(jsObject: object, name: .alpha)
-        super.init(unsafelyWrapping: object)
+    
+    public var color: GPUBlendComponent {
+        get { jsObject[.color].fromJSValue()!}
+        set { jsObject[.color] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var color: GPUBlendComponent
-
-    @ReadWriteAttribute
-    public var alpha: GPUBlendComponent
+    public var alpha: GPUBlendComponent {
+        get { jsObject[.alpha].fromJSValue()!}
+        set { jsObject[.alpha] = newValue.jsValue }
+    }
 }
 
 public class GPUBuffer: JSBridgedClass, GPUObjectBase {
@@ -388,20 +381,20 @@ public class GPUBuffer: JSBridgedClass, GPUObjectBase {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _size = ReadonlyAttribute(jsObject: jsObject, name: .size)
-        _usage = ReadonlyAttribute(jsObject: jsObject, name: .usage)
-        _mapState = ReadonlyAttribute(jsObject: jsObject, name: .mapState)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var size: GPUSize64Out
+public var size: GPUSize64Out {
+jsObject[.size].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var usage: GPUFlagsConstant
+public var usage: GPUFlagsConstant {
+jsObject[.usage].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var mapState: GPUBufferMapState
+public var mapState: GPUBufferMapState {
+jsObject[.mapState].fromJSValue()!
+    }
 
     @inlinable public func mapAsync(mode: GPUMapModeFlags, offset: GPUSize64? = nil, size: GPUSize64? = nil) -> JSPromise {
         let this = jsObject
@@ -440,21 +433,20 @@ public class GPUBufferBinding: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _buffer = ReadWriteAttribute(jsObject: object, name: .buffer)
-        _offset = ReadWriteAttribute(jsObject: object, name: .offset)
-        _size = ReadWriteAttribute(jsObject: object, name: .size)
-        super.init(unsafelyWrapping: object)
+    public var buffer: GPUBuffer {
+        get { jsObject[.buffer].fromJSValue()!}
+        set { jsObject[.buffer] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var buffer: GPUBuffer
+    public var offset: GPUSize64 {
+        get { jsObject[.offset].fromJSValue()!}
+        set { jsObject[.offset] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var offset: GPUSize64
-
-    @ReadWriteAttribute
-    public var size: GPUSize64
+    public var size: GPUSize64 {
+        get { jsObject[.size].fromJSValue()!}
+        set { jsObject[.size] = newValue.jsValue }
+    }
 }
 
 public class GPUBufferBindingLayout: BridgedDictionary {
@@ -466,21 +458,20 @@ public class GPUBufferBindingLayout: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _hasDynamicOffset = ReadWriteAttribute(jsObject: object, name: .hasDynamicOffset)
-        _minBindingSize = ReadWriteAttribute(jsObject: object, name: .minBindingSize)
-        super.init(unsafelyWrapping: object)
+    public var type: GPUBufferBindingType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var type: GPUBufferBindingType
+    public var hasDynamicOffset: Bool {
+        get { jsObject[.hasDynamicOffset].fromJSValue()!}
+        set { jsObject[.hasDynamicOffset] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var hasDynamicOffset: Bool
-
-    @ReadWriteAttribute
-    public var minBindingSize: GPUSize64
+    public var minBindingSize: GPUSize64 {
+        get { jsObject[.minBindingSize].fromJSValue()!}
+        set { jsObject[.minBindingSize] = newValue.jsValue }
+    }
 }
 
 public enum GPUBufferBindingType: JSString, JSValueCompatible {
@@ -511,21 +502,20 @@ public class GPUBufferDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _size = ReadWriteAttribute(jsObject: object, name: .size)
-        _usage = ReadWriteAttribute(jsObject: object, name: .usage)
-        _mappedAtCreation = ReadWriteAttribute(jsObject: object, name: .mappedAtCreation)
-        super.init(unsafelyWrapping: object)
+    public var size: GPUSize64 {
+        get { jsObject[.size].fromJSValue()!}
+        set { jsObject[.size] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var size: GPUSize64
+    public var usage: GPUBufferUsageFlags {
+        get { jsObject[.usage].fromJSValue()!}
+        set { jsObject[.usage] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var usage: GPUBufferUsageFlags
-
-    @ReadWriteAttribute
-    public var mappedAtCreation: Bool
+    public var mappedAtCreation: Bool {
+        get { jsObject[.mappedAtCreation].fromJSValue()!}
+        set { jsObject[.mappedAtCreation] = newValue.jsValue }
+    }
 }
 
 public enum GPUBufferMapState: JSString, JSValueCompatible {
@@ -603,33 +593,35 @@ public class GPUCanvasConfiguration: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _device = ReadWriteAttribute(jsObject: object, name: .device)
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _usage = ReadWriteAttribute(jsObject: object, name: .usage)
-        _viewFormats = ReadWriteAttribute(jsObject: object, name: .viewFormats)
-        _colorSpace = ReadWriteAttribute(jsObject: object, name: .colorSpace)
-        _alphaMode = ReadWriteAttribute(jsObject: object, name: .alphaMode)
-        super.init(unsafelyWrapping: object)
+    public var device: GPUDevice {
+        get { jsObject[.device].fromJSValue()!}
+        set { jsObject[.device] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var device: GPUDevice
+    public var format: GPUTextureFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var format: GPUTextureFormat
+    public var usage: GPUTextureUsageFlags {
+        get { jsObject[.usage].fromJSValue()!}
+        set { jsObject[.usage] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var usage: GPUTextureUsageFlags
+    public var viewFormats: [GPUTextureFormat] {
+        get { jsObject[.viewFormats].fromJSValue()!}
+        set { jsObject[.viewFormats] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var viewFormats: [GPUTextureFormat]
+    public var colorSpace: PredefinedColorSpace {
+        get { jsObject[.colorSpace].fromJSValue()!}
+        set { jsObject[.colorSpace] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var colorSpace: PredefinedColorSpace
-
-    @ReadWriteAttribute
-    public var alphaMode: GPUCanvasAlphaMode
+    public var alphaMode: GPUCanvasAlphaMode {
+        get { jsObject[.alphaMode].fromJSValue()!}
+        set { jsObject[.alphaMode] = newValue.jsValue }
+    }
 }
 
 public class GPUCanvasContext: JSBridgedClass {
@@ -638,12 +630,12 @@ public class GPUCanvasContext: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _canvas = ReadonlyAttribute(jsObject: jsObject, name: .canvas)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var canvas: RenderingCanvas
+public var canvas: RenderingCanvas {
+jsObject[.canvas].fromJSValue()!
+    }
 
     @inlinable public func configure(configuration: GPUCanvasConfiguration) {
         let this = jsObject
@@ -671,25 +663,25 @@ public class GPUColorDict: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _r = ReadWriteAttribute(jsObject: object, name: .r)
-        _g = ReadWriteAttribute(jsObject: object, name: .g)
-        _b = ReadWriteAttribute(jsObject: object, name: .b)
-        _a = ReadWriteAttribute(jsObject: object, name: .a)
-        super.init(unsafelyWrapping: object)
+    public var r: Double {
+        get { jsObject[.r].fromJSValue()!}
+        set { jsObject[.r] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var r: Double
+    public var g: Double {
+        get { jsObject[.g].fromJSValue()!}
+        set { jsObject[.g] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var g: Double
+    public var b: Double {
+        get { jsObject[.b].fromJSValue()!}
+        set { jsObject[.b] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var b: Double
-
-    @ReadWriteAttribute
-    public var a: Double
+    public var a: Double {
+        get { jsObject[.a].fromJSValue()!}
+        set { jsObject[.a] = newValue.jsValue }
+    }
 }
 
 public class GPUColorTargetState: BridgedDictionary {
@@ -701,21 +693,20 @@ public class GPUColorTargetState: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _blend = ReadWriteAttribute(jsObject: object, name: .blend)
-        _writeMask = ReadWriteAttribute(jsObject: object, name: .writeMask)
-        super.init(unsafelyWrapping: object)
+    public var format: GPUTextureFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var format: GPUTextureFormat
+    public var blend: GPUBlendState {
+        get { jsObject[.blend].fromJSValue()!}
+        set { jsObject[.blend] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var blend: GPUBlendState
-
-    @ReadWriteAttribute
-    public var writeMask: GPUColorWriteFlags
+    public var writeMask: GPUColorWriteFlags {
+        get { jsObject[.writeMask].fromJSValue()!}
+        set { jsObject[.writeMask] = newValue.jsValue }
+    }
 }
 
 public enum GPUColorWrite {
@@ -861,12 +852,12 @@ public class GPUCompilationInfo: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _messages = ReadonlyAttribute(jsObject: jsObject, name: .messages)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var messages: [GPUCompilationMessage]
+public var messages: [GPUCompilationMessage] {
+jsObject[.messages].fromJSValue()!
+    }
 }
 
 public class GPUCompilationMessage: JSBridgedClass {
@@ -875,32 +866,32 @@ public class GPUCompilationMessage: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _message = ReadonlyAttribute(jsObject: jsObject, name: .message)
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _lineNum = ReadonlyAttribute(jsObject: jsObject, name: .lineNum)
-        _linePos = ReadonlyAttribute(jsObject: jsObject, name: .linePos)
-        _offset = ReadonlyAttribute(jsObject: jsObject, name: .offset)
-        _length = ReadonlyAttribute(jsObject: jsObject, name: .length)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var message: String
+public var message: String {
+jsObject[.message].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var type: GPUCompilationMessageType
+public var type: GPUCompilationMessageType {
+jsObject[.type].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var lineNum: UInt64
+public var lineNum: UInt64 {
+jsObject[.lineNum].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var linePos: UInt64
+public var linePos: UInt64 {
+jsObject[.linePos].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var offset: UInt64
+public var offset: UInt64 {
+jsObject[.offset].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var length: UInt64
+public var length: UInt64 {
+jsObject[.length].fromJSValue()!
+    }
 }
 
 public enum GPUCompilationMessageType: JSString, JSValueCompatible {
@@ -930,12 +921,13 @@ public class GPUComputePassDescriptor: BridgedDictionary {
     }
 
     public required init(unsafelyWrapping object: JSObject) {
-        _timestampWrites = ReadWriteAttribute(jsObject: object, name: .timestampWrites)
         super.init(unsafelyWrapping: object)
     }
 
-    @ReadWriteAttribute
-    public var timestampWrites: GPUComputePassTimestampWrites
+    public var timestampWrites: GPUComputePassTimestampWrites {
+        get { jsObject[.timestampWrites].fromJSValue()!}
+        set { jsObject[.timestampWrites] = newValue.jsValue }
+    }
 }
 
 public class GPUComputePassEncoder: JSBridgedClass, GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin, GPUBindingCommandsMixin {
@@ -978,20 +970,23 @@ public class GPUComputePassTimestampWrites: BridgedDictionary {
     }
 
     public required init(unsafelyWrapping object: JSObject) {
-        _querySet = ReadWriteAttribute(jsObject: object, name: .querySet)
-        _beginningOfPassWriteIndex = ReadWriteAttribute(jsObject: object, name: .beginningOfPassWriteIndex)
-        _endOfPassWriteIndex = ReadWriteAttribute(jsObject: object, name: .endOfPassWriteIndex)
-        super.init(unsafelyWrapping: object)
+       super.init(unsafelyWrapping: object)
     }
 
-    @ReadWriteAttribute
-    public var querySet: GPUQuerySet
+    public var querySet: GPUQuerySet {
+        get { jsObject[.querySet].fromJSValue()!}
+        set { jsObject[.querySet] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var beginningOfPassWriteIndex: GPUSize32
+    public var beginningOfPassWriteIndex: GPUSize32 {
+        get { jsObject[.beginningOfPassWriteIndex].fromJSValue()!}
+        set { jsObject[.beginningOfPassWriteIndex] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var endOfPassWriteIndex: GPUSize32
+    public var endOfPassWriteIndex: GPUSize32 {
+        get { jsObject[.endOfPassWriteIndex].fromJSValue()!}
+        set { jsObject[.endOfPassWriteIndex] = newValue.jsValue }
+    }
 }
 
 public class GPUComputePipeline: JSBridgedClass, GPUObjectBase, GPUPipelineBase {
@@ -1012,12 +1007,13 @@ public class GPUComputePipelineDescriptor: BridgedDictionary {
     }
 
     public required init(unsafelyWrapping object: JSObject) {
-        _compute = ReadWriteAttribute(jsObject: object, name: .compute)
         super.init(unsafelyWrapping: object)
     }
 
-    @ReadWriteAttribute
-    public var compute: GPUProgrammableStage
+    public var compute: GPUProgrammableStage {
+        get { jsObject[.compute].fromJSValue()!}
+        set { jsObject[.compute] = newValue.jsValue }
+    }
 }
 
 public enum GPUCullMode: JSString, JSValueCompatible {
@@ -1073,71 +1069,76 @@ public class GPUDepthStencilState: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _depthWriteEnabled = ReadWriteAttribute(jsObject: object, name: .depthWriteEnabled)
-        _depthCompare = ReadWriteAttribute(jsObject: object, name: .depthCompare)
-        _stencilFront = ReadWriteAttribute(jsObject: object, name: .stencilFront)
-        _stencilBack = ReadWriteAttribute(jsObject: object, name: .stencilBack)
-        _stencilReadMask = ReadWriteAttribute(jsObject: object, name: .stencilReadMask)
-        _stencilWriteMask = ReadWriteAttribute(jsObject: object, name: .stencilWriteMask)
-        _depthBias = ReadWriteAttribute(jsObject: object, name: .depthBias)
-        _depthBiasSlopeScale = ReadWriteAttribute(jsObject: object, name: .depthBiasSlopeScale)
-        _depthBiasClamp = ReadWriteAttribute(jsObject: object, name: .depthBiasClamp)
-        super.init(unsafelyWrapping: object)
+    public var format: GPUTextureFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var format: GPUTextureFormat
+    public var depthWriteEnabled: Bool {
+        get { jsObject[.depthWriteEnabled].fromJSValue()!}
+        set { jsObject[.depthWriteEnabled] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthWriteEnabled: Bool
+    public var depthCompare: GPUCompareFunction {
+        get { jsObject[.depthCompare].fromJSValue()!}
+        set { jsObject[.depthCompare] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthCompare: GPUCompareFunction
+    public var stencilFront: GPUStencilFaceState {
+        get { jsObject[.stencilFront].fromJSValue()!}
+        set { jsObject[.stencilFront] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stencilFront: GPUStencilFaceState
+    public var stencilBack: GPUStencilFaceState {
+        get { jsObject[.stencilBack].fromJSValue()!}
+        set { jsObject[.stencilBack] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stencilBack: GPUStencilFaceState
+    public var stencilReadMask: GPUStencilValue {
+        get { jsObject[.stencilReadMask].fromJSValue()!}
+        set { jsObject[.stencilReadMask] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stencilReadMask: GPUStencilValue
+    public var stencilWriteMask: GPUStencilValue {
+        get { jsObject[.stencilWriteMask].fromJSValue()!}
+        set { jsObject[.stencilWriteMask] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stencilWriteMask: GPUStencilValue
+    public var depthBias: GPUDepthBias {
+        get { jsObject[.depthBias].fromJSValue()!}
+        set { jsObject[.depthBias] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthBias: GPUDepthBias
+    public var depthBiasSlopeScale: Float {
+        get { jsObject[.depthBiasSlopeScale].fromJSValue()!}
+        set { jsObject[.depthBiasSlopeScale] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthBiasSlopeScale: Float
-
-    @ReadWriteAttribute
-    public var depthBiasClamp: Float
+    public var depthBiasClamp: Float {
+        get { jsObject[.depthBiasClamp].fromJSValue()!}
+        set { jsObject[.depthBiasClamp] = newValue.jsValue }
+    }
 }
 
 public class GPUDevice: EventTarget, GPUObjectBase {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.GPUDevice].function }
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _features = ReadonlyAttribute(jsObject: jsObject, name: .features)
-        _limits = ReadonlyAttribute(jsObject: jsObject, name: .limits)
-        _queue = ReadonlyAttribute(jsObject: jsObject, name: .queue)
-        _lost = ReadonlyAttribute(jsObject: jsObject, name: .lost)
-        _onuncapturederror = ClosureAttribute1Optional(jsObject: jsObject, name: .onuncapturederror)
+       _onuncapturederror = ClosureAttribute1Optional(jsObject: jsObject, name: .onuncapturederror)
         super.init(unsafelyWrapping: jsObject)
     }
 
-    @ReadonlyAttribute
-    public var features: GPUSupportedFeatures
+public var features: GPUSupportedFeatures {
+jsObject[.features].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var limits: GPUSupportedLimits
+public var limits: GPUSupportedLimits {
+jsObject[.limits].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var queue: GPUQueue
+public var queue: GPUQueue {
+jsObject[.queue].fromJSValue()!
+    }
 
     @inlinable public func destroy() {
         let this = jsObject
@@ -1233,8 +1234,9 @@ public class GPUDevice: EventTarget, GPUObjectBase {
         return this[.createQuerySet].function!(this: this, arguments: [_toJSValue(descriptor)]).fromJSValue()!
     }
 
-    @ReadonlyAttribute
-    public var lost: JSPromise
+public var lost: JSPromise {
+jsObject[.lost].fromJSValue()!
+    }
 
     @inlinable public func pushErrorScope(filter: GPUErrorFilter) {
         let this = jsObject
@@ -1266,21 +1268,20 @@ public class GPUDeviceDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _requiredFeatures = ReadWriteAttribute(jsObject: object, name: .requiredFeatures)
-        _requiredLimits = ReadWriteAttribute(jsObject: object, name: .requiredLimits)
-        _defaultQueue = ReadWriteAttribute(jsObject: object, name: .defaultQueue)
-        super.init(unsafelyWrapping: object)
+    public var requiredFeatures: [GPUFeatureName] {
+        get { jsObject[.requiredFeatures].fromJSValue()!}
+        set { jsObject[.requiredFeatures] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var requiredFeatures: [GPUFeatureName]
+    public var requiredLimits: [String: GPUSize64] {
+        get { jsObject[.requiredLimits].fromJSValue()!}
+        set { jsObject[.requiredLimits] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var requiredLimits: [String: GPUSize64]
-
-    @ReadWriteAttribute
-    public var defaultQueue: GPUQueueDescriptor
+    public var defaultQueue: GPUQueueDescriptor {
+        get { jsObject[.defaultQueue].fromJSValue()!}
+        set { jsObject[.defaultQueue] = newValue.jsValue }
+    }
 }
 
 public class GPUDeviceLostInfo: JSBridgedClass {
@@ -1289,16 +1290,16 @@ public class GPUDeviceLostInfo: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _reason = ReadonlyAttribute(jsObject: jsObject, name: .reason)
-        _message = ReadonlyAttribute(jsObject: jsObject, name: .message)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var reason: GPUDeviceLostReason
+public var reason: GPUDeviceLostReason {
+jsObject[.reason].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var message: String
+public var message: String {
+jsObject[.message].fromJSValue()!
+    }
 }
 
 public enum GPUDeviceLostReason: JSString, JSValueCompatible {
@@ -1325,12 +1326,12 @@ public class GPUError: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _message = ReadonlyAttribute(jsObject: jsObject, name: .message)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var message: String
+public var message: String {
+jsObject[.message].fromJSValue()!
+    }
 }
 
 public enum GPUErrorFilter: JSString, JSValueCompatible {
@@ -1361,21 +1362,20 @@ public class GPUExtent3DDict: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _width = ReadWriteAttribute(jsObject: object, name: .width)
-        _height = ReadWriteAttribute(jsObject: object, name: .height)
-        _depthOrArrayLayers = ReadWriteAttribute(jsObject: object, name: .depthOrArrayLayers)
-        super.init(unsafelyWrapping: object)
+    public var width: GPUIntegerCoordinate {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var width: GPUIntegerCoordinate
+    public var height: GPUIntegerCoordinate {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var height: GPUIntegerCoordinate
-
-    @ReadWriteAttribute
-    public var depthOrArrayLayers: GPUIntegerCoordinate
+    public var depthOrArrayLayers: GPUIntegerCoordinate {
+        get { jsObject[.depthOrArrayLayers].fromJSValue()!}
+        set { jsObject[.depthOrArrayLayers] = newValue.jsValue }
+    }
 }
 
 public class GPUExternalTexture: JSBridgedClass, GPUObjectBase {
@@ -1408,17 +1408,15 @@ public class GPUExternalTextureDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _source = ReadWriteAttribute(jsObject: object, name: .source)
-        _colorSpace = ReadWriteAttribute(jsObject: object, name: .colorSpace)
-        super.init(unsafelyWrapping: object)
+    public var source: HTMLVideoElement_or_VideoFrame {
+        get { jsObject[.source].fromJSValue()!}
+        set { jsObject[.source] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var source: HTMLVideoElement_or_VideoFrame
-
-    @ReadWriteAttribute
-    public var colorSpace: PredefinedColorSpace
+    public var colorSpace: PredefinedColorSpace {
+        get { jsObject[.colorSpace].fromJSValue()!}
+        set { jsObject[.colorSpace] = newValue.jsValue }
+    }
 }
 
 public enum GPUFeatureName: JSString, JSValueCompatible {
@@ -1473,13 +1471,11 @@ public class GPUFragmentState: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _targets = ReadWriteAttribute(jsObject: object, name: .targets)
-        super.init(unsafelyWrapping: object)
+    // TODO: fixme
+    public var targets: [GPUColorTargetState?] {
+        get { jsObject[.targets].fromJSValue()!}
+        set { jsObject[.targets] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var targets: [GPUColorTargetState?]
 }
 
 public enum GPUFrontFace: JSString, JSValueCompatible {
@@ -1507,13 +1503,10 @@ public class GPUImageCopyBuffer: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _buffer = ReadWriteAttribute(jsObject: object, name: .buffer)
-        super.init(unsafelyWrapping: object)
+    public var buffer: GPUBuffer {
+        get { jsObject[.buffer].fromJSValue()!}
+        set { jsObject[.buffer] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var buffer: GPUBuffer
 }
 
 public class GPUImageCopyExternalImage: BridgedDictionary {
@@ -1525,21 +1518,20 @@ public class GPUImageCopyExternalImage: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _source = ReadWriteAttribute(jsObject: object, name: .source)
-        _origin = ReadWriteAttribute(jsObject: object, name: .origin)
-        _flipY = ReadWriteAttribute(jsObject: object, name: .flipY)
-        super.init(unsafelyWrapping: object)
+    public var source: GPUImageCopyExternalImageSource {
+        get { jsObject[.source].fromJSValue()!}
+        set { jsObject[.source] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var source: GPUImageCopyExternalImageSource
+    public var origin: GPUOrigin2D {
+        get { jsObject[.origin].fromJSValue()!}
+        set { jsObject[.origin] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var origin: GPUOrigin2D
-
-    @ReadWriteAttribute
-    public var flipY: Bool
+    public var flipY: Bool {
+        get { jsObject[.flipY].fromJSValue()!}
+        set { jsObject[.flipY] = newValue.jsValue }
+    }
 }
 
 public class GPUImageCopyTexture: BridgedDictionary {
@@ -1552,25 +1544,25 @@ public class GPUImageCopyTexture: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _texture = ReadWriteAttribute(jsObject: object, name: .texture)
-        _mipLevel = ReadWriteAttribute(jsObject: object, name: .mipLevel)
-        _origin = ReadWriteAttribute(jsObject: object, name: .origin)
-        _aspect = ReadWriteAttribute(jsObject: object, name: .aspect)
-        super.init(unsafelyWrapping: object)
+    public var texture: GPUTexture {
+        get { jsObject[.texture].fromJSValue()!}
+        set { jsObject[.texture] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var texture: GPUTexture
+    public var mipLevel: GPUIntegerCoordinate {
+        get { jsObject[.mipLevel].fromJSValue()!}
+        set { jsObject[.mipLevel] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var mipLevel: GPUIntegerCoordinate
+    public var origin: GPUOrigin3D {
+        get { jsObject[.origin].fromJSValue()!}
+        set { jsObject[.origin] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var origin: GPUOrigin3D
-
-    @ReadWriteAttribute
-    public var aspect: GPUTextureAspect
+    public var aspect: GPUTextureAspect {
+        get { jsObject[.aspect].fromJSValue()!}
+        set { jsObject[.aspect] = newValue.jsValue }
+    }
 }
 
 public class GPUImageCopyTextureTagged: BridgedDictionary {
@@ -1581,17 +1573,15 @@ public class GPUImageCopyTextureTagged: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _colorSpace = ReadWriteAttribute(jsObject: object, name: .colorSpace)
-        _premultipliedAlpha = ReadWriteAttribute(jsObject: object, name: .premultipliedAlpha)
-        super.init(unsafelyWrapping: object)
+    public var colorSpace: PredefinedColorSpace {
+        get { jsObject[.colorSpace].fromJSValue()!}
+        set { jsObject[.colorSpace] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var colorSpace: PredefinedColorSpace
-
-    @ReadWriteAttribute
-    public var premultipliedAlpha: Bool
+    public var premultipliedAlpha: Bool {
+        get { jsObject[.premultipliedAlpha].fromJSValue()!}
+        set { jsObject[.premultipliedAlpha] = newValue.jsValue }
+    }
 }
 
 public class GPUImageDataLayout: BridgedDictionary {
@@ -1602,22 +1592,21 @@ public class GPUImageDataLayout: BridgedDictionary {
         object[.rowsPerImage] = _toJSValue(rowsPerImage)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _offset = ReadWriteAttribute(jsObject: object, name: .offset)
-        _bytesPerRow = ReadWriteAttribute(jsObject: object, name: .bytesPerRow)
-        _rowsPerImage = ReadWriteAttribute(jsObject: object, name: .rowsPerImage)
-        super.init(unsafelyWrapping: object)
+    
+    public var offset: GPUSize64 {
+        get { jsObject[.offset].fromJSValue()!}
+        set { jsObject[.offset] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var offset: GPUSize64
+    public var bytesPerRow: GPUSize32 {
+        get { jsObject[.bytesPerRow].fromJSValue()!}
+        set { jsObject[.bytesPerRow] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var bytesPerRow: GPUSize32
-
-    @ReadWriteAttribute
-    public var rowsPerImage: GPUSize32
+    public var rowsPerImage: GPUSize32 {
+        get { jsObject[.rowsPerImage].fromJSValue()!}
+        set { jsObject[.rowsPerImage] = newValue.jsValue }
+    }
 }
 
 public enum GPUIndexFormat: JSString, JSValueCompatible {
@@ -1704,22 +1693,21 @@ public class GPUMultisampleState: BridgedDictionary {
         object[.alphaToCoverageEnabled] = _toJSValue(alphaToCoverageEnabled)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _count = ReadWriteAttribute(jsObject: object, name: .count)
-        _mask = ReadWriteAttribute(jsObject: object, name: .mask)
-        _alphaToCoverageEnabled = ReadWriteAttribute(jsObject: object, name: .alphaToCoverageEnabled)
-        super.init(unsafelyWrapping: object)
+    
+    public var count: GPUSize32 {
+        get { jsObject[.count].fromJSValue()!}
+        set { jsObject[.count] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var count: GPUSize32
+    public var mask: GPUSampleMask {
+        get { jsObject[.mask].fromJSValue()!}
+        set { jsObject[.mask] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var mask: GPUSampleMask
-
-    @ReadWriteAttribute
-    public var alphaToCoverageEnabled: Bool
+    public var alphaToCoverageEnabled: Bool {
+        get { jsObject[.alphaToCoverageEnabled].fromJSValue()!}
+        set { jsObject[.alphaToCoverageEnabled] = newValue.jsValue }
+    }
 }
 
 public protocol GPUObjectBase: JSBridgedClass {}
@@ -1737,13 +1725,10 @@ public class GPUObjectDescriptorBase: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _label = ReadWriteAttribute(jsObject: object, name: .label)
-        super.init(unsafelyWrapping: object)
+    public var label: String {
+        get { jsObject[.label].fromJSValue()!}
+        set { jsObject[.label] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var label: String
 }
 
 public class GPUOrigin2DDict: BridgedDictionary {
@@ -1753,18 +1738,16 @@ public class GPUOrigin2DDict: BridgedDictionary {
         object[.y] = _toJSValue(y)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _x = ReadWriteAttribute(jsObject: object, name: .x)
-        _y = ReadWriteAttribute(jsObject: object, name: .y)
-        super.init(unsafelyWrapping: object)
+    
+    public var x: GPUIntegerCoordinate {
+        get { jsObject[.x].fromJSValue()!}
+        set { jsObject[.x] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var x: GPUIntegerCoordinate
-
-    @ReadWriteAttribute
-    public var y: GPUIntegerCoordinate
+    public var y: GPUIntegerCoordinate {
+        get { jsObject[.y].fromJSValue()!}
+        set { jsObject[.y] = newValue.jsValue }
+    }
 }
 
 public class GPUOrigin3DDict: BridgedDictionary {
@@ -1775,22 +1758,21 @@ public class GPUOrigin3DDict: BridgedDictionary {
         object[.z] = _toJSValue(z)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _x = ReadWriteAttribute(jsObject: object, name: .x)
-        _y = ReadWriteAttribute(jsObject: object, name: .y)
-        _z = ReadWriteAttribute(jsObject: object, name: .z)
-        super.init(unsafelyWrapping: object)
+    
+    public var x: GPUIntegerCoordinate {
+        get { jsObject[.x].fromJSValue()!}
+        set { jsObject[.x] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var x: GPUIntegerCoordinate
+    public var y: GPUIntegerCoordinate {
+        get { jsObject[.y].fromJSValue()!}
+        set { jsObject[.y] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var y: GPUIntegerCoordinate
-
-    @ReadWriteAttribute
-    public var z: GPUIntegerCoordinate
+    public var z: GPUIntegerCoordinate {
+        get { jsObject[.z].fromJSValue()!}
+        set { jsObject[.z] = newValue.jsValue }
+    }
 }
 
 public class GPUOutOfMemoryError: GPUError {
@@ -1819,30 +1801,23 @@ public class GPUPipelineDescriptorBase: BridgedDictionary {
         object[.layout] = _toJSValue(layout)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _layout = ReadWriteAttribute(jsObject: object, name: .layout)
-        super.init(unsafelyWrapping: object)
+    
+    public var layout: GPUAutoLayoutMode_or_GPUPipelineLayout {
+        get { jsObject[.layout].fromJSValue()!}
+        set { jsObject[.layout] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var layout: GPUAutoLayoutMode_or_GPUPipelineLayout
 }
 
 public class GPUPipelineError: DOMException {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.GPUPipelineError].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _reason = ReadonlyAttribute(jsObject: jsObject, name: .reason)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init(message: String? = nil, options: GPUPipelineErrorInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(message), _toJSValue(options)]))
     }
 
-    @ReadonlyAttribute
-    public var reason: GPUPipelineErrorReason
+public var reason: GPUPipelineErrorReason {
+jsObject[.reason].fromJSValue()!
+    }
 }
 
 public class GPUPipelineErrorInit: BridgedDictionary {
@@ -1851,14 +1826,11 @@ public class GPUPipelineErrorInit: BridgedDictionary {
         object[.reason] = _toJSValue(reason)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _reason = ReadWriteAttribute(jsObject: object, name: .reason)
-        super.init(unsafelyWrapping: object)
+    
+    public var reason: GPUPipelineErrorReason {
+        get { jsObject[.reason].fromJSValue()!}
+        set { jsObject[.reason] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var reason: GPUPipelineErrorReason
 }
 
 public enum GPUPipelineErrorReason: JSString, JSValueCompatible {
@@ -1896,13 +1868,10 @@ public class GPUPipelineLayoutDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _bindGroupLayouts = ReadWriteAttribute(jsObject: object, name: .bindGroupLayouts)
-        super.init(unsafelyWrapping: object)
+    public var bindGroupLayouts: [GPUBindGroupLayout] {
+        get { jsObject[.bindGroupLayouts].fromJSValue()!}
+        set { jsObject[.bindGroupLayouts] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var bindGroupLayouts: [GPUBindGroupLayout]
 }
 
 public enum GPUPowerPreference: JSString, JSValueCompatible {
@@ -1933,30 +1902,31 @@ public class GPUPrimitiveState: BridgedDictionary {
         object[.unclippedDepth] = _toJSValue(unclippedDepth)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _topology = ReadWriteAttribute(jsObject: object, name: .topology)
-        _stripIndexFormat = ReadWriteAttribute(jsObject: object, name: .stripIndexFormat)
-        _frontFace = ReadWriteAttribute(jsObject: object, name: .frontFace)
-        _cullMode = ReadWriteAttribute(jsObject: object, name: .cullMode)
-        _unclippedDepth = ReadWriteAttribute(jsObject: object, name: .unclippedDepth)
-        super.init(unsafelyWrapping: object)
+    
+    public var topology: GPUPrimitiveTopology {
+        get { jsObject[.topology].fromJSValue()!}
+        set { jsObject[.topology] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var topology: GPUPrimitiveTopology
+    public var stripIndexFormat: GPUIndexFormat {
+        get { jsObject[.stripIndexFormat].fromJSValue()!}
+        set { jsObject[.stripIndexFormat] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stripIndexFormat: GPUIndexFormat
+    public var frontFace: GPUFrontFace {
+        get { jsObject[.frontFace].fromJSValue()!}
+        set { jsObject[.frontFace] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var frontFace: GPUFrontFace
+    public var cullMode: GPUCullMode {
+        get { jsObject[.cullMode].fromJSValue()!}
+        set { jsObject[.cullMode] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var cullMode: GPUCullMode
-
-    @ReadWriteAttribute
-    public var unclippedDepth: Bool
+    public var unclippedDepth: Bool {
+        get { jsObject[.unclippedDepth].fromJSValue()!}
+        set { jsObject[.unclippedDepth] = newValue.jsValue }
+    }
 }
 
 public enum GPUPrimitiveTopology: JSString, JSValueCompatible {
@@ -1988,22 +1958,20 @@ public class GPUProgrammableStage: BridgedDictionary {
         object[.constants] = _toJSValue(constants)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _module = ReadWriteAttribute(jsObject: object, name: .module)
-        _entryPoint = ReadWriteAttribute(jsObject: object, name: .entryPoint)
-        _constants = ReadWriteAttribute(jsObject: object, name: .constants)
-        super.init(unsafelyWrapping: object)
+    public var module: GPUShaderModule {
+        get { jsObject[.module].fromJSValue()!}
+        set { jsObject[.module] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var module: GPUShaderModule
+    public var entryPoint: String {
+        get { jsObject[.entryPoint].fromJSValue()!}
+        set { jsObject[.entryPoint] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var entryPoint: String
-
-    @ReadWriteAttribute
-    public var constants: [String: GPUPipelineConstantValue]
+    public var constants: [String: GPUPipelineConstantValue] {
+        get { jsObject[.constants].fromJSValue()!}
+        set { jsObject[.constants] = newValue.jsValue }
+    }
 }
 
 public class GPUQuerySet: JSBridgedClass, GPUObjectBase {
@@ -2012,21 +1980,21 @@ public class GPUQuerySet: JSBridgedClass, GPUObjectBase {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: .type)
-        _count = ReadonlyAttribute(jsObject: jsObject, name: .count)
         self.jsObject = jsObject
     }
-
+    
     @inlinable public func destroy() {
         let this = jsObject
         _ = this[.destroy].function!(this: this, arguments: [])
     }
 
-    @ReadonlyAttribute
-    public var type: GPUQueryType
+public var type: GPUQueryType {
+jsObject[.type].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var count: GPUSize32Out
+public var count: GPUSize32Out {
+jsObject[.count].fromJSValue()!
+    }
 }
 
 public class GPUQuerySetDescriptor: BridgedDictionary {
@@ -2036,18 +2004,16 @@ public class GPUQuerySetDescriptor: BridgedDictionary {
         object[.count] = _toJSValue(count)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        _count = ReadWriteAttribute(jsObject: object, name: .count)
-        super.init(unsafelyWrapping: object)
+    
+    public var type: GPUQueryType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var type: GPUQueryType
-
-    @ReadWriteAttribute
-    public var count: GPUSize32
+    public var count: GPUSize32 {
+        get { jsObject[.count].fromJSValue()!}
+        set { jsObject[.count] = newValue.jsValue }
+    }
 }
 
 public enum GPUQueryType: JSString, JSValueCompatible {
@@ -2166,18 +2132,16 @@ public class GPURenderBundleEncoderDescriptor: BridgedDictionary {
         object[.stencilReadOnly] = _toJSValue(stencilReadOnly)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _depthReadOnly = ReadWriteAttribute(jsObject: object, name: .depthReadOnly)
-        _stencilReadOnly = ReadWriteAttribute(jsObject: object, name: .stencilReadOnly)
-        super.init(unsafelyWrapping: object)
+    
+    public var depthReadOnly: Bool {
+        get { jsObject[.depthReadOnly].fromJSValue()!}
+        set { jsObject[.depthReadOnly] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var depthReadOnly: Bool
-
-    @ReadWriteAttribute
-    public var stencilReadOnly: Bool
+    public var stencilReadOnly: Bool {
+        get { jsObject[.stencilReadOnly].fromJSValue()!}
+        set { jsObject[.stencilReadOnly] = newValue.jsValue }
+    }
 }
 
 public protocol GPURenderCommandsMixin: JSBridgedClass {}
@@ -2229,29 +2193,30 @@ public class GPURenderPassColorAttachment: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _view = ReadWriteAttribute(jsObject: object, name: .view)
-        _resolveTarget = ReadWriteAttribute(jsObject: object, name: .resolveTarget)
-        _clearValue = ReadWriteAttribute(jsObject: object, name: .clearValue)
-        _loadOp = ReadWriteAttribute(jsObject: object, name: .loadOp)
-        _storeOp = ReadWriteAttribute(jsObject: object, name: .storeOp)
-        super.init(unsafelyWrapping: object)
+    public var view: GPUTextureView {
+        get { jsObject[.view].fromJSValue()!}
+        set { jsObject[.view] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var view: GPUTextureView
+    public var resolveTarget: GPUTextureView {
+        get { jsObject[.resolveTarget].fromJSValue()!}
+        set { jsObject[.resolveTarget] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var resolveTarget: GPUTextureView
+    public var clearValue: GPUColor {
+        get { jsObject[.clearValue].fromJSValue()!}
+        set { jsObject[.clearValue] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var clearValue: GPUColor
+    public var loadOp: GPULoadOp {
+        get { jsObject[.loadOp].fromJSValue()!}
+        set { jsObject[.loadOp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var loadOp: GPULoadOp
-
-    @ReadWriteAttribute
-    public var storeOp: GPUStoreOp
+    public var storeOp: GPUStoreOp {
+        get { jsObject[.storeOp].fromJSValue()!}
+        set { jsObject[.storeOp] = newValue.jsValue }
+    }
 }
 
 public class GPURenderPassDepthStencilAttachment: BridgedDictionary {
@@ -2269,45 +2234,50 @@ public class GPURenderPassDepthStencilAttachment: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _view = ReadWriteAttribute(jsObject: object, name: .view)
-        _depthClearValue = ReadWriteAttribute(jsObject: object, name: .depthClearValue)
-        _depthLoadOp = ReadWriteAttribute(jsObject: object, name: .depthLoadOp)
-        _depthStoreOp = ReadWriteAttribute(jsObject: object, name: .depthStoreOp)
-        _depthReadOnly = ReadWriteAttribute(jsObject: object, name: .depthReadOnly)
-        _stencilClearValue = ReadWriteAttribute(jsObject: object, name: .stencilClearValue)
-        _stencilLoadOp = ReadWriteAttribute(jsObject: object, name: .stencilLoadOp)
-        _stencilStoreOp = ReadWriteAttribute(jsObject: object, name: .stencilStoreOp)
-        _stencilReadOnly = ReadWriteAttribute(jsObject: object, name: .stencilReadOnly)
-        super.init(unsafelyWrapping: object)
+    public var view: GPUTextureView {
+        get { jsObject[.view].fromJSValue()!}
+        set { jsObject[.view] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var view: GPUTextureView
+    public var depthClearValue: Float {
+        get { jsObject[.depthClearValue].fromJSValue()!}
+        set { jsObject[.depthClearValue] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthClearValue: Float
+    public var depthLoadOp: GPULoadOp {
+        get { jsObject[.depthLoadOp].fromJSValue()!}
+        set { jsObject[.depthLoadOp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthLoadOp: GPULoadOp
+    public var depthStoreOp: GPUStoreOp {
+        get { jsObject[.depthStoreOp].fromJSValue()!}
+        set { jsObject[.depthStoreOp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthStoreOp: GPUStoreOp
+    public var depthReadOnly: Bool {
+        get { jsObject[.depthReadOnly].fromJSValue()!}
+        set { jsObject[.depthReadOnly] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthReadOnly: Bool
+    public var stencilClearValue: GPUStencilValue {
+        get { jsObject[.stencilClearValue].fromJSValue()!}
+        set { jsObject[.stencilClearValue] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stencilClearValue: GPUStencilValue
+    public var stencilLoadOp: GPULoadOp {
+        get { jsObject[.stencilLoadOp].fromJSValue()!}
+        set { jsObject[.stencilLoadOp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stencilLoadOp: GPULoadOp
+    public var stencilStoreOp: GPUStoreOp {
+        get { jsObject[.stencilStoreOp].fromJSValue()!}
+        set { jsObject[.stencilStoreOp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stencilStoreOp: GPUStoreOp
-
-    @ReadWriteAttribute
-    public var stencilReadOnly: Bool
+    public var stencilReadOnly: Bool {
+        get { jsObject[.stencilReadOnly].fromJSValue()!}
+        set { jsObject[.stencilReadOnly] = newValue.jsValue }
+    }
 }
 
 public class GPURenderPassDescriptor: BridgedDictionary {
@@ -2321,29 +2291,31 @@ public class GPURenderPassDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _colorAttachments = ReadWriteAttribute(jsObject: object, name: .colorAttachments)
-        _depthStencilAttachment = ReadWriteAttribute(jsObject: object, name: .depthStencilAttachment)
-        _occlusionQuerySet = ReadWriteAttribute(jsObject: object, name: .occlusionQuerySet)
-        _timestampWrites = ReadWriteAttribute(jsObject: object, name: .timestampWrites)
-        _maxDrawCount = ReadWriteAttribute(jsObject: object, name: .maxDrawCount)
-        super.init(unsafelyWrapping: object)
+    // TODO: fixme
+    public var colorAttachments: [GPURenderPassColorAttachment?] {
+        get { jsObject[.colorAttachments].fromJSValue()!}
+        set { jsObject[.colorAttachments] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var colorAttachments: [GPURenderPassColorAttachment?]
+    public var depthStencilAttachment: GPURenderPassDepthStencilAttachment {
+        get { jsObject[.depthStencilAttachment].fromJSValue()!}
+        set { jsObject[.depthStencilAttachment] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthStencilAttachment: GPURenderPassDepthStencilAttachment
+    public var occlusionQuerySet: GPUQuerySet {
+        get { jsObject[.occlusionQuerySet].fromJSValue()!}
+        set { jsObject[.occlusionQuerySet] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var occlusionQuerySet: GPUQuerySet
+    public var timestampWrites: GPURenderPassTimestampWrites {
+        get { jsObject[.timestampWrites].fromJSValue()!}
+        set { jsObject[.timestampWrites] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var timestampWrites: GPURenderPassTimestampWrites
-
-    @ReadWriteAttribute
-    public var maxDrawCount: GPUSize64
+    public var maxDrawCount: GPUSize64 {
+        get { jsObject[.maxDrawCount].fromJSValue()!}
+        set { jsObject[.maxDrawCount] = newValue.jsValue }
+    }
 }
 
 public class GPURenderPassEncoder: JSBridgedClass, GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin, GPUBindingCommandsMixin, GPURenderCommandsMixin {
@@ -2404,22 +2376,20 @@ public class GPURenderPassLayout: BridgedDictionary {
         object[.sampleCount] = _toJSValue(sampleCount)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _colorFormats = ReadWriteAttribute(jsObject: object, name: .colorFormats)
-        _depthStencilFormat = ReadWriteAttribute(jsObject: object, name: .depthStencilFormat)
-        _sampleCount = ReadWriteAttribute(jsObject: object, name: .sampleCount)
-        super.init(unsafelyWrapping: object)
+    public var colorFormats: [GPUTextureFormat?] {
+        get { jsObject[.colorFormats].fromJSValue()!}
+        set { jsObject[.colorFormats] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var colorFormats: [GPUTextureFormat?]
+    public var depthStencilFormat: GPUTextureFormat {
+        get { jsObject[.depthStencilFormat].fromJSValue()!}
+        set { jsObject[.depthStencilFormat] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthStencilFormat: GPUTextureFormat
-
-    @ReadWriteAttribute
-    public var sampleCount: GPUSize32
+    public var sampleCount: GPUSize32 {
+        get { jsObject[.sampleCount].fromJSValue()!}
+        set { jsObject[.sampleCount] = newValue.jsValue }
+    }
 }
 
 public class GPURenderPassTimestampWrites: BridgedDictionary {
@@ -2430,22 +2400,21 @@ public class GPURenderPassTimestampWrites: BridgedDictionary {
         object[.endOfPassWriteIndex] = _toJSValue(endOfPassWriteIndex)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _querySet = ReadWriteAttribute(jsObject: object, name: .querySet)
-        _beginningOfPassWriteIndex = ReadWriteAttribute(jsObject: object, name: .beginningOfPassWriteIndex)
-        _endOfPassWriteIndex = ReadWriteAttribute(jsObject: object, name: .endOfPassWriteIndex)
-        super.init(unsafelyWrapping: object)
+    
+    public var querySet: GPUQuerySet {
+        get { jsObject[.querySet].fromJSValue()!}
+        set { jsObject[.querySet] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var querySet: GPUQuerySet
+    public var beginningOfPassWriteIndex: GPUSize32 {
+        get { jsObject[.beginningOfPassWriteIndex].fromJSValue()!}
+        set { jsObject[.beginningOfPassWriteIndex] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var beginningOfPassWriteIndex: GPUSize32
-
-    @ReadWriteAttribute
-    public var endOfPassWriteIndex: GPUSize32
+    public var endOfPassWriteIndex: GPUSize32 {
+        get { jsObject[.endOfPassWriteIndex].fromJSValue()!}
+        set { jsObject[.endOfPassWriteIndex] = newValue.jsValue }
+    }
 }
 
 public class GPURenderPipeline: JSBridgedClass, GPUObjectBase, GPUPipelineBase {
@@ -2469,29 +2438,30 @@ public class GPURenderPipelineDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _vertex = ReadWriteAttribute(jsObject: object, name: .vertex)
-        _primitive = ReadWriteAttribute(jsObject: object, name: .primitive)
-        _depthStencil = ReadWriteAttribute(jsObject: object, name: .depthStencil)
-        _multisample = ReadWriteAttribute(jsObject: object, name: .multisample)
-        _fragment = ReadWriteAttribute(jsObject: object, name: .fragment)
-        super.init(unsafelyWrapping: object)
+    public var vertex: GPUVertexState {
+        get { jsObject[.vertex].fromJSValue()!}
+        set { jsObject[.vertex] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var vertex: GPUVertexState
+    public var primitive: GPUPrimitiveState {
+        get { jsObject[.primitive].fromJSValue()!}
+        set { jsObject[.primitive] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var primitive: GPUPrimitiveState
+    public var depthStencil: GPUDepthStencilState {
+        get { jsObject[.depthStencil].fromJSValue()!}
+        set { jsObject[.depthStencil] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthStencil: GPUDepthStencilState
+    public var multisample: GPUMultisampleState {
+        get { jsObject[.multisample].fromJSValue()!}
+        set { jsObject[.multisample] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var multisample: GPUMultisampleState
-
-    @ReadWriteAttribute
-    public var fragment: GPUFragmentState
+    public var fragment: GPUFragmentState {
+        get { jsObject[.fragment].fromJSValue()!}
+        set { jsObject[.fragment] = newValue.jsValue }
+    }
 }
 
 public class GPURequestAdapterOptions: BridgedDictionary {
@@ -2502,17 +2472,15 @@ public class GPURequestAdapterOptions: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _powerPreference = ReadWriteAttribute(jsObject: object, name: .powerPreference)
-        _forceFallbackAdapter = ReadWriteAttribute(jsObject: object, name: .forceFallbackAdapter)
-        super.init(unsafelyWrapping: object)
+    public var powerPreference: GPUPowerPreference {
+        get { jsObject[.powerPreference].fromJSValue()!}
+        set { jsObject[.powerPreference] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var powerPreference: GPUPowerPreference
-
-    @ReadWriteAttribute
-    public var forceFallbackAdapter: Bool
+    public var forceFallbackAdapter: Bool {
+        get { jsObject[.forceFallbackAdapter].fromJSValue()!}
+        set { jsObject[.forceFallbackAdapter] = newValue.jsValue }
+    }
 }
 
 public class GPUSampler: JSBridgedClass, GPUObjectBase {
@@ -2532,13 +2500,10 @@ public class GPUSamplerBindingLayout: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _type = ReadWriteAttribute(jsObject: object, name: .type)
-        super.init(unsafelyWrapping: object)
+    public var type: GPUSamplerBindingType {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var type: GPUSamplerBindingType
 }
 
 public enum GPUSamplerBindingType: JSString, JSValueCompatible {
@@ -2575,50 +2540,56 @@ public class GPUSamplerDescriptor: BridgedDictionary {
         object[.maxAnisotropy] = _toJSValue(maxAnisotropy)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _addressModeU = ReadWriteAttribute(jsObject: object, name: .addressModeU)
-        _addressModeV = ReadWriteAttribute(jsObject: object, name: .addressModeV)
-        _addressModeW = ReadWriteAttribute(jsObject: object, name: .addressModeW)
-        _magFilter = ReadWriteAttribute(jsObject: object, name: .magFilter)
-        _minFilter = ReadWriteAttribute(jsObject: object, name: .minFilter)
-        _mipmapFilter = ReadWriteAttribute(jsObject: object, name: .mipmapFilter)
-        _lodMinClamp = ReadWriteAttribute(jsObject: object, name: .lodMinClamp)
-        _lodMaxClamp = ReadWriteAttribute(jsObject: object, name: .lodMaxClamp)
-        _compare = ReadWriteAttribute(jsObject: object, name: .compare)
-        _maxAnisotropy = ReadWriteAttribute(jsObject: object, name: .maxAnisotropy)
-        super.init(unsafelyWrapping: object)
+    
+    public var addressModeU: GPUAddressMode {
+        get { jsObject[.addressModeU].fromJSValue()!}
+        set { jsObject[.addressModeU] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var addressModeU: GPUAddressMode
+    public var addressModeV: GPUAddressMode {
+        get { jsObject[.addressModeV].fromJSValue()!}
+        set { jsObject[.addressModeV] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var addressModeV: GPUAddressMode
+    public var addressModeW: GPUAddressMode {
+        get { jsObject[.addressModeW].fromJSValue()!}
+        set { jsObject[.addressModeW] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var addressModeW: GPUAddressMode
+    public var magFilter: GPUFilterMode {
+        get { jsObject[.magFilter].fromJSValue()!}
+        set { jsObject[.magFilter] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var magFilter: GPUFilterMode
+    public var minFilter: GPUFilterMode {
+        get { jsObject[.minFilter].fromJSValue()!}
+        set { jsObject[.minFilter] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var minFilter: GPUFilterMode
+    public var mipmapFilter: GPUMipmapFilterMode {
+        get { jsObject[.mipmapFilter].fromJSValue()!}
+        set { jsObject[.mipmapFilter] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var mipmapFilter: GPUMipmapFilterMode
+    public var lodMinClamp: Float {
+        get { jsObject[.lodMinClamp].fromJSValue()!}
+        set { jsObject[.lodMinClamp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var lodMinClamp: Float
+    public var lodMaxClamp: Float {
+        get { jsObject[.lodMaxClamp].fromJSValue()!}
+        set { jsObject[.lodMaxClamp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var lodMaxClamp: Float
+    public var compare: GPUCompareFunction {
+        get { jsObject[.compare].fromJSValue()!}
+        set { jsObject[.compare] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var compare: GPUCompareFunction
-
-    @ReadWriteAttribute
-    public var maxAnisotropy: UInt16
+    public var maxAnisotropy: UInt16 {
+        get { jsObject[.maxAnisotropy].fromJSValue()!}
+        set { jsObject[.maxAnisotropy] = newValue.jsValue }
+    }
 }
 
 public class GPUShaderModule: JSBridgedClass, GPUObjectBase {
@@ -2650,13 +2621,10 @@ public class GPUShaderModuleCompilationHint: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _layout = ReadWriteAttribute(jsObject: object, name: .layout)
-        super.init(unsafelyWrapping: object)
+    public var layout: GPUAutoLayoutMode_or_GPUPipelineLayout {
+        get { jsObject[.layout].fromJSValue()!}
+        set { jsObject[.layout] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var layout: GPUAutoLayoutMode_or_GPUPipelineLayout
 }
 
 public class GPUShaderModuleDescriptor: BridgedDictionary {
@@ -2668,21 +2636,20 @@ public class GPUShaderModuleDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _code = ReadWriteAttribute(jsObject: object, name: .code)
-        _sourceMap = ReadWriteAttribute(jsObject: object, name: .sourceMap)
-        _hints = ReadWriteAttribute(jsObject: object, name: .hints)
-        super.init(unsafelyWrapping: object)
+    public var code: String {
+        get { jsObject[.code].fromJSValue()!}
+        set { jsObject[.code] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var code: String
+    public var sourceMap: JSObject {
+        get { jsObject[.sourceMap].fromJSValue()!}
+        set { jsObject[.sourceMap] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var sourceMap: JSObject
-
-    @ReadWriteAttribute
-    public var hints: [String: GPUShaderModuleCompilationHint]
+    public var hints: [String: GPUShaderModuleCompilationHint] {
+        get { jsObject[.hints].fromJSValue()!}
+        set { jsObject[.hints] = newValue.jsValue }
+    }
 }
 
 public enum GPUShaderStage {
@@ -2707,25 +2674,25 @@ public class GPUStencilFaceState: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _compare = ReadWriteAttribute(jsObject: object, name: .compare)
-        _failOp = ReadWriteAttribute(jsObject: object, name: .failOp)
-        _depthFailOp = ReadWriteAttribute(jsObject: object, name: .depthFailOp)
-        _passOp = ReadWriteAttribute(jsObject: object, name: .passOp)
-        super.init(unsafelyWrapping: object)
+    public var compare: GPUCompareFunction {
+        get { jsObject[.compare].fromJSValue()!}
+        set { jsObject[.compare] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var compare: GPUCompareFunction
+    public var failOp: GPUStencilOperation {
+        get { jsObject[.failOp].fromJSValue()!}
+        set { jsObject[.failOp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var failOp: GPUStencilOperation
+    public var depthFailOp: GPUStencilOperation {
+        get { jsObject[.depthFailOp].fromJSValue()!}
+        set { jsObject[.depthFailOp] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var depthFailOp: GPUStencilOperation
-
-    @ReadWriteAttribute
-    public var passOp: GPUStencilOperation
+    public var passOp: GPUStencilOperation {
+        get { jsObject[.passOp].fromJSValue()!}
+        set { jsObject[.passOp] = newValue.jsValue }
+    }
 }
 
 public enum GPUStencilOperation: JSString, JSValueCompatible {
@@ -2777,22 +2744,21 @@ public class GPUStorageTextureBindingLayout: BridgedDictionary {
         object[.viewDimension] = _toJSValue(viewDimension)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _access = ReadWriteAttribute(jsObject: object, name: .access)
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _viewDimension = ReadWriteAttribute(jsObject: object, name: .viewDimension)
-        super.init(unsafelyWrapping: object)
+    
+    public var access: GPUStorageTextureAccess {
+        get { jsObject[.access].fromJSValue()!}
+        set { jsObject[.access] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var access: GPUStorageTextureAccess
+    public var format: GPUTextureFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var format: GPUTextureFormat
-
-    @ReadWriteAttribute
-    public var viewDimension: GPUTextureViewDimension
+    public var viewDimension: GPUTextureViewDimension {
+        get { jsObject[.viewDimension].fromJSValue()!}
+        set { jsObject[.viewDimension] = newValue.jsValue }
+    }
 }
 
 public enum GPUStoreOp: JSString, JSValueCompatible {
@@ -2831,136 +2797,136 @@ public class GPUSupportedLimits: JSBridgedClass {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _maxTextureDimension1D = ReadonlyAttribute(jsObject: jsObject, name: .maxTextureDimension1D)
-        _maxTextureDimension2D = ReadonlyAttribute(jsObject: jsObject, name: .maxTextureDimension2D)
-        _maxTextureDimension3D = ReadonlyAttribute(jsObject: jsObject, name: .maxTextureDimension3D)
-        _maxTextureArrayLayers = ReadonlyAttribute(jsObject: jsObject, name: .maxTextureArrayLayers)
-        _maxBindGroups = ReadonlyAttribute(jsObject: jsObject, name: .maxBindGroups)
-        _maxBindGroupsPlusVertexBuffers = ReadonlyAttribute(jsObject: jsObject, name: .maxBindGroupsPlusVertexBuffers)
-        _maxBindingsPerBindGroup = ReadonlyAttribute(jsObject: jsObject, name: .maxBindingsPerBindGroup)
-        _maxDynamicUniformBuffersPerPipelineLayout = ReadonlyAttribute(jsObject: jsObject, name: .maxDynamicUniformBuffersPerPipelineLayout)
-        _maxDynamicStorageBuffersPerPipelineLayout = ReadonlyAttribute(jsObject: jsObject, name: .maxDynamicStorageBuffersPerPipelineLayout)
-        _maxSampledTexturesPerShaderStage = ReadonlyAttribute(jsObject: jsObject, name: .maxSampledTexturesPerShaderStage)
-        _maxSamplersPerShaderStage = ReadonlyAttribute(jsObject: jsObject, name: .maxSamplersPerShaderStage)
-        _maxStorageBuffersPerShaderStage = ReadonlyAttribute(jsObject: jsObject, name: .maxStorageBuffersPerShaderStage)
-        _maxStorageTexturesPerShaderStage = ReadonlyAttribute(jsObject: jsObject, name: .maxStorageTexturesPerShaderStage)
-        _maxUniformBuffersPerShaderStage = ReadonlyAttribute(jsObject: jsObject, name: .maxUniformBuffersPerShaderStage)
-        _maxUniformBufferBindingSize = ReadonlyAttribute(jsObject: jsObject, name: .maxUniformBufferBindingSize)
-        _maxStorageBufferBindingSize = ReadonlyAttribute(jsObject: jsObject, name: .maxStorageBufferBindingSize)
-        _minUniformBufferOffsetAlignment = ReadonlyAttribute(jsObject: jsObject, name: .minUniformBufferOffsetAlignment)
-        _minStorageBufferOffsetAlignment = ReadonlyAttribute(jsObject: jsObject, name: .minStorageBufferOffsetAlignment)
-        _maxVertexBuffers = ReadonlyAttribute(jsObject: jsObject, name: .maxVertexBuffers)
-        _maxBufferSize = ReadonlyAttribute(jsObject: jsObject, name: .maxBufferSize)
-        _maxVertexAttributes = ReadonlyAttribute(jsObject: jsObject, name: .maxVertexAttributes)
-        _maxVertexBufferArrayStride = ReadonlyAttribute(jsObject: jsObject, name: .maxVertexBufferArrayStride)
-        _maxInterStageShaderComponents = ReadonlyAttribute(jsObject: jsObject, name: .maxInterStageShaderComponents)
-        _maxInterStageShaderVariables = ReadonlyAttribute(jsObject: jsObject, name: .maxInterStageShaderVariables)
-        _maxColorAttachments = ReadonlyAttribute(jsObject: jsObject, name: .maxColorAttachments)
-        _maxColorAttachmentBytesPerSample = ReadonlyAttribute(jsObject: jsObject, name: .maxColorAttachmentBytesPerSample)
-        _maxComputeWorkgroupStorageSize = ReadonlyAttribute(jsObject: jsObject, name: .maxComputeWorkgroupStorageSize)
-        _maxComputeInvocationsPerWorkgroup = ReadonlyAttribute(jsObject: jsObject, name: .maxComputeInvocationsPerWorkgroup)
-        _maxComputeWorkgroupSizeX = ReadonlyAttribute(jsObject: jsObject, name: .maxComputeWorkgroupSizeX)
-        _maxComputeWorkgroupSizeY = ReadonlyAttribute(jsObject: jsObject, name: .maxComputeWorkgroupSizeY)
-        _maxComputeWorkgroupSizeZ = ReadonlyAttribute(jsObject: jsObject, name: .maxComputeWorkgroupSizeZ)
-        _maxComputeWorkgroupsPerDimension = ReadonlyAttribute(jsObject: jsObject, name: .maxComputeWorkgroupsPerDimension)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var maxTextureDimension1D: UInt32
+public var maxTextureDimension1D: UInt32 {
+jsObject[.maxTextureDimension1D].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxTextureDimension2D: UInt32
+public var maxTextureDimension2D: UInt32 {
+jsObject[.maxTextureDimension2D].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxTextureDimension3D: UInt32
+public var maxTextureDimension3D: UInt32 {
+jsObject[.maxTextureDimension3D].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxTextureArrayLayers: UInt32
+public var maxTextureArrayLayers: UInt32 {
+jsObject[.maxTextureArrayLayers].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxBindGroups: UInt32
+public var maxBindGroups: UInt32 {
+jsObject[.maxBindGroups].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxBindGroupsPlusVertexBuffers: UInt32
+public var maxBindGroupsPlusVertexBuffers: UInt32 {
+jsObject[.maxBindGroupsPlusVertexBuffers].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxBindingsPerBindGroup: UInt32
+public var maxBindingsPerBindGroup: UInt32 {
+jsObject[.maxBindingsPerBindGroup].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxDynamicUniformBuffersPerPipelineLayout: UInt32
+public var maxDynamicUniformBuffersPerPipelineLayout: UInt32 {
+jsObject[.maxDynamicUniformBuffersPerPipelineLayout].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxDynamicStorageBuffersPerPipelineLayout: UInt32
+public var maxDynamicStorageBuffersPerPipelineLayout: UInt32 {
+jsObject[.maxDynamicStorageBuffersPerPipelineLayout].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxSampledTexturesPerShaderStage: UInt32
+public var maxSampledTexturesPerShaderStage: UInt32 {
+jsObject[.maxSampledTexturesPerShaderStage].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxSamplersPerShaderStage: UInt32
+public var maxSamplersPerShaderStage: UInt32 {
+jsObject[.maxSamplersPerShaderStage].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxStorageBuffersPerShaderStage: UInt32
+public var maxStorageBuffersPerShaderStage: UInt32 {
+jsObject[.maxStorageBuffersPerShaderStage].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxStorageTexturesPerShaderStage: UInt32
+public var maxStorageTexturesPerShaderStage: UInt32 {
+jsObject[.maxStorageTexturesPerShaderStage].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxUniformBuffersPerShaderStage: UInt32
+public var maxUniformBuffersPerShaderStage: UInt32 {
+jsObject[.maxUniformBuffersPerShaderStage].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxUniformBufferBindingSize: UInt64
+public var maxUniformBufferBindingSize: UInt64 {
+jsObject[.maxUniformBufferBindingSize].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxStorageBufferBindingSize: UInt64
+public var maxStorageBufferBindingSize: UInt64 {
+jsObject[.maxStorageBufferBindingSize].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var minUniformBufferOffsetAlignment: UInt32
+public var minUniformBufferOffsetAlignment: UInt32 {
+jsObject[.minUniformBufferOffsetAlignment].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var minStorageBufferOffsetAlignment: UInt32
+public var minStorageBufferOffsetAlignment: UInt32 {
+jsObject[.minStorageBufferOffsetAlignment].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxVertexBuffers: UInt32
+public var maxVertexBuffers: UInt32 {
+jsObject[.maxVertexBuffers].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxBufferSize: UInt64
+public var maxBufferSize: UInt64 {
+jsObject[.maxBufferSize].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxVertexAttributes: UInt32
+public var maxVertexAttributes: UInt32 {
+jsObject[.maxVertexAttributes].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxVertexBufferArrayStride: UInt32
+public var maxVertexBufferArrayStride: UInt32 {
+jsObject[.maxVertexBufferArrayStride].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxInterStageShaderComponents: UInt32
+public var maxInterStageShaderComponents: UInt32 {
+jsObject[.maxInterStageShaderComponents].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxInterStageShaderVariables: UInt32
+public var maxInterStageShaderVariables: UInt32 {
+jsObject[.maxInterStageShaderVariables].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxColorAttachments: UInt32
+public var maxColorAttachments: UInt32 {
+jsObject[.maxColorAttachments].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxColorAttachmentBytesPerSample: UInt32
+public var maxColorAttachmentBytesPerSample: UInt32 {
+jsObject[.maxColorAttachmentBytesPerSample].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxComputeWorkgroupStorageSize: UInt32
+public var maxComputeWorkgroupStorageSize: UInt32 {
+jsObject[.maxComputeWorkgroupStorageSize].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxComputeInvocationsPerWorkgroup: UInt32
+public var maxComputeInvocationsPerWorkgroup: UInt32 {
+jsObject[.maxComputeInvocationsPerWorkgroup].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxComputeWorkgroupSizeX: UInt32
+public var maxComputeWorkgroupSizeX: UInt32 {
+jsObject[.maxComputeWorkgroupSizeX].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxComputeWorkgroupSizeY: UInt32
+public var maxComputeWorkgroupSizeY: UInt32 {
+jsObject[.maxComputeWorkgroupSizeY].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxComputeWorkgroupSizeZ: UInt32
+public var maxComputeWorkgroupSizeZ: UInt32 {
+jsObject[.maxComputeWorkgroupSizeZ].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var maxComputeWorkgroupsPerDimension: UInt32
+public var maxComputeWorkgroupsPerDimension: UInt32 {
+jsObject[.maxComputeWorkgroupsPerDimension].fromJSValue()!
+    }
 }
 
 public class GPUTexture: JSBridgedClass, GPUObjectBase {
@@ -2969,15 +2935,7 @@ public class GPUTexture: JSBridgedClass, GPUObjectBase {
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _width = ReadonlyAttribute(jsObject: jsObject, name: .width)
-        _height = ReadonlyAttribute(jsObject: jsObject, name: .height)
-        _depthOrArrayLayers = ReadonlyAttribute(jsObject: jsObject, name: .depthOrArrayLayers)
-        _mipLevelCount = ReadonlyAttribute(jsObject: jsObject, name: .mipLevelCount)
-        _sampleCount = ReadonlyAttribute(jsObject: jsObject, name: .sampleCount)
-        _dimension = ReadonlyAttribute(jsObject: jsObject, name: .dimension)
-        _format = ReadonlyAttribute(jsObject: jsObject, name: .format)
-        _usage = ReadonlyAttribute(jsObject: jsObject, name: .usage)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
     @inlinable public func createView(descriptor: GPUTextureViewDescriptor? = nil) -> GPUTextureView {
@@ -2990,29 +2948,37 @@ public class GPUTexture: JSBridgedClass, GPUObjectBase {
         _ = this[.destroy].function!(this: this, arguments: [])
     }
 
-    @ReadonlyAttribute
-    public var width: GPUIntegerCoordinateOut
+public var width: GPUIntegerCoordinateOut {
+jsObject[.width].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var height: GPUIntegerCoordinateOut
+public var height: GPUIntegerCoordinateOut {
+jsObject[.height].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var depthOrArrayLayers: GPUIntegerCoordinateOut
+public var depthOrArrayLayers: GPUIntegerCoordinateOut {
+jsObject[.depthOrArrayLayers].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var mipLevelCount: GPUIntegerCoordinateOut
+public var mipLevelCount: GPUIntegerCoordinateOut {
+jsObject[.mipLevelCount].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var sampleCount: GPUSize32Out
+public var sampleCount: GPUSize32Out {
+jsObject[.sampleCount].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var dimension: GPUTextureDimension
+public var dimension: GPUTextureDimension {
+jsObject[.dimension].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var format: GPUTextureFormat
+public var format: GPUTextureFormat {
+jsObject[.format].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var usage: GPUFlagsConstant
+public var usage: GPUFlagsConstant {
+jsObject[.usage].fromJSValue()!
+    }
 }
 
 public enum GPUTextureAspect: JSString, JSValueCompatible {
@@ -3044,20 +3010,23 @@ public class GPUTextureBindingLayout: BridgedDictionary {
     }
 
     public required init(unsafelyWrapping object: JSObject) {
-        _sampleType = ReadWriteAttribute(jsObject: object, name: .sampleType)
-        _viewDimension = ReadWriteAttribute(jsObject: object, name: .viewDimension)
-        _multisampled = ReadWriteAttribute(jsObject: object, name: .multisampled)
-        super.init(unsafelyWrapping: object)
+       super.init(unsafelyWrapping: object)
     }
 
-    @ReadWriteAttribute
-    public var sampleType: GPUTextureSampleType
+    public var sampleType: GPUTextureSampleType {
+        get { jsObject[.sampleType].fromJSValue()!}
+        set { jsObject[.sampleType] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var viewDimension: GPUTextureViewDimension
+    public var viewDimension: GPUTextureViewDimension {
+        get { jsObject[.viewDimension].fromJSValue()!}
+        set { jsObject[.viewDimension] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var multisampled: Bool
+    public var multisampled: Bool {
+        get { jsObject[.multisampled].fromJSValue()!}
+        set { jsObject[.multisampled] = newValue.jsValue }
+    }
 }
 
 public class GPUTextureDescriptor: BridgedDictionary {
@@ -3073,37 +3042,40 @@ public class GPUTextureDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _size = ReadWriteAttribute(jsObject: object, name: .size)
-        _mipLevelCount = ReadWriteAttribute(jsObject: object, name: .mipLevelCount)
-        _sampleCount = ReadWriteAttribute(jsObject: object, name: .sampleCount)
-        _dimension = ReadWriteAttribute(jsObject: object, name: .dimension)
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _usage = ReadWriteAttribute(jsObject: object, name: .usage)
-        _viewFormats = ReadWriteAttribute(jsObject: object, name: .viewFormats)
-        super.init(unsafelyWrapping: object)
+    public var size: GPUExtent3D {
+        get { jsObject[.size].fromJSValue()!}
+        set { jsObject[.size] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var size: GPUExtent3D
+    public var mipLevelCount: GPUIntegerCoordinate {
+        get { jsObject[.mipLevelCount].fromJSValue()!}
+        set { jsObject[.mipLevelCount] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var mipLevelCount: GPUIntegerCoordinate
+    public var sampleCount: GPUSize32 {
+        get { jsObject[.sampleCount].fromJSValue()!}
+        set { jsObject[.sampleCount] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var sampleCount: GPUSize32
+    public var dimension: GPUTextureDimension {
+        get { jsObject[.dimension].fromJSValue()!}
+        set { jsObject[.dimension] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var dimension: GPUTextureDimension
+    public var format: GPUTextureFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var format: GPUTextureFormat
+    public var usage: GPUTextureUsageFlags {
+        get { jsObject[.usage].fromJSValue()!}
+        set { jsObject[.usage] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var usage: GPUTextureUsageFlags
-
-    @ReadWriteAttribute
-    public var viewFormats: [GPUTextureFormat]
+    public var viewFormats: [GPUTextureFormat] {
+        get { jsObject[.viewFormats].fromJSValue()!}
+        set { jsObject[.viewFormats] = newValue.jsValue }
+    }
 }
 
 public enum GPUTextureDimension: JSString, JSValueCompatible {
@@ -3295,37 +3267,40 @@ public class GPUTextureViewDescriptor: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _dimension = ReadWriteAttribute(jsObject: object, name: .dimension)
-        _aspect = ReadWriteAttribute(jsObject: object, name: .aspect)
-        _baseMipLevel = ReadWriteAttribute(jsObject: object, name: .baseMipLevel)
-        _mipLevelCount = ReadWriteAttribute(jsObject: object, name: .mipLevelCount)
-        _baseArrayLayer = ReadWriteAttribute(jsObject: object, name: .baseArrayLayer)
-        _arrayLayerCount = ReadWriteAttribute(jsObject: object, name: .arrayLayerCount)
-        super.init(unsafelyWrapping: object)
+    public var format: GPUTextureFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var format: GPUTextureFormat
+    public var dimension: GPUTextureViewDimension {
+        get { jsObject[.dimension].fromJSValue()!}
+        set { jsObject[.dimension] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var dimension: GPUTextureViewDimension
+    public var aspect: GPUTextureAspect {
+        get { jsObject[.aspect].fromJSValue()!}
+        set { jsObject[.aspect] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var aspect: GPUTextureAspect
+    public var baseMipLevel: GPUIntegerCoordinate {
+        get { jsObject[.baseMipLevel].fromJSValue()!}
+        set { jsObject[.baseMipLevel] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var baseMipLevel: GPUIntegerCoordinate
+    public var mipLevelCount: GPUIntegerCoordinate {
+        get { jsObject[.mipLevelCount].fromJSValue()!}
+        set { jsObject[.mipLevelCount] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var mipLevelCount: GPUIntegerCoordinate
+    public var baseArrayLayer: GPUIntegerCoordinate {
+        get { jsObject[.baseArrayLayer].fromJSValue()!}
+        set { jsObject[.baseArrayLayer] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var baseArrayLayer: GPUIntegerCoordinate
-
-    @ReadWriteAttribute
-    public var arrayLayerCount: GPUIntegerCoordinate
+    public var arrayLayerCount: GPUIntegerCoordinate {
+        get { jsObject[.arrayLayerCount].fromJSValue()!}
+        set { jsObject[.arrayLayerCount] = newValue.jsValue }
+    }
 }
 
 public enum GPUTextureViewDimension: JSString, JSValueCompatible {
@@ -3353,17 +3328,13 @@ public enum GPUTextureViewDimension: JSString, JSValueCompatible {
 public class GPUUncapturedErrorEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.GPUUncapturedErrorEvent].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _error = ReadonlyAttribute(jsObject: jsObject, name: .error)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init(type: String, gpuUncapturedErrorEventInitDict: GPUUncapturedErrorEventInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(gpuUncapturedErrorEventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var error: GPUError
+public var error: GPUError {
+jsObject[.error].fromJSValue()!
+    }
 }
 
 public class GPUUncapturedErrorEventInit: BridgedDictionary {
@@ -3372,14 +3343,10 @@ public class GPUUncapturedErrorEventInit: BridgedDictionary {
         object[.error] = _toJSValue(error)
         self.init(unsafelyWrapping: object)
     }
-
-    public required init(unsafelyWrapping object: JSObject) {
-        _error = ReadWriteAttribute(jsObject: object, name: .error)
-        super.init(unsafelyWrapping: object)
+    public var error: GPUError {
+        get { jsObject[.error].fromJSValue()!}
+        set { jsObject[.error] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var error: GPUError
 }
 
 public class GPUValidationError: GPUError {
@@ -3403,21 +3370,20 @@ public class GPUVertexAttribute: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _format = ReadWriteAttribute(jsObject: object, name: .format)
-        _offset = ReadWriteAttribute(jsObject: object, name: .offset)
-        _shaderLocation = ReadWriteAttribute(jsObject: object, name: .shaderLocation)
-        super.init(unsafelyWrapping: object)
+    public var format: GPUVertexFormat {
+        get { jsObject[.format].fromJSValue()!}
+        set { jsObject[.format] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var format: GPUVertexFormat
+    public var offset: GPUSize64 {
+        get { jsObject[.offset].fromJSValue()!}
+        set { jsObject[.offset] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var offset: GPUSize64
-
-    @ReadWriteAttribute
-    public var shaderLocation: GPUIndex32
+    public var shaderLocation: GPUIndex32 {
+        get { jsObject[.shaderLocation].fromJSValue()!}
+        set { jsObject[.shaderLocation] = newValue.jsValue }
+    }
 }
 
 public class GPUVertexBufferLayout: BridgedDictionary {
@@ -3429,21 +3395,20 @@ public class GPUVertexBufferLayout: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _arrayStride = ReadWriteAttribute(jsObject: object, name: .arrayStride)
-        _stepMode = ReadWriteAttribute(jsObject: object, name: .stepMode)
-        _attributes = ReadWriteAttribute(jsObject: object, name: .attributes)
-        super.init(unsafelyWrapping: object)
+    public var arrayStride: GPUSize64 {
+        get { jsObject[.arrayStride].fromJSValue()!}
+        set { jsObject[.arrayStride] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var arrayStride: GPUSize64
+    public var stepMode: GPUVertexStepMode {
+        get { jsObject[.stepMode].fromJSValue()!}
+        set { jsObject[.stepMode] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var stepMode: GPUVertexStepMode
-
-    @ReadWriteAttribute
-    public var attributes: [GPUVertexAttribute]
+    public var attributes: [GPUVertexAttribute] {
+        get { jsObject[.attributes].fromJSValue()!}
+        set { jsObject[.attributes] = newValue.jsValue }
+    }
 }
 
 public enum GPUVertexFormat: JSString, JSValueCompatible {
@@ -3499,13 +3464,10 @@ public class GPUVertexState: BridgedDictionary {
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _buffers = ReadWriteAttribute(jsObject: object, name: .buffers)
-        super.init(unsafelyWrapping: object)
+    public var buffers: [GPUVertexBufferLayout?] {
+        get { jsObject[.buffers].fromJSValue()!}
+        set { jsObject[.buffers] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var buffers: [GPUVertexBufferLayout?]
 }
 
 public enum GPUVertexStepMode: JSString, JSValueCompatible {

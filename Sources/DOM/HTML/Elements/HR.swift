@@ -15,31 +15,28 @@ import WebAPIBase
 public class HTMLHRElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLHRElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _color = ReadWriteAttribute(jsObject: jsObject, name: .color)
-        _noShade = ReadWriteAttribute(jsObject: jsObject, name: .noShade)
-        _size = ReadWriteAttribute(jsObject: jsObject, name: .size)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        super.init(unsafelyWrapping: jsObject)
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var color: String {
+        get { jsObject[.color].fromJSValue()!}
+        set { jsObject[.color] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var align: String
+    public var noShade: Bool {
+        get { jsObject[.noShade].fromJSValue()!}
+        set { jsObject[.noShade] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var color: String
+    public var size: String {
+        get { jsObject[.size].fromJSValue()!}
+        set { jsObject[.size] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var noShade: Bool
-
-    @ReadWriteAttribute
-    public var size: String
-
-    @ReadWriteAttribute
-    public var width: String
+    public var width: String {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
 }

@@ -7,146 +7,139 @@ import JavaScriptEventLoop
 import WebAPIBase
 
 public class Gamepad: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.Gamepad].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.Gamepad].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _id = ReadonlyAttribute(jsObject: jsObject, name: Strings.id)
-        _index = ReadonlyAttribute(jsObject: jsObject, name: Strings.index)
-        _connected = ReadonlyAttribute(jsObject: jsObject, name: Strings.connected)
-        _timestamp = ReadonlyAttribute(jsObject: jsObject, name: Strings.timestamp)
-        _mapping = ReadonlyAttribute(jsObject: jsObject, name: Strings.mapping)
-        _axes = ReadonlyAttribute(jsObject: jsObject, name: Strings.axes)
-        _buttons = ReadonlyAttribute(jsObject: jsObject, name: Strings.buttons)
-        _hand = ReadonlyAttribute(jsObject: jsObject, name: Strings.hand)
-        _hapticActuators = ReadonlyAttribute(jsObject: jsObject, name: Strings.hapticActuators)
-        _pose = ReadonlyAttribute(jsObject: jsObject, name: Strings.pose)
-        _touchEvents = ReadonlyAttribute(jsObject: jsObject, name: Strings.touchEvents)
-        _vibrationActuator = ReadonlyAttribute(jsObject: jsObject, name: Strings.vibrationActuator)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var id: String
+public var id: String {
+jsObject[.id].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var index: Int32
+public var index: Int32 {
+jsObject[.index].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var connected: Bool
+public var connected: Bool {
+jsObject[.connected].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var timestamp: DOMHighResTimeStamp
+public var timestamp: DOMHighResTimeStamp {
+jsObject[.timestamp].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var mapping: GamepadMappingType
+public var mapping: GamepadMappingType {
+jsObject[.mapping].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var axes: [Double]
+public var axes: [Double] {
+jsObject[.axes].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var buttons: [GamepadButton]
+public var buttons: [GamepadButton] {
+jsObject[.buttons].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var hand: GamepadHand
+public var hand: GamepadHand {
+jsObject[.hand].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var hapticActuators: [GamepadHapticActuator]
+public var hapticActuators: [GamepadHapticActuator] {
+jsObject[.hapticActuators].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var pose: GamepadPose?
+public var pose: GamepadPose? {
+jsObject[.pose].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var touchEvents: [GamepadTouch]?
+public var touchEvents: [GamepadTouch]? {
+jsObject[.touchEvents].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var vibrationActuator: GamepadHapticActuator?
+public var vibrationActuator: GamepadHapticActuator? {
+jsObject[.vibrationActuator].fromJSValue()
+    }
 }
 
 public class GamepadButton: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.GamepadButton].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.GamepadButton].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _pressed = ReadonlyAttribute(jsObject: jsObject, name: Strings.pressed)
-        _touched = ReadonlyAttribute(jsObject: jsObject, name: Strings.touched)
-        _value = ReadonlyAttribute(jsObject: jsObject, name: Strings.value)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var pressed: Bool
+public var pressed: Bool {
+jsObject[.pressed].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var touched: Bool
+public var touched: Bool {
+jsObject[.touched].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var value: Double
+public var value: Double {
+jsObject[.value].fromJSValue()!
+    }
 }
 
 public class GamepadEffectParameters: BridgedDictionary {
     public convenience init(duration: Double, startDelay: Double, strongMagnitude: Double, weakMagnitude: Double) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.duration] = _toJSValue(duration)
-        object[Strings.startDelay] = _toJSValue(startDelay)
-        object[Strings.strongMagnitude] = _toJSValue(strongMagnitude)
-        object[Strings.weakMagnitude] = _toJSValue(weakMagnitude)
+        let object = JSObject.global[.Object].function!.new()
+        object[.duration] = _toJSValue(duration)
+        object[.startDelay] = _toJSValue(startDelay)
+        object[.strongMagnitude] = _toJSValue(strongMagnitude)
+        object[.weakMagnitude] = _toJSValue(weakMagnitude)
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _duration = ReadWriteAttribute(jsObject: object, name: Strings.duration)
-        _startDelay = ReadWriteAttribute(jsObject: object, name: Strings.startDelay)
-        _strongMagnitude = ReadWriteAttribute(jsObject: object, name: Strings.strongMagnitude)
-        _weakMagnitude = ReadWriteAttribute(jsObject: object, name: Strings.weakMagnitude)
-        super.init(unsafelyWrapping: object)
+    public var duration: Double {
+        get { jsObject[.duration].fromJSValue()!}
+        set { jsObject[.duration] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var duration: Double
+    public var startDelay: Double {
+        get { jsObject[.startDelay].fromJSValue()!}
+        set { jsObject[.startDelay] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var startDelay: Double
+    public var strongMagnitude: Double {
+        get { jsObject[.strongMagnitude].fromJSValue()!}
+        set { jsObject[.strongMagnitude] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var strongMagnitude: Double
-
-    @ReadWriteAttribute
-    public var weakMagnitude: Double
+    public var weakMagnitude: Double {
+        get { jsObject[.weakMagnitude].fromJSValue()!}
+        set { jsObject[.weakMagnitude] = newValue.jsValue }
+    }
 }
 
 public class GamepadEvent: Event {
-    @inlinable override public class var constructor: JSFunction? { JSObject.global[Strings.GamepadEvent].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _gamepad = ReadonlyAttribute(jsObject: jsObject, name: Strings.gamepad)
-        super.init(unsafelyWrapping: jsObject)
-    }
+    @inlinable override public class var constructor: JSFunction? { JSObject.global[.GamepadEvent].function }
 
     @inlinable public convenience init(type: String, eventInitDict: GamepadEventInit) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
 
-    @ReadonlyAttribute
-    public var gamepad: Gamepad
+public var gamepad: Gamepad {
+jsObject[.gamepad].fromJSValue()!
+    }
 }
 
 public class GamepadEventInit: BridgedDictionary {
     public convenience init(gamepad: Gamepad) {
-        let object = JSObject.global[Strings.Object].function!.new()
-        object[Strings.gamepad] = _toJSValue(gamepad)
+        let object = JSObject.global[.Object].function!.new()
+        object[.gamepad] = _toJSValue(gamepad)
         self.init(unsafelyWrapping: object)
     }
 
-    public required init(unsafelyWrapping object: JSObject) {
-        _gamepad = ReadWriteAttribute(jsObject: object, name: Strings.gamepad)
-        super.init(unsafelyWrapping: object)
+    public var gamepad: Gamepad {
+        get { jsObject[.gamepad].fromJSValue()!}
+        set { jsObject[.gamepad] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var gamepad: Gamepad
 }
 
 public enum GamepadHand: JSString, JSValueCompatible {
@@ -169,38 +162,38 @@ public enum GamepadHand: JSString, JSValueCompatible {
 }
 
 public class GamepadHapticActuator: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.GamepadHapticActuator].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.GamepadHapticActuator].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _type = ReadonlyAttribute(jsObject: jsObject, name: Strings.type)
         self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var type: GamepadHapticActuatorType
+public var type: GamepadHapticActuatorType {
+jsObject[.type].fromJSValue()!
+    }
 
     @inlinable public func canPlayEffectType(type: GamepadHapticEffectType) -> Bool {
         let this = jsObject
-        return this[Strings.canPlayEffectType].function!(this: this, arguments: [_toJSValue(type)]).fromJSValue()!
+        return this[.canPlayEffectType].function!(this: this, arguments: [_toJSValue(type)]).fromJSValue()!
     }
 
     @inlinable public func playEffect(type: GamepadHapticEffectType, params: GamepadEffectParameters? = nil) async throws -> GamepadHapticsResult {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.playEffect].function!(this: this, arguments: [_toJSValue(type), _toJSValue(params)]).fromJSValue()!
+        let _promise: JSPromise = this[.playEffect].function!(this: this, arguments: [_toJSValue(type), _toJSValue(params)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
 
     @inlinable public func pulse(value: Double, duration: Double) async throws -> Bool {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.pulse].function!(this: this, arguments: [_toJSValue(value), _toJSValue(duration)]).fromJSValue()!
+        let _promise: JSPromise = this[.pulse].function!(this: this, arguments: [_toJSValue(value), _toJSValue(duration)]).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
 
     @inlinable public func reset() async throws -> GamepadHapticsResult {
         let this = jsObject
-        let _promise: JSPromise = this[Strings.reset].function!(this: this, arguments: []).fromJSValue()!
+        let _promise: JSPromise = this[.reset].function!(this: this, arguments: []).fromJSValue()!
         return try await _promise.value.fromJSValue()!
     }
 }
@@ -278,140 +271,89 @@ public enum GamepadMappingType: JSString, JSValueCompatible {
 }
 
 public class GamepadPose: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.GamepadPose].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.GamepadPose].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _hasOrientation = ReadonlyAttribute(jsObject: jsObject, name: Strings.hasOrientation)
-        _hasPosition = ReadonlyAttribute(jsObject: jsObject, name: Strings.hasPosition)
-        _position = ReadonlyAttribute(jsObject: jsObject, name: Strings.position)
-        _linearVelocity = ReadonlyAttribute(jsObject: jsObject, name: Strings.linearVelocity)
-        _linearAcceleration = ReadonlyAttribute(jsObject: jsObject, name: Strings.linearAcceleration)
-        _orientation = ReadonlyAttribute(jsObject: jsObject, name: Strings.orientation)
-        _angularVelocity = ReadonlyAttribute(jsObject: jsObject, name: Strings.angularVelocity)
-        _angularAcceleration = ReadonlyAttribute(jsObject: jsObject, name: Strings.angularAcceleration)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var hasOrientation: Bool
+public var hasOrientation: Bool {
+jsObject[.hasOrientation].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var hasPosition: Bool
+public var hasPosition: Bool {
+jsObject[.hasPosition].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var position: Float32Array?
+public var position: Float32Array? {
+jsObject[.position].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var linearVelocity: Float32Array?
+public var linearVelocity: Float32Array? {
+jsObject[.linearVelocity].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var linearAcceleration: Float32Array?
+public var linearAcceleration: Float32Array? {
+jsObject[.linearAcceleration].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var orientation: Float32Array?
+public var orientation: Float32Array? {
+jsObject[.orientation].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var angularVelocity: Float32Array?
+public var angularVelocity: Float32Array? {
+jsObject[.angularVelocity].fromJSValue()
+    }
 
-    @ReadonlyAttribute
-    public var angularAcceleration: Float32Array?
+public var angularAcceleration: Float32Array? {
+jsObject[.angularAcceleration].fromJSValue()
+    }
 }
 
 public class GamepadTouch: JSBridgedClass {
-    @inlinable public class var constructor: JSFunction? { JSObject.global[Strings.GamepadTouch].function }
+    @inlinable public class var constructor: JSFunction? { JSObject.global[.GamepadTouch].function }
 
     public let jsObject: JSObject
 
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _touchId = ReadonlyAttribute(jsObject: jsObject, name: Strings.touchId)
-        _surfaceId = ReadonlyAttribute(jsObject: jsObject, name: Strings.surfaceId)
-        _position = ReadonlyAttribute(jsObject: jsObject, name: Strings.position)
-        _surfaceDimensions = ReadonlyAttribute(jsObject: jsObject, name: Strings.surfaceDimensions)
-        self.jsObject = jsObject
+       self.jsObject = jsObject
     }
 
-    @ReadonlyAttribute
-    public var touchId: UInt32
+public var touchId: UInt32 {
+jsObject[.touchId].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var surfaceId: UInt8
+public var surfaceId: UInt8 {
+jsObject[.surfaceId].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var position: Float32Array
+public var position: Float32Array {
+jsObject[.position].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var surfaceDimensions: Uint32Array?
+public var surfaceDimensions: Uint32Array? {
+jsObject[.surfaceDimensions].fromJSValue()
+    }
 }
 
 public extension Navigator {
     @inlinable func getGamepads() -> [Gamepad?] {
         let this = jsObject
-        return this[Strings.getGamepads].function!(this: this, arguments: []).fromJSValue()!
+        return this[.getGamepads].function!(this: this, arguments: []).fromJSValue()!
     }
 }
 
 public extension WindowEventHandlers {
     @inlinable var ongamepadconnected: EventHandler {
-        get { ClosureAttribute1Optional[Strings.ongamepadconnected, in: jsObject] }
-        nonmutating set { ClosureAttribute1Optional[Strings.ongamepadconnected, in: jsObject] = newValue }
+        get { ClosureAttribute1Optional[.ongamepadconnected, in: jsObject] }
+        nonmutating set { ClosureAttribute1Optional[.ongamepadconnected, in: jsObject] = newValue }
     }
 
     @inlinable var ongamepaddisconnected: EventHandler {
-        get { ClosureAttribute1Optional[Strings.ongamepaddisconnected, in: jsObject] }
-        nonmutating set { ClosureAttribute1Optional[Strings.ongamepaddisconnected, in: jsObject] = newValue }
+        get { ClosureAttribute1Optional[.ongamepaddisconnected, in: jsObject] }
+        nonmutating set { ClosureAttribute1Optional[.ongamepaddisconnected, in: jsObject] = newValue }
     }
 }
 
-@usableFromInline enum Strings {
-    @usableFromInline static let _self: JSString = "self"
-    @usableFromInline static let Gamepad: JSString = "Gamepad"
-    @usableFromInline static let GamepadButton: JSString = "GamepadButton"
-    @usableFromInline static let GamepadEvent: JSString = "GamepadEvent"
-    @usableFromInline static let GamepadHapticActuator: JSString = "GamepadHapticActuator"
-    @usableFromInline static let GamepadPose: JSString = "GamepadPose"
-    @usableFromInline static let GamepadTouch: JSString = "GamepadTouch"
-    @usableFromInline static let Navigator: JSString = "Navigator"
-    @usableFromInline static let Object: JSString = "Object"
-    @usableFromInline static let angularAcceleration: JSString = "angularAcceleration"
-    @usableFromInline static let angularVelocity: JSString = "angularVelocity"
-    @usableFromInline static let axes: JSString = "axes"
-    @usableFromInline static let buttons: JSString = "buttons"
-    @usableFromInline static let canPlayEffectType: JSString = "canPlayEffectType"
-    @usableFromInline static let connected: JSString = "connected"
-    @usableFromInline static let duration: JSString = "duration"
-    @usableFromInline static let gamepad: JSString = "gamepad"
-    @usableFromInline static let getGamepads: JSString = "getGamepads"
-    @usableFromInline static let hand: JSString = "hand"
-    @usableFromInline static let hapticActuators: JSString = "hapticActuators"
-    @usableFromInline static let hasOrientation: JSString = "hasOrientation"
-    @usableFromInline static let hasPosition: JSString = "hasPosition"
-    @usableFromInline static let id: JSString = "id"
-    @usableFromInline static let index: JSString = "index"
-    @usableFromInline static let linearAcceleration: JSString = "linearAcceleration"
-    @usableFromInline static let linearVelocity: JSString = "linearVelocity"
-    @usableFromInline static let mapping: JSString = "mapping"
-    @usableFromInline static let ongamepadconnected: JSString = "ongamepadconnected"
-    @usableFromInline static let ongamepaddisconnected: JSString = "ongamepaddisconnected"
-    @usableFromInline static let orientation: JSString = "orientation"
-    @usableFromInline static let playEffect: JSString = "playEffect"
-    @usableFromInline static let pose: JSString = "pose"
-    @usableFromInline static let position: JSString = "position"
-    @usableFromInline static let pressed: JSString = "pressed"
-    @usableFromInline static let pulse: JSString = "pulse"
-    @usableFromInline static let reset: JSString = "reset"
-    @usableFromInline static let startDelay: JSString = "startDelay"
-    @usableFromInline static let strongMagnitude: JSString = "strongMagnitude"
-    @usableFromInline static let surfaceDimensions: JSString = "surfaceDimensions"
-    @usableFromInline static let surfaceId: JSString = "surfaceId"
-    @usableFromInline static let timestamp: JSString = "timestamp"
-    @usableFromInline static let toString: JSString = "toString"
-    @usableFromInline static let touchEvents: JSString = "touchEvents"
-    @usableFromInline static let touchId: JSString = "touchId"
-    @usableFromInline static let touched: JSString = "touched"
-    @usableFromInline static let type: JSString = "type"
-    @usableFromInline static let value: JSString = "value"
-    @usableFromInline static let vibrationActuator: JSString = "vibrationActuator"
-    @usableFromInline static let weakMagnitude: JSString = "weakMagnitude"
-}

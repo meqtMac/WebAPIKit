@@ -15,31 +15,32 @@ import WebAPIBase
 public class HTMLMetaElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLMetaElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _httpEquiv = ReadWriteAttribute(jsObject: jsObject, name: .httpEquiv)
-        _content = ReadWriteAttribute(jsObject: jsObject, name: .content)
-        _media = ReadWriteAttribute(jsObject: jsObject, name: .media)
-        _scheme = ReadWriteAttribute(jsObject: jsObject, name: .scheme)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init() {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
     }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var httpEquiv: String
+    public var httpEquiv: String {
+        get { jsObject[.httpEquiv].fromJSValue()!}
+        set { jsObject[.httpEquiv] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var content: String
+    public var content: String {
+        get { jsObject[.content].fromJSValue()!}
+        set { jsObject[.content] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var media: String
+    public var media: String {
+        get { jsObject[.media].fromJSValue()!}
+        set { jsObject[.media] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var scheme: String
+    public var scheme: String {
+        get { jsObject[.scheme].fromJSValue()!}
+        set { jsObject[.scheme] = newValue.jsValue }
+    }
 }

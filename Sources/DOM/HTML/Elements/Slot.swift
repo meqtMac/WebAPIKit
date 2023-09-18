@@ -15,17 +15,10 @@ import WebAPIBase
 public class HTMLSlotElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLSlotElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        super.init(unsafelyWrapping: jsObject)
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var name: String
 
     @inlinable public func assignedNodes(options: AssignedNodesOptions? = nil) -> [Node] {
         let this = jsObject

@@ -7,7 +7,7 @@ import Foundation
 struct Demo {
     static func drawLoop(on context: CanvasRenderingContext2D) {
         context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 800)))
-       for i in 0..<4 {
+        for i in 0..<4 {
             for j in 0..<3 {
                 
                 context.beginPath();
@@ -151,7 +151,10 @@ struct Demo {
         let buttonDiv = Div()
         let div = Div {
             Button(title: "First") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                while let node = buttonDiv.element.firstChild {
+                    buttonDiv.element.removeChild(child: node)
+                }
+     
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -165,7 +168,10 @@ struct Demo {
                 
             }
             Button(title: "Second") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                while let node = buttonDiv.element.firstChild {
+                    buttonDiv.element.removeChild(child: node)
+                }
+     
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -180,24 +186,27 @@ struct Demo {
                 context.arc(x: 90, y: 65, radius: 5, startAngle: 0, endAngle: .pi, counterclockwise: true)
                 context.closePath()
                 context.stroke()
-                
             }
+            
             Button(title: "Third") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                while let node = buttonDiv.element.firstChild {
+                    buttonDiv.element.removeChild(child: node)
+                }
+     
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
                 drawLoop(on: context)
             }
             Button(title: "Fourth") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
                 drawDouble(on: context)
             }
             Button(title: "Fifth") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -207,7 +216,7 @@ struct Demo {
         
         let div02 = Div {
             Button(title: "Sixth") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -215,7 +224,7 @@ struct Demo {
                 drawBezier(on: context)
             }
             Button(title: "Seven") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -223,7 +232,7 @@ struct Demo {
                 example7(on: context)
             }
             Button(title: "8") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -237,7 +246,7 @@ struct Demo {
                 context.fill(path: circle)
             }
             Button(title: "Example9") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -251,7 +260,7 @@ struct Demo {
             }
             
             Button(title: "Example10") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -272,7 +281,7 @@ struct Demo {
         
         let div03 = Div {
             Button(title: "GlobalAlpha") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -301,7 +310,7 @@ struct Demo {
                 context.globalAlpha = 1
             }
             Button(title: "RGBA") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -328,7 +337,7 @@ struct Demo {
             }
             
             Button(title: "Line") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -343,7 +352,7 @@ struct Demo {
             }
             
             Button(title: "LineCap") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -370,7 +379,7 @@ struct Demo {
             }
             
             Button(title: "LineJoin") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -392,7 +401,7 @@ struct Demo {
         
         let div04 = Div {
             Button(title: "LineMiter") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -417,7 +426,7 @@ struct Demo {
                 context.stroke();
             }
             Button(title: "Dash") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -432,11 +441,11 @@ struct Demo {
                 draw(on: context, with: 2)
             }
             Button(title: "Gradients") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
-               
+                
                 let linear = context.createLinearGradient(x0: 0, y0: 0, x1: 0, y1: 600) {
                     (0, .rgb(0, 0xab, 0xeb))
                     (0.5, .rgb(0xff, 0xff, 0xff))
@@ -457,13 +466,13 @@ struct Demo {
             }
             
             Button(title: "Radial") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
                 
                 // Create gradients
-                let radgrad  = context.createRadialGradient(x0: 180, y0: 180, r0: 40, 
+                let radgrad  = context.createRadialGradient(x0: 180, y0: 180, r0: 40,
                                                             x1: 208, y1: 200, r1: 120) {
                     (offset: 0,  .rgb(0xa7, 0xd3, 0xc))
                     (offset: 0.9, .rgb(1, 0x9f, 0x62))
@@ -481,7 +490,7 @@ struct Demo {
                     (offset: 0.8, color: .rgb(0, 0xb5, 0xe2))
                     (offset: 1, color: .rgba(0, 201, 255, 0))
                 }
-               
+                
                 let radgrad4 = context.createRadialGradient(x0: 0, y0: 600, r0: 200, x1: 0, y1: 560, r1: 360) {
                     (offset: 0, color: .rgb(0xf4, 0xf2, 1))
                     (offset: 0.8, color: .rgb(0xe4, 0xc7, 0))
@@ -498,7 +507,7 @@ struct Demo {
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 600, height: 600)))
             }
             Button(title: "Conic") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -528,7 +537,7 @@ struct Demo {
         
         let div05 = Div {
             Button(title: "Pattern") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvasbase = Canvas(width: 200, height: 200)
                 let contextBase = canvasbase.context
                 let canvas = Canvas(width: 800, height: 800)
@@ -541,13 +550,13 @@ struct Demo {
                 contextBase.lineTo(x: 100, y: 0)
                 contextBase.lineTo(x: 0, y: 100)
                 contextBase.fill()
-//                let pattern = context.createPattern(image: .htmlCanvasElement(canvasbase.element), repetition: "repeat")
+                //                let pattern = context.createPattern(image: .htmlCanvasElement(canvasbase.element), repetition: "repeat")
                 let pattern = context.createPattern(image: canvasbase.element, repetition: "repeat")
                 contextBase.setFillStyle( pattern!)
                 context.fill(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 800)))
             }
             Button(title: "Shadow") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 800)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -562,7 +571,7 @@ struct Demo {
                 context.fill("Sample String", x: 5, y: 30)
             }
             Button(title: "Fill") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 800)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -576,7 +585,7 @@ struct Demo {
         
         let div06 = Div {
             Button(title: "fillText") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -586,7 +595,7 @@ struct Demo {
             }
             
             Button(title: "strokeText") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -599,7 +608,7 @@ struct Demo {
             }
             
             Button(title: "Measure") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -612,7 +621,7 @@ struct Demo {
         
         let div07 = Div {
             Button(title: "State") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -636,7 +645,7 @@ struct Demo {
             }
             
             Button(title: "Translate") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -653,7 +662,7 @@ struct Demo {
             }
             
             Button(title: "Rotate") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -678,7 +687,7 @@ struct Demo {
             }
             
             Button(title: "Scaling") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -695,7 +704,7 @@ struct Demo {
             }
             
             Button(title: "Transforms") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -720,7 +729,7 @@ struct Demo {
         
         let div08 = Div {
             Button(title: "Clip") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 600)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -764,7 +773,7 @@ struct Demo {
                 }
             }
             Button(title: "Sort") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 800, height: 612)
                 let context = canvas.context
                 
@@ -788,7 +797,7 @@ struct Demo {
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
             }
             Button(title: "Basic Animations") {
-                buttonDiv.element.jsObject.innerHTML = ""
+                buttonDiv.element.removeChilds()
                 let canvas = Canvas(width: 300, height: 300)
                 let context = canvas.context
                 _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
@@ -881,23 +890,21 @@ struct Demo {
             }
             Div {
                 Button(title: "iFrame") {
-                    buttonDiv.element.jsObject.innerHTML = """
-                    <iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/1jpuNAYcS2o?si=bWZ3UFg60z6GOupZ"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer;
-                    autoplay;
-                    clipboard-write
-                     encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                    web-share"
-                    ></iframe>
+                    buttonDiv.element.removeChilds()
+                    let iFrame = HTMLIFrameElement(from: document.createElement(localName: "iframe"))!
+                    iFrame.width = "560"
+                    iFrame.height = "315"
+                    iFrame.src = "https://www.youtube.com/embed/1jpuNAYcS2o?si=8OpgQgvNJ5QRPbvf"
+                    iFrame.title = "YouTube video player"
+                    iFrame.frameBorder = "0"
+                    iFrame.allow = """
+                    accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share
                     """
+                    iFrame.allowFullscreen = true
+                    
+                    buttonDiv.element.appendChild(node: iFrame)
                 }
+                TableDemo(title: "Table", parent: buttonDiv.element)
             }
         }
         _ = document.body?.appendChild(node: rootDiv.element)

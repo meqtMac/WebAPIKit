@@ -14,122 +14,134 @@ import WebAPIBase
 
 public class HTMLImageElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLImageElement].function }
-
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _alt = ReadWriteAttribute(jsObject: jsObject, name: .alt)
-        _src = ReadWriteAttribute(jsObject: jsObject, name: .src)
-        _srcset = ReadWriteAttribute(jsObject: jsObject, name: .srcset)
-        _sizes = ReadWriteAttribute(jsObject: jsObject, name: .sizes)
-        _crossOrigin = ReadWriteAttribute(jsObject: jsObject, name: .crossOrigin)
-        _useMap = ReadWriteAttribute(jsObject: jsObject, name: .useMap)
-        _isMap = ReadWriteAttribute(jsObject: jsObject, name: .isMap)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        _naturalWidth = ReadonlyAttribute(jsObject: jsObject, name: .naturalWidth)
-        _naturalHeight = ReadonlyAttribute(jsObject: jsObject, name: .naturalHeight)
-        _complete = ReadonlyAttribute(jsObject: jsObject, name: .complete)
-        _currentSrc = ReadonlyAttribute(jsObject: jsObject, name: .currentSrc)
-        _referrerPolicy = ReadWriteAttribute(jsObject: jsObject, name: .referrerPolicy)
-        _decoding = ReadWriteAttribute(jsObject: jsObject, name: .decoding)
-        _loading = ReadWriteAttribute(jsObject: jsObject, name: .loading)
-        _fetchPriority = ReadWriteAttribute(jsObject: jsObject, name: .fetchPriority)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _lowsrc = ReadWriteAttribute(jsObject: jsObject, name: .lowsrc)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _hspace = ReadWriteAttribute(jsObject: jsObject, name: .hspace)
-        _vspace = ReadWriteAttribute(jsObject: jsObject, name: .vspace)
-        _longDesc = ReadWriteAttribute(jsObject: jsObject, name: .longDesc)
-        _border = ReadWriteAttribute(jsObject: jsObject, name: .border)
-        _x = ReadonlyAttribute(jsObject: jsObject, name: .x)
-        _y = ReadonlyAttribute(jsObject: jsObject, name: .y)
-        super.init(unsafelyWrapping: jsObject)
+    
+    public var alt: String {
+        get { jsObject[.alt].fromJSValue()!}
+        set { jsObject[.alt] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    
+    public var src: String {
+        get { jsObject[.src].fromJSValue()!}
+        set { jsObject[.src] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var alt: String
-
-    @ReadWriteAttribute
-    public var src: String
-
-    @ReadWriteAttribute
-    public var srcset: String
-
-    @ReadWriteAttribute
-    public var sizes: String
-
-    @ReadWriteAttribute
-    public var crossOrigin: String?
-
-    @ReadWriteAttribute
-    public var useMap: String
-
-    @ReadWriteAttribute
-    public var isMap: Bool
-
-    @ReadWriteAttribute
-    public var width: UInt32
-
-    @ReadWriteAttribute
-    public var height: UInt32
-
-    @ReadonlyAttribute
-    public var naturalWidth: UInt32
-
-    @ReadonlyAttribute
-    public var naturalHeight: UInt32
-
-    @ReadonlyAttribute
-    public var complete: Bool
-
-    @ReadonlyAttribute
-    public var currentSrc: String
-
-    @ReadWriteAttribute
-    public var referrerPolicy: String
-
-    @ReadWriteAttribute
-    public var decoding: String
-
-    @ReadWriteAttribute
-    public var loading: String
-
-    @ReadWriteAttribute
-    public var fetchPriority: String
-
-   @inlinable public func decode() async throws {
+    
+    public var srcset: String {
+        get { jsObject[.srcset].fromJSValue()!}
+        set { jsObject[.srcset] = newValue.jsValue }
+    }
+    
+    public var sizes: String {
+        get { jsObject[.sizes].fromJSValue()!}
+        set { jsObject[.sizes] = newValue.jsValue }
+    }
+    
+    public var crossOrigin: String? {
+        get { jsObject[.crossOrigin].fromJSValue()}
+        set { jsObject[.crossOrigin] = newValue.jsValue }
+    }
+    
+    public var useMap: String {
+        get { jsObject[.useMap].fromJSValue()!}
+        set { jsObject[.useMap] = newValue.jsValue }
+    }
+    
+    public var isMap: Bool {
+        get { jsObject[.isMap].fromJSValue()!}
+        set { jsObject[.isMap] = newValue.jsValue }
+    }
+    
+    public var width: UInt32 {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
+    
+    public var height: UInt32 {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
+    
+    public var naturalWidth: UInt32 {
+        jsObject[.naturalWidth].fromJSValue()!
+    }
+    
+    public var naturalHeight: UInt32 {
+        jsObject[.naturalHeight].fromJSValue()!
+    }
+    
+    public var complete: Bool {
+        jsObject[.complete].fromJSValue()!
+    }
+    
+    public var currentSrc: String {
+        jsObject[.currentSrc].fromJSValue()!
+    }
+    
+    public var referrerPolicy: String {
+        get { jsObject[.referrerPolicy].fromJSValue()!}
+        set { jsObject[.referrerPolicy] = newValue.jsValue }
+    }
+    
+    public var decoding: String {
+        get { jsObject[.decoding].fromJSValue()!}
+        set { jsObject[.decoding] = newValue.jsValue }
+    }
+    
+    public var loading: String {
+        get { jsObject[.loading].fromJSValue()!}
+        set { jsObject[.loading] = newValue.jsValue }
+    }
+    
+    public var fetchPriority: String {
+        get { jsObject[.fetchPriority].fromJSValue()!}
+        set { jsObject[.fetchPriority] = newValue.jsValue }
+    }
+    
+    @inlinable public func decode() async throws {
         let this = jsObject
         let _promise: JSPromise = this[.decode].function!(this: this, arguments: []).fromJSValue()!
         _ = try await _promise.value
     }
-
-    @ReadWriteAttribute
-    public var name: String
-
-    @ReadWriteAttribute
-    public var lowsrc: String
-
-    @ReadWriteAttribute
-    public var align: String
-
-    @ReadWriteAttribute
-    public var hspace: UInt32
-
-    @ReadWriteAttribute
-    public var vspace: UInt32
-
-    @ReadWriteAttribute
-    public var longDesc: String
-
-    @ReadWriteAttribute
-    public var border: String
-
-    @ReadonlyAttribute
-    public var x: Int32
-
-    @ReadonlyAttribute
-    public var y: Int32
+    
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
+    
+    public var lowsrc: String {
+        get { jsObject[.lowsrc].fromJSValue()!}
+        set { jsObject[.lowsrc] = newValue.jsValue }
+    }
+    
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
+    
+    public var hspace: UInt32 {
+        get { jsObject[.hspace].fromJSValue()!}
+        set { jsObject[.hspace] = newValue.jsValue }
+    }
+    
+    public var vspace: UInt32 {
+        get { jsObject[.vspace].fromJSValue()!}
+        set { jsObject[.vspace] = newValue.jsValue }
+    }
+    
+    public var longDesc: String {
+        get { jsObject[.longDesc].fromJSValue()!}
+        set { jsObject[.longDesc] = newValue.jsValue }
+    }
+    
+    public var border: String {
+        get { jsObject[.border].fromJSValue()!}
+        set { jsObject[.border] = newValue.jsValue }
+    }
+    
+    public var x: Int32 {
+        jsObject[.x].fromJSValue()!
+    }
+    
+    public var y: Int32 {
+        jsObject[.y].fromJSValue()!
+    }
 }

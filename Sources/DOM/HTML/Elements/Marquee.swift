@@ -5,67 +5,70 @@
 //  Created by 蒋艺 on 2023/9/14.
 //
 
-import Foundation
-import ECMAScript
-import JavaScriptBigIntSupport
-import JavaScriptEventLoop
+//import Foundation
+//import ECMAScript
+//import JavaScriptBigIntSupport
+//import JavaScriptEventLoop
 import JavaScriptKit
 import WebAPIBase
 
 public class HTMLMarqueeElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLMarqueeElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _behavior = ReadWriteAttribute(jsObject: jsObject, name: .behavior)
-        _bgColor = ReadWriteAttribute(jsObject: jsObject, name: .bgColor)
-        _direction = ReadWriteAttribute(jsObject: jsObject, name: .direction)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        _hspace = ReadWriteAttribute(jsObject: jsObject, name: .hspace)
-        _loop = ReadWriteAttribute(jsObject: jsObject, name: .loop)
-        _scrollAmount = ReadWriteAttribute(jsObject: jsObject, name: .scrollAmount)
-        _scrollDelay = ReadWriteAttribute(jsObject: jsObject, name: .scrollDelay)
-        _trueSpeed = ReadWriteAttribute(jsObject: jsObject, name: .trueSpeed)
-        _vspace = ReadWriteAttribute(jsObject: jsObject, name: .vspace)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        super.init(unsafelyWrapping: jsObject)
+    public var behavior: String {
+        get { jsObject[.behavior].fromJSValue()!}
+        set { jsObject[.behavior] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var bgColor: String {
+        get { jsObject[.bgColor].fromJSValue()!}
+        set { jsObject[.bgColor] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var behavior: String
+    public var direction: String {
+        get { jsObject[.direction].fromJSValue()!}
+        set { jsObject[.direction] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var bgColor: String
+    public var height: String {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var direction: String
+    public var hspace: UInt32 {
+        get { jsObject[.hspace].fromJSValue()!}
+        set { jsObject[.hspace] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var height: String
+    public var loop: Int32 {
+        get { jsObject[.loop].fromJSValue()!}
+        set { jsObject[.loop] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var hspace: UInt32
+    public var scrollAmount: UInt32 {
+        get { jsObject[.scrollAmount].fromJSValue()!}
+        set { jsObject[.scrollAmount] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var loop: Int32
+    public var scrollDelay: UInt32 {
+        get { jsObject[.scrollDelay].fromJSValue()!}
+        set { jsObject[.scrollDelay] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var scrollAmount: UInt32
+    public var trueSpeed: Bool {
+        get { jsObject[.trueSpeed].fromJSValue()!}
+        set { jsObject[.trueSpeed] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var scrollDelay: UInt32
+    public var vspace: UInt32 {
+        get { jsObject[.vspace].fromJSValue()!}
+        set { jsObject[.vspace] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var trueSpeed: Bool
-
-    @ReadWriteAttribute
-    public var vspace: UInt32
-
-    @ReadWriteAttribute
-    public var width: String
+    public var width: String {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
 
     @inlinable public func start() {
         let this = jsObject

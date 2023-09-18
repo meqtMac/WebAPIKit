@@ -15,16 +15,9 @@ import WebAPIBase
 public class HTMLTitleElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTitleElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _text = ReadWriteAttribute(jsObject: jsObject, name: .text)
-        super.init(unsafelyWrapping: jsObject)
+    public var text: String {
+        get { jsObject[.text].fromJSValue()!}
+        set { jsObject[.text] = newValue.jsValue }
     }
-
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
-    }
-
-    @ReadWriteAttribute
-    public var text: String
 }
 

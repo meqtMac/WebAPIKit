@@ -15,73 +15,59 @@ import WebAPIBase
 public class HTMLObjectElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLObjectElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _data = ReadWriteAttribute(jsObject: jsObject, name: .data)
-        _type = ReadWriteAttribute(jsObject: jsObject, name: .type)
-        _name = ReadWriteAttribute(jsObject: jsObject, name: .name)
-        _form = ReadonlyAttribute(jsObject: jsObject, name: .form)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        _contentDocument = ReadonlyAttribute(jsObject: jsObject, name: .contentDocument)
-        _contentWindow = ReadonlyAttribute(jsObject: jsObject, name: .contentWindow)
-        _willValidate = ReadonlyAttribute(jsObject: jsObject, name: .willValidate)
-        _validity = ReadonlyAttribute(jsObject: jsObject, name: .validity)
-        _validationMessage = ReadonlyAttribute(jsObject: jsObject, name: .validationMessage)
-        _align = ReadWriteAttribute(jsObject: jsObject, name: .align)
-        _archive = ReadWriteAttribute(jsObject: jsObject, name: .archive)
-        _code = ReadWriteAttribute(jsObject: jsObject, name: .code)
-        _declare = ReadWriteAttribute(jsObject: jsObject, name: .declare)
-        _hspace = ReadWriteAttribute(jsObject: jsObject, name: .hspace)
-        _standby = ReadWriteAttribute(jsObject: jsObject, name: .standby)
-        _vspace = ReadWriteAttribute(jsObject: jsObject, name: .vspace)
-        _codeBase = ReadWriteAttribute(jsObject: jsObject, name: .codeBase)
-        _codeType = ReadWriteAttribute(jsObject: jsObject, name: .codeType)
-        _useMap = ReadWriteAttribute(jsObject: jsObject, name: .useMap)
-        _border = ReadWriteAttribute(jsObject: jsObject, name: .border)
-        super.init(unsafelyWrapping: jsObject)
+    public var data: String {
+        get { jsObject[.data].fromJSValue()!}
+        set { jsObject[.data] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var type: String {
+        get { jsObject[.type].fromJSValue()!}
+        set { jsObject[.type] = newValue.jsValue }
     }
 
-    @ReadWriteAttribute
-    public var data: String
+    public var name: String {
+        get { jsObject[.name].fromJSValue()!}
+        set { jsObject[.name] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var type: String
+public var form: HTMLFormElement? {
+jsObject[.form].fromJSValue()
+    }
 
-    @ReadWriteAttribute
-    public var name: String
+    public var width: String {
+        get { jsObject[.width].fromJSValue()!}
+        set { jsObject[.width] = newValue.jsValue }
+    }
 
-    @ReadonlyAttribute
-    public var form: HTMLFormElement?
+    public var height: String {
+        get { jsObject[.height].fromJSValue()!}
+        set { jsObject[.height] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var width: String
+public var contentDocument: Document? {
+jsObject[.contentDocument].fromJSValue()
+    }
 
-    @ReadWriteAttribute
-    public var height: String
-
-    @ReadonlyAttribute
-    public var contentDocument: Document?
-
-    @ReadonlyAttribute
-    public var contentWindow: WindowProxy?
+public var contentWindow: WindowProxy? {
+jsObject[.contentWindow].fromJSValue()
+    }
 
     @inlinable public func getSVGDocument() -> Document? {
         let this = jsObject
         return this[.getSVGDocument].function!(this: this, arguments: []).fromJSValue()
     }
 
-    @ReadonlyAttribute
-    public var willValidate: Bool
+public var willValidate: Bool {
+jsObject[.willValidate].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var validity: ValidityState
+public var validity: ValidityState {
+jsObject[.validity].fromJSValue()!
+    }
 
-    @ReadonlyAttribute
-    public var validationMessage: String
+public var validationMessage: String {
+jsObject[.validationMessage].fromJSValue()!
+    }
 
     @inlinable public func checkValidity() -> Bool {
         let this = jsObject
@@ -98,36 +84,58 @@ public class HTMLObjectElement: HTMLElement {
         _ = this[.setCustomValidity].function!(this: this, arguments: [_toJSValue(error)])
     }
 
-    @ReadWriteAttribute
-    public var align: String
+    public var align: String {
+        get { jsObject[.align].fromJSValue()!}
+        set { jsObject[.align] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var archive: String
+    public var archive: String {
+        get { jsObject[.archive].fromJSValue()!}
+        set { jsObject[.archive] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var code: String
+    public var code: String {
+        get { jsObject[.code].fromJSValue()!}
+        set { jsObject[.code] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var declare: Bool
+    public var declare: Bool {
+        get { jsObject[.declare].fromJSValue()!}
+        set { jsObject[.declare] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var hspace: UInt32
+    public var hspace: UInt32 {
+        get { jsObject[.hspace].fromJSValue()!}
+        set { jsObject[.hspace] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var standby: String
+    public var standby: String {
+        get { jsObject[.standby].fromJSValue()!}
+        set { jsObject[.standby] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var vspace: UInt32
+    public var vspace: UInt32 {
+        get { jsObject[.vspace].fromJSValue()!}
+        set { jsObject[.vspace] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var codeBase: String
+    public var codeBase: String {
+        get { jsObject[.codeBase].fromJSValue()!}
+        set { jsObject[.codeBase] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var codeType: String
+    public var codeType: String {
+        get { jsObject[.codeType].fromJSValue()!}
+        set { jsObject[.codeType] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var useMap: String
+    public var useMap: String {
+        get { jsObject[.useMap].fromJSValue()!}
+        set { jsObject[.useMap] = newValue.jsValue }
+    }
 
-    @ReadWriteAttribute
-    public var border: String
+    public var border: String {
+        get { jsObject[.border].fromJSValue()!}
+        set { jsObject[.border] = newValue.jsValue }
+    }
 }

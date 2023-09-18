@@ -11,11 +11,12 @@ import WebAPIBase
 import DOM
 import Foundation
 
-struct WebSocketDemo: HTMLProtocol {
+struct WebSocketDemo: HTML {
     let element: HTMLButtonElement
     init(title: String, parent: HTMLElement ) {
         let element = Button(title: title) {
             parent.jsObject.innerHTML = ""
+            parent.removeChilds()
             let socket = WebSocket(url: "ws://localhost:8080/echo")
             guard let inputLine = HTMLInputElement(from: document.createElement(localName: "input")) else {
                 console.error(data: "can't create input".jsValue)

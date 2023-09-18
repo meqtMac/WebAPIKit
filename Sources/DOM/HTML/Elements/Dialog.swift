@@ -15,21 +15,15 @@ import WebAPIBase
 public class HTMLDialogElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLDialogElement].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _open = ReadWriteAttribute(jsObject: jsObject, name: .open)
-        _returnValue = ReadWriteAttribute(jsObject: jsObject, name: .returnValue)
-        super.init(unsafelyWrapping: jsObject)
+    public var open: Bool {
+        get { jsObject[.open].fromJSValue()! }
+        set { jsObject[.open] = newValue.jsValue }
     }
 
-    @inlinable public convenience init() {
-        self.init(unsafelyWrapping: Self.constructor!.new(arguments: []))
+    public var returnValue: String {
+        get { jsObject[.returnValue].fromJSValue()!}
+        set { jsObject[.returnValue] = newValue.jsValue }
     }
-
-    @ReadWriteAttribute
-    public var open: Bool
-
-    @ReadWriteAttribute
-    public var returnValue: String
 
     @inlinable public func show() {
         let this = jsObject
