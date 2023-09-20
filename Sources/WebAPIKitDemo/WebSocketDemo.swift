@@ -11,7 +11,7 @@ import WebAPIBase
 import DOM
 import Foundation
 
-struct WebSocketDemo: HTML {
+struct WebSocketDemo: HTMDSL {
     let element: HTMLButtonElement
     init(title: String, parent: HTMLElement ) {
         let element = Button(title: title) {

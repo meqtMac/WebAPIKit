@@ -15,10 +15,11 @@ import WebAPIBase
 public class HTMLTableCaptionElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableCaptionElement].function }
 
-    public var align: String {
-        get { jsObject[.align].fromJSValue()! }
-        set { jsObject[.align] = newValue.jsValue }
-    }
+//    @available(*, deprecated, message: "use css instead")
+//    public var align: String {
+//        get { jsObject[.align].fromJSValue()! }
+//        set { jsObject[.align] = newValue.jsValue }
+//    }
 }
 
 public class HTMLTableCellElement: HTMLElement {
@@ -39,66 +40,66 @@ public class HTMLTableCellElement: HTMLElement {
         set { jsObject[.headers] = newValue.jsValue }
     }
 
-    public var cellIndex: Int32 {
-        jsObject[.cellIndex].fromJSValue()!
- 
-    }
+//    public var cellIndex: Int32 {
+//        jsObject[.cellIndex].fromJSValue()!
+// 
+//    }
 
     public var scope: String {
         get { jsObject[.scope].fromJSValue()!}
         set { jsObject[.scope] = newValue.jsValue }
     }
 
-    public var abbr: String {
-        get { jsObject[.abbr].fromJSValue()!}
-        set { jsObject[.abbr] = newValue.jsValue }
- 
-    }
+//    public var abbr: String {
+//        get { jsObject[.abbr].fromJSValue()!}
+//        set { jsObject[.abbr] = newValue.jsValue }
+// 
+//    }
 
-    public var align: String {
-        get { jsObject[.align].fromJSValue()!}
-        set { jsObject[.align] = newValue.jsValue }
-    }
+//    public var align: String {
+//        get { jsObject[.align].fromJSValue()!}
+//        set { jsObject[.align] = newValue.jsValue }
+//    }
+//
+//    public var axis: String {
+//        get { jsObject[.axis].fromJSValue()!}
+//        set { jsObject[.axis] = newValue.jsValue }
+//    }
 
-    public var axis: String {
-        get { jsObject[.axis].fromJSValue()!}
-        set { jsObject[.axis] = newValue.jsValue }
-    }
+//    public var height: String {
+//        get { jsObject[.height].fromJSValue()!}
+//        set { jsObject[.height] = newValue.jsValue }
+//    }
+//
+//    public var width: String {
+//        get { jsObject[.width].fromJSValue()!}
+//        set { jsObject[.width] = newValue.jsValue }
+//    }
 
-    public var height: String {
-        get { jsObject[.height].fromJSValue()!}
-        set { jsObject[.height] = newValue.jsValue }
-    }
+//    public var ch: String {
+//        get { jsObject[.ch].fromJSValue()!}
+//        set { jsObject[.ch] = newValue.jsValue }
+//    }
 
-    public var width: String {
-        get { jsObject[.width].fromJSValue()!}
-        set { jsObject[.width] = newValue.jsValue }
-    }
+//    public var chOff: String {
+//        get { jsObject[.chOff].fromJSValue()!}
+//        set { jsObject[.chOff] = newValue.jsValue }
+//    }
 
-    public var ch: String {
-        get { jsObject[.ch].fromJSValue()!}
-        set { jsObject[.ch] = newValue.jsValue }
-    }
+//    public var noWrap: Bool {
+//        get { jsObject[.noWrap].fromJSValue()!}
+//        set { jsObject[.noWrap] = newValue.jsValue }
+//    }
+//
+//    public var vAlign: String {
+//        get { jsObject[.vAlign].fromJSValue()!}
+//        set { jsObject[.vAlign] = newValue.jsValue }
+//    }
 
-    public var chOff: String {
-        get { jsObject[.chOff].fromJSValue()!}
-        set { jsObject[.chOff] = newValue.jsValue }
-    }
-
-    public var noWrap: Bool {
-        get { jsObject[.noWrap].fromJSValue()!}
-        set { jsObject[.noWrap] = newValue.jsValue }
-    }
-
-    public var vAlign: String {
-        get { jsObject[.vAlign].fromJSValue()!}
-        set { jsObject[.vAlign] = newValue.jsValue }
-    }
-
-    public var bgColor: String {
-        get { jsObject[.bgColor].fromJSValue()!}
-        set { jsObject[.bgColor] = newValue.jsValue }
-    }
+//    public var bgColor: String {
+//        get { jsObject[.bgColor].fromJSValue()!}
+//        set { jsObject[.bgColor] = newValue.jsValue }
+//    }
 }
 
 public class HTMLTableColElement: HTMLElement {
@@ -109,30 +110,30 @@ public class HTMLTableColElement: HTMLElement {
         set { jsObject[.span] = newValue.jsValue }
     }
 
-    public var align: String {
-        get { jsObject[.align].fromJSValue()!}
-        set { jsObject[.align] = newValue.jsValue }
-    }
-
-    public var ch: String {
-        get { jsObject[.ch].fromJSValue()!}
-        set { jsObject[.ch] = newValue.jsValue }
-    }
-
-    public var chOff: String {
-        get { jsObject[.chOff].fromJSValue()!}
-        set { jsObject[.chOff] = newValue.jsValue }
-    }
-
-    public var vAlign: String {
-        get { jsObject[.vAlign].fromJSValue()!}
-        set { jsObject[.vAlign] = newValue.jsValue }
-    }
-
-    public var width: String {
-        get { jsObject[.width].fromJSValue()!}
-        set { jsObject[.width] = newValue.jsValue }
-    }
+//    public var align: String {
+//        get { jsObject[.align].fromJSValue()!}
+//        set { jsObject[.align] = newValue.jsValue }
+//    }
+//
+//    public var ch: String {
+//        get { jsObject[.ch].fromJSValue()!}
+//        set { jsObject[.ch] = newValue.jsValue }
+//    }
+//
+//    public var chOff: String {
+//        get { jsObject[.chOff].fromJSValue()!}
+//        set { jsObject[.chOff] = newValue.jsValue }
+//    }
+//
+//    public var vAlign: String {
+//        get { jsObject[.vAlign].fromJSValue()!}
+//        set { jsObject[.vAlign] = newValue.jsValue }
+//    }
+//
+//    public var width: String {
+//        get { jsObject[.width].fromJSValue()!}
+//        set { jsObject[.width] = newValue.jsValue }
+//    }
 }
 
 public class HTMLTableElement: HTMLElement {
@@ -206,44 +207,44 @@ public class HTMLTableElement: HTMLElement {
         _ = this[.deleteRow].function!(this: this, arguments: [_toJSValue(index)])
     }
     
-    public var align: String {
-        get { jsObject[.align].fromJSValue()!}
-        set { jsObject[.align] = newValue.jsValue }
-    }
+//    public var align: String {
+//        get { jsObject[.align].fromJSValue()!}
+//        set { jsObject[.align] = newValue.jsValue }
+//    }
     
-    public var border: String {
-        get { jsObject[.border].fromJSValue()!}
-        set { jsObject[.border] = newValue.jsValue }
-    }
-    public var frame: String {
-        get { jsObject[.frame].fromJSValue()!}
-        set { jsObject[.frame] = newValue.jsValue }
-    }
-    public var rules: String {
-        get { jsObject[.rules].fromJSValue()!}
-        set { jsObject[.rules] = newValue.jsValue }
-    }
+//    public var border: String {
+//        get { jsObject[.border].fromJSValue()!}
+//        set { jsObject[.border] = newValue.jsValue }
+//    }
+//    public var frame: String {
+//        get { jsObject[.frame].fromJSValue()!}
+//        set { jsObject[.frame] = newValue.jsValue }
+//    }
+//    public var rules: String {
+//        get { jsObject[.rules].fromJSValue()!}
+//        set { jsObject[.rules] = newValue.jsValue }
+//    }
     
-    public var summary: String {
-        get { jsObject[.summary].fromJSValue()!}
-        set { jsObject[.summary] = newValue.jsValue }
-    }
-    public var width: String {
-        get { jsObject[.width].fromJSValue()!}
-        set { jsObject[.width] = newValue.jsValue }
-    }
-    public var bgColor: String {
-        get { jsObject[.bgColor].fromJSValue()!}
-        set { jsObject[.bgColor] = newValue.jsValue }
-    }
-    public var cellPadding: String {
-        get { jsObject[.cellPadding].fromJSValue()!}
-        set { jsObject[.cellPadding] = newValue.jsValue }
-    }
-    public var cellSpacing: String {
-        get { jsObject[.cellSpacing].fromJSValue()!}
-        set { jsObject[.cellSpacing] = newValue.jsValue }
-    }
+//    public var summary: String {
+//        get { jsObject[.summary].fromJSValue()!}
+//        set { jsObject[.summary] = newValue.jsValue }
+//    }
+//    public var width: String {
+//        get { jsObject[.width].fromJSValue()!}
+//        set { jsObject[.width] = newValue.jsValue }
+//    }
+//    public var bgColor: String {
+//        get { jsObject[.bgColor].fromJSValue()!}
+//        set { jsObject[.bgColor] = newValue.jsValue }
+//    }
+//    public var cellPadding: String {
+//        get { jsObject[.cellPadding].fromJSValue()!}
+//        set { jsObject[.cellPadding] = newValue.jsValue }
+//    }
+//    public var cellSpacing: String {
+//        get { jsObject[.cellSpacing].fromJSValue()!}
+//        set { jsObject[.cellSpacing] = newValue.jsValue }
+//    }
 }
 
 
@@ -301,38 +302,38 @@ public class HTMLTableRowElement: HTMLElement {
 public class HTMLTableSectionElement: HTMLElement {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.HTMLTableSectionElement].function }
 
-    public var rows: HTMLCollection {
-        jsObject[.rows].fromJSValue()!
-    }
-
-    @inlinable public func insertRow(index: Int32? = nil) -> HTMLTableRowElement {
-        let this = jsObject
-        return this[.insertRow].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
-    }
-
-    @inlinable public func deleteRow(index: Int32) {
-        let this = jsObject
-        _ = this[.deleteRow].function!(this: this, arguments: [_toJSValue(index)])
-    }
-
-    public var align: String {
-        get { jsObject[.align].fromJSValue()!}
-        set { jsObject[.align] = newValue.jsValue }
-    }
-
-    public var ch: String {
-        get { jsObject[.ch].fromJSValue()!}
-        set { jsObject[.ch] = newValue.jsValue }
-    }
-
-    public var chOff: String {
-        get { jsObject[.chOff].fromJSValue()!}
-        set { jsObject[.chOff] = newValue.jsValue }
-    }
-
-    public var vAlign: String {
-        get { jsObject[.vAlign].fromJSValue()!}
-        set { jsObject[.vAlign] = newValue.jsValue }
- 
-    }
+//    public var rows: HTMLCollection {
+//        jsObject[.rows].fromJSValue()!
+//    }
+//
+//    @inlinable public func insertRow(index: Int32? = nil) -> HTMLTableRowElement {
+//        let this = jsObject
+//        return this[.insertRow].function!(this: this, arguments: [_toJSValue(index)]).fromJSValue()!
+//    }
+//
+//    @inlinable public func deleteRow(index: Int32) {
+//        let this = jsObject
+//        _ = this[.deleteRow].function!(this: this, arguments: [_toJSValue(index)])
+//    }
+//
+//    public var align: String {
+//        get { jsObject[.align].fromJSValue()!}
+//        set { jsObject[.align] = newValue.jsValue }
+//    }
+//
+//    public var ch: String {
+//        get { jsObject[.ch].fromJSValue()!}
+//        set { jsObject[.ch] = newValue.jsValue }
+//    }
+//
+//    public var chOff: String {
+//        get { jsObject[.chOff].fromJSValue()!}
+//        set { jsObject[.chOff] = newValue.jsValue }
+//    }
+//
+//    public var vAlign: String {
+//        get { jsObject[.vAlign].fromJSValue()!}
+//        set { jsObject[.vAlign] = newValue.jsValue }
+// 
+//    }
 }

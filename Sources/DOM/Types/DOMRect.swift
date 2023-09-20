@@ -17,11 +17,7 @@ public class DOMPoint: DOMPointReadOnly {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.DOMPoint].function }
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadWriteAttribute(jsObject: jsObject, name: .x)
-        _y = ReadWriteAttribute(jsObject: jsObject, name: .y)
-        _z = ReadWriteAttribute(jsObject: jsObject, name: .z)
-        _w = ReadWriteAttribute(jsObject: jsObject, name: .w)
-        super.init(unsafelyWrapping: jsObject)
+       super.init(unsafelyWrapping: jsObject)
     }
     
     @inlinable public convenience init(x: Double? = nil, y: Double? = nil, z: Double? = nil, w: Double? = nil) {
@@ -33,28 +29,24 @@ public class DOMPoint: DOMPointReadOnly {
         return this[.fromPoint].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
     
-    @usableFromInline let _x: ReadWriteAttribute<Double>
-    @inlinable override public var x: Double {
-        get { _x.wrappedValue }
-        set { _x.wrappedValue = newValue }
+     @inlinable override public var x: Double{
+        get { jsObject[.x].fromJSValue()! }
+        set { jsObject[.x] = newValue.jsValue }
     }
     
-    @usableFromInline let _y: ReadWriteAttribute<Double>
-    @inlinable override public var y: Double {
-        get { _y.wrappedValue }
-        set { _y.wrappedValue = newValue }
+     @inlinable override public var y: Double{
+        get { jsObject[.y].fromJSValue()! }
+        set { jsObject[.y] = newValue.jsValue }
     }
     
-    @usableFromInline let _z: ReadWriteAttribute<Double>
-    @inlinable override public var z: Double {
-        get { _z.wrappedValue }
-        set { _z.wrappedValue = newValue }
+     @inlinable override public var z: Double{
+        get { jsObject[.z].fromJSValue()! }
+        set { jsObject[.z] = newValue.jsValue }
     }
     
-    @usableFromInline let _w: ReadWriteAttribute<Double>
-    @inlinable override public var w: Double {
-        get { _w.wrappedValue }
-        set { _w.wrappedValue = newValue }
+     @inlinable override public var w: Double{
+        get { jsObject[.w].fromJSValue()! }
+        set { jsObject[.w] = newValue.jsValue }
     }
 }
 
@@ -223,11 +215,7 @@ public class DOMRect: DOMRectReadOnly {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.DOMRect].function }
     
     public required init(unsafelyWrapping jsObject: JSObject) {
-        _x = ReadWriteAttribute(jsObject: jsObject, name: .x)
-        _y = ReadWriteAttribute(jsObject: jsObject, name: .y)
-        _width = ReadWriteAttribute(jsObject: jsObject, name: .width)
-        _height = ReadWriteAttribute(jsObject: jsObject, name: .height)
-        super.init(unsafelyWrapping: jsObject)
+       super.init(unsafelyWrapping: jsObject)
     }
     
     @inlinable public convenience init(x: Double? = nil, y: Double? = nil, width: Double? = nil, height: Double? = nil) {
@@ -239,28 +227,24 @@ public class DOMRect: DOMRectReadOnly {
         return this[.fromRect].function!(this: this, arguments: [_toJSValue(other)]).fromJSValue()!
     }
     
-    @usableFromInline let _x: ReadWriteAttribute<Double>
-    @inlinable override public var x: Double {
-        get { _x.wrappedValue }
-        set { _x.wrappedValue = newValue }
+     @inlinable override public var x: Double{
+        get { jsObject[.x].fromJSValue()! }
+        set { jsObject[.x] = newValue.jsValue }
     }
     
-    @usableFromInline let _y: ReadWriteAttribute<Double>
-    @inlinable override public var y: Double {
-        get { _y.wrappedValue }
-        set { _y.wrappedValue = newValue }
+     @inlinable override public var y: Double{
+        get { jsObject[.y].fromJSValue()! }
+        set { jsObject[.y] = newValue.jsValue }
     }
     
-    @usableFromInline let _width: ReadWriteAttribute<Double>
-    @inlinable override public var width: Double {
-        get { _width.wrappedValue }
-        set { _width.wrappedValue = newValue }
+     @inlinable override public var width: Double{
+        get { jsObject[.width].fromJSValue()! }
+        set { jsObject[.width] = newValue.jsValue }
     }
     
-    @usableFromInline let _height: ReadWriteAttribute<Double>
-    @inlinable override public var height: Double {
-        get { _height.wrappedValue }
-        set { _height.wrappedValue = newValue }
+     @inlinable override public var height: Double{
+        get { jsObject[.height].fromJSValue()! }
+        set { jsObject[.height] = newValue.jsValue }
     }
 }
 

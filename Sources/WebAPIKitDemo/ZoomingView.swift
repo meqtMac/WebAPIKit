@@ -11,7 +11,7 @@ import JavaScriptKit
 import WebAPIBase
 import Foundation
 
-struct ZoomingView: HTML {
+struct ZoomingView: HTMDSL {
     let element: HTMLButtonElement
     
     private static func draw(on context: CanvasRenderingContext2D) {

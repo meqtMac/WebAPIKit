@@ -694,11 +694,6 @@ public class CSSMathSum: CSSMathValue {
 public class CSSMathValue: CSSNumericValue {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.CSSMathValue].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        //        _operator = ReadonlyAttribute(jsObject: jsObject, name: .operator)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     public var `operator`: CSSMathOperator {
         jsObject[.operator].fromJSValue()!
     }

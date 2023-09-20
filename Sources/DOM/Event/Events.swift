@@ -14,22 +14,9 @@ import WebAPIBase
 public class BeforeUnloadEvent: Event {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.BeforeUnloadEvent].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _returnValue = ReadWriteAttribute(jsObject: jsObject, name: .returnValue)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
-    @available(*, unavailable)
-    override public var returnValue: Bool {
-        get { !_returnValue.wrappedValue.isEmpty }
-        set {}
-    }
-    
-    @usableFromInline let _returnValue: ReadWriteAttribute<String>
-    // renamed because `String` is not compatible with `Bool`
     @inlinable public var returnValueAsString: String {
-        get { _returnValue.wrappedValue }
-        set { _returnValue.wrappedValue = newValue }
+        get { jsObject[.returnValue].fromJSValue()! }
+        set { jsObject[.returnValue] = newValue.jsValue }
     }
 }
 
@@ -41,12 +28,12 @@ public class BlobEvent: Event {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(type), _toJSValue(eventInitDict)]))
     }
     
-public var data: Blob {
-jsObject[.data].fromJSValue()!
+    public var data: Blob {
+        jsObject[.data].fromJSValue()!
     }
     
-public var timecode: DOMHighResTimeStamp {
-jsObject[.timecode].fromJSValue()!
+    public var timecode: DOMHighResTimeStamp {
+        jsObject[.timecode].fromJSValue()!
     }
 }
 

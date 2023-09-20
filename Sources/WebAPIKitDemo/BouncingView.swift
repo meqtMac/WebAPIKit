@@ -9,7 +9,7 @@ import Foundation
 import JavaScriptKit
 import DOM
 
-struct BouncingView: HTML {
+struct BouncingView: HTMDSL {
     let element: HTMLButtonElement
     
     class Ball {

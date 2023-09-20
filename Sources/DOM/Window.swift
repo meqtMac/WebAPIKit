@@ -709,13 +709,10 @@ extension Window.CustomElementRegistry {
             self.init(unsafelyWrapping: object)
         }
         
-        public required init(unsafelyWrapping object: JSObject) {
-            _extends = ReadWriteAttribute(jsObject: object, name: .extends)
-            super.init(unsafelyWrapping: object)
+        public var extends: String {
+            get { jsObject[.extends].fromJSValue()! }
+            set { jsObject[.extends] = newValue.jsValue }
         }
-        
-        @ReadWriteAttribute
-        public var extends: String
     }
 }
 

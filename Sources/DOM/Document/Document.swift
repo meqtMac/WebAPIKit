@@ -501,13 +501,10 @@ extension Document {
                 self.init(unsafelyWrapping: object)
             }
             
-            public required init(unsafelyWrapping object: JSObject) {
-                _is = ReadWriteAttribute(jsObject: object, name: .is)
-                super.init(unsafelyWrapping: object)
+           public var `is`: String {
+                get { jsObject[.is].fromJSValue()! }
+                set { jsObject[.is] = newValue.jsValue }
             }
-            
-            @ReadWriteAttribute
-            public var `is`: String
         }
         case elementCreationOptions(ElementCreationOptions)
         case string(String)

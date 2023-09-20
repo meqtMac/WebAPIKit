@@ -118,17 +118,22 @@ public class MediaTrackConstraintSet: BridgedDictionary {
                 self.init(unsafelyWrapping: object)
             }
             
-            public required init(unsafelyWrapping object: JSObject) {
-                _exact = ReadWriteAttribute(jsObject: object, name: .exact)
-                _ideal = ReadWriteAttribute(jsObject: object, name: .ideal)
-                super.init(unsafelyWrapping: object)
+//            public required init(unsafelyWrapping object: JSObject) {
+//                _exact = ReadWriteAttribute(jsObject: object, name: .exact)
+//                _ideal = ReadWriteAttribute(jsObject: object, name: .ideal)
+//                super.init(unsafelyWrapping: object)
+//            }
+            
+            public var exact: String_or_seq_of_String {
+                get { jsObject[.exact].fromJSValue()! }
+                set { jsObject[.exact] = newValue.jsValue }
             }
             
-            @ReadWriteAttribute
-            public var exact: String_or_seq_of_String
+            public var ideal: String_or_seq_of_String {
+                get { jsObject[.ideal].fromJSValue()! }
+                set { jsObject[.ideal] = newValue.jsValue }
+            }
             
-            @ReadWriteAttribute
-            public var ideal: String_or_seq_of_String
             public enum String_or_seq_of_String: JSValueCompatible {
                 case string(String)
                 case seq_of_String([String])

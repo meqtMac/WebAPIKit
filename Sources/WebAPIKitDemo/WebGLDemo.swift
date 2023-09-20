@@ -65,7 +65,7 @@ void main() {
 }
 """
 
-struct WebGLDemo: HTML {
+struct WebGLDemo: HTMDSL {
     let element: HTMLElement
     
     init(parent: HTMLElement) {

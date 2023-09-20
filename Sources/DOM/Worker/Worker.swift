@@ -14,11 +14,6 @@ import WebAPIBase
 public class SharedWorker: EventTarget, AbstractWorker {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.SharedWorker].function }
 
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _port = ReadonlyAttribute(jsObject: jsObject, name: .port)
-        super.init(unsafelyWrapping: jsObject)
-    }
-
     @inlinable public convenience init(scriptURL: String, options: String? = nil) {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(scriptURL), _toJSValue(options)]))
     }
@@ -27,8 +22,9 @@ public class SharedWorker: EventTarget, AbstractWorker {
         self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(scriptURL), _toJSValue(options)]))
     }
 
-   @ReadonlyAttribute
-    public var port: MessagePort
+    public var port: MessagePort {
+        jsObject[.port].fromJSValue()!
+    }
 }
 
 public protocol AbstractWorker: JSBridgedClass {}

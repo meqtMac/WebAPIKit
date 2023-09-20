@@ -11,48 +11,12 @@ import WebAPIBase
 
 let document = globalThis.document
 
-@resultBuilder
-enum HTMLBuilder {
-    public typealias Component = [any HTML]
-    
-    static func buildBlock(_ components: any HTML...) -> Component {
-        return components
-    }
-    
-    public static func buildBlock(_ components: Component...) -> Component {
-        return components.flatMap { $0 }
-    }
-    public static func buildExpression(_ expression: any HTML) -> Component {
-        return [expression]
-    }
-    
-    public static func buildEither(first component: Component) -> Component {
-        return component
-    }
-    
-    public static func buildEither(second component: Component) -> Component {
-        return component
-    }
-    
-    public static func buildArray(_ components: [Component]) -> Component {
-        return components.flatMap { $0 }
-    }
-    
-    public static func buildOptional(_ component: Component?) -> Component {
-        if let component {
-            return component
-        } else {
-            return []
-        }
-    }
-}
-
-protocol HTML {
+public protocol HTMDSL {
     associatedtype Element: HTMLElement
     var element: Element { get }
 }
 
-struct Button: HTML {
+struct Button: HTMDSL {
     let element: HTMLButtonElement
     
     init(title: String) {
@@ -70,14 +34,14 @@ struct Button: HTML {
     }
 }
 
-struct Div: HTML {
+struct Div: HTMDSL {
     let element: HTMLDivElement
     
     init() {
         self.element = HTMLDivElement(from: document.createElement(localName: "div"))!
     }
     
-    init(@HTMLBuilder content: () -> [any HTML] ) {
+    init(@HTMLBuilder content: () -> [any HTMDSL] ) {
         element = HTMLDivElement(from: document.createElement(localName: "div"))!
         for child in content() {
             element.appendChild(node: child.element)
@@ -85,7 +49,7 @@ struct Div: HTML {
     }
 }
 
-struct Canvas: HTML {
+struct Canvas: HTMDSL {
     internal let element: HTMLCanvasElement
     var context: CanvasRenderingContext2D {
         element.getContext(CanvasRenderingContext2D.self)!
@@ -97,6 +61,8 @@ struct Canvas: HTML {
         element.height = height
     }
 }
+
+
 
 extension HTMLElement {
     public  func removeChilds() {

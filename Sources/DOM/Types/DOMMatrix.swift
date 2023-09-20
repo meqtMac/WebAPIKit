@@ -15,32 +15,6 @@ import WebAPIBase
 public class DOMMatrix: DOMMatrixReadOnly {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.DOMMatrix].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _a = ReadWriteAttribute(jsObject: jsObject, name: .a)
-        _b = ReadWriteAttribute(jsObject: jsObject, name: .b)
-        _c = ReadWriteAttribute(jsObject: jsObject, name: .c)
-        _d = ReadWriteAttribute(jsObject: jsObject, name: .d)
-        _e = ReadWriteAttribute(jsObject: jsObject, name: .e)
-        _f = ReadWriteAttribute(jsObject: jsObject, name: .f)
-        _m11 = ReadWriteAttribute(jsObject: jsObject, name: .m11)
-        _m12 = ReadWriteAttribute(jsObject: jsObject, name: .m12)
-        _m13 = ReadWriteAttribute(jsObject: jsObject, name: .m13)
-        _m14 = ReadWriteAttribute(jsObject: jsObject, name: .m14)
-        _m21 = ReadWriteAttribute(jsObject: jsObject, name: .m21)
-        _m22 = ReadWriteAttribute(jsObject: jsObject, name: .m22)
-        _m23 = ReadWriteAttribute(jsObject: jsObject, name: .m23)
-        _m24 = ReadWriteAttribute(jsObject: jsObject, name: .m24)
-        _m31 = ReadWriteAttribute(jsObject: jsObject, name: .m31)
-        _m32 = ReadWriteAttribute(jsObject: jsObject, name: .m32)
-        _m33 = ReadWriteAttribute(jsObject: jsObject, name: .m33)
-        _m34 = ReadWriteAttribute(jsObject: jsObject, name: .m34)
-        _m41 = ReadWriteAttribute(jsObject: jsObject, name: .m41)
-        _m42 = ReadWriteAttribute(jsObject: jsObject, name: .m42)
-        _m43 = ReadWriteAttribute(jsObject: jsObject, name: .m43)
-        _m44 = ReadWriteAttribute(jsObject: jsObject, name: .m44)
-        super.init(unsafelyWrapping: jsObject)
-    }
-    
     //    @inlinable public convenience init(init: String_or_seq_of_Double? = nil) {
     //        self.init(unsafelyWrapping: Self.constructor!.new(arguments: [_toJSValue(`init`)]))
     //    }
@@ -70,136 +44,115 @@ public class DOMMatrix: DOMMatrixReadOnly {
         return this[.fromFloat64Array].function!(this: this, arguments: [_toJSValue(array64)]).fromJSValue()!
     }
     
-    @usableFromInline let _a: ReadWriteAttribute<Double>
+//    @usableFromInline let _a: ReadWriteAttribute<Double>
     @inlinable override public var a: Double {
-        get { _a.wrappedValue }
-        set { _a.wrappedValue = newValue }
+        get { jsObject[.a].fromJSValue()! }
+        set { jsObject[.a] = newValue.jsValue }
     }
     
-    @usableFromInline let _b: ReadWriteAttribute<Double>
     @inlinable override public var b: Double {
-        get { _b.wrappedValue }
-        set { _b.wrappedValue = newValue }
+        get { jsObject[.b].fromJSValue()! }
+        set { jsObject[.b] = newValue.jsValue }
     }
     
-    @usableFromInline let _c: ReadWriteAttribute<Double>
-    @inlinable override public var c: Double {
-        get { _c.wrappedValue }
-        set { _c.wrappedValue = newValue }
+     @inlinable override public var c: Double{
+        get { jsObject[.c].fromJSValue()! }
+        set { jsObject[.c] = newValue.jsValue }
     }
     
-    @usableFromInline let _d: ReadWriteAttribute<Double>
-    @inlinable override public var d: Double {
-        get { _d.wrappedValue }
-        set { _d.wrappedValue = newValue }
+     @inlinable override public var d: Double{
+        get { jsObject[.d].fromJSValue()! }
+        set { jsObject[.d] = newValue.jsValue }
     }
     
-    @usableFromInline let _e: ReadWriteAttribute<Double>
-    @inlinable override public var e: Double {
-        get { _e.wrappedValue }
-        set { _e.wrappedValue = newValue }
+     @inlinable override public var e: Double{
+        get { jsObject[.e].fromJSValue()! }
+        set { jsObject[.e] = newValue.jsValue }
     }
     
-    @usableFromInline let _f: ReadWriteAttribute<Double>
-    @inlinable override public var f: Double {
-        get { _f.wrappedValue }
-        set { _f.wrappedValue = newValue }
+     @inlinable override public var f: Double{
+        get { jsObject[.f].fromJSValue()! }
+        set { jsObject[.f] = newValue.jsValue }
     }
     
-    @usableFromInline let _m11: ReadWriteAttribute<Double>
-    @inlinable override public var m11: Double {
-        get { _m11.wrappedValue }
-        set { _m11.wrappedValue = newValue }
+     @inlinable override public var m11: Double{
+        get { jsObject[.m11].fromJSValue()! }
+        set { jsObject[.m11] = newValue.jsValue }
     }
     
-    @usableFromInline let _m12: ReadWriteAttribute<Double>
-    @inlinable override public var m12: Double {
-        get { _m12.wrappedValue }
-        set { _m12.wrappedValue = newValue }
+     @inlinable override public var m12: Double{
+        get { jsObject[.m12].fromJSValue()! }
+        set { jsObject[.m12] = newValue.jsValue }
     }
     
-    @usableFromInline let _m13: ReadWriteAttribute<Double>
-    @inlinable override public var m13: Double {
-        get { _m13.wrappedValue }
-        set { _m13.wrappedValue = newValue }
+     @inlinable override public var m13: Double{
+        get { jsObject[.m13].fromJSValue()! }
+        set { jsObject[.m13] = newValue.jsValue }
     }
     
-    @usableFromInline let _m14: ReadWriteAttribute<Double>
-    @inlinable override public var m14: Double {
-        get { _m14.wrappedValue }
-        set { _m14.wrappedValue = newValue }
+     @inlinable override public var m14: Double{
+        get { jsObject[.m14].fromJSValue()! }
+        set { jsObject[.m14] = newValue.jsValue }
     }
     
-    @usableFromInline let _m21: ReadWriteAttribute<Double>
-    @inlinable override public var m21: Double {
-        get { _m21.wrappedValue }
-        set { _m21.wrappedValue = newValue }
+     @inlinable override public var m21: Double{
+        get { jsObject[.m21].fromJSValue()! }
+        set { jsObject[.m21] = newValue.jsValue }
     }
     
-    @usableFromInline let _m22: ReadWriteAttribute<Double>
-    @inlinable override public var m22: Double {
-        get { _m22.wrappedValue }
-        set { _m22.wrappedValue = newValue }
+     @inlinable override public var m22: Double{
+        get { jsObject[.m22].fromJSValue()! }
+        set { jsObject[.m22] = newValue.jsValue }
     }
     
-    @usableFromInline let _m23: ReadWriteAttribute<Double>
-    @inlinable override public var m23: Double {
-        get { _m23.wrappedValue }
-        set { _m23.wrappedValue = newValue }
+     @inlinable override public var m23: Double{
+        get { jsObject[.m23].fromJSValue()! }
+        set { jsObject[.m23] = newValue.jsValue }
     }
     
-    @usableFromInline let _m24: ReadWriteAttribute<Double>
-    @inlinable override public var m24: Double {
-        get { _m24.wrappedValue }
-        set { _m24.wrappedValue = newValue }
+     @inlinable override public var m24: Double{
+        get { jsObject[.m24].fromJSValue()! }
+        set { jsObject[.m24] = newValue.jsValue }
     }
     
-    @usableFromInline let _m31: ReadWriteAttribute<Double>
-    @inlinable override public var m31: Double {
-        get { _m31.wrappedValue }
-        set { _m31.wrappedValue = newValue }
+     @inlinable override public var m31: Double{
+        get { jsObject[.m31].fromJSValue()! }
+        set { jsObject[.m31] = newValue.jsValue }
     }
     
-    @usableFromInline let _m32: ReadWriteAttribute<Double>
-    @inlinable override public var m32: Double {
-        get { _m32.wrappedValue }
-        set { _m32.wrappedValue = newValue }
+     @inlinable override public var m32: Double{
+        get { jsObject[.m32].fromJSValue()! }
+        set { jsObject[.m32] = newValue.jsValue }
     }
     
-    @usableFromInline let _m33: ReadWriteAttribute<Double>
-    @inlinable override public var m33: Double {
-        get { _m33.wrappedValue }
-        set { _m33.wrappedValue = newValue }
+     @inlinable override public var m33: Double{
+        get { jsObject[.m33].fromJSValue()! }
+        set { jsObject[.m33] = newValue.jsValue }
     }
     
-    @usableFromInline let _m34: ReadWriteAttribute<Double>
-    @inlinable override public var m34: Double {
-        get { _m34.wrappedValue }
-        set { _m34.wrappedValue = newValue }
+     @inlinable override public var m34: Double{
+        get { jsObject[.m34].fromJSValue()! }
+        set { jsObject[.m34] = newValue.jsValue }
     }
     
-    @usableFromInline let _m41: ReadWriteAttribute<Double>
-    @inlinable override public var m41: Double {
-        get { _m41.wrappedValue }
-        set { _m41.wrappedValue = newValue }
+     @inlinable override public var m41: Double{
+        get { jsObject[.m41].fromJSValue()! }
+        set { jsObject[.m41] = newValue.jsValue }
     }
     
-    @usableFromInline let _m42: ReadWriteAttribute<Double>
-    @inlinable override public var m42: Double {
-        get { _m42.wrappedValue }
-        set { _m42.wrappedValue = newValue }
+     @inlinable override public var m42: Double{
+        get { jsObject[.m42].fromJSValue()! }
+        set { jsObject[.m42] = newValue.jsValue }
     }
     
-    @usableFromInline let _m43: ReadWriteAttribute<Double>
-    @inlinable override public var m43: Double {
-        get { _m43.wrappedValue }
-        set { _m43.wrappedValue = newValue }
+     @inlinable override public var m43: Double{
+        get { jsObject[.m43].fromJSValue()! }
+        set { jsObject[.m43] = newValue.jsValue }
     }
     
-    @usableFromInline let _m44: ReadWriteAttribute<Double>
-    @inlinable override public var m44: Double {
-        get { _m44.wrappedValue }
-        set { _m44.wrappedValue = newValue }
+     @inlinable override public var m44: Double{
+        get { jsObject[.m44].fromJSValue()! }
+        set { jsObject[.m44] = newValue.jsValue }
     }
     
     @inlinable public func multiplySelf(other: DOMMatrixInit? = nil) -> Self {

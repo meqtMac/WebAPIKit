@@ -10,7 +10,7 @@ import JavaScriptKit
 import WebAPIBase
 import DOM
 
-struct MouseButton: HTML {
+struct MouseButton: HTMDSL {
     let element: HTMLButtonElement
     init(title: String, parent: HTMLElement ) {
        

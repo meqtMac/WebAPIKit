@@ -11,7 +11,7 @@ import JavaScriptKit
 import WebAPIBase
 import WebGL1
 
-struct WebGL1Element: HTML {
+struct WebGL1Element: HTMDSL {
     let element: HTMLButtonElement
     
     static let vertextShaderSource = """

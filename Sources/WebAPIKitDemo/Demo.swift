@@ -148,25 +148,10 @@ struct Demo {
     
     
     static func main() {
+//        document.
         let buttonDiv = Div()
         let div = Div {
-            Button(title: "First") {
-                while let node = buttonDiv.element.firstChild {
-                    buttonDiv.element.removeChild(child: node)
-                }
-     
-                let canvas = Canvas(width: 800, height: 600)
-                let context = canvas.context
-                _ = buttonDiv.element.jsValue.appendChild(canvas.element.jsValue)
-                context.clear(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 800, height: 600)))
-                context.beginPath()
-                context.moveTo(x: 75, y: 50)
-                context.lineTo(x: 100, y: 75)
-                context.lineTo(x: 100, y: 25)
-                context.fill()
-                context.closePath()
-                
-            }
+            FirstDemo(title: "First", parent: buttonDiv.element)
             Button(title: "Second") {
                 while let node = buttonDiv.element.firstChild {
                     buttonDiv.element.removeChild(child: node)

@@ -1837,21 +1837,17 @@ public class ValidityStateFlags: BridgedDictionary {
 public class VisibilityStateEntry: PerformanceEntry {
     @inlinable override public class var constructor: JSFunction? { JSObject.global[.VisibilityStateEntry].function }
     
-    public required init(unsafelyWrapping jsObject: JSObject) {
-        _name = ReadonlyAttribute(jsObject: jsObject, name: .name)
-        _entryType = ReadonlyAttribute(jsObject: jsObject, name: .entryType)
-        _startTime = ReadonlyAttribute(jsObject: jsObject, name: .startTime)
-        super.init(unsafelyWrapping: jsObject)
+    @inlinable override public var name: String {
+        jsObject[.name].fromJSValue()!
     }
     
-    @usableFromInline let _name: ReadonlyAttribute<String>
-    @inlinable override public var name: String { _name.wrappedValue }
+    @inlinable override public var entryType: String {
+        jsObject[.entryType].fromJSValue()!
+    }
     
-    @usableFromInline let _entryType: ReadonlyAttribute<String>
-    @inlinable override public var entryType: String { _entryType.wrappedValue }
-    
-    @usableFromInline let _startTime: ReadonlyAttribute<DOMHighResTimeStamp>
-    @inlinable override public var startTime: DOMHighResTimeStamp { _startTime.wrappedValue }
+    @inlinable override public var startTime: DOMHighResTimeStamp {
+        jsObject[.startTime].fromJSValue()!
+    }
     
     // XXX: override of property `duration` removed because the type here is UInt32 but the
     // type in the superclass is DOMHighResTimestamp (Double).
